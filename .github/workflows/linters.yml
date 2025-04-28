@@ -1,0 +1,48 @@
+name: Linters
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+jobs:
+  run-linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+    permissions: write-all
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # Fetch all history for all branches and tags
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v45
+        with:
+          files: |
+            **.js
+            **.jsx
+            **.ts
+            **.tsx
+          separator: " --file "
+          since_last_remote_commit: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 21
+
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Run linters
+        if: steps.changed-files.outputs.all_changed_files != ''
+        env:
+          ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: npm run lint:report -- --file ${ALL_CHANGED_FILES} ./
+        continue-on-error: true
+
+      - name: Annotate linter violations
+        uses: ataylorme/eslint-annotate-action@v2
+        with:
+          report-json: "eslint_report.json"

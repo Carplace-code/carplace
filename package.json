@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:report": "next lint --output-file eslint_report.json --format json",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage.enabled true"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.14.3",
