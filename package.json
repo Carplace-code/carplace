@@ -13,7 +13,10 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": "eslint"
+    "*.{js,jsx,ts,tsx}": [
+      "npm run lint:fix",
+      "npm run lint:report"
+    ]
   },
   "husky": {
     "hooks": {
