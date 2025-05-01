@@ -4,13 +4,15 @@ import { defineConfig } from "vitest/config";
 
 export default defineConfig({
   plugins: [react(), tsconfigPaths()],
-  test: {
+  resolve: {
     alias: {
-      "@/app": "./app",
-      "@/components": "./components",
-      "@/hooks": "./hooks",
-      "@/utils": "./utils",
+      "@/app": "app",
+      "@/components": "components",
+      "@/hooks": "hooks",
+      "@/utils": "utils",
     },
+  },
+  test: {
     sequence: {
       hooks: "parallel",
     },
