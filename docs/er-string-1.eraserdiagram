@@ -1,0 +1,86 @@
+entity-relationship-diagram
+
+Source {
+  id uuid pk
+  baseUrl string
+  name string
+}
+
+Seller {
+  id uuid pk
+  name string
+  email string
+  phone string
+  type string
+}
+
+Brand {
+  id uuid pk
+  name string
+}
+
+Model {
+  id uuid pk
+  brandId uuid fk
+  name string
+  bodyType string
+}
+
+Version {
+  id uuid pk
+  modelId uuid
+  year int
+  versionName string
+}
+
+Trim {
+  id uuid pk
+  versionId uuid
+  name string
+  motorSize int
+  fuelType string
+  transmisionType string
+}
+
+CarListing [icon: car] {
+  id uuid pk
+  sellerId uuid
+  sourceId uuid
+  trimId uuid
+  url string
+  title string
+  description string
+  price decimal
+  priceCurrency string
+  year int
+  mileage int
+  exteriorColor string
+  interiorColor
+  isNew boolean
+  location string
+  publishedAt datetime
+  scrapedAt datetime
+}
+
+PriceHistory {
+  id uuid pk
+  listingId uuid
+  price decimal
+  priceCurrency string
+  recordedAt datetime
+}
+
+Image {
+  id uuid pk
+  listingId uuid
+  url string
+}
+
+CarListing.sourceId      > Source.id
+CarListing.sellerId      > Seller.id
+Model.brandId            > Brand.id
+Version.modelId          > Model.id
+Trim.versionId           > Version.id
+CarListing.trimId        > Trim.id
+PriceHistory.listingId   > CarListing.id
+Image.listingId          > CarListing.id
