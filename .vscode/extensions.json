@@ -1,0 +1,25 @@
+{
+  "recommendations": [
+    // React
+    "dbaeumer.vscode-eslint",
+    "VisualStudioExptTeam.vscodeintellicode",
+    "esbenp.prettier-vscode",
+    "Prisma.prisma",
+    "YoavBls.pretty-ts-errors",
+    "vdanchenkov.tailwind-class-sorter",
+    // Copilot
+    "GitHub.copilot",
+    // GitHub Actions
+    "github.vscode-github-actions",
+    // Docker
+    "ms-azuretools.vscode-docker",
+    // Spell Checker
+    "streetsidesoftware.code-spell-checker",
+    "streetsidesoftware.code-spell-checker-spanish",
+    // Miscellaneous
+    "wayou.vscode-todo-highlight",
+    "shardulm94.trailing-spaces",
+    "PKief.material-icon-theme",
+    "vivaxy.vscode-conventional-commits",
+  ]
+}
