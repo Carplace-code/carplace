@@ -217,8 +217,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
-    "schemaEnvPath": "../../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "../../../prisma",
   "clientVersion": "6.6.0",
@@ -227,17 +226,18 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiMDZlYjY4NTQtZmZjOC00MGNmLWI1OTMtNzExZGE3ODU2MjJkIiwidGVuYW50X2lkIjoiYjNlNjI0OGE1NDNkMzMwNzI1NzQyM2Q5YjgxN2NhZTlhNjIzMTBiNzk1MmRiODA1MzMyNWIyM2QxODFkNDhlMCIsImludGVybmFsX3NlY3JldCI6IjhmM2IwN2RlLTk3MWYtNGQyNS04NTI2LTEwMGNkNDUwYzdiMyJ9.DdjerytXhUlvoq5U-szgDRPbwQemwDaFfWmKmDR9cmo"
+        "value": null
       }
     }
   },
   "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../app/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Brand {\n  id     String  @id @default(uuid())\n  name   String\n  models Model[]\n}\n\nmodel Model {\n  id       String    @id @default(uuid())\n  name     String\n  bodyType String\n  brandId  String\n  brand    Brand     @relation(fields: [brandId], references: [id])\n  versions Version[]\n}\n\nmodel Version {\n  id          String @id @default(uuid())\n  versionName String\n  year        Int\n  modelId     String\n  model       Model  @relation(fields: [modelId], references: [id])\n  trims       Trim[]\n}\n\nmodel Trim {\n  id               String       @id @default(uuid())\n  name             String\n  motorSize        Int\n  fuelType         String\n  transmissionType String\n  versionId        String\n  version          Version      @relation(fields: [versionId], references: [id])\n  carListings      CarListing[]\n}\n\nmodel Source {\n  id          String       @id @default(uuid())\n  baseUrl     String\n  name        String\n  carListings CarListing[]\n}\n\nmodel Seller {\n  id          String       @id @default(uuid())\n  name        String\n  email       String\n  phone       String\n  type        String\n  carListings CarListing[]\n}\n\nmodel CarListing {\n  id            String         @id @default(uuid())\n  sellerId      String\n  seller        Seller         @relation(fields: [sellerId], references: [id])\n  sourceId      String\n  source        Source         @relation(fields: [sourceId], references: [id])\n  url           String\n  title         String\n  description   String\n  price         Decimal\n  priceCurrency String\n  trimId        String\n  trim          Trim           @relation(fields: [trimId], references: [id])\n  year          Int\n  mileage       Int\n  exteriorColor String\n  interiorColor String\n  isNew         Boolean\n  location      String\n  publishedAt   DateTime\n  scrapedAt     DateTime\n  images        Image[]\n  priceHistory  PriceHistory[]\n}\n\nmodel Image {\n  id         String     @id @default(uuid())\n  listingId  String\n  carListing CarListing @relation(fields: [listingId], references: [id])\n  url        String\n}\n\nmodel PriceHistory {\n  id            String     @id @default(uuid())\n  price         Decimal\n  priceCurrency String\n  recordedAt    DateTime\n  listingId     String\n  carListing    CarListing @relation(fields: [listingId], references: [id])\n}\n",
   "inlineSchemaHash": "6f8e35128ef965b760d045c2b0f74e5e0495e16fac83087d23767b4353e917bc",
-  "copyEngine": false
+  "copyEngine": true
 }
 
 const fs = require('fs')
@@ -274,3 +274,9 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
+// file annotations for bundling tools to include these files
+path.join(__dirname, "query_engine-windows.dll.node");
+path.join(process.cwd(), "app/generated/prisma/query_engine-windows.dll.node")
+// file annotations for bundling tools to include these files
+path.join(__dirname, "schema.prisma");
+path.join(process.cwd(), "app/generated/prisma/schema.prisma")
