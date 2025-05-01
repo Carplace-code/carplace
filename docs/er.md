@@ -3,5 +3,10 @@
 
 
 
-
+<!-- eraser-additional-content -->
+## Diagrams
+<!-- eraser-additional-files -->
+<a href="/docs/er-string-1.eraserdiagram" data-element-id="GkLbHLMFjIpwV_w8IMZDH"><img src="/.eraser/ybrnC1sLH9LDK1XZUIi8___ZlrSDV3insg3czTrTVvyi6NvBcs2___---diagram----dc29aafe6ff06d76081e73168f910bbd-string.png" alt="" data-element-id="GkLbHLMFjIpwV_w8IMZDH" /></a>
+<!-- end-eraser-additional-files -->
+<!-- end-eraser-additional-content -->
 <!--- Eraser file: https://app.eraser.io/workspace/ybrnC1sLH9LDK1XZUIi8 --->
