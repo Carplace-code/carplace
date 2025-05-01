@@ -25,7 +25,7 @@ export default [
 
   // Main configuration block
   {
-    ignores: ["**/*.js", "**/__snapshots__/*"],
+    ignores: ["**/*.js", "**/__snapshots__/*", ".kniprc.cjs"],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
