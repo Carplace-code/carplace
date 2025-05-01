@@ -52,6 +52,13 @@ jobs:
         run: |
           git fetch origin main
           git checkout origin/main
+
+          # ───▶ bail if coverage-v8 isn’t installed on main
+          if ! jq -e '.devDependencies["@vitest/coverage-v8"] // .dependencies["@vitest/coverage-v8"]' package.json > /dev/null; then
+            echo "::error ::Dependency @vitest/coverage-v8 not found on main branch – stopping coverage comparison"
+            exit 1
+          fi
+
           npm ci
           npx vitest run --coverage --coverage.reporter json-summary
           mv coverage/coverage-summary.json baseline-coverage-summary.json
