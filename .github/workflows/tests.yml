@@ -65,6 +65,12 @@ jobs:
 
       - name: Compare total line coverage
         run: |
+          # If we never generated a baseline, skip comparison
+          if [ ! -f baseline-coverage-summary.json ]; then
+            echo "✨ No baseline coverage found – skipping coverage comparison"
+            exit 0
+          fi
+
           BASE=$(jq '.total.lines.pct' baseline-coverage-summary.json)
           CUR=$(jq '.total.lines.pct' pr-coverage-summary.json)
           echo "📊 baseline=$BASE%  current=$CUR%"
