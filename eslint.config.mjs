@@ -79,6 +79,7 @@ export default [
       "@typescript-eslint/no-non-null-assertion": "error",
       "no-plusplus": ["error", { allowForLoopAfterthoughts: true }],
       camelcase: ["error", { properties: "always" }],
+      "no-trailing-spaces": ["error", { skipBlankLines: false }],
       "react/function-component-definition": "off",
     },
     settings: {
