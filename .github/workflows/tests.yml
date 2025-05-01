@@ -41,12 +41,12 @@ jobs:
       - name: 🧪 Run tests with coverage
         run: npx vitest run --coverage --coverage.reporter json-summary
 
-      - name: 💾 Save coverage report
-        run: mv coverage/coverage-summary.json pr-coverage-summary.json
-
       - name: 📈 Report coverage status (optional UI)
         if: always()
         uses: davelosert/vitest-coverage-report-action@v2
+
+      - name: 💾 Save coverage report
+        run: mv coverage/coverage-summary.json pr-coverage-summary.json
 
       - name: 🔄 Generate and save baseline coverage on `main`
         run: |
