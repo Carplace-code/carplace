@@ -1,7 +1,6 @@
-// tests/health.test.ts
-import { GET } from '@/app/api/health/route';
 import { NextResponse } from 'next/server';
 import { describe, expect, it } from 'vitest';
+import { GET } from '../health/route';
 
 describe('GET /api/health (App Router)', () => {
   it('responds 200 with { status: "ok" }', async () => {
