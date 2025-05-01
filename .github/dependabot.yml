@@ -1,0 +1,23 @@
+version: 2
+updates:
+  # 1) Keep your NPM dependencies fresh
+  - package-ecosystem: "npm"
+    directory: "/"                   # <-- where your package.json lives
+    schedule:
+      interval: "weekly"             # or "daily", "monthly"
+    open-pull-requests-limit: 5      # max concurrent PRs
+    rebase-strategy: "auto"          # auto‐rebase stale PRs
+    commit-message:
+      prefix: "chore(deps)"          # commit message prefix
+    labels:
+      - "dependencies"
+      - "automerge"                   # if you want to auto‐merge green PRs
+
+  # 2) (Optional) Keep your GitHub Action workflow actions up‐to‐date
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 2
+    labels:
+      - "github-actions"
