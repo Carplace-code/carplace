@@ -38,10 +38,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: 🧪 Run and save tests with coverage
-        run: |
-          npx vitest run --coverage --coverage.reporter json-summary
-          mv coverage/coverage-summary.json pr-coverage-summary.json
+      - name: 🧪 Run tests with coverage
+        run: npx vitest run --coverage --coverage.reporter json-summary
+
+      - name: 💾 Save coverage report
+        run: mv coverage/coverage-summary.json pr-coverage-summary.json
 
       - name: 📈 Report coverage status (optional UI)
         if: always()
