@@ -6,6 +6,7 @@ module.exports = {
     "node_modules/**",
     "public/**",
     "app/api/**",    // if you persist API routes that may seem “unused”
+    "**/prisma/**",
   ],
   failOnUnused: true,
   detectUnusedExports: true,
