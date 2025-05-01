@@ -7,9 +7,22 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:report": "next lint --output-file eslint_report.json --format json",
+    "lint:fix": "eslint --fix",
+    "lint:report": "eslint --max-warnings 0",
     "test": "vitest",
-    "test:coverage": "vitest --coverage.enabled true"
+    "test:coverage": "vitest --coverage.enabled true",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run lint:fix",
+      "npm run lint:report"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test && npm run prettier-format && npm run lint"
+    }
   },
   "dependencies": {
     "@clerk/nextjs": "^6.14.3",
@@ -40,7 +53,9 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-vitest": "^0.5.4",
+    "husky": "^9.1.7",
     "jsdom": "^26.1.0",
+    "lint-staged": "^15.5.1",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "prisma": "^6.6.0",
     "tailwindcss": "^4",
