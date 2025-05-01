@@ -39,7 +39,7 @@ jobs:
         run: npm ci
 
       - name: 🧪 Run tests with coverage
-        run: npm run test:coverage
+        run: npm run test:coverage -- --coverage --coverage.reporter json-summary
 
 
       - name: 📈 Report coverage status (optional UI)
@@ -55,5 +55,15 @@ jobs:
           git fetch origin main
           git checkout origin/main
           npm ci
-          npm run test:coverage
+          npm run test:coverage -- --coverage --coverage.reporter json-summary
           mv coverage/coverage-summary.json baseline-coverage-summary.json
+
+      - name: Compare total line coverage
+        run: |
+          BASE=$(jq '.total.lines.pct' baseline-coverage-summary.json)
+          CUR=$(jq '.total.lines.pct' pr-coverage-summary.json)
+          echo "📊 baseline=$BASE%  current=$CUR%"
+          if (( $(echo "$CUR < $BASE" | bc -l) )); then
+            echo "::error ::Total coverage dropped from $BASE% to $CUR% – failing build"
+            exit 1
+          fi
