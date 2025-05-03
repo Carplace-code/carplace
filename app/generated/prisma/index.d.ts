@@ -1,63 +1,62 @@
-
 /**
  * Client
-**/
+ * */
 
-import * as runtime from './runtime/library.js';
-import $Types = runtime.Types // general types
-import $Public = runtime.Types.Public
-import $Utils = runtime.Types.Utils
-import $Extensions = runtime.Types.Extensions
-import $Result = runtime.Types.Result
+import * as runtime from "./runtime/library.js";
 
-export type PrismaPromise<T> = $Public.PrismaPromise<T>
+import $Types = runtime.Types; // general types
+import $Public = runtime.Types.Public;
+import $Utils = runtime.Types.Utils;
+import $Extensions = runtime.Types.Extensions;
+import $Result = runtime.Types.Result;
 
+export type PrismaPromise<T> = $Public.PrismaPromise<T>;
 
 /**
  * Model Brand
- * 
+ *
  */
-export type Brand = $Result.DefaultSelection<Prisma.$BrandPayload>
+export type Brand = $Result.DefaultSelection<Prisma.$BrandPayload>;
 /**
  * Model Model
- * 
+ *
  */
-export type Model = $Result.DefaultSelection<Prisma.$ModelPayload>
+export type Model = $Result.DefaultSelection<Prisma.$ModelPayload>;
 /**
  * Model Version
- * 
+ *
  */
-export type Version = $Result.DefaultSelection<Prisma.$VersionPayload>
+export type Version = $Result.DefaultSelection<Prisma.$VersionPayload>;
 /**
  * Model Trim
- * 
+ *
  */
-export type Trim = $Result.DefaultSelection<Prisma.$TrimPayload>
+export type Trim = $Result.DefaultSelection<Prisma.$TrimPayload>;
 /**
  * Model Source
- * 
+ *
  */
-export type Source = $Result.DefaultSelection<Prisma.$SourcePayload>
+export type Source = $Result.DefaultSelection<Prisma.$SourcePayload>;
 /**
  * Model Seller
- * 
+ *
  */
-export type Seller = $Result.DefaultSelection<Prisma.$SellerPayload>
+export type Seller = $Result.DefaultSelection<Prisma.$SellerPayload>;
 /**
  * Model CarListing
- * 
+ *
  */
-export type CarListing = $Result.DefaultSelection<Prisma.$CarListingPayload>
+export type CarListing = $Result.DefaultSelection<Prisma.$CarListingPayload>;
 /**
  * Model Image
- * 
+ *
  */
-export type Image = $Result.DefaultSelection<Prisma.$ImagePayload>
+export type Image = $Result.DefaultSelection<Prisma.$ImagePayload>;
 /**
  * Model PriceHistory
- * 
+ *
  */
-export type PriceHistory = $Result.DefaultSelection<Prisma.$PriceHistoryPayload>
+export type PriceHistory = $Result.DefaultSelection<Prisma.$PriceHistoryPayload>;
 
 /**
  * ##  Prisma Client ʲˢ
@@ -75,12 +74,16 @@ export type PriceHistory = $Result.DefaultSelection<Prisma.$PriceHistoryPayload>
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
-  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  U = "log" extends keyof ClientOptions
+    ? ClientOptions["log"] extends Array<Prisma.LogLevel | Prisma.LogDefinition>
+      ? Prisma.GetEvents<ClientOptions["log"]>
+      : never
+    : never,
+  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
 > {
-  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>["other"] };
 
-    /**
+  /**
    * ##  Prisma Client ʲˢ
    *
    * Type-safe database client for TypeScript & Node.js
@@ -95,8 +98,11 @@ export class PrismaClient<
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
    */
 
-  constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
-  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
+  constructor(optionsArg?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
+  $on<V extends U>(
+    eventType: V,
+    callback: (event: V extends "query" ? Prisma.QueryEvent : Prisma.LogEvent) => void,
+  ): PrismaClient;
 
   /**
    * Connect with the database
@@ -113,9 +119,9 @@ export class PrismaClient<
    * @deprecated since 4.16.0. For new code, prefer client extensions instead.
    * @see https://pris.ly/d/extensions
    */
-  $use(cb: Prisma.Middleware): void
+  $use(cb: Prisma.Middleware): void;
 
-/**
+  /**
    * Executes a prepared raw query and returns the number of affected rows.
    * @example
    * ```
@@ -161,7 +167,6 @@ export class PrismaClient<
    */
   $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 
-
   /**
    * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
    * @example
@@ -172,185 +177,195 @@ export class PrismaClient<
    *   prisma.user.create({ data: { name: 'Alice' } }),
    * ])
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
    */
-  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(
+    arg: [...P],
+    options?: { isolationLevel?: Prisma.TransactionIsolationLevel },
+  ): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>;
 
-  $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
+  $transaction<R>(
+    fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>,
+    options?: { maxWait?: number; timeout?: number; isolationLevel?: Prisma.TransactionIsolationLevel },
+  ): $Utils.JsPromise<R>;
 
+  $extends: $Extensions.ExtendsHook<
+    "extends",
+    Prisma.TypeMapCb<ClientOptions>,
+    ExtArgs,
+    $Utils.Call<
+      Prisma.TypeMapCb<ClientOptions>,
+      {
+        extArgs: ExtArgs;
+      }
+    >
+  >;
 
-  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<ClientOptions>, ExtArgs, $Utils.Call<Prisma.TypeMapCb<ClientOptions>, {
-    extArgs: ExtArgs
-  }>>
-
-      /**
+  /**
    * `prisma.brand`: Exposes CRUD operations for the **Brand** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Brands
-    * const brands = await prisma.brand.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Brands
+   * const brands = await prisma.brand.findMany()
+   * ```
+   */
   get brand(): Prisma.BrandDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.model`: Exposes CRUD operations for the **Model** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Models
-    * const models = await prisma.model.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Models
+   * const models = await prisma.model.findMany()
+   * ```
+   */
   get model(): Prisma.ModelDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.version`: Exposes CRUD operations for the **Version** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Versions
-    * const versions = await prisma.version.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Versions
+   * const versions = await prisma.version.findMany()
+   * ```
+   */
   get version(): Prisma.VersionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.trim`: Exposes CRUD operations for the **Trim** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Trims
-    * const trims = await prisma.trim.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Trims
+   * const trims = await prisma.trim.findMany()
+   * ```
+   */
   get trim(): Prisma.TrimDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.source`: Exposes CRUD operations for the **Source** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Sources
-    * const sources = await prisma.source.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Sources
+   * const sources = await prisma.source.findMany()
+   * ```
+   */
   get source(): Prisma.SourceDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.seller`: Exposes CRUD operations for the **Seller** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Sellers
-    * const sellers = await prisma.seller.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Sellers
+   * const sellers = await prisma.seller.findMany()
+   * ```
+   */
   get seller(): Prisma.SellerDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.carListing`: Exposes CRUD operations for the **CarListing** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more CarListings
-    * const carListings = await prisma.carListing.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more CarListings
+   * const carListings = await prisma.carListing.findMany()
+   * ```
+   */
   get carListing(): Prisma.CarListingDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.image`: Exposes CRUD operations for the **Image** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Images
-    * const images = await prisma.image.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Images
+   * const images = await prisma.image.findMany()
+   * ```
+   */
   get image(): Prisma.ImageDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.priceHistory`: Exposes CRUD operations for the **PriceHistory** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more PriceHistories
-    * const priceHistories = await prisma.priceHistory.findMany()
-    * ```
-    */
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more PriceHistories
+   * const priceHistories = await prisma.priceHistory.findMany()
+   * ```
+   */
   get priceHistory(): Prisma.PriceHistoryDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
-  export import DMMF = runtime.DMMF
+  export import DMMF = runtime.DMMF;
 
-  export type PrismaPromise<T> = $Public.PrismaPromise<T>
+  export type PrismaPromise<T> = $Public.PrismaPromise<T>;
 
   /**
    * Validator
    */
-  export import validator = runtime.Public.validator
+  export import validator = runtime.Public.validator;
 
   /**
    * Prisma Errors
    */
-  export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError
-  export import PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError
-  export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
-  export import PrismaClientInitializationError = runtime.PrismaClientInitializationError
-  export import PrismaClientValidationError = runtime.PrismaClientValidationError
+  export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError;
+  export import PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError;
+  export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError;
+  export import PrismaClientInitializationError = runtime.PrismaClientInitializationError;
+  export import PrismaClientValidationError = runtime.PrismaClientValidationError;
 
   /**
    * Re-export of sql-template-tag
    */
-  export import sql = runtime.sqltag
-  export import empty = runtime.empty
-  export import join = runtime.join
-  export import raw = runtime.raw
-  export import Sql = runtime.Sql
-
-
+  export import sql = runtime.sqltag;
+  export import empty = runtime.empty;
+  export import join = runtime.join;
+  export import raw = runtime.raw;
+  export import Sql = runtime.Sql;
 
   /**
    * Decimal.js
    */
-  export import Decimal = runtime.Decimal
+  export import Decimal = runtime.Decimal;
 
-  export type DecimalJsLike = runtime.DecimalJsLike
+  export type DecimalJsLike = runtime.DecimalJsLike;
 
   /**
    * Metrics
    */
-  export type Metrics = runtime.Metrics
-  export type Metric<T> = runtime.Metric<T>
-  export type MetricHistogram = runtime.MetricHistogram
-  export type MetricHistogramBucket = runtime.MetricHistogramBucket
+  export type Metrics = runtime.Metrics;
+  export type Metric<T> = runtime.Metric<T>;
+  export type MetricHistogram = runtime.MetricHistogram;
+  export type MetricHistogramBucket = runtime.MetricHistogramBucket;
 
   /**
-  * Extensions
-  */
-  export import Extension = $Extensions.UserArgs
-  export import getExtensionContext = runtime.Extensions.getExtensionContext
-  export import Args = $Public.Args
-  export import Payload = $Public.Payload
-  export import Result = $Public.Result
-  export import Exact = $Public.Exact
+   * Extensions
+   */
+  export import Extension = $Extensions.UserArgs;
+  export import getExtensionContext = runtime.Extensions.getExtensionContext;
+  export import Args = $Public.Args;
+  export import Payload = $Public.Payload;
+  export import Result = $Public.Result;
+  export import Exact = $Public.Exact;
 
   /**
    * Prisma Client JS version: 6.6.0
    * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
    */
   export type PrismaVersion = {
-    client: string
-  }
+    client: string;
+  };
 
-  export const prismaVersion: PrismaVersion
+  export const prismaVersion: PrismaVersion;
 
   /**
    * Utility Types
    */
 
-
-  export import JsonObject = runtime.JsonObject
-  export import JsonArray = runtime.JsonArray
-  export import JsonValue = runtime.JsonValue
-  export import InputJsonObject = runtime.InputJsonObject
-  export import InputJsonArray = runtime.InputJsonArray
-  export import InputJsonValue = runtime.InputJsonValue
+  export import JsonObject = runtime.JsonObject;
+  export import JsonArray = runtime.JsonArray;
+  export import JsonValue = runtime.JsonValue;
+  export import InputJsonObject = runtime.InputJsonObject;
+  export import InputJsonArray = runtime.InputJsonArray;
+  export import InputJsonValue = runtime.InputJsonValue;
 
   /**
    * Types of the values used to represent different kinds of `null` values when working with JSON fields.
@@ -359,39 +374,39 @@ export namespace Prisma {
    */
   namespace NullTypes {
     /**
-    * Type of `Prisma.DbNull`.
-    *
-    * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
-    *
-    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-    */
+     * Type of `Prisma.DbNull`.
+     *
+     * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
+     *
+     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+     */
     class DbNull {
-      private DbNull: never
-      private constructor()
+      private DbNull: never;
+      private constructor();
     }
 
     /**
-    * Type of `Prisma.JsonNull`.
-    *
-    * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
-    *
-    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-    */
+     * Type of `Prisma.JsonNull`.
+     *
+     * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
+     *
+     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+     */
     class JsonNull {
-      private JsonNull: never
-      private constructor()
+      private JsonNull: never;
+      private constructor();
     }
 
     /**
-    * Type of `Prisma.AnyNull`.
-    *
-    * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
-    *
-    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-    */
+     * Type of `Prisma.AnyNull`.
+     *
+     * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
+     *
+     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+     */
     class AnyNull {
-      private AnyNull: never
-      private constructor()
+      private AnyNull: never;
+      private constructor();
     }
   }
 
@@ -400,31 +415,31 @@ export namespace Prisma {
    *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
-  export const DbNull: NullTypes.DbNull
+  export const DbNull: NullTypes.DbNull;
 
   /**
    * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
    *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
-  export const JsonNull: NullTypes.JsonNull
+  export const JsonNull: NullTypes.JsonNull;
 
   /**
    * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
    *
    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
    */
-  export const AnyNull: NullTypes.AnyNull
+  export const AnyNull: NullTypes.AnyNull;
 
   type SelectAndInclude = {
-    select: any
-    include: any
-  }
+    select: any;
+    include: any;
+  };
 
   type SelectAndOmit = {
-    select: any
-    omit: any
-  }
+    select: any;
+    omit: any;
+  };
 
   /**
    * Get the type of the value, that the Promise holds.
@@ -434,27 +449,26 @@ export namespace Prisma {
   /**
    * Get the return type of a function which returns a Promise.
    */
-  export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>
+  export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>;
 
   /**
    * From T, pick a set of properties whose keys are in the union K
    */
   type Prisma__Pick<T, K extends keyof T> = {
-      [P in K]: T[P];
+    [P in K]: T[P];
   };
-
 
   export type Enumerable<T> = T | Array<T>;
 
   export type RequiredKeys<T> = {
-    [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K
-  }[keyof T]
+    [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K;
+  }[keyof T];
 
   export type TruthyKeys<T> = keyof {
-    [K in keyof T as T[K] extends false | undefined | null ? never : K]: K
-  }
+    [K in keyof T as T[K] extends false | undefined | null ? never : K]: K;
+  };
 
-  export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>
+  export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>;
 
   /**
    * Subset
@@ -470,22 +484,20 @@ export namespace Prisma {
    * Additionally, it validates, if both select and include are present. If the case, it errors.
    */
   export type SelectSubset<T, U> = {
-    [key in keyof T]: key extends keyof U ? T[key] : never
-  } &
-    (T extends SelectAndInclude
-      ? 'Please either choose `select` or `include`.'
-      : T extends SelectAndOmit
-        ? 'Please either choose `select` or `omit`.'
-        : {})
+    [key in keyof T]: key extends keyof U ? T[key] : never;
+  } & (T extends SelectAndInclude
+    ? "Please either choose `select` or `include`."
+    : T extends SelectAndOmit
+      ? "Please either choose `select` or `omit`."
+      : {});
 
   /**
    * Subset + Intersection
    * @desc From `T` pick properties that exist in `U` and intersect `K`
    */
   export type SubsetIntersection<T, U, K> = {
-    [key in keyof T]: key extends keyof U ? T[key] : never
-  } &
-    K
+    [key in keyof T]: key extends keyof U ? T[key] : never;
+  } & K;
 
   type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 
@@ -493,33 +505,28 @@ export namespace Prisma {
    * XOR is needed to have a real mutually exclusive union type
    * https://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types
    */
-  type XOR<T, U> =
-    T extends object ?
-    U extends object ?
-      (Without<T, U> & U) | (Without<U, T> & T)
-    : U : T
-
+  type XOR<T, U> = T extends object ? (U extends object ? (Without<T, U> & U) | (Without<U, T> & T) : U) : T;
 
   /**
    * Is T a Record?
    */
-  type IsObject<T extends any> = T extends Array<any>
-  ? False
-  : T extends Date
-  ? False
-  : T extends Uint8Array
-  ? False
-  : T extends BigInt
-  ? False
-  : T extends object
-  ? True
-  : False
-
+  type IsObject<T extends any> =
+    T extends Array<any>
+      ? False
+      : T extends Date
+        ? False
+        : T extends Uint8Array
+          ? False
+          : T extends bigint
+            ? False
+            : T extends object
+              ? True
+              : False;
 
   /**
    * If it's T[], return T
    */
-  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
+  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T;
 
   /**
    * From ts-toolbelt
@@ -528,61 +535,60 @@ export namespace Prisma {
   type __Either<O extends object, K extends Key> = Omit<O, K> &
     {
       // Merge all but K
-      [P in K]: Prisma__Pick<O, P & keyof O> // With K possibilities
-    }[K]
+      [P in K]: Prisma__Pick<O, P & keyof O>; // With K possibilities
+    }[K];
 
-  type EitherStrict<O extends object, K extends Key> = Strict<__Either<O, K>>
+  type EitherStrict<O extends object, K extends Key> = Strict<__Either<O, K>>;
 
-  type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>
+  type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>;
 
-  type _Either<
-    O extends object,
-    K extends Key,
-    strict extends Boolean
-  > = {
-    1: EitherStrict<O, K>
-    0: EitherLoose<O, K>
-  }[strict]
+  type _Either<O extends object, K extends Key, strict extends boolean> = {
+    1: EitherStrict<O, K>;
+    0: EitherLoose<O, K>;
+  }[strict];
 
-  type Either<
-    O extends object,
-    K extends Key,
-    strict extends Boolean = 1
-  > = O extends unknown ? _Either<O, K, strict> : never
+  type Either<O extends object, K extends Key, strict extends boolean = 1> = O extends unknown
+    ? _Either<O, K, strict>
+    : never;
 
-  export type Union = any
+  export type Union = any;
 
   type PatchUndefined<O extends object, O1 extends object> = {
-    [K in keyof O]: O[K] extends undefined ? At<O1, K> : O[K]
-  } & {}
-
-  /** Helper Types for "Merge" **/
-  export type IntersectOf<U extends Union> = (
-    U extends unknown ? (k: U) => void : never
-  ) extends (k: infer I) => void
-    ? I
-    : never
-
-  export type Overwrite<O extends object, O1 extends object> = {
-      [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
+    [K in keyof O]: O[K] extends undefined ? At<O1, K> : O[K];
   } & {};
 
-  type _Merge<U extends object> = IntersectOf<Overwrite<U, {
-      [K in keyof U]-?: At<U, K>;
-  }>>;
+  /** Helper Types for "Merge" * */
+  export type IntersectOf<U extends Union> = (U extends unknown ? (k: U) => void : never) extends (k: infer I) => void
+    ? I
+    : never;
+
+  export type Overwrite<O extends object, O1 extends object> = {
+    [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
+  } & {};
+
+  type _Merge<U extends object> = IntersectOf<
+    Overwrite<
+      U,
+      {
+        [K in keyof U]-?: At<U, K>;
+      }
+    >
+  >;
 
   type Key = string | number | symbol;
   type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never;
   type AtStrict<O extends object, K extends Key> = O[K & keyof O];
   type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never;
-  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
-      1: AtStrict<O, K>;
-      0: AtLoose<O, K>;
+  export type At<O extends object, K extends Key, strict extends boolean = 1> = {
+    1: AtStrict<O, K>;
+    0: AtLoose<O, K>;
   }[strict];
 
-  export type ComputeRaw<A extends any> = A extends Function ? A : {
-    [K in keyof A]: A[K];
-  } & {};
+  export type ComputeRaw<A extends any> = A extends Function
+    ? A
+    : {
+        [K in keyof A]: A[K];
+      } & {};
 
   export type OptionalFlat<O> = {
     [K in keyof O]?: O[K];
@@ -598,86 +604,76 @@ export namespace Prisma {
   // this type assumes the passed object is entirely optional
   type AtLeast<O extends object, K extends string> = NoExpand<
     O extends unknown
-    ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
-      | {[P in keyof O as P extends K ? P : never]-?: O[P]} & O
-    : never>;
+      ? (K extends keyof O ? { [P in K]: O[P] } & O : O) | ({ [P in keyof O as P extends K ? P : never]-?: O[P] } & O)
+      : never
+  >;
 
   type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
 
   export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
-  /** End Helper Types for "Merge" **/
+  /** End Helper Types for "Merge" * */
 
   export type Merge<U extends object> = ComputeRaw<_Merge<Strict<U>>>;
 
   /**
   A [[Boolean]]
   */
-  export type Boolean = True | False
+  export type Boolean = True | False;
 
   // /**
   // 1
   // */
-  export type True = 1
+  export type True = 1;
 
   /**
   0
   */
-  export type False = 0
+  export type False = 0;
 
-  export type Not<B extends Boolean> = {
-    0: 1
-    1: 0
-  }[B]
+  export type Not<B extends boolean> = {
+    0: 1;
+    1: 0;
+  }[B];
 
   export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
     ? 0 // anything `never` is false
     : A1 extends A2
-    ? 1
-    : 0
+      ? 1
+      : 0;
 
-  export type Has<U extends Union, U1 extends Union> = Not<
-    Extends<Exclude<U1, U>, U1>
-  >
+  export type Has<U extends Union, U1 extends Union> = Not<Extends<Exclude<U1, U>, U1>>;
 
-  export type Or<B1 extends Boolean, B2 extends Boolean> = {
+  export type Or<B1 extends boolean, B2 extends boolean> = {
     0: {
-      0: 0
-      1: 1
-    }
+      0: 0;
+      1: 1;
+    };
     1: {
-      0: 1
-      1: 1
-    }
-  }[B1][B2]
+      0: 1;
+      1: 1;
+    };
+  }[B1][B2];
 
-  export type Keys<U extends Union> = U extends unknown ? keyof U : never
+  export type Keys<U extends Union> = U extends unknown ? keyof U : never;
 
   type Cast<A, B> = A extends B ? A : B;
 
   export const type: unique symbol;
 
-
-
   /**
    * Used by group by
    */
 
-  export type GetScalarType<T, O> = O extends object ? {
-    [P in keyof T]: P extends keyof O
-      ? O[P]
-      : never
-  } : never
+  export type GetScalarType<T, O> = O extends object
+    ? {
+        [P in keyof T]: P extends keyof O ? O[P] : never;
+      }
+    : never;
 
-  type FieldPaths<
-    T,
-    U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>
-  > = IsObject<T> extends True ? U : T
+  type FieldPaths<T, U = Omit<T, "_avg" | "_sum" | "_count" | "_min" | "_max">> = IsObject<T> extends True ? U : T;
 
   type GetHavingFields<T> = {
-    [K in keyof T]: Or<
-      Or<Extends<'OR', K>, Extends<'AND', K>>,
-      Extends<'NOT', K>
-    > extends True
+    [K in keyof T]: Or<Or<Extends<"OR", K>, Extends<"AND", K>>, Extends<"NOT", K>> extends True
       ? // infer is only needed to not hit TS limit
         // based on the brilliant idea of Pierre-Antoine Mills
         // https://github.com/microsoft/TypeScript/issues/30188#issuecomment-478938437
@@ -685,777 +681,787 @@ export namespace Prisma {
         ? GetHavingFields<UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never>
         : never
       : {} extends FieldPaths<T[K]>
-      ? never
-      : K
-  }[keyof T]
+        ? never
+        : K;
+  }[keyof T];
 
   /**
    * Convert tuple to union
    */
-  type _TupleToUnion<T> = T extends (infer E)[] ? E : never
-  type TupleToUnion<K extends readonly any[]> = _TupleToUnion<K>
-  type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T
+  type _TupleToUnion<T> = T extends (infer E)[] ? E : never;
+  type TupleToUnion<K extends readonly any[]> = _TupleToUnion<K>;
+  type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T;
 
   /**
    * Like `Pick`, but additionally can also accept an array of keys
    */
-  type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
+  type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>;
 
   /**
    * Exclude all keys with underscores
    */
-  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
+  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T;
 
+  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>;
 
-  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
-
-  type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>
-
+  type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>;
 
   export const ModelName: {
-    Brand: 'Brand',
-    Model: 'Model',
-    Version: 'Version',
-    Trim: 'Trim',
-    Source: 'Source',
-    Seller: 'Seller',
-    CarListing: 'CarListing',
-    Image: 'Image',
-    PriceHistory: 'PriceHistory'
+    Brand: "Brand";
+    Model: "Model";
+    Version: "Version";
+    Trim: "Trim";
+    Source: "Source";
+    Seller: "Seller";
+    CarListing: "CarListing";
+    Image: "Image";
+    PriceHistory: "PriceHistory";
   };
 
-  export type ModelName = (typeof ModelName)[keyof typeof ModelName]
-
+  export type ModelName = (typeof ModelName)[keyof typeof ModelName];
 
   export type Datasources = {
-    db?: Datasource
-  }
+    db?: Datasource;
+  };
 
-  interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<{extArgs: $Extensions.InternalArgs }, $Utils.Record<string, any>> {
-    returns: Prisma.TypeMap<this['params']['extArgs'], ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}>
+  interface TypeMapCb<ClientOptions = {}>
+    extends $Utils.Fn<{ extArgs: $Extensions.InternalArgs }, $Utils.Record<string, any>> {
+    returns: Prisma.TypeMap<
+      this["params"]["extArgs"],
+      ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}
+    >;
   }
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> = {
     globalOmitOptions: {
-      omit: GlobalOmitOptions
-    }
+      omit: GlobalOmitOptions;
+    };
     meta: {
-      modelProps: "brand" | "model" | "version" | "trim" | "source" | "seller" | "carListing" | "image" | "priceHistory"
-      txIsolationLevel: Prisma.TransactionIsolationLevel
-    }
+      modelProps:
+        | "brand"
+        | "model"
+        | "version"
+        | "trim"
+        | "source"
+        | "seller"
+        | "carListing"
+        | "image"
+        | "priceHistory";
+      txIsolationLevel: Prisma.TransactionIsolationLevel;
+    };
     model: {
       Brand: {
-        payload: Prisma.$BrandPayload<ExtArgs>
-        fields: Prisma.BrandFieldRefs
+        payload: Prisma.$BrandPayload<ExtArgs>;
+        fields: Prisma.BrandFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.BrandFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BrandPayload> | null
-          }
+            args: Prisma.BrandFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BrandPayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.BrandFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BrandPayload>
-          }
+            args: Prisma.BrandFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BrandPayload>;
+          };
           findFirst: {
-            args: Prisma.BrandFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BrandPayload> | null
-          }
+            args: Prisma.BrandFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BrandPayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.BrandFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BrandPayload>
-          }
+            args: Prisma.BrandFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BrandPayload>;
+          };
           findMany: {
-            args: Prisma.BrandFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BrandPayload>[]
-          }
+            args: Prisma.BrandFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BrandPayload>[];
+          };
           create: {
-            args: Prisma.BrandCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BrandPayload>
-          }
+            args: Prisma.BrandCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BrandPayload>;
+          };
           createMany: {
-            args: Prisma.BrandCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.BrandCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.BrandCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BrandPayload>[]
-          }
+            args: Prisma.BrandCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BrandPayload>[];
+          };
           delete: {
-            args: Prisma.BrandDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BrandPayload>
-          }
+            args: Prisma.BrandDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BrandPayload>;
+          };
           update: {
-            args: Prisma.BrandUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BrandPayload>
-          }
+            args: Prisma.BrandUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BrandPayload>;
+          };
           deleteMany: {
-            args: Prisma.BrandDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.BrandDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.BrandUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.BrandUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.BrandUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BrandPayload>[]
-          }
+            args: Prisma.BrandUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BrandPayload>[];
+          };
           upsert: {
-            args: Prisma.BrandUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$BrandPayload>
-          }
+            args: Prisma.BrandUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$BrandPayload>;
+          };
           aggregate: {
-            args: Prisma.BrandAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateBrand>
-          }
+            args: Prisma.BrandAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateBrand>;
+          };
           groupBy: {
-            args: Prisma.BrandGroupByArgs<ExtArgs>
-            result: $Utils.Optional<BrandGroupByOutputType>[]
-          }
+            args: Prisma.BrandGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<BrandGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.BrandCountArgs<ExtArgs>
-            result: $Utils.Optional<BrandCountAggregateOutputType> | number
-          }
-        }
-      }
+            args: Prisma.BrandCountArgs<ExtArgs>;
+            result: $Utils.Optional<BrandCountAggregateOutputType> | number;
+          };
+        };
+      };
       Model: {
-        payload: Prisma.$ModelPayload<ExtArgs>
-        fields: Prisma.ModelFieldRefs
+        payload: Prisma.$ModelPayload<ExtArgs>;
+        fields: Prisma.ModelFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.ModelFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ModelPayload> | null
-          }
+            args: Prisma.ModelFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ModelPayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.ModelFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ModelPayload>
-          }
+            args: Prisma.ModelFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ModelPayload>;
+          };
           findFirst: {
-            args: Prisma.ModelFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ModelPayload> | null
-          }
+            args: Prisma.ModelFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ModelPayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.ModelFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ModelPayload>
-          }
+            args: Prisma.ModelFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ModelPayload>;
+          };
           findMany: {
-            args: Prisma.ModelFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ModelPayload>[]
-          }
+            args: Prisma.ModelFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ModelPayload>[];
+          };
           create: {
-            args: Prisma.ModelCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ModelPayload>
-          }
+            args: Prisma.ModelCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ModelPayload>;
+          };
           createMany: {
-            args: Prisma.ModelCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.ModelCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.ModelCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ModelPayload>[]
-          }
+            args: Prisma.ModelCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ModelPayload>[];
+          };
           delete: {
-            args: Prisma.ModelDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ModelPayload>
-          }
+            args: Prisma.ModelDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ModelPayload>;
+          };
           update: {
-            args: Prisma.ModelUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ModelPayload>
-          }
+            args: Prisma.ModelUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ModelPayload>;
+          };
           deleteMany: {
-            args: Prisma.ModelDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.ModelDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.ModelUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.ModelUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.ModelUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ModelPayload>[]
-          }
+            args: Prisma.ModelUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ModelPayload>[];
+          };
           upsert: {
-            args: Prisma.ModelUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ModelPayload>
-          }
+            args: Prisma.ModelUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ModelPayload>;
+          };
           aggregate: {
-            args: Prisma.ModelAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateModel>
-          }
+            args: Prisma.ModelAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateModel>;
+          };
           groupBy: {
-            args: Prisma.ModelGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ModelGroupByOutputType>[]
-          }
+            args: Prisma.ModelGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<ModelGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.ModelCountArgs<ExtArgs>
-            result: $Utils.Optional<ModelCountAggregateOutputType> | number
-          }
-        }
-      }
+            args: Prisma.ModelCountArgs<ExtArgs>;
+            result: $Utils.Optional<ModelCountAggregateOutputType> | number;
+          };
+        };
+      };
       Version: {
-        payload: Prisma.$VersionPayload<ExtArgs>
-        fields: Prisma.VersionFieldRefs
+        payload: Prisma.$VersionPayload<ExtArgs>;
+        fields: Prisma.VersionFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.VersionFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VersionPayload> | null
-          }
+            args: Prisma.VersionFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$VersionPayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.VersionFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VersionPayload>
-          }
+            args: Prisma.VersionFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$VersionPayload>;
+          };
           findFirst: {
-            args: Prisma.VersionFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VersionPayload> | null
-          }
+            args: Prisma.VersionFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$VersionPayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.VersionFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VersionPayload>
-          }
+            args: Prisma.VersionFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$VersionPayload>;
+          };
           findMany: {
-            args: Prisma.VersionFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VersionPayload>[]
-          }
+            args: Prisma.VersionFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$VersionPayload>[];
+          };
           create: {
-            args: Prisma.VersionCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VersionPayload>
-          }
+            args: Prisma.VersionCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$VersionPayload>;
+          };
           createMany: {
-            args: Prisma.VersionCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.VersionCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.VersionCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VersionPayload>[]
-          }
+            args: Prisma.VersionCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$VersionPayload>[];
+          };
           delete: {
-            args: Prisma.VersionDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VersionPayload>
-          }
+            args: Prisma.VersionDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$VersionPayload>;
+          };
           update: {
-            args: Prisma.VersionUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VersionPayload>
-          }
+            args: Prisma.VersionUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$VersionPayload>;
+          };
           deleteMany: {
-            args: Prisma.VersionDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.VersionDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.VersionUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.VersionUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.VersionUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VersionPayload>[]
-          }
+            args: Prisma.VersionUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$VersionPayload>[];
+          };
           upsert: {
-            args: Prisma.VersionUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$VersionPayload>
-          }
+            args: Prisma.VersionUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$VersionPayload>;
+          };
           aggregate: {
-            args: Prisma.VersionAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateVersion>
-          }
+            args: Prisma.VersionAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateVersion>;
+          };
           groupBy: {
-            args: Prisma.VersionGroupByArgs<ExtArgs>
-            result: $Utils.Optional<VersionGroupByOutputType>[]
-          }
+            args: Prisma.VersionGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<VersionGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.VersionCountArgs<ExtArgs>
-            result: $Utils.Optional<VersionCountAggregateOutputType> | number
-          }
-        }
-      }
+            args: Prisma.VersionCountArgs<ExtArgs>;
+            result: $Utils.Optional<VersionCountAggregateOutputType> | number;
+          };
+        };
+      };
       Trim: {
-        payload: Prisma.$TrimPayload<ExtArgs>
-        fields: Prisma.TrimFieldRefs
+        payload: Prisma.$TrimPayload<ExtArgs>;
+        fields: Prisma.TrimFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.TrimFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TrimPayload> | null
-          }
+            args: Prisma.TrimFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$TrimPayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.TrimFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TrimPayload>
-          }
+            args: Prisma.TrimFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$TrimPayload>;
+          };
           findFirst: {
-            args: Prisma.TrimFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TrimPayload> | null
-          }
+            args: Prisma.TrimFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$TrimPayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.TrimFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TrimPayload>
-          }
+            args: Prisma.TrimFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$TrimPayload>;
+          };
           findMany: {
-            args: Prisma.TrimFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TrimPayload>[]
-          }
+            args: Prisma.TrimFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$TrimPayload>[];
+          };
           create: {
-            args: Prisma.TrimCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TrimPayload>
-          }
+            args: Prisma.TrimCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$TrimPayload>;
+          };
           createMany: {
-            args: Prisma.TrimCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.TrimCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.TrimCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TrimPayload>[]
-          }
+            args: Prisma.TrimCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$TrimPayload>[];
+          };
           delete: {
-            args: Prisma.TrimDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TrimPayload>
-          }
+            args: Prisma.TrimDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$TrimPayload>;
+          };
           update: {
-            args: Prisma.TrimUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TrimPayload>
-          }
+            args: Prisma.TrimUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$TrimPayload>;
+          };
           deleteMany: {
-            args: Prisma.TrimDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.TrimDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.TrimUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.TrimUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.TrimUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TrimPayload>[]
-          }
+            args: Prisma.TrimUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$TrimPayload>[];
+          };
           upsert: {
-            args: Prisma.TrimUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TrimPayload>
-          }
+            args: Prisma.TrimUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$TrimPayload>;
+          };
           aggregate: {
-            args: Prisma.TrimAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTrim>
-          }
+            args: Prisma.TrimAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateTrim>;
+          };
           groupBy: {
-            args: Prisma.TrimGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TrimGroupByOutputType>[]
-          }
+            args: Prisma.TrimGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<TrimGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.TrimCountArgs<ExtArgs>
-            result: $Utils.Optional<TrimCountAggregateOutputType> | number
-          }
-        }
-      }
+            args: Prisma.TrimCountArgs<ExtArgs>;
+            result: $Utils.Optional<TrimCountAggregateOutputType> | number;
+          };
+        };
+      };
       Source: {
-        payload: Prisma.$SourcePayload<ExtArgs>
-        fields: Prisma.SourceFieldRefs
+        payload: Prisma.$SourcePayload<ExtArgs>;
+        fields: Prisma.SourceFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.SourceFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SourcePayload> | null
-          }
+            args: Prisma.SourceFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SourcePayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.SourceFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SourcePayload>
-          }
+            args: Prisma.SourceFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SourcePayload>;
+          };
           findFirst: {
-            args: Prisma.SourceFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SourcePayload> | null
-          }
+            args: Prisma.SourceFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SourcePayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.SourceFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SourcePayload>
-          }
+            args: Prisma.SourceFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SourcePayload>;
+          };
           findMany: {
-            args: Prisma.SourceFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SourcePayload>[]
-          }
+            args: Prisma.SourceFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SourcePayload>[];
+          };
           create: {
-            args: Prisma.SourceCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SourcePayload>
-          }
+            args: Prisma.SourceCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SourcePayload>;
+          };
           createMany: {
-            args: Prisma.SourceCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.SourceCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.SourceCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SourcePayload>[]
-          }
+            args: Prisma.SourceCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SourcePayload>[];
+          };
           delete: {
-            args: Prisma.SourceDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SourcePayload>
-          }
+            args: Prisma.SourceDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SourcePayload>;
+          };
           update: {
-            args: Prisma.SourceUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SourcePayload>
-          }
+            args: Prisma.SourceUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SourcePayload>;
+          };
           deleteMany: {
-            args: Prisma.SourceDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.SourceDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.SourceUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.SourceUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.SourceUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SourcePayload>[]
-          }
+            args: Prisma.SourceUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SourcePayload>[];
+          };
           upsert: {
-            args: Prisma.SourceUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SourcePayload>
-          }
+            args: Prisma.SourceUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SourcePayload>;
+          };
           aggregate: {
-            args: Prisma.SourceAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSource>
-          }
+            args: Prisma.SourceAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateSource>;
+          };
           groupBy: {
-            args: Prisma.SourceGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SourceGroupByOutputType>[]
-          }
+            args: Prisma.SourceGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<SourceGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.SourceCountArgs<ExtArgs>
-            result: $Utils.Optional<SourceCountAggregateOutputType> | number
-          }
-        }
-      }
+            args: Prisma.SourceCountArgs<ExtArgs>;
+            result: $Utils.Optional<SourceCountAggregateOutputType> | number;
+          };
+        };
+      };
       Seller: {
-        payload: Prisma.$SellerPayload<ExtArgs>
-        fields: Prisma.SellerFieldRefs
+        payload: Prisma.$SellerPayload<ExtArgs>;
+        fields: Prisma.SellerFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.SellerFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload> | null
-          }
+            args: Prisma.SellerFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SellerPayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.SellerFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>
-          }
+            args: Prisma.SellerFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SellerPayload>;
+          };
           findFirst: {
-            args: Prisma.SellerFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload> | null
-          }
+            args: Prisma.SellerFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SellerPayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.SellerFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>
-          }
+            args: Prisma.SellerFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SellerPayload>;
+          };
           findMany: {
-            args: Prisma.SellerFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>[]
-          }
+            args: Prisma.SellerFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SellerPayload>[];
+          };
           create: {
-            args: Prisma.SellerCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>
-          }
+            args: Prisma.SellerCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SellerPayload>;
+          };
           createMany: {
-            args: Prisma.SellerCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.SellerCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.SellerCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>[]
-          }
+            args: Prisma.SellerCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SellerPayload>[];
+          };
           delete: {
-            args: Prisma.SellerDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>
-          }
+            args: Prisma.SellerDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SellerPayload>;
+          };
           update: {
-            args: Prisma.SellerUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>
-          }
+            args: Prisma.SellerUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SellerPayload>;
+          };
           deleteMany: {
-            args: Prisma.SellerDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.SellerDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.SellerUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.SellerUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.SellerUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>[]
-          }
+            args: Prisma.SellerUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SellerPayload>[];
+          };
           upsert: {
-            args: Prisma.SellerUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SellerPayload>
-          }
+            args: Prisma.SellerUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$SellerPayload>;
+          };
           aggregate: {
-            args: Prisma.SellerAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSeller>
-          }
+            args: Prisma.SellerAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateSeller>;
+          };
           groupBy: {
-            args: Prisma.SellerGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SellerGroupByOutputType>[]
-          }
+            args: Prisma.SellerGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<SellerGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.SellerCountArgs<ExtArgs>
-            result: $Utils.Optional<SellerCountAggregateOutputType> | number
-          }
-        }
-      }
+            args: Prisma.SellerCountArgs<ExtArgs>;
+            result: $Utils.Optional<SellerCountAggregateOutputType> | number;
+          };
+        };
+      };
       CarListing: {
-        payload: Prisma.$CarListingPayload<ExtArgs>
-        fields: Prisma.CarListingFieldRefs
+        payload: Prisma.$CarListingPayload<ExtArgs>;
+        fields: Prisma.CarListingFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.CarListingFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CarListingPayload> | null
-          }
+            args: Prisma.CarListingFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CarListingPayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.CarListingFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>
-          }
+            args: Prisma.CarListingFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>;
+          };
           findFirst: {
-            args: Prisma.CarListingFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CarListingPayload> | null
-          }
+            args: Prisma.CarListingFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CarListingPayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.CarListingFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>
-          }
+            args: Prisma.CarListingFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>;
+          };
           findMany: {
-            args: Prisma.CarListingFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>[]
-          }
+            args: Prisma.CarListingFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>[];
+          };
           create: {
-            args: Prisma.CarListingCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>
-          }
+            args: Prisma.CarListingCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>;
+          };
           createMany: {
-            args: Prisma.CarListingCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.CarListingCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.CarListingCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>[]
-          }
+            args: Prisma.CarListingCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>[];
+          };
           delete: {
-            args: Prisma.CarListingDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>
-          }
+            args: Prisma.CarListingDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>;
+          };
           update: {
-            args: Prisma.CarListingUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>
-          }
+            args: Prisma.CarListingUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>;
+          };
           deleteMany: {
-            args: Prisma.CarListingDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.CarListingDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.CarListingUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.CarListingUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.CarListingUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>[]
-          }
+            args: Prisma.CarListingUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>[];
+          };
           upsert: {
-            args: Prisma.CarListingUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>
-          }
+            args: Prisma.CarListingUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$CarListingPayload>;
+          };
           aggregate: {
-            args: Prisma.CarListingAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateCarListing>
-          }
+            args: Prisma.CarListingAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateCarListing>;
+          };
           groupBy: {
-            args: Prisma.CarListingGroupByArgs<ExtArgs>
-            result: $Utils.Optional<CarListingGroupByOutputType>[]
-          }
+            args: Prisma.CarListingGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<CarListingGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.CarListingCountArgs<ExtArgs>
-            result: $Utils.Optional<CarListingCountAggregateOutputType> | number
-          }
-        }
-      }
+            args: Prisma.CarListingCountArgs<ExtArgs>;
+            result: $Utils.Optional<CarListingCountAggregateOutputType> | number;
+          };
+        };
+      };
       Image: {
-        payload: Prisma.$ImagePayload<ExtArgs>
-        fields: Prisma.ImageFieldRefs
+        payload: Prisma.$ImagePayload<ExtArgs>;
+        fields: Prisma.ImageFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.ImageFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImagePayload> | null
-          }
+            args: Prisma.ImageFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.ImageFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImagePayload>
-          }
+            args: Prisma.ImageFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>;
+          };
           findFirst: {
-            args: Prisma.ImageFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImagePayload> | null
-          }
+            args: Prisma.ImageFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.ImageFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImagePayload>
-          }
+            args: Prisma.ImageFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>;
+          };
           findMany: {
-            args: Prisma.ImageFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImagePayload>[]
-          }
+            args: Prisma.ImageFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>[];
+          };
           create: {
-            args: Prisma.ImageCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImagePayload>
-          }
+            args: Prisma.ImageCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>;
+          };
           createMany: {
-            args: Prisma.ImageCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.ImageCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.ImageCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImagePayload>[]
-          }
+            args: Prisma.ImageCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>[];
+          };
           delete: {
-            args: Prisma.ImageDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImagePayload>
-          }
+            args: Prisma.ImageDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>;
+          };
           update: {
-            args: Prisma.ImageUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImagePayload>
-          }
+            args: Prisma.ImageUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>;
+          };
           deleteMany: {
-            args: Prisma.ImageDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.ImageDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.ImageUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.ImageUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.ImageUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImagePayload>[]
-          }
+            args: Prisma.ImageUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>[];
+          };
           upsert: {
-            args: Prisma.ImageUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ImagePayload>
-          }
+            args: Prisma.ImageUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$ImagePayload>;
+          };
           aggregate: {
-            args: Prisma.ImageAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateImage>
-          }
+            args: Prisma.ImageAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregateImage>;
+          };
           groupBy: {
-            args: Prisma.ImageGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ImageGroupByOutputType>[]
-          }
+            args: Prisma.ImageGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<ImageGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.ImageCountArgs<ExtArgs>
-            result: $Utils.Optional<ImageCountAggregateOutputType> | number
-          }
-        }
-      }
+            args: Prisma.ImageCountArgs<ExtArgs>;
+            result: $Utils.Optional<ImageCountAggregateOutputType> | number;
+          };
+        };
+      };
       PriceHistory: {
-        payload: Prisma.$PriceHistoryPayload<ExtArgs>
-        fields: Prisma.PriceHistoryFieldRefs
+        payload: Prisma.$PriceHistoryPayload<ExtArgs>;
+        fields: Prisma.PriceHistoryFieldRefs;
         operations: {
           findUnique: {
-            args: Prisma.PriceHistoryFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload> | null
-          }
+            args: Prisma.PriceHistoryFindUniqueArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload> | null;
+          };
           findUniqueOrThrow: {
-            args: Prisma.PriceHistoryFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>
-          }
+            args: Prisma.PriceHistoryFindUniqueOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>;
+          };
           findFirst: {
-            args: Prisma.PriceHistoryFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload> | null
-          }
+            args: Prisma.PriceHistoryFindFirstArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload> | null;
+          };
           findFirstOrThrow: {
-            args: Prisma.PriceHistoryFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>
-          }
+            args: Prisma.PriceHistoryFindFirstOrThrowArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>;
+          };
           findMany: {
-            args: Prisma.PriceHistoryFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>[]
-          }
+            args: Prisma.PriceHistoryFindManyArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>[];
+          };
           create: {
-            args: Prisma.PriceHistoryCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>
-          }
+            args: Prisma.PriceHistoryCreateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>;
+          };
           createMany: {
-            args: Prisma.PriceHistoryCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.PriceHistoryCreateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           createManyAndReturn: {
-            args: Prisma.PriceHistoryCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>[]
-          }
+            args: Prisma.PriceHistoryCreateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>[];
+          };
           delete: {
-            args: Prisma.PriceHistoryDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>
-          }
+            args: Prisma.PriceHistoryDeleteArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>;
+          };
           update: {
-            args: Prisma.PriceHistoryUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>
-          }
+            args: Prisma.PriceHistoryUpdateArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>;
+          };
           deleteMany: {
-            args: Prisma.PriceHistoryDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.PriceHistoryDeleteManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateMany: {
-            args: Prisma.PriceHistoryUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
+            args: Prisma.PriceHistoryUpdateManyArgs<ExtArgs>;
+            result: BatchPayload;
+          };
           updateManyAndReturn: {
-            args: Prisma.PriceHistoryUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>[]
-          }
+            args: Prisma.PriceHistoryUpdateManyAndReturnArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>[];
+          };
           upsert: {
-            args: Prisma.PriceHistoryUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>
-          }
+            args: Prisma.PriceHistoryUpsertArgs<ExtArgs>;
+            result: $Utils.PayloadToResult<Prisma.$PriceHistoryPayload>;
+          };
           aggregate: {
-            args: Prisma.PriceHistoryAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePriceHistory>
-          }
+            args: Prisma.PriceHistoryAggregateArgs<ExtArgs>;
+            result: $Utils.Optional<AggregatePriceHistory>;
+          };
           groupBy: {
-            args: Prisma.PriceHistoryGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PriceHistoryGroupByOutputType>[]
-          }
+            args: Prisma.PriceHistoryGroupByArgs<ExtArgs>;
+            result: $Utils.Optional<PriceHistoryGroupByOutputType>[];
+          };
           count: {
-            args: Prisma.PriceHistoryCountArgs<ExtArgs>
-            result: $Utils.Optional<PriceHistoryCountAggregateOutputType> | number
-          }
-        }
-      }
-    }
+            args: Prisma.PriceHistoryCountArgs<ExtArgs>;
+            result: $Utils.Optional<PriceHistoryCountAggregateOutputType> | number;
+          };
+        };
+      };
+    };
   } & {
     other: {
-      payload: any
+      payload: any;
       operations: {
         $executeRaw: {
-          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
-          result: any
-        }
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]];
+          result: any;
+        };
         $executeRawUnsafe: {
-          args: [query: string, ...values: any[]],
-          result: any
-        }
+          args: [query: string, ...values: any[]];
+          result: any;
+        };
         $queryRaw: {
-          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
-          result: any
-        }
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]];
+          result: any;
+        };
         $queryRawUnsafe: {
-          args: [query: string, ...values: any[]],
-          result: any
-        }
-      }
-    }
-  }
-  export const defineExtension: $Extensions.ExtendsHook<"define", Prisma.TypeMapCb, $Extensions.DefaultArgs>
-  export type DefaultPrismaClient = PrismaClient
-  export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
+          args: [query: string, ...values: any[]];
+          result: any;
+        };
+      };
+    };
+  };
+  export const defineExtension: $Extensions.ExtendsHook<"define", Prisma.TypeMapCb, $Extensions.DefaultArgs>;
+  export type DefaultPrismaClient = PrismaClient;
+  export type ErrorFormat = "pretty" | "colorless" | "minimal";
   export interface PrismaClientOptions {
     /**
      * Overwrites the datasource url from your schema.prisma file
      */
-    datasources?: Datasources
+    datasources?: Datasources;
     /**
      * Overwrites the datasource url from your schema.prisma file
      */
-    datasourceUrl?: string
+    datasourceUrl?: string;
     /**
      * @default "colorless"
      */
-    errorFormat?: ErrorFormat
+    errorFormat?: ErrorFormat;
     /**
      * @example
      * ```
      * // Defaults to stdout
      * log: ['query', 'info', 'warn', 'error']
-     * 
+     *
      * // Emit as events
      * log: [
      *   { emit: 'stdout', level: 'query' },
@@ -1466,20 +1472,20 @@ export namespace Prisma {
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
-    log?: (LogLevel | LogDefinition)[]
+    log?: (LogLevel | LogDefinition)[];
     /**
      * The default values for transactionOptions
      * maxWait ?= 2000
      * timeout ?= 5000
      */
     transactionOptions?: {
-      maxWait?: number
-      timeout?: number
-      isolationLevel?: Prisma.TransactionIsolationLevel
-    }
+      maxWait?: number;
+      timeout?: number;
+      isolationLevel?: Prisma.TransactionIsolationLevel;
+    };
     /**
      * Global configuration for omitting model fields by default.
-     * 
+     *
      * @example
      * ```
      * const prisma = new PrismaClient({
@@ -1491,81 +1497,85 @@ export namespace Prisma {
      * })
      * ```
      */
-    omit?: Prisma.GlobalOmitConfig
+    omit?: Prisma.GlobalOmitConfig;
   }
   export type GlobalOmitConfig = {
-    brand?: BrandOmit
-    model?: ModelOmit
-    version?: VersionOmit
-    trim?: TrimOmit
-    source?: SourceOmit
-    seller?: SellerOmit
-    carListing?: CarListingOmit
-    image?: ImageOmit
-    priceHistory?: PriceHistoryOmit
-  }
+    brand?: BrandOmit;
+    model?: ModelOmit;
+    version?: VersionOmit;
+    trim?: TrimOmit;
+    source?: SourceOmit;
+    seller?: SellerOmit;
+    carListing?: CarListingOmit;
+    image?: ImageOmit;
+    priceHistory?: PriceHistoryOmit;
+  };
 
   /* Types for Logging */
-  export type LogLevel = 'info' | 'query' | 'warn' | 'error'
+  export type LogLevel = "info" | "query" | "warn" | "error";
   export type LogDefinition = {
-    level: LogLevel
-    emit: 'stdout' | 'event'
-  }
+    level: LogLevel;
+    emit: "stdout" | "event";
+  };
 
-  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
-  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
-    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
-    : never
+  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition
+    ? T["emit"] extends "event"
+      ? T["level"]
+      : never
+    : never;
+  export type GetEvents<T extends any> =
+    T extends Array<LogLevel | LogDefinition>
+      ? GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
+      : never;
 
   export type QueryEvent = {
-    timestamp: Date
-    query: string
-    params: string
-    duration: number
-    target: string
-  }
+    timestamp: Date;
+    query: string;
+    params: string;
+    duration: number;
+    target: string;
+  };
 
   export type LogEvent = {
-    timestamp: Date
-    message: string
-    target: string
-  }
+    timestamp: Date;
+    message: string;
+    target: string;
+  };
   /* End Types for Logging */
 
-
   export type PrismaAction =
-    | 'findUnique'
-    | 'findUniqueOrThrow'
-    | 'findMany'
-    | 'findFirst'
-    | 'findFirstOrThrow'
-    | 'create'
-    | 'createMany'
-    | 'createManyAndReturn'
-    | 'update'
-    | 'updateMany'
-    | 'updateManyAndReturn'
-    | 'upsert'
-    | 'delete'
-    | 'deleteMany'
-    | 'executeRaw'
-    | 'queryRaw'
-    | 'aggregate'
-    | 'count'
-    | 'runCommandRaw'
-    | 'findRaw'
-    | 'groupBy'
+    | "findUnique"
+    | "findUniqueOrThrow"
+    | "findMany"
+    | "findFirst"
+    | "findFirstOrThrow"
+    | "create"
+    | "createMany"
+    | "createManyAndReturn"
+    | "update"
+    | "updateMany"
+    | "updateManyAndReturn"
+    | "upsert"
+    | "delete"
+    | "deleteMany"
+    | "executeRaw"
+    | "queryRaw"
+    | "aggregate"
+    | "count"
+    | "runCommandRaw"
+    | "findRaw"
+    | "groupBy";
 
   /**
    * These options are being passed into the middleware as "params"
    */
   export type MiddlewareParams = {
-    model?: ModelName
-    action: PrismaAction
-    args: any
-    dataPath: string[]
-    runInTransaction: boolean
-  }
+    model?: ModelName;
+    action: PrismaAction;
+    args: any;
+    dataPath: string[];
+    runInTransaction: boolean;
+  };
 
   /**
    * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
@@ -1573,7 +1583,7 @@ export namespace Prisma {
   export type Middleware<T = any> = (
     params: MiddlewareParams,
     next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
-  ) => $Utils.JsPromise<T>
+  ) => $Utils.JsPromise<T>;
 
   // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
@@ -1581,28 +1591,27 @@ export namespace Prisma {
   /**
    * `PrismaClient` proxy available in interactive transactions.
    */
-  export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>
+  export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>;
 
   export type Datasource = {
-    url?: string
-  }
+    url?: string;
+  };
 
   /**
    * Count Types
    */
-
 
   /**
    * Count Type BrandCountOutputType
    */
 
   export type BrandCountOutputType = {
-    models: number
-  }
+    models: number;
+  };
 
   export type BrandCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    models?: boolean | BrandCountOutputTypeCountModelsArgs
-  }
+    models?: boolean | BrandCountOutputTypeCountModelsArgs;
+  };
 
   // Custom InputTypes
   /**
@@ -1612,28 +1621,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the BrandCountOutputType
      */
-    select?: BrandCountOutputTypeSelect<ExtArgs> | null
-  }
+    select?: BrandCountOutputTypeSelect<ExtArgs> | null;
+  };
 
   /**
    * BrandCountOutputType without action
    */
-  export type BrandCountOutputTypeCountModelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ModelWhereInput
-  }
-
+  export type BrandCountOutputTypeCountModelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    {
+      where?: ModelWhereInput;
+    };
 
   /**
    * Count Type ModelCountOutputType
    */
 
   export type ModelCountOutputType = {
-    versions: number
-  }
+    versions: number;
+  };
 
   export type ModelCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    versions?: boolean | ModelCountOutputTypeCountVersionsArgs
-  }
+    versions?: boolean | ModelCountOutputTypeCountVersionsArgs;
+  };
 
   // Custom InputTypes
   /**
@@ -1643,28 +1652,29 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the ModelCountOutputType
      */
-    select?: ModelCountOutputTypeSelect<ExtArgs> | null
-  }
+    select?: ModelCountOutputTypeSelect<ExtArgs> | null;
+  };
 
   /**
    * ModelCountOutputType without action
    */
-  export type ModelCountOutputTypeCountVersionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VersionWhereInput
-  }
-
+  export type ModelCountOutputTypeCountVersionsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: VersionWhereInput;
+  };
 
   /**
    * Count Type VersionCountOutputType
    */
 
   export type VersionCountOutputType = {
-    trims: number
-  }
+    trims: number;
+  };
 
   export type VersionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    trims?: boolean | VersionCountOutputTypeCountTrimsArgs
-  }
+    trims?: boolean | VersionCountOutputTypeCountTrimsArgs;
+  };
 
   // Custom InputTypes
   /**
@@ -1674,28 +1684,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the VersionCountOutputType
      */
-    select?: VersionCountOutputTypeSelect<ExtArgs> | null
-  }
+    select?: VersionCountOutputTypeSelect<ExtArgs> | null;
+  };
 
   /**
    * VersionCountOutputType without action
    */
-  export type VersionCountOutputTypeCountTrimsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TrimWhereInput
-  }
-
+  export type VersionCountOutputTypeCountTrimsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    {
+      where?: TrimWhereInput;
+    };
 
   /**
    * Count Type TrimCountOutputType
    */
 
   export type TrimCountOutputType = {
-    carListings: number
-  }
+    carListings: number;
+  };
 
   export type TrimCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    carListings?: boolean | TrimCountOutputTypeCountCarListingsArgs
-  }
+    carListings?: boolean | TrimCountOutputTypeCountCarListingsArgs;
+  };
 
   // Custom InputTypes
   /**
@@ -1705,28 +1715,29 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the TrimCountOutputType
      */
-    select?: TrimCountOutputTypeSelect<ExtArgs> | null
-  }
+    select?: TrimCountOutputTypeSelect<ExtArgs> | null;
+  };
 
   /**
    * TrimCountOutputType without action
    */
-  export type TrimCountOutputTypeCountCarListingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CarListingWhereInput
-  }
-
+  export type TrimCountOutputTypeCountCarListingsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: CarListingWhereInput;
+  };
 
   /**
    * Count Type SourceCountOutputType
    */
 
   export type SourceCountOutputType = {
-    carListings: number
-  }
+    carListings: number;
+  };
 
   export type SourceCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    carListings?: boolean | SourceCountOutputTypeCountCarListingsArgs
-  }
+    carListings?: boolean | SourceCountOutputTypeCountCarListingsArgs;
+  };
 
   // Custom InputTypes
   /**
@@ -1736,28 +1747,29 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the SourceCountOutputType
      */
-    select?: SourceCountOutputTypeSelect<ExtArgs> | null
-  }
+    select?: SourceCountOutputTypeSelect<ExtArgs> | null;
+  };
 
   /**
    * SourceCountOutputType without action
    */
-  export type SourceCountOutputTypeCountCarListingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CarListingWhereInput
-  }
-
+  export type SourceCountOutputTypeCountCarListingsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: CarListingWhereInput;
+  };
 
   /**
    * Count Type SellerCountOutputType
    */
 
   export type SellerCountOutputType = {
-    carListings: number
-  }
+    carListings: number;
+  };
 
   export type SellerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    carListings?: boolean | SellerCountOutputTypeCountCarListingsArgs
-  }
+    carListings?: boolean | SellerCountOutputTypeCountCarListingsArgs;
+  };
 
   // Custom InputTypes
   /**
@@ -1767,56 +1779,61 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the SellerCountOutputType
      */
-    select?: SellerCountOutputTypeSelect<ExtArgs> | null
-  }
+    select?: SellerCountOutputTypeSelect<ExtArgs> | null;
+  };
 
   /**
    * SellerCountOutputType without action
    */
-  export type SellerCountOutputTypeCountCarListingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CarListingWhereInput
-  }
-
+  export type SellerCountOutputTypeCountCarListingsArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: CarListingWhereInput;
+  };
 
   /**
    * Count Type CarListingCountOutputType
    */
 
   export type CarListingCountOutputType = {
-    images: number
-    priceHistory: number
-  }
+    images: number;
+    priceHistory: number;
+  };
 
   export type CarListingCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    images?: boolean | CarListingCountOutputTypeCountImagesArgs
-    priceHistory?: boolean | CarListingCountOutputTypeCountPriceHistoryArgs
-  }
+    images?: boolean | CarListingCountOutputTypeCountImagesArgs;
+    priceHistory?: boolean | CarListingCountOutputTypeCountPriceHistoryArgs;
+  };
 
   // Custom InputTypes
   /**
    * CarListingCountOutputType without action
    */
-  export type CarListingCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CarListingCountOutputType
-     */
-    select?: CarListingCountOutputTypeSelect<ExtArgs> | null
-  }
+  export type CarListingCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    {
+      /**
+       * Select specific fields to fetch from the CarListingCountOutputType
+       */
+      select?: CarListingCountOutputTypeSelect<ExtArgs> | null;
+    };
 
   /**
    * CarListingCountOutputType without action
    */
-  export type CarListingCountOutputTypeCountImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ImageWhereInput
-  }
+  export type CarListingCountOutputTypeCountImagesArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: ImageWhereInput;
+  };
 
   /**
    * CarListingCountOutputType without action
    */
-  export type CarListingCountOutputTypeCountPriceHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PriceHistoryWhereInput
-  }
-
+  export type CarListingCountOutputTypeCountPriceHistoryArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    where?: PriceHistoryWhereInput;
+  };
 
   /**
    * Models
@@ -1827,189 +1844,208 @@ export namespace Prisma {
    */
 
   export type AggregateBrand = {
-    _count: BrandCountAggregateOutputType | null
-    _min: BrandMinAggregateOutputType | null
-    _max: BrandMaxAggregateOutputType | null
-  }
+    _count: BrandCountAggregateOutputType | null;
+    _min: BrandMinAggregateOutputType | null;
+    _max: BrandMaxAggregateOutputType | null;
+  };
 
   export type BrandMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-  }
+    id: string | null;
+    name: string | null;
+  };
 
   export type BrandMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-  }
+    id: string | null;
+    name: string | null;
+  };
 
   export type BrandCountAggregateOutputType = {
-    id: number
-    name: number
-    _all: number
-  }
-
+    id: number;
+    name: number;
+    _all: number;
+  };
 
   export type BrandMinAggregateInputType = {
-    id?: true
-    name?: true
-  }
+    id?: true;
+    name?: true;
+  };
 
   export type BrandMaxAggregateInputType = {
-    id?: true
-    name?: true
-  }
+    id?: true;
+    name?: true;
+  };
 
   export type BrandCountAggregateInputType = {
-    id?: true
-    name?: true
-    _all?: true
-  }
+    id?: true;
+    name?: true;
+    _all?: true;
+  };
 
   export type BrandAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Brand to aggregate.
      */
-    where?: BrandWhereInput
+    where?: BrandWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Brands to fetch.
      */
-    orderBy?: BrandOrderByWithRelationInput | BrandOrderByWithRelationInput[]
+    orderBy?: BrandOrderByWithRelationInput | BrandOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: BrandWhereUniqueInput
+    cursor?: BrandWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Brands from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Brands.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Brands
-    **/
-    _count?: true | BrandCountAggregateInputType
+     * */
+    _count?: true | BrandCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: BrandMinAggregateInputType
+     * */
+    _min?: BrandMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: BrandMaxAggregateInputType
-  }
+     * */
+    _max?: BrandMaxAggregateInputType;
+  };
 
   export type GetBrandAggregateType<T extends BrandAggregateArgs> = {
-        [P in keyof T & keyof AggregateBrand]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateBrand]: P extends "_count" | "count"
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateBrand[P]>
-      : GetScalarType<T[P], AggregateBrand[P]>
-  }
-
-
-
+      : GetScalarType<T[P], AggregateBrand[P]>;
+  };
 
   export type BrandGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: BrandWhereInput
-    orderBy?: BrandOrderByWithAggregationInput | BrandOrderByWithAggregationInput[]
-    by: BrandScalarFieldEnum[] | BrandScalarFieldEnum
-    having?: BrandScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: BrandCountAggregateInputType | true
-    _min?: BrandMinAggregateInputType
-    _max?: BrandMaxAggregateInputType
-  }
+    where?: BrandWhereInput;
+    orderBy?: BrandOrderByWithAggregationInput | BrandOrderByWithAggregationInput[];
+    by: BrandScalarFieldEnum[] | BrandScalarFieldEnum;
+    having?: BrandScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: BrandCountAggregateInputType | true;
+    _min?: BrandMinAggregateInputType;
+    _max?: BrandMaxAggregateInputType;
+  };
 
   export type BrandGroupByOutputType = {
-    id: string
-    name: string
-    _count: BrandCountAggregateOutputType | null
-    _min: BrandMinAggregateOutputType | null
-    _max: BrandMaxAggregateOutputType | null
-  }
+    id: string;
+    name: string;
+    _count: BrandCountAggregateOutputType | null;
+    _min: BrandMinAggregateOutputType | null;
+    _max: BrandMaxAggregateOutputType | null;
+  };
 
   type GetBrandGroupByPayload<T extends BrandGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<BrandGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof BrandGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], BrandGroupByOutputType[P]>
+      PickEnumerable<BrandGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof BrandGroupByOutputType]: P extends "_count"
+          ? T[P] extends boolean
+            ? number
             : GetScalarType<T[P], BrandGroupByOutputType[P]>
-        }
-      >
+          : GetScalarType<T[P], BrandGroupByOutputType[P]>;
+      }
     >
+  >;
 
+  export type BrandSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      name?: boolean;
+      models?: boolean | Brand$modelsArgs<ExtArgs>;
+      _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>;
+    },
+    ExtArgs["result"]["brand"]
+  >;
 
-  export type BrandSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    models?: boolean | Brand$modelsArgs<ExtArgs>
-    _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["brand"]>
+  export type BrandSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        name?: boolean;
+      },
+      ExtArgs["result"]["brand"]
+    >;
 
-  export type BrandSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-  }, ExtArgs["result"]["brand"]>
-
-  export type BrandSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-  }, ExtArgs["result"]["brand"]>
+  export type BrandSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        name?: boolean;
+      },
+      ExtArgs["result"]["brand"]
+    >;
 
   export type BrandSelectScalar = {
-    id?: boolean
-    name?: boolean
-  }
+    id?: boolean;
+    name?: boolean;
+  };
 
-  export type BrandOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["brand"]>
+  export type BrandOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<
+    "id" | "name",
+    ExtArgs["result"]["brand"]
+  >;
   export type BrandInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    models?: boolean | Brand$modelsArgs<ExtArgs>
-    _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type BrandIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type BrandIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+    models?: boolean | Brand$modelsArgs<ExtArgs>;
+    _count?: boolean | BrandCountOutputTypeDefaultArgs<ExtArgs>;
+  };
+  export type BrandIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {};
+  export type BrandIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {};
 
   export type $BrandPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Brand"
+    name: "Brand";
     objects: {
-      models: Prisma.$ModelPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      name: string
-    }, ExtArgs["result"]["brand"]>
-    composites: {}
-  }
+      models: Prisma.$ModelPayload<ExtArgs>[];
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        name: string;
+      },
+      ExtArgs["result"]["brand"]
+    >;
+    composites: {};
+  };
 
-  type BrandGetPayload<S extends boolean | null | undefined | BrandDefaultArgs> = $Result.GetResult<Prisma.$BrandPayload, S>
+  type BrandGetPayload<S extends boolean | null | undefined | BrandDefaultArgs> = $Result.GetResult<
+    Prisma.$BrandPayload,
+    S
+  >;
 
-  type BrandCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<BrandFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: BrandCountAggregateInputType | true
-    }
+  type BrandCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Omit<
+    BrandFindManyArgs,
+    "select" | "include" | "distinct" | "omit"
+  > & {
+    select?: BrandCountAggregateInputType | true;
+  };
 
-  export interface BrandDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Brand'], meta: { name: 'Brand' } }
+  export interface BrandDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>["model"]["Brand"]; meta: { name: "Brand" } };
     /**
      * Find zero or one Brand that matches the filter.
      * @param {BrandFindUniqueArgs} args - Arguments to find a Brand
@@ -2021,7 +2057,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends BrandFindUniqueArgs>(args: SelectSubset<T, BrandFindUniqueArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends BrandFindUniqueArgs>(
+      args: SelectSubset<T, BrandFindUniqueArgs<ExtArgs>>,
+    ): Prisma__BrandClient<
+      $Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one Brand that matches the filter or throw an error with `error.code='P2025'`
@@ -2035,7 +2078,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends BrandFindUniqueOrThrowArgs>(args: SelectSubset<T, BrandFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends BrandFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, BrandFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__BrandClient<
+      $Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Brand that matches the filter.
@@ -2050,7 +2100,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends BrandFindFirstArgs>(args?: SelectSubset<T, BrandFindFirstArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends BrandFindFirstArgs>(
+      args?: SelectSubset<T, BrandFindFirstArgs<ExtArgs>>,
+    ): Prisma__BrandClient<
+      $Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Brand that matches the filter or
@@ -2066,7 +2123,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends BrandFindFirstOrThrowArgs>(args?: SelectSubset<T, BrandFindFirstOrThrowArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends BrandFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, BrandFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__BrandClient<
+      $Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more Brands that matches the filter.
@@ -2076,15 +2140,17 @@ export namespace Prisma {
      * @example
      * // Get all Brands
      * const brands = await prisma.brand.findMany()
-     * 
+     *
      * // Get first 10 Brands
      * const brands = await prisma.brand.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const brandWithIdOnly = await prisma.brand.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends BrandFindManyArgs>(args?: SelectSubset<T, BrandFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends BrandFindManyArgs>(
+      args?: SelectSubset<T, BrandFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
 
     /**
      * Create a Brand.
@@ -2096,9 +2162,16 @@ export namespace Prisma {
      *     // ... data to create a Brand
      *   }
      * })
-     * 
+     *
      */
-    create<T extends BrandCreateArgs>(args: SelectSubset<T, BrandCreateArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends BrandCreateArgs>(
+      args: SelectSubset<T, BrandCreateArgs<ExtArgs>>,
+    ): Prisma__BrandClient<
+      $Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "create", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many Brands.
@@ -2110,9 +2183,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends BrandCreateManyArgs>(args?: SelectSubset<T, BrandCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends BrandCreateManyArgs>(
+      args?: SelectSubset<T, BrandCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many Brands and returns the data saved in the database.
@@ -2124,7 +2199,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Brands and only return the `id`
      * const brandWithIdOnly = await prisma.brand.createManyAndReturn({
      *   select: { id: true },
@@ -2134,9 +2209,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends BrandCreateManyAndReturnArgs>(args?: SelectSubset<T, BrandCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends BrandCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, BrandCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Delete a Brand.
@@ -2148,9 +2227,16 @@ export namespace Prisma {
      *     // ... filter to delete one Brand
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends BrandDeleteArgs>(args: SelectSubset<T, BrandDeleteArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends BrandDeleteArgs>(
+      args: SelectSubset<T, BrandDeleteArgs<ExtArgs>>,
+    ): Prisma__BrandClient<
+      $Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "delete", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one Brand.
@@ -2165,9 +2251,16 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends BrandUpdateArgs>(args: SelectSubset<T, BrandUpdateArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends BrandUpdateArgs>(
+      args: SelectSubset<T, BrandUpdateArgs<ExtArgs>>,
+    ): Prisma__BrandClient<
+      $Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "update", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more Brands.
@@ -2179,9 +2272,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends BrandDeleteManyArgs>(args?: SelectSubset<T, BrandDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends BrandDeleteManyArgs>(
+      args?: SelectSubset<T, BrandDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Brands.
@@ -2198,9 +2293,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends BrandUpdateManyArgs>(args: SelectSubset<T, BrandUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends BrandUpdateManyArgs>(
+      args: SelectSubset<T, BrandUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Brands and returns the data updated in the database.
@@ -2215,7 +2312,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Brands and only return the `id`
      * const brandWithIdOnly = await prisma.brand.updateManyAndReturn({
      *   select: { id: true },
@@ -2228,9 +2325,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends BrandUpdateManyAndReturnArgs>(args: SelectSubset<T, BrandUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends BrandUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, BrandUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Create or update one Brand.
@@ -2249,8 +2350,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends BrandUpsertArgs>(args: SelectSubset<T, BrandUpsertArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends BrandUpsertArgs>(
+      args: SelectSubset<T, BrandUpsertArgs<ExtArgs>>,
+    ): Prisma__BrandClient<
+      $Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of Brands.
@@ -2264,16 +2371,16 @@ export namespace Prisma {
      *     // ... the filter for the Brands we want to count
      *   }
      * })
-    **/
+     * */
     count<T extends BrandCountArgs>(
       args?: Subset<T, BrandCountArgs>,
     ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
+      T extends $Utils.Record<"select", any>
+        ? T["select"] extends true
           ? number
-          : GetScalarType<T['select'], BrandCountAggregateOutputType>
+          : GetScalarType<T["select"], BrandCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a Brand.
@@ -2298,8 +2405,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends BrandAggregateArgs>(args: Subset<T, BrandAggregateArgs>): Prisma.PrismaPromise<GetBrandAggregateType<T>>
+     * */
+    aggregate<T extends BrandAggregateArgs>(
+      args: Subset<T, BrandAggregateArgs>,
+    ): Prisma.PrismaPromise<GetBrandAggregateType<T>>;
 
     /**
      * Group by Brand.
@@ -2317,70 +2426,64 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     * */
     groupBy<
       T extends BrandGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
+      HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: BrandGroupByArgs['orderBy'] }
-        : { orderBy?: BrandGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
+        ? { orderBy: BrandGroupByArgs["orderBy"] }
+        : { orderBy?: BrandGroupByArgs["orderBy"] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
+      ByFields extends MaybeTupleToUnion<T["by"]>,
       ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
+      HavingFields extends GetHavingFields<T["having"]>,
       HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
+      ByEmpty extends T["by"] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, BrandGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBrandGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Brand model
-   */
-  readonly fields: BrandFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [Error, "Field ", P, ` in "having" needs to be provided in "by"`];
+            }[HavingFields]
+          : "take" extends Keys<T>
+            ? "orderBy" extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : "skip" extends Keys<T>
+              ? "orderBy" extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, BrandGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors ? GetBrandGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Brand model
+     */
+    readonly fields: BrandFieldRefs;
   }
 
   /**
@@ -2389,42 +2492,50 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__BrandClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    models<T extends Brand$modelsArgs<ExtArgs> = {}>(args?: Subset<T, Brand$modelsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  export interface Prisma__BrandClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    models<T extends Brand$modelsArgs<ExtArgs> = {}>(
+      args?: Subset<T, Brand$modelsArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the Brand model
    */
   interface BrandFieldRefs {
-    readonly id: FieldRef<"Brand", 'String'>
-    readonly name: FieldRef<"Brand", 'String'>
+    readonly id: FieldRef<"Brand", "String">;
+    readonly name: FieldRef<"Brand", "String">;
   }
-    
 
   // Custom InputTypes
   /**
@@ -2434,20 +2545,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Brand
      */
-    select?: BrandSelect<ExtArgs> | null
+    select?: BrandSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Brand
      */
-    omit?: BrandOmit<ExtArgs> | null
+    omit?: BrandOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BrandInclude<ExtArgs> | null
+    include?: BrandInclude<ExtArgs> | null;
     /**
      * Filter, which Brand to fetch.
      */
-    where: BrandWhereUniqueInput
-  }
+    where: BrandWhereUniqueInput;
+  };
 
   /**
    * Brand findUniqueOrThrow
@@ -2456,20 +2567,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Brand
      */
-    select?: BrandSelect<ExtArgs> | null
+    select?: BrandSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Brand
      */
-    omit?: BrandOmit<ExtArgs> | null
+    omit?: BrandOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BrandInclude<ExtArgs> | null
+    include?: BrandInclude<ExtArgs> | null;
     /**
      * Filter, which Brand to fetch.
      */
-    where: BrandWhereUniqueInput
-  }
+    where: BrandWhereUniqueInput;
+  };
 
   /**
    * Brand findFirst
@@ -2478,50 +2589,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Brand
      */
-    select?: BrandSelect<ExtArgs> | null
+    select?: BrandSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Brand
      */
-    omit?: BrandOmit<ExtArgs> | null
+    omit?: BrandOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BrandInclude<ExtArgs> | null
+    include?: BrandInclude<ExtArgs> | null;
     /**
      * Filter, which Brand to fetch.
      */
-    where?: BrandWhereInput
+    where?: BrandWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Brands to fetch.
      */
-    orderBy?: BrandOrderByWithRelationInput | BrandOrderByWithRelationInput[]
+    orderBy?: BrandOrderByWithRelationInput | BrandOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Brands.
      */
-    cursor?: BrandWhereUniqueInput
+    cursor?: BrandWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Brands from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Brands.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Brands.
      */
-    distinct?: BrandScalarFieldEnum | BrandScalarFieldEnum[]
-  }
+    distinct?: BrandScalarFieldEnum | BrandScalarFieldEnum[];
+  };
 
   /**
    * Brand findFirstOrThrow
@@ -2530,50 +2641,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Brand
      */
-    select?: BrandSelect<ExtArgs> | null
+    select?: BrandSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Brand
      */
-    omit?: BrandOmit<ExtArgs> | null
+    omit?: BrandOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BrandInclude<ExtArgs> | null
+    include?: BrandInclude<ExtArgs> | null;
     /**
      * Filter, which Brand to fetch.
      */
-    where?: BrandWhereInput
+    where?: BrandWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Brands to fetch.
      */
-    orderBy?: BrandOrderByWithRelationInput | BrandOrderByWithRelationInput[]
+    orderBy?: BrandOrderByWithRelationInput | BrandOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Brands.
      */
-    cursor?: BrandWhereUniqueInput
+    cursor?: BrandWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Brands from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Brands.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Brands.
      */
-    distinct?: BrandScalarFieldEnum | BrandScalarFieldEnum[]
-  }
+    distinct?: BrandScalarFieldEnum | BrandScalarFieldEnum[];
+  };
 
   /**
    * Brand findMany
@@ -2582,45 +2693,45 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Brand
      */
-    select?: BrandSelect<ExtArgs> | null
+    select?: BrandSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Brand
      */
-    omit?: BrandOmit<ExtArgs> | null
+    omit?: BrandOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BrandInclude<ExtArgs> | null
+    include?: BrandInclude<ExtArgs> | null;
     /**
      * Filter, which Brands to fetch.
      */
-    where?: BrandWhereInput
+    where?: BrandWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Brands to fetch.
      */
-    orderBy?: BrandOrderByWithRelationInput | BrandOrderByWithRelationInput[]
+    orderBy?: BrandOrderByWithRelationInput | BrandOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Brands.
      */
-    cursor?: BrandWhereUniqueInput
+    cursor?: BrandWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Brands from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Brands.
      */
-    skip?: number
-    distinct?: BrandScalarFieldEnum | BrandScalarFieldEnum[]
-  }
+    skip?: number;
+    distinct?: BrandScalarFieldEnum | BrandScalarFieldEnum[];
+  };
 
   /**
    * Brand create
@@ -2629,20 +2740,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Brand
      */
-    select?: BrandSelect<ExtArgs> | null
+    select?: BrandSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Brand
      */
-    omit?: BrandOmit<ExtArgs> | null
+    omit?: BrandOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BrandInclude<ExtArgs> | null
+    include?: BrandInclude<ExtArgs> | null;
     /**
      * The data needed to create a Brand.
      */
-    data: XOR<BrandCreateInput, BrandUncheckedCreateInput>
-  }
+    data: XOR<BrandCreateInput, BrandUncheckedCreateInput>;
+  };
 
   /**
    * Brand createMany
@@ -2651,9 +2762,9 @@ export namespace Prisma {
     /**
      * The data used to create many Brands.
      */
-    data: BrandCreateManyInput | BrandCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: BrandCreateManyInput | BrandCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * Brand createManyAndReturn
@@ -2662,17 +2773,17 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Brand
      */
-    select?: BrandSelectCreateManyAndReturn<ExtArgs> | null
+    select?: BrandSelectCreateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Brand
      */
-    omit?: BrandOmit<ExtArgs> | null
+    omit?: BrandOmit<ExtArgs> | null;
     /**
      * The data used to create many Brands.
      */
-    data: BrandCreateManyInput | BrandCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: BrandCreateManyInput | BrandCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * Brand update
@@ -2681,24 +2792,24 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Brand
      */
-    select?: BrandSelect<ExtArgs> | null
+    select?: BrandSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Brand
      */
-    omit?: BrandOmit<ExtArgs> | null
+    omit?: BrandOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BrandInclude<ExtArgs> | null
+    include?: BrandInclude<ExtArgs> | null;
     /**
      * The data needed to update a Brand.
      */
-    data: XOR<BrandUpdateInput, BrandUncheckedUpdateInput>
+    data: XOR<BrandUpdateInput, BrandUncheckedUpdateInput>;
     /**
      * Choose, which Brand to update.
      */
-    where: BrandWhereUniqueInput
-  }
+    where: BrandWhereUniqueInput;
+  };
 
   /**
    * Brand updateMany
@@ -2707,16 +2818,16 @@ export namespace Prisma {
     /**
      * The data used to update Brands.
      */
-    data: XOR<BrandUpdateManyMutationInput, BrandUncheckedUpdateManyInput>
+    data: XOR<BrandUpdateManyMutationInput, BrandUncheckedUpdateManyInput>;
     /**
      * Filter which Brands to update
      */
-    where?: BrandWhereInput
+    where?: BrandWhereInput;
     /**
      * Limit how many Brands to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Brand updateManyAndReturn
@@ -2725,24 +2836,24 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Brand
      */
-    select?: BrandSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: BrandSelectUpdateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Brand
      */
-    omit?: BrandOmit<ExtArgs> | null
+    omit?: BrandOmit<ExtArgs> | null;
     /**
      * The data used to update Brands.
      */
-    data: XOR<BrandUpdateManyMutationInput, BrandUncheckedUpdateManyInput>
+    data: XOR<BrandUpdateManyMutationInput, BrandUncheckedUpdateManyInput>;
     /**
      * Filter which Brands to update
      */
-    where?: BrandWhereInput
+    where?: BrandWhereInput;
     /**
      * Limit how many Brands to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Brand upsert
@@ -2751,28 +2862,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Brand
      */
-    select?: BrandSelect<ExtArgs> | null
+    select?: BrandSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Brand
      */
-    omit?: BrandOmit<ExtArgs> | null
+    omit?: BrandOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BrandInclude<ExtArgs> | null
+    include?: BrandInclude<ExtArgs> | null;
     /**
      * The filter to search for the Brand to update in case it exists.
      */
-    where: BrandWhereUniqueInput
+    where: BrandWhereUniqueInput;
     /**
      * In case the Brand found by the `where` argument doesn't exist, create a new Brand with this data.
      */
-    create: XOR<BrandCreateInput, BrandUncheckedCreateInput>
+    create: XOR<BrandCreateInput, BrandUncheckedCreateInput>;
     /**
      * In case the Brand was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<BrandUpdateInput, BrandUncheckedUpdateInput>
-  }
+    update: XOR<BrandUpdateInput, BrandUncheckedUpdateInput>;
+  };
 
   /**
    * Brand delete
@@ -2781,20 +2892,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Brand
      */
-    select?: BrandSelect<ExtArgs> | null
+    select?: BrandSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Brand
      */
-    omit?: BrandOmit<ExtArgs> | null
+    omit?: BrandOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BrandInclude<ExtArgs> | null
+    include?: BrandInclude<ExtArgs> | null;
     /**
      * Filter which Brand to delete.
      */
-    where: BrandWhereUniqueInput
-  }
+    where: BrandWhereUniqueInput;
+  };
 
   /**
    * Brand deleteMany
@@ -2803,12 +2914,12 @@ export namespace Prisma {
     /**
      * Filter which Brands to delete
      */
-    where?: BrandWhereInput
+    where?: BrandWhereInput;
     /**
      * Limit how many Brands to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Brand.models
@@ -2817,22 +2928,22 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelect<ExtArgs> | null
+    select?: ModelSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelInclude<ExtArgs> | null
-    where?: ModelWhereInput
-    orderBy?: ModelOrderByWithRelationInput | ModelOrderByWithRelationInput[]
-    cursor?: ModelWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ModelScalarFieldEnum | ModelScalarFieldEnum[]
-  }
+    include?: ModelInclude<ExtArgs> | null;
+    where?: ModelWhereInput;
+    orderBy?: ModelOrderByWithRelationInput | ModelOrderByWithRelationInput[];
+    cursor?: ModelWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: ModelScalarFieldEnum | ModelScalarFieldEnum[];
+  };
 
   /**
    * Brand without action
@@ -2841,239 +2952,257 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Brand
      */
-    select?: BrandSelect<ExtArgs> | null
+    select?: BrandSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Brand
      */
-    omit?: BrandOmit<ExtArgs> | null
+    omit?: BrandOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: BrandInclude<ExtArgs> | null
-  }
-
+    include?: BrandInclude<ExtArgs> | null;
+  };
 
   /**
    * Model Model
    */
 
   export type AggregateModel = {
-    _count: ModelCountAggregateOutputType | null
-    _min: ModelMinAggregateOutputType | null
-    _max: ModelMaxAggregateOutputType | null
-  }
+    _count: ModelCountAggregateOutputType | null;
+    _min: ModelMinAggregateOutputType | null;
+    _max: ModelMaxAggregateOutputType | null;
+  };
 
   export type ModelMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-    bodyType: string | null
-    brandId: string | null
-  }
+    id: string | null;
+    name: string | null;
+    bodyType: string | null;
+    brandId: string | null;
+  };
 
   export type ModelMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-    bodyType: string | null
-    brandId: string | null
-  }
+    id: string | null;
+    name: string | null;
+    bodyType: string | null;
+    brandId: string | null;
+  };
 
   export type ModelCountAggregateOutputType = {
-    id: number
-    name: number
-    bodyType: number
-    brandId: number
-    _all: number
-  }
-
+    id: number;
+    name: number;
+    bodyType: number;
+    brandId: number;
+    _all: number;
+  };
 
   export type ModelMinAggregateInputType = {
-    id?: true
-    name?: true
-    bodyType?: true
-    brandId?: true
-  }
+    id?: true;
+    name?: true;
+    bodyType?: true;
+    brandId?: true;
+  };
 
   export type ModelMaxAggregateInputType = {
-    id?: true
-    name?: true
-    bodyType?: true
-    brandId?: true
-  }
+    id?: true;
+    name?: true;
+    bodyType?: true;
+    brandId?: true;
+  };
 
   export type ModelCountAggregateInputType = {
-    id?: true
-    name?: true
-    bodyType?: true
-    brandId?: true
-    _all?: true
-  }
+    id?: true;
+    name?: true;
+    bodyType?: true;
+    brandId?: true;
+    _all?: true;
+  };
 
   export type ModelAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Model to aggregate.
      */
-    where?: ModelWhereInput
+    where?: ModelWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Models to fetch.
      */
-    orderBy?: ModelOrderByWithRelationInput | ModelOrderByWithRelationInput[]
+    orderBy?: ModelOrderByWithRelationInput | ModelOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: ModelWhereUniqueInput
+    cursor?: ModelWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Models from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Models.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Models
-    **/
-    _count?: true | ModelCountAggregateInputType
+     * */
+    _count?: true | ModelCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: ModelMinAggregateInputType
+     * */
+    _min?: ModelMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: ModelMaxAggregateInputType
-  }
+     * */
+    _max?: ModelMaxAggregateInputType;
+  };
 
   export type GetModelAggregateType<T extends ModelAggregateArgs> = {
-        [P in keyof T & keyof AggregateModel]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateModel]: P extends "_count" | "count"
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateModel[P]>
-      : GetScalarType<T[P], AggregateModel[P]>
-  }
-
-
-
+      : GetScalarType<T[P], AggregateModel[P]>;
+  };
 
   export type ModelGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ModelWhereInput
-    orderBy?: ModelOrderByWithAggregationInput | ModelOrderByWithAggregationInput[]
-    by: ModelScalarFieldEnum[] | ModelScalarFieldEnum
-    having?: ModelScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ModelCountAggregateInputType | true
-    _min?: ModelMinAggregateInputType
-    _max?: ModelMaxAggregateInputType
-  }
+    where?: ModelWhereInput;
+    orderBy?: ModelOrderByWithAggregationInput | ModelOrderByWithAggregationInput[];
+    by: ModelScalarFieldEnum[] | ModelScalarFieldEnum;
+    having?: ModelScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: ModelCountAggregateInputType | true;
+    _min?: ModelMinAggregateInputType;
+    _max?: ModelMaxAggregateInputType;
+  };
 
   export type ModelGroupByOutputType = {
-    id: string
-    name: string
-    bodyType: string
-    brandId: string
-    _count: ModelCountAggregateOutputType | null
-    _min: ModelMinAggregateOutputType | null
-    _max: ModelMaxAggregateOutputType | null
-  }
+    id: string;
+    name: string;
+    bodyType: string;
+    brandId: string;
+    _count: ModelCountAggregateOutputType | null;
+    _min: ModelMinAggregateOutputType | null;
+    _max: ModelMaxAggregateOutputType | null;
+  };
 
   type GetModelGroupByPayload<T extends ModelGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<ModelGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ModelGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ModelGroupByOutputType[P]>
+      PickEnumerable<ModelGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof ModelGroupByOutputType]: P extends "_count"
+          ? T[P] extends boolean
+            ? number
             : GetScalarType<T[P], ModelGroupByOutputType[P]>
-        }
-      >
+          : GetScalarType<T[P], ModelGroupByOutputType[P]>;
+      }
     >
+  >;
 
+  export type ModelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      name?: boolean;
+      bodyType?: boolean;
+      brandId?: boolean;
+      brand?: boolean | BrandDefaultArgs<ExtArgs>;
+      versions?: boolean | Model$versionsArgs<ExtArgs>;
+      _count?: boolean | ModelCountOutputTypeDefaultArgs<ExtArgs>;
+    },
+    ExtArgs["result"]["model"]
+  >;
 
-  export type ModelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    bodyType?: boolean
-    brandId?: boolean
-    brand?: boolean | BrandDefaultArgs<ExtArgs>
-    versions?: boolean | Model$versionsArgs<ExtArgs>
-    _count?: boolean | ModelCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["model"]>
+  export type ModelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        name?: boolean;
+        bodyType?: boolean;
+        brandId?: boolean;
+        brand?: boolean | BrandDefaultArgs<ExtArgs>;
+      },
+      ExtArgs["result"]["model"]
+    >;
 
-  export type ModelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    bodyType?: boolean
-    brandId?: boolean
-    brand?: boolean | BrandDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["model"]>
-
-  export type ModelSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    bodyType?: boolean
-    brandId?: boolean
-    brand?: boolean | BrandDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["model"]>
+  export type ModelSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        name?: boolean;
+        bodyType?: boolean;
+        brandId?: boolean;
+        brand?: boolean | BrandDefaultArgs<ExtArgs>;
+      },
+      ExtArgs["result"]["model"]
+    >;
 
   export type ModelSelectScalar = {
-    id?: boolean
-    name?: boolean
-    bodyType?: boolean
-    brandId?: boolean
-  }
+    id?: boolean;
+    name?: boolean;
+    bodyType?: boolean;
+    brandId?: boolean;
+  };
 
-  export type ModelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "bodyType" | "brandId", ExtArgs["result"]["model"]>
+  export type ModelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<
+    "id" | "name" | "bodyType" | "brandId",
+    ExtArgs["result"]["model"]
+  >;
   export type ModelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    brand?: boolean | BrandDefaultArgs<ExtArgs>
-    versions?: boolean | Model$versionsArgs<ExtArgs>
-    _count?: boolean | ModelCountOutputTypeDefaultArgs<ExtArgs>
-  }
+    brand?: boolean | BrandDefaultArgs<ExtArgs>;
+    versions?: boolean | Model$versionsArgs<ExtArgs>;
+    _count?: boolean | ModelCountOutputTypeDefaultArgs<ExtArgs>;
+  };
   export type ModelIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    brand?: boolean | BrandDefaultArgs<ExtArgs>
-  }
+    brand?: boolean | BrandDefaultArgs<ExtArgs>;
+  };
   export type ModelIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    brand?: boolean | BrandDefaultArgs<ExtArgs>
-  }
+    brand?: boolean | BrandDefaultArgs<ExtArgs>;
+  };
 
   export type $ModelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Model"
+    name: "Model";
     objects: {
-      brand: Prisma.$BrandPayload<ExtArgs>
-      versions: Prisma.$VersionPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      name: string
-      bodyType: string
-      brandId: string
-    }, ExtArgs["result"]["model"]>
-    composites: {}
-  }
+      brand: Prisma.$BrandPayload<ExtArgs>;
+      versions: Prisma.$VersionPayload<ExtArgs>[];
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        name: string;
+        bodyType: string;
+        brandId: string;
+      },
+      ExtArgs["result"]["model"]
+    >;
+    composites: {};
+  };
 
-  type ModelGetPayload<S extends boolean | null | undefined | ModelDefaultArgs> = $Result.GetResult<Prisma.$ModelPayload, S>
+  type ModelGetPayload<S extends boolean | null | undefined | ModelDefaultArgs> = $Result.GetResult<
+    Prisma.$ModelPayload,
+    S
+  >;
 
-  type ModelCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ModelFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ModelCountAggregateInputType | true
-    }
+  type ModelCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Omit<
+    ModelFindManyArgs,
+    "select" | "include" | "distinct" | "omit"
+  > & {
+    select?: ModelCountAggregateInputType | true;
+  };
 
-  export interface ModelDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Model'], meta: { name: 'Model' } }
+  export interface ModelDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>["model"]["Model"]; meta: { name: "Model" } };
     /**
      * Find zero or one Model that matches the filter.
      * @param {ModelFindUniqueArgs} args - Arguments to find a Model
@@ -3085,7 +3214,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends ModelFindUniqueArgs>(args: SelectSubset<T, ModelFindUniqueArgs<ExtArgs>>): Prisma__ModelClient<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ModelFindUniqueArgs>(
+      args: SelectSubset<T, ModelFindUniqueArgs<ExtArgs>>,
+    ): Prisma__ModelClient<
+      $Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one Model that matches the filter or throw an error with `error.code='P2025'`
@@ -3099,7 +3235,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends ModelFindUniqueOrThrowArgs>(args: SelectSubset<T, ModelFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ModelClient<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ModelFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, ModelFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__ModelClient<
+      $Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Model that matches the filter.
@@ -3114,7 +3257,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends ModelFindFirstArgs>(args?: SelectSubset<T, ModelFindFirstArgs<ExtArgs>>): Prisma__ModelClient<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ModelFindFirstArgs>(
+      args?: SelectSubset<T, ModelFindFirstArgs<ExtArgs>>,
+    ): Prisma__ModelClient<
+      $Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Model that matches the filter or
@@ -3130,7 +3280,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends ModelFindFirstOrThrowArgs>(args?: SelectSubset<T, ModelFindFirstOrThrowArgs<ExtArgs>>): Prisma__ModelClient<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ModelFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, ModelFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__ModelClient<
+      $Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more Models that matches the filter.
@@ -3140,15 +3297,17 @@ export namespace Prisma {
      * @example
      * // Get all Models
      * const models = await prisma.model.findMany()
-     * 
+     *
      * // Get first 10 Models
      * const models = await prisma.model.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const modelWithIdOnly = await prisma.model.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends ModelFindManyArgs>(args?: SelectSubset<T, ModelFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ModelFindManyArgs>(
+      args?: SelectSubset<T, ModelFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
 
     /**
      * Create a Model.
@@ -3160,9 +3319,16 @@ export namespace Prisma {
      *     // ... data to create a Model
      *   }
      * })
-     * 
+     *
      */
-    create<T extends ModelCreateArgs>(args: SelectSubset<T, ModelCreateArgs<ExtArgs>>): Prisma__ModelClient<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ModelCreateArgs>(
+      args: SelectSubset<T, ModelCreateArgs<ExtArgs>>,
+    ): Prisma__ModelClient<
+      $Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "create", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many Models.
@@ -3174,9 +3340,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends ModelCreateManyArgs>(args?: SelectSubset<T, ModelCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ModelCreateManyArgs>(
+      args?: SelectSubset<T, ModelCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many Models and returns the data saved in the database.
@@ -3188,7 +3356,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Models and only return the `id`
      * const modelWithIdOnly = await prisma.model.createManyAndReturn({
      *   select: { id: true },
@@ -3198,9 +3366,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends ModelCreateManyAndReturnArgs>(args?: SelectSubset<T, ModelCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ModelCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, ModelCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Delete a Model.
@@ -3212,9 +3384,16 @@ export namespace Prisma {
      *     // ... filter to delete one Model
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends ModelDeleteArgs>(args: SelectSubset<T, ModelDeleteArgs<ExtArgs>>): Prisma__ModelClient<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ModelDeleteArgs>(
+      args: SelectSubset<T, ModelDeleteArgs<ExtArgs>>,
+    ): Prisma__ModelClient<
+      $Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "delete", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one Model.
@@ -3229,9 +3408,16 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends ModelUpdateArgs>(args: SelectSubset<T, ModelUpdateArgs<ExtArgs>>): Prisma__ModelClient<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ModelUpdateArgs>(
+      args: SelectSubset<T, ModelUpdateArgs<ExtArgs>>,
+    ): Prisma__ModelClient<
+      $Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "update", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more Models.
@@ -3243,9 +3429,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends ModelDeleteManyArgs>(args?: SelectSubset<T, ModelDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ModelDeleteManyArgs>(
+      args?: SelectSubset<T, ModelDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Models.
@@ -3262,9 +3450,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends ModelUpdateManyArgs>(args: SelectSubset<T, ModelUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ModelUpdateManyArgs>(
+      args: SelectSubset<T, ModelUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Models and returns the data updated in the database.
@@ -3279,7 +3469,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Models and only return the `id`
      * const modelWithIdOnly = await prisma.model.updateManyAndReturn({
      *   select: { id: true },
@@ -3292,9 +3482,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends ModelUpdateManyAndReturnArgs>(args: SelectSubset<T, ModelUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ModelUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, ModelUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Create or update one Model.
@@ -3313,8 +3507,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends ModelUpsertArgs>(args: SelectSubset<T, ModelUpsertArgs<ExtArgs>>): Prisma__ModelClient<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends ModelUpsertArgs>(
+      args: SelectSubset<T, ModelUpsertArgs<ExtArgs>>,
+    ): Prisma__ModelClient<
+      $Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of Models.
@@ -3328,16 +3528,16 @@ export namespace Prisma {
      *     // ... the filter for the Models we want to count
      *   }
      * })
-    **/
+     * */
     count<T extends ModelCountArgs>(
       args?: Subset<T, ModelCountArgs>,
     ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
+      T extends $Utils.Record<"select", any>
+        ? T["select"] extends true
           ? number
-          : GetScalarType<T['select'], ModelCountAggregateOutputType>
+          : GetScalarType<T["select"], ModelCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a Model.
@@ -3362,8 +3562,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends ModelAggregateArgs>(args: Subset<T, ModelAggregateArgs>): Prisma.PrismaPromise<GetModelAggregateType<T>>
+     * */
+    aggregate<T extends ModelAggregateArgs>(
+      args: Subset<T, ModelAggregateArgs>,
+    ): Prisma.PrismaPromise<GetModelAggregateType<T>>;
 
     /**
      * Group by Model.
@@ -3381,70 +3583,64 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     * */
     groupBy<
       T extends ModelGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
+      HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ModelGroupByArgs['orderBy'] }
-        : { orderBy?: ModelGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
+        ? { orderBy: ModelGroupByArgs["orderBy"] }
+        : { orderBy?: ModelGroupByArgs["orderBy"] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
+      ByFields extends MaybeTupleToUnion<T["by"]>,
       ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
+      HavingFields extends GetHavingFields<T["having"]>,
       HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
+      ByEmpty extends T["by"] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ModelGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetModelGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Model model
-   */
-  readonly fields: ModelFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [Error, "Field ", P, ` in "having" needs to be provided in "by"`];
+            }[HavingFields]
+          : "take" extends Keys<T>
+            ? "orderBy" extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : "skip" extends Keys<T>
+              ? "orderBy" extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, ModelGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors ? GetModelGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Model model
+     */
+    readonly fields: ModelFieldRefs;
   }
 
   /**
@@ -3453,45 +3649,62 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ModelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    brand<T extends BrandDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BrandDefaultArgs<ExtArgs>>): Prisma__BrandClient<$Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    versions<T extends Model$versionsArgs<ExtArgs> = {}>(args?: Subset<T, Model$versionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  export interface Prisma__ModelClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    brand<T extends BrandDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, BrandDefaultArgs<ExtArgs>>,
+    ): Prisma__BrandClient<
+      $Result.GetResult<Prisma.$BrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    versions<T extends Model$versionsArgs<ExtArgs> = {}>(
+      args?: Subset<T, Model$versionsArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the Model model
    */
   interface ModelFieldRefs {
-    readonly id: FieldRef<"Model", 'String'>
-    readonly name: FieldRef<"Model", 'String'>
-    readonly bodyType: FieldRef<"Model", 'String'>
-    readonly brandId: FieldRef<"Model", 'String'>
+    readonly id: FieldRef<"Model", "String">;
+    readonly name: FieldRef<"Model", "String">;
+    readonly bodyType: FieldRef<"Model", "String">;
+    readonly brandId: FieldRef<"Model", "String">;
   }
-    
 
   // Custom InputTypes
   /**
@@ -3501,20 +3714,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelect<ExtArgs> | null
+    select?: ModelSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelInclude<ExtArgs> | null
+    include?: ModelInclude<ExtArgs> | null;
     /**
      * Filter, which Model to fetch.
      */
-    where: ModelWhereUniqueInput
-  }
+    where: ModelWhereUniqueInput;
+  };
 
   /**
    * Model findUniqueOrThrow
@@ -3523,20 +3736,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelect<ExtArgs> | null
+    select?: ModelSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelInclude<ExtArgs> | null
+    include?: ModelInclude<ExtArgs> | null;
     /**
      * Filter, which Model to fetch.
      */
-    where: ModelWhereUniqueInput
-  }
+    where: ModelWhereUniqueInput;
+  };
 
   /**
    * Model findFirst
@@ -3545,50 +3758,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelect<ExtArgs> | null
+    select?: ModelSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelInclude<ExtArgs> | null
+    include?: ModelInclude<ExtArgs> | null;
     /**
      * Filter, which Model to fetch.
      */
-    where?: ModelWhereInput
+    where?: ModelWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Models to fetch.
      */
-    orderBy?: ModelOrderByWithRelationInput | ModelOrderByWithRelationInput[]
+    orderBy?: ModelOrderByWithRelationInput | ModelOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Models.
      */
-    cursor?: ModelWhereUniqueInput
+    cursor?: ModelWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Models from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Models.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Models.
      */
-    distinct?: ModelScalarFieldEnum | ModelScalarFieldEnum[]
-  }
+    distinct?: ModelScalarFieldEnum | ModelScalarFieldEnum[];
+  };
 
   /**
    * Model findFirstOrThrow
@@ -3597,50 +3810,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelect<ExtArgs> | null
+    select?: ModelSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelInclude<ExtArgs> | null
+    include?: ModelInclude<ExtArgs> | null;
     /**
      * Filter, which Model to fetch.
      */
-    where?: ModelWhereInput
+    where?: ModelWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Models to fetch.
      */
-    orderBy?: ModelOrderByWithRelationInput | ModelOrderByWithRelationInput[]
+    orderBy?: ModelOrderByWithRelationInput | ModelOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Models.
      */
-    cursor?: ModelWhereUniqueInput
+    cursor?: ModelWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Models from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Models.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Models.
      */
-    distinct?: ModelScalarFieldEnum | ModelScalarFieldEnum[]
-  }
+    distinct?: ModelScalarFieldEnum | ModelScalarFieldEnum[];
+  };
 
   /**
    * Model findMany
@@ -3649,45 +3862,45 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelect<ExtArgs> | null
+    select?: ModelSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelInclude<ExtArgs> | null
+    include?: ModelInclude<ExtArgs> | null;
     /**
      * Filter, which Models to fetch.
      */
-    where?: ModelWhereInput
+    where?: ModelWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Models to fetch.
      */
-    orderBy?: ModelOrderByWithRelationInput | ModelOrderByWithRelationInput[]
+    orderBy?: ModelOrderByWithRelationInput | ModelOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Models.
      */
-    cursor?: ModelWhereUniqueInput
+    cursor?: ModelWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Models from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Models.
      */
-    skip?: number
-    distinct?: ModelScalarFieldEnum | ModelScalarFieldEnum[]
-  }
+    skip?: number;
+    distinct?: ModelScalarFieldEnum | ModelScalarFieldEnum[];
+  };
 
   /**
    * Model create
@@ -3696,20 +3909,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelect<ExtArgs> | null
+    select?: ModelSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelInclude<ExtArgs> | null
+    include?: ModelInclude<ExtArgs> | null;
     /**
      * The data needed to create a Model.
      */
-    data: XOR<ModelCreateInput, ModelUncheckedCreateInput>
-  }
+    data: XOR<ModelCreateInput, ModelUncheckedCreateInput>;
+  };
 
   /**
    * Model createMany
@@ -3718,9 +3931,9 @@ export namespace Prisma {
     /**
      * The data used to create many Models.
      */
-    data: ModelCreateManyInput | ModelCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: ModelCreateManyInput | ModelCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * Model createManyAndReturn
@@ -3729,21 +3942,21 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelectCreateManyAndReturn<ExtArgs> | null
+    select?: ModelSelectCreateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * The data used to create many Models.
      */
-    data: ModelCreateManyInput | ModelCreateManyInput[]
-    skipDuplicates?: boolean
+    data: ModelCreateManyInput | ModelCreateManyInput[];
+    skipDuplicates?: boolean;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelIncludeCreateManyAndReturn<ExtArgs> | null
-  }
+    include?: ModelIncludeCreateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * Model update
@@ -3752,24 +3965,24 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelect<ExtArgs> | null
+    select?: ModelSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelInclude<ExtArgs> | null
+    include?: ModelInclude<ExtArgs> | null;
     /**
      * The data needed to update a Model.
      */
-    data: XOR<ModelUpdateInput, ModelUncheckedUpdateInput>
+    data: XOR<ModelUpdateInput, ModelUncheckedUpdateInput>;
     /**
      * Choose, which Model to update.
      */
-    where: ModelWhereUniqueInput
-  }
+    where: ModelWhereUniqueInput;
+  };
 
   /**
    * Model updateMany
@@ -3778,16 +3991,16 @@ export namespace Prisma {
     /**
      * The data used to update Models.
      */
-    data: XOR<ModelUpdateManyMutationInput, ModelUncheckedUpdateManyInput>
+    data: XOR<ModelUpdateManyMutationInput, ModelUncheckedUpdateManyInput>;
     /**
      * Filter which Models to update
      */
-    where?: ModelWhereInput
+    where?: ModelWhereInput;
     /**
      * Limit how many Models to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Model updateManyAndReturn
@@ -3796,28 +4009,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ModelSelectUpdateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * The data used to update Models.
      */
-    data: XOR<ModelUpdateManyMutationInput, ModelUncheckedUpdateManyInput>
+    data: XOR<ModelUpdateManyMutationInput, ModelUncheckedUpdateManyInput>;
     /**
      * Filter which Models to update
      */
-    where?: ModelWhereInput
+    where?: ModelWhereInput;
     /**
      * Limit how many Models to update.
      */
-    limit?: number
+    limit?: number;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
+    include?: ModelIncludeUpdateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * Model upsert
@@ -3826,28 +4039,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelect<ExtArgs> | null
+    select?: ModelSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelInclude<ExtArgs> | null
+    include?: ModelInclude<ExtArgs> | null;
     /**
      * The filter to search for the Model to update in case it exists.
      */
-    where: ModelWhereUniqueInput
+    where: ModelWhereUniqueInput;
     /**
      * In case the Model found by the `where` argument doesn't exist, create a new Model with this data.
      */
-    create: XOR<ModelCreateInput, ModelUncheckedCreateInput>
+    create: XOR<ModelCreateInput, ModelUncheckedCreateInput>;
     /**
      * In case the Model was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<ModelUpdateInput, ModelUncheckedUpdateInput>
-  }
+    update: XOR<ModelUpdateInput, ModelUncheckedUpdateInput>;
+  };
 
   /**
    * Model delete
@@ -3856,20 +4069,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelect<ExtArgs> | null
+    select?: ModelSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelInclude<ExtArgs> | null
+    include?: ModelInclude<ExtArgs> | null;
     /**
      * Filter which Model to delete.
      */
-    where: ModelWhereUniqueInput
-  }
+    where: ModelWhereUniqueInput;
+  };
 
   /**
    * Model deleteMany
@@ -3878,12 +4091,12 @@ export namespace Prisma {
     /**
      * Filter which Models to delete
      */
-    where?: ModelWhereInput
+    where?: ModelWhereInput;
     /**
      * Limit how many Models to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Model.versions
@@ -3892,22 +4105,22 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelect<ExtArgs> | null
+    select?: VersionSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionInclude<ExtArgs> | null
-    where?: VersionWhereInput
-    orderBy?: VersionOrderByWithRelationInput | VersionOrderByWithRelationInput[]
-    cursor?: VersionWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: VersionScalarFieldEnum | VersionScalarFieldEnum[]
-  }
+    include?: VersionInclude<ExtArgs> | null;
+    where?: VersionWhereInput;
+    orderBy?: VersionOrderByWithRelationInput | VersionOrderByWithRelationInput[];
+    cursor?: VersionWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: VersionScalarFieldEnum | VersionScalarFieldEnum[];
+  };
 
   /**
    * Model without action
@@ -3916,273 +4129,291 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Model
      */
-    select?: ModelSelect<ExtArgs> | null
+    select?: ModelSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Model
      */
-    omit?: ModelOmit<ExtArgs> | null
+    omit?: ModelOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ModelInclude<ExtArgs> | null
-  }
-
+    include?: ModelInclude<ExtArgs> | null;
+  };
 
   /**
    * Model Version
    */
 
   export type AggregateVersion = {
-    _count: VersionCountAggregateOutputType | null
-    _avg: VersionAvgAggregateOutputType | null
-    _sum: VersionSumAggregateOutputType | null
-    _min: VersionMinAggregateOutputType | null
-    _max: VersionMaxAggregateOutputType | null
-  }
+    _count: VersionCountAggregateOutputType | null;
+    _avg: VersionAvgAggregateOutputType | null;
+    _sum: VersionSumAggregateOutputType | null;
+    _min: VersionMinAggregateOutputType | null;
+    _max: VersionMaxAggregateOutputType | null;
+  };
 
   export type VersionAvgAggregateOutputType = {
-    year: number | null
-  }
+    year: number | null;
+  };
 
   export type VersionSumAggregateOutputType = {
-    year: number | null
-  }
+    year: number | null;
+  };
 
   export type VersionMinAggregateOutputType = {
-    id: string | null
-    versionName: string | null
-    year: number | null
-    modelId: string | null
-  }
+    id: string | null;
+    versionName: string | null;
+    year: number | null;
+    modelId: string | null;
+  };
 
   export type VersionMaxAggregateOutputType = {
-    id: string | null
-    versionName: string | null
-    year: number | null
-    modelId: string | null
-  }
+    id: string | null;
+    versionName: string | null;
+    year: number | null;
+    modelId: string | null;
+  };
 
   export type VersionCountAggregateOutputType = {
-    id: number
-    versionName: number
-    year: number
-    modelId: number
-    _all: number
-  }
-
+    id: number;
+    versionName: number;
+    year: number;
+    modelId: number;
+    _all: number;
+  };
 
   export type VersionAvgAggregateInputType = {
-    year?: true
-  }
+    year?: true;
+  };
 
   export type VersionSumAggregateInputType = {
-    year?: true
-  }
+    year?: true;
+  };
 
   export type VersionMinAggregateInputType = {
-    id?: true
-    versionName?: true
-    year?: true
-    modelId?: true
-  }
+    id?: true;
+    versionName?: true;
+    year?: true;
+    modelId?: true;
+  };
 
   export type VersionMaxAggregateInputType = {
-    id?: true
-    versionName?: true
-    year?: true
-    modelId?: true
-  }
+    id?: true;
+    versionName?: true;
+    year?: true;
+    modelId?: true;
+  };
 
   export type VersionCountAggregateInputType = {
-    id?: true
-    versionName?: true
-    year?: true
-    modelId?: true
-    _all?: true
-  }
+    id?: true;
+    versionName?: true;
+    year?: true;
+    modelId?: true;
+    _all?: true;
+  };
 
   export type VersionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Version to aggregate.
      */
-    where?: VersionWhereInput
+    where?: VersionWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Versions to fetch.
      */
-    orderBy?: VersionOrderByWithRelationInput | VersionOrderByWithRelationInput[]
+    orderBy?: VersionOrderByWithRelationInput | VersionOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: VersionWhereUniqueInput
+    cursor?: VersionWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Versions from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Versions.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Versions
-    **/
-    _count?: true | VersionCountAggregateInputType
+     * */
+    _count?: true | VersionCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to average
-    **/
-    _avg?: VersionAvgAggregateInputType
+     * */
+    _avg?: VersionAvgAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to sum
-    **/
-    _sum?: VersionSumAggregateInputType
+     * */
+    _sum?: VersionSumAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: VersionMinAggregateInputType
+     * */
+    _min?: VersionMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: VersionMaxAggregateInputType
-  }
+     * */
+    _max?: VersionMaxAggregateInputType;
+  };
 
   export type GetVersionAggregateType<T extends VersionAggregateArgs> = {
-        [P in keyof T & keyof AggregateVersion]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateVersion]: P extends "_count" | "count"
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateVersion[P]>
-      : GetScalarType<T[P], AggregateVersion[P]>
-  }
-
-
-
+      : GetScalarType<T[P], AggregateVersion[P]>;
+  };
 
   export type VersionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: VersionWhereInput
-    orderBy?: VersionOrderByWithAggregationInput | VersionOrderByWithAggregationInput[]
-    by: VersionScalarFieldEnum[] | VersionScalarFieldEnum
-    having?: VersionScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: VersionCountAggregateInputType | true
-    _avg?: VersionAvgAggregateInputType
-    _sum?: VersionSumAggregateInputType
-    _min?: VersionMinAggregateInputType
-    _max?: VersionMaxAggregateInputType
-  }
+    where?: VersionWhereInput;
+    orderBy?: VersionOrderByWithAggregationInput | VersionOrderByWithAggregationInput[];
+    by: VersionScalarFieldEnum[] | VersionScalarFieldEnum;
+    having?: VersionScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: VersionCountAggregateInputType | true;
+    _avg?: VersionAvgAggregateInputType;
+    _sum?: VersionSumAggregateInputType;
+    _min?: VersionMinAggregateInputType;
+    _max?: VersionMaxAggregateInputType;
+  };
 
   export type VersionGroupByOutputType = {
-    id: string
-    versionName: string
-    year: number
-    modelId: string
-    _count: VersionCountAggregateOutputType | null
-    _avg: VersionAvgAggregateOutputType | null
-    _sum: VersionSumAggregateOutputType | null
-    _min: VersionMinAggregateOutputType | null
-    _max: VersionMaxAggregateOutputType | null
-  }
+    id: string;
+    versionName: string;
+    year: number;
+    modelId: string;
+    _count: VersionCountAggregateOutputType | null;
+    _avg: VersionAvgAggregateOutputType | null;
+    _sum: VersionSumAggregateOutputType | null;
+    _min: VersionMinAggregateOutputType | null;
+    _max: VersionMaxAggregateOutputType | null;
+  };
 
   type GetVersionGroupByPayload<T extends VersionGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<VersionGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof VersionGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], VersionGroupByOutputType[P]>
+      PickEnumerable<VersionGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof VersionGroupByOutputType]: P extends "_count"
+          ? T[P] extends boolean
+            ? number
             : GetScalarType<T[P], VersionGroupByOutputType[P]>
-        }
-      >
+          : GetScalarType<T[P], VersionGroupByOutputType[P]>;
+      }
     >
+  >;
 
+  export type VersionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      versionName?: boolean;
+      year?: boolean;
+      modelId?: boolean;
+      model?: boolean | ModelDefaultArgs<ExtArgs>;
+      trims?: boolean | Version$trimsArgs<ExtArgs>;
+      _count?: boolean | VersionCountOutputTypeDefaultArgs<ExtArgs>;
+    },
+    ExtArgs["result"]["version"]
+  >;
 
-  export type VersionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    versionName?: boolean
-    year?: boolean
-    modelId?: boolean
-    model?: boolean | ModelDefaultArgs<ExtArgs>
-    trims?: boolean | Version$trimsArgs<ExtArgs>
-    _count?: boolean | VersionCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["version"]>
+  export type VersionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        versionName?: boolean;
+        year?: boolean;
+        modelId?: boolean;
+        model?: boolean | ModelDefaultArgs<ExtArgs>;
+      },
+      ExtArgs["result"]["version"]
+    >;
 
-  export type VersionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    versionName?: boolean
-    year?: boolean
-    modelId?: boolean
-    model?: boolean | ModelDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["version"]>
-
-  export type VersionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    versionName?: boolean
-    year?: boolean
-    modelId?: boolean
-    model?: boolean | ModelDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["version"]>
+  export type VersionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        versionName?: boolean;
+        year?: boolean;
+        modelId?: boolean;
+        model?: boolean | ModelDefaultArgs<ExtArgs>;
+      },
+      ExtArgs["result"]["version"]
+    >;
 
   export type VersionSelectScalar = {
-    id?: boolean
-    versionName?: boolean
-    year?: boolean
-    modelId?: boolean
-  }
+    id?: boolean;
+    versionName?: boolean;
+    year?: boolean;
+    modelId?: boolean;
+  };
 
-  export type VersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "versionName" | "year" | "modelId", ExtArgs["result"]["version"]>
+  export type VersionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<
+    "id" | "versionName" | "year" | "modelId",
+    ExtArgs["result"]["version"]
+  >;
   export type VersionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    model?: boolean | ModelDefaultArgs<ExtArgs>
-    trims?: boolean | Version$trimsArgs<ExtArgs>
-    _count?: boolean | VersionCountOutputTypeDefaultArgs<ExtArgs>
-  }
+    model?: boolean | ModelDefaultArgs<ExtArgs>;
+    trims?: boolean | Version$trimsArgs<ExtArgs>;
+    _count?: boolean | VersionCountOutputTypeDefaultArgs<ExtArgs>;
+  };
   export type VersionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    model?: boolean | ModelDefaultArgs<ExtArgs>
-  }
+    model?: boolean | ModelDefaultArgs<ExtArgs>;
+  };
   export type VersionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    model?: boolean | ModelDefaultArgs<ExtArgs>
-  }
+    model?: boolean | ModelDefaultArgs<ExtArgs>;
+  };
 
   export type $VersionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Version"
+    name: "Version";
     objects: {
-      model: Prisma.$ModelPayload<ExtArgs>
-      trims: Prisma.$TrimPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      versionName: string
-      year: number
-      modelId: string
-    }, ExtArgs["result"]["version"]>
-    composites: {}
-  }
+      model: Prisma.$ModelPayload<ExtArgs>;
+      trims: Prisma.$TrimPayload<ExtArgs>[];
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        versionName: string;
+        year: number;
+        modelId: string;
+      },
+      ExtArgs["result"]["version"]
+    >;
+    composites: {};
+  };
 
-  type VersionGetPayload<S extends boolean | null | undefined | VersionDefaultArgs> = $Result.GetResult<Prisma.$VersionPayload, S>
+  type VersionGetPayload<S extends boolean | null | undefined | VersionDefaultArgs> = $Result.GetResult<
+    Prisma.$VersionPayload,
+    S
+  >;
 
-  type VersionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<VersionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: VersionCountAggregateInputType | true
-    }
+  type VersionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Omit<
+    VersionFindManyArgs,
+    "select" | "include" | "distinct" | "omit"
+  > & {
+    select?: VersionCountAggregateInputType | true;
+  };
 
-  export interface VersionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Version'], meta: { name: 'Version' } }
+  export interface VersionDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>["model"]["Version"]; meta: { name: "Version" } };
     /**
      * Find zero or one Version that matches the filter.
      * @param {VersionFindUniqueArgs} args - Arguments to find a Version
@@ -4194,7 +4425,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends VersionFindUniqueArgs>(args: SelectSubset<T, VersionFindUniqueArgs<ExtArgs>>): Prisma__VersionClient<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends VersionFindUniqueArgs>(
+      args: SelectSubset<T, VersionFindUniqueArgs<ExtArgs>>,
+    ): Prisma__VersionClient<
+      $Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one Version that matches the filter or throw an error with `error.code='P2025'`
@@ -4208,7 +4446,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends VersionFindUniqueOrThrowArgs>(args: SelectSubset<T, VersionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__VersionClient<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends VersionFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, VersionFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__VersionClient<
+      $Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Version that matches the filter.
@@ -4223,7 +4468,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends VersionFindFirstArgs>(args?: SelectSubset<T, VersionFindFirstArgs<ExtArgs>>): Prisma__VersionClient<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends VersionFindFirstArgs>(
+      args?: SelectSubset<T, VersionFindFirstArgs<ExtArgs>>,
+    ): Prisma__VersionClient<
+      $Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Version that matches the filter or
@@ -4239,7 +4491,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends VersionFindFirstOrThrowArgs>(args?: SelectSubset<T, VersionFindFirstOrThrowArgs<ExtArgs>>): Prisma__VersionClient<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends VersionFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, VersionFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__VersionClient<
+      $Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more Versions that matches the filter.
@@ -4249,15 +4508,17 @@ export namespace Prisma {
      * @example
      * // Get all Versions
      * const versions = await prisma.version.findMany()
-     * 
+     *
      * // Get first 10 Versions
      * const versions = await prisma.version.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const versionWithIdOnly = await prisma.version.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends VersionFindManyArgs>(args?: SelectSubset<T, VersionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends VersionFindManyArgs>(
+      args?: SelectSubset<T, VersionFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
 
     /**
      * Create a Version.
@@ -4269,9 +4530,16 @@ export namespace Prisma {
      *     // ... data to create a Version
      *   }
      * })
-     * 
+     *
      */
-    create<T extends VersionCreateArgs>(args: SelectSubset<T, VersionCreateArgs<ExtArgs>>): Prisma__VersionClient<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends VersionCreateArgs>(
+      args: SelectSubset<T, VersionCreateArgs<ExtArgs>>,
+    ): Prisma__VersionClient<
+      $Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "create", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many Versions.
@@ -4283,9 +4551,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends VersionCreateManyArgs>(args?: SelectSubset<T, VersionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends VersionCreateManyArgs>(
+      args?: SelectSubset<T, VersionCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many Versions and returns the data saved in the database.
@@ -4297,7 +4567,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Versions and only return the `id`
      * const versionWithIdOnly = await prisma.version.createManyAndReturn({
      *   select: { id: true },
@@ -4307,9 +4577,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends VersionCreateManyAndReturnArgs>(args?: SelectSubset<T, VersionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends VersionCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, VersionCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Delete a Version.
@@ -4321,9 +4595,16 @@ export namespace Prisma {
      *     // ... filter to delete one Version
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends VersionDeleteArgs>(args: SelectSubset<T, VersionDeleteArgs<ExtArgs>>): Prisma__VersionClient<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends VersionDeleteArgs>(
+      args: SelectSubset<T, VersionDeleteArgs<ExtArgs>>,
+    ): Prisma__VersionClient<
+      $Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one Version.
@@ -4338,9 +4619,16 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends VersionUpdateArgs>(args: SelectSubset<T, VersionUpdateArgs<ExtArgs>>): Prisma__VersionClient<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends VersionUpdateArgs>(
+      args: SelectSubset<T, VersionUpdateArgs<ExtArgs>>,
+    ): Prisma__VersionClient<
+      $Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "update", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more Versions.
@@ -4352,9 +4640,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends VersionDeleteManyArgs>(args?: SelectSubset<T, VersionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends VersionDeleteManyArgs>(
+      args?: SelectSubset<T, VersionDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Versions.
@@ -4371,9 +4661,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends VersionUpdateManyArgs>(args: SelectSubset<T, VersionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends VersionUpdateManyArgs>(
+      args: SelectSubset<T, VersionUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Versions and returns the data updated in the database.
@@ -4388,7 +4680,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Versions and only return the `id`
      * const versionWithIdOnly = await prisma.version.updateManyAndReturn({
      *   select: { id: true },
@@ -4401,9 +4693,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends VersionUpdateManyAndReturnArgs>(args: SelectSubset<T, VersionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends VersionUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, VersionUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Create or update one Version.
@@ -4422,8 +4718,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends VersionUpsertArgs>(args: SelectSubset<T, VersionUpsertArgs<ExtArgs>>): Prisma__VersionClient<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends VersionUpsertArgs>(
+      args: SelectSubset<T, VersionUpsertArgs<ExtArgs>>,
+    ): Prisma__VersionClient<
+      $Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of Versions.
@@ -4437,16 +4739,16 @@ export namespace Prisma {
      *     // ... the filter for the Versions we want to count
      *   }
      * })
-    **/
+     * */
     count<T extends VersionCountArgs>(
       args?: Subset<T, VersionCountArgs>,
     ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
+      T extends $Utils.Record<"select", any>
+        ? T["select"] extends true
           ? number
-          : GetScalarType<T['select'], VersionCountAggregateOutputType>
+          : GetScalarType<T["select"], VersionCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a Version.
@@ -4471,8 +4773,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends VersionAggregateArgs>(args: Subset<T, VersionAggregateArgs>): Prisma.PrismaPromise<GetVersionAggregateType<T>>
+     * */
+    aggregate<T extends VersionAggregateArgs>(
+      args: Subset<T, VersionAggregateArgs>,
+    ): Prisma.PrismaPromise<GetVersionAggregateType<T>>;
 
     /**
      * Group by Version.
@@ -4490,70 +4794,64 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     * */
     groupBy<
       T extends VersionGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
+      HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: VersionGroupByArgs['orderBy'] }
-        : { orderBy?: VersionGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
+        ? { orderBy: VersionGroupByArgs["orderBy"] }
+        : { orderBy?: VersionGroupByArgs["orderBy"] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
+      ByFields extends MaybeTupleToUnion<T["by"]>,
       ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
+      HavingFields extends GetHavingFields<T["having"]>,
       HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
+      ByEmpty extends T["by"] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, VersionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetVersionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Version model
-   */
-  readonly fields: VersionFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [Error, "Field ", P, ` in "having" needs to be provided in "by"`];
+            }[HavingFields]
+          : "take" extends Keys<T>
+            ? "orderBy" extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : "skip" extends Keys<T>
+              ? "orderBy" extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, VersionGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors ? GetVersionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Version model
+     */
+    readonly fields: VersionFieldRefs;
   }
 
   /**
@@ -4562,45 +4860,60 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__VersionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    model<T extends ModelDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ModelDefaultArgs<ExtArgs>>): Prisma__ModelClient<$Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    trims<T extends Version$trimsArgs<ExtArgs> = {}>(args?: Subset<T, Version$trimsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  export interface Prisma__VersionClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    model<T extends ModelDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, ModelDefaultArgs<ExtArgs>>,
+    ): Prisma__ModelClient<
+      $Result.GetResult<Prisma.$ModelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    trims<T extends Version$trimsArgs<ExtArgs> = {}>(
+      args?: Subset<T, Version$trimsArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the Version model
    */
   interface VersionFieldRefs {
-    readonly id: FieldRef<"Version", 'String'>
-    readonly versionName: FieldRef<"Version", 'String'>
-    readonly year: FieldRef<"Version", 'Int'>
-    readonly modelId: FieldRef<"Version", 'String'>
+    readonly id: FieldRef<"Version", "String">;
+    readonly versionName: FieldRef<"Version", "String">;
+    readonly year: FieldRef<"Version", "Int">;
+    readonly modelId: FieldRef<"Version", "String">;
   }
-    
 
   // Custom InputTypes
   /**
@@ -4610,20 +4923,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelect<ExtArgs> | null
+    select?: VersionSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionInclude<ExtArgs> | null
+    include?: VersionInclude<ExtArgs> | null;
     /**
      * Filter, which Version to fetch.
      */
-    where: VersionWhereUniqueInput
-  }
+    where: VersionWhereUniqueInput;
+  };
 
   /**
    * Version findUniqueOrThrow
@@ -4632,20 +4945,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelect<ExtArgs> | null
+    select?: VersionSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionInclude<ExtArgs> | null
+    include?: VersionInclude<ExtArgs> | null;
     /**
      * Filter, which Version to fetch.
      */
-    where: VersionWhereUniqueInput
-  }
+    where: VersionWhereUniqueInput;
+  };
 
   /**
    * Version findFirst
@@ -4654,50 +4967,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelect<ExtArgs> | null
+    select?: VersionSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionInclude<ExtArgs> | null
+    include?: VersionInclude<ExtArgs> | null;
     /**
      * Filter, which Version to fetch.
      */
-    where?: VersionWhereInput
+    where?: VersionWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Versions to fetch.
      */
-    orderBy?: VersionOrderByWithRelationInput | VersionOrderByWithRelationInput[]
+    orderBy?: VersionOrderByWithRelationInput | VersionOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Versions.
      */
-    cursor?: VersionWhereUniqueInput
+    cursor?: VersionWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Versions from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Versions.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Versions.
      */
-    distinct?: VersionScalarFieldEnum | VersionScalarFieldEnum[]
-  }
+    distinct?: VersionScalarFieldEnum | VersionScalarFieldEnum[];
+  };
 
   /**
    * Version findFirstOrThrow
@@ -4706,50 +5019,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelect<ExtArgs> | null
+    select?: VersionSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionInclude<ExtArgs> | null
+    include?: VersionInclude<ExtArgs> | null;
     /**
      * Filter, which Version to fetch.
      */
-    where?: VersionWhereInput
+    where?: VersionWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Versions to fetch.
      */
-    orderBy?: VersionOrderByWithRelationInput | VersionOrderByWithRelationInput[]
+    orderBy?: VersionOrderByWithRelationInput | VersionOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Versions.
      */
-    cursor?: VersionWhereUniqueInput
+    cursor?: VersionWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Versions from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Versions.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Versions.
      */
-    distinct?: VersionScalarFieldEnum | VersionScalarFieldEnum[]
-  }
+    distinct?: VersionScalarFieldEnum | VersionScalarFieldEnum[];
+  };
 
   /**
    * Version findMany
@@ -4758,45 +5071,45 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelect<ExtArgs> | null
+    select?: VersionSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionInclude<ExtArgs> | null
+    include?: VersionInclude<ExtArgs> | null;
     /**
      * Filter, which Versions to fetch.
      */
-    where?: VersionWhereInput
+    where?: VersionWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Versions to fetch.
      */
-    orderBy?: VersionOrderByWithRelationInput | VersionOrderByWithRelationInput[]
+    orderBy?: VersionOrderByWithRelationInput | VersionOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Versions.
      */
-    cursor?: VersionWhereUniqueInput
+    cursor?: VersionWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Versions from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Versions.
      */
-    skip?: number
-    distinct?: VersionScalarFieldEnum | VersionScalarFieldEnum[]
-  }
+    skip?: number;
+    distinct?: VersionScalarFieldEnum | VersionScalarFieldEnum[];
+  };
 
   /**
    * Version create
@@ -4805,20 +5118,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelect<ExtArgs> | null
+    select?: VersionSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionInclude<ExtArgs> | null
+    include?: VersionInclude<ExtArgs> | null;
     /**
      * The data needed to create a Version.
      */
-    data: XOR<VersionCreateInput, VersionUncheckedCreateInput>
-  }
+    data: XOR<VersionCreateInput, VersionUncheckedCreateInput>;
+  };
 
   /**
    * Version createMany
@@ -4827,9 +5140,9 @@ export namespace Prisma {
     /**
      * The data used to create many Versions.
      */
-    data: VersionCreateManyInput | VersionCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: VersionCreateManyInput | VersionCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * Version createManyAndReturn
@@ -4838,21 +5151,21 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelectCreateManyAndReturn<ExtArgs> | null
+    select?: VersionSelectCreateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * The data used to create many Versions.
      */
-    data: VersionCreateManyInput | VersionCreateManyInput[]
-    skipDuplicates?: boolean
+    data: VersionCreateManyInput | VersionCreateManyInput[];
+    skipDuplicates?: boolean;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionIncludeCreateManyAndReturn<ExtArgs> | null
-  }
+    include?: VersionIncludeCreateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * Version update
@@ -4861,24 +5174,24 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelect<ExtArgs> | null
+    select?: VersionSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionInclude<ExtArgs> | null
+    include?: VersionInclude<ExtArgs> | null;
     /**
      * The data needed to update a Version.
      */
-    data: XOR<VersionUpdateInput, VersionUncheckedUpdateInput>
+    data: XOR<VersionUpdateInput, VersionUncheckedUpdateInput>;
     /**
      * Choose, which Version to update.
      */
-    where: VersionWhereUniqueInput
-  }
+    where: VersionWhereUniqueInput;
+  };
 
   /**
    * Version updateMany
@@ -4887,16 +5200,16 @@ export namespace Prisma {
     /**
      * The data used to update Versions.
      */
-    data: XOR<VersionUpdateManyMutationInput, VersionUncheckedUpdateManyInput>
+    data: XOR<VersionUpdateManyMutationInput, VersionUncheckedUpdateManyInput>;
     /**
      * Filter which Versions to update
      */
-    where?: VersionWhereInput
+    where?: VersionWhereInput;
     /**
      * Limit how many Versions to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Version updateManyAndReturn
@@ -4905,28 +5218,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: VersionSelectUpdateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * The data used to update Versions.
      */
-    data: XOR<VersionUpdateManyMutationInput, VersionUncheckedUpdateManyInput>
+    data: XOR<VersionUpdateManyMutationInput, VersionUncheckedUpdateManyInput>;
     /**
      * Filter which Versions to update
      */
-    where?: VersionWhereInput
+    where?: VersionWhereInput;
     /**
      * Limit how many Versions to update.
      */
-    limit?: number
+    limit?: number;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
+    include?: VersionIncludeUpdateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * Version upsert
@@ -4935,28 +5248,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelect<ExtArgs> | null
+    select?: VersionSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionInclude<ExtArgs> | null
+    include?: VersionInclude<ExtArgs> | null;
     /**
      * The filter to search for the Version to update in case it exists.
      */
-    where: VersionWhereUniqueInput
+    where: VersionWhereUniqueInput;
     /**
      * In case the Version found by the `where` argument doesn't exist, create a new Version with this data.
      */
-    create: XOR<VersionCreateInput, VersionUncheckedCreateInput>
+    create: XOR<VersionCreateInput, VersionUncheckedCreateInput>;
     /**
      * In case the Version was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<VersionUpdateInput, VersionUncheckedUpdateInput>
-  }
+    update: XOR<VersionUpdateInput, VersionUncheckedUpdateInput>;
+  };
 
   /**
    * Version delete
@@ -4965,20 +5278,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelect<ExtArgs> | null
+    select?: VersionSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionInclude<ExtArgs> | null
+    include?: VersionInclude<ExtArgs> | null;
     /**
      * Filter which Version to delete.
      */
-    where: VersionWhereUniqueInput
-  }
+    where: VersionWhereUniqueInput;
+  };
 
   /**
    * Version deleteMany
@@ -4987,12 +5300,12 @@ export namespace Prisma {
     /**
      * Filter which Versions to delete
      */
-    where?: VersionWhereInput
+    where?: VersionWhereInput;
     /**
      * Limit how many Versions to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Version.trims
@@ -5001,22 +5314,22 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelect<ExtArgs> | null
+    select?: TrimSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimInclude<ExtArgs> | null
-    where?: TrimWhereInput
-    orderBy?: TrimOrderByWithRelationInput | TrimOrderByWithRelationInput[]
-    cursor?: TrimWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TrimScalarFieldEnum | TrimScalarFieldEnum[]
-  }
+    include?: TrimInclude<ExtArgs> | null;
+    where?: TrimWhereInput;
+    orderBy?: TrimOrderByWithRelationInput | TrimOrderByWithRelationInput[];
+    cursor?: TrimWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: TrimScalarFieldEnum | TrimScalarFieldEnum[];
+  };
 
   /**
    * Version without action
@@ -5025,297 +5338,315 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Version
      */
-    select?: VersionSelect<ExtArgs> | null
+    select?: VersionSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Version
      */
-    omit?: VersionOmit<ExtArgs> | null
+    omit?: VersionOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: VersionInclude<ExtArgs> | null
-  }
-
+    include?: VersionInclude<ExtArgs> | null;
+  };
 
   /**
    * Model Trim
    */
 
   export type AggregateTrim = {
-    _count: TrimCountAggregateOutputType | null
-    _avg: TrimAvgAggregateOutputType | null
-    _sum: TrimSumAggregateOutputType | null
-    _min: TrimMinAggregateOutputType | null
-    _max: TrimMaxAggregateOutputType | null
-  }
+    _count: TrimCountAggregateOutputType | null;
+    _avg: TrimAvgAggregateOutputType | null;
+    _sum: TrimSumAggregateOutputType | null;
+    _min: TrimMinAggregateOutputType | null;
+    _max: TrimMaxAggregateOutputType | null;
+  };
 
   export type TrimAvgAggregateOutputType = {
-    motorSize: number | null
-  }
+    motorSize: number | null;
+  };
 
   export type TrimSumAggregateOutputType = {
-    motorSize: number | null
-  }
+    motorSize: number | null;
+  };
 
   export type TrimMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-    motorSize: number | null
-    fuelType: string | null
-    transmissionType: string | null
-    versionId: string | null
-  }
+    id: string | null;
+    name: string | null;
+    motorSize: number | null;
+    fuelType: string | null;
+    transmissionType: string | null;
+    versionId: string | null;
+  };
 
   export type TrimMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-    motorSize: number | null
-    fuelType: string | null
-    transmissionType: string | null
-    versionId: string | null
-  }
+    id: string | null;
+    name: string | null;
+    motorSize: number | null;
+    fuelType: string | null;
+    transmissionType: string | null;
+    versionId: string | null;
+  };
 
   export type TrimCountAggregateOutputType = {
-    id: number
-    name: number
-    motorSize: number
-    fuelType: number
-    transmissionType: number
-    versionId: number
-    _all: number
-  }
-
+    id: number;
+    name: number;
+    motorSize: number;
+    fuelType: number;
+    transmissionType: number;
+    versionId: number;
+    _all: number;
+  };
 
   export type TrimAvgAggregateInputType = {
-    motorSize?: true
-  }
+    motorSize?: true;
+  };
 
   export type TrimSumAggregateInputType = {
-    motorSize?: true
-  }
+    motorSize?: true;
+  };
 
   export type TrimMinAggregateInputType = {
-    id?: true
-    name?: true
-    motorSize?: true
-    fuelType?: true
-    transmissionType?: true
-    versionId?: true
-  }
+    id?: true;
+    name?: true;
+    motorSize?: true;
+    fuelType?: true;
+    transmissionType?: true;
+    versionId?: true;
+  };
 
   export type TrimMaxAggregateInputType = {
-    id?: true
-    name?: true
-    motorSize?: true
-    fuelType?: true
-    transmissionType?: true
-    versionId?: true
-  }
+    id?: true;
+    name?: true;
+    motorSize?: true;
+    fuelType?: true;
+    transmissionType?: true;
+    versionId?: true;
+  };
 
   export type TrimCountAggregateInputType = {
-    id?: true
-    name?: true
-    motorSize?: true
-    fuelType?: true
-    transmissionType?: true
-    versionId?: true
-    _all?: true
-  }
+    id?: true;
+    name?: true;
+    motorSize?: true;
+    fuelType?: true;
+    transmissionType?: true;
+    versionId?: true;
+    _all?: true;
+  };
 
   export type TrimAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Trim to aggregate.
      */
-    where?: TrimWhereInput
+    where?: TrimWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Trims to fetch.
      */
-    orderBy?: TrimOrderByWithRelationInput | TrimOrderByWithRelationInput[]
+    orderBy?: TrimOrderByWithRelationInput | TrimOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: TrimWhereUniqueInput
+    cursor?: TrimWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Trims from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Trims.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Trims
-    **/
-    _count?: true | TrimCountAggregateInputType
+     * */
+    _count?: true | TrimCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to average
-    **/
-    _avg?: TrimAvgAggregateInputType
+     * */
+    _avg?: TrimAvgAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to sum
-    **/
-    _sum?: TrimSumAggregateInputType
+     * */
+    _sum?: TrimSumAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: TrimMinAggregateInputType
+     * */
+    _min?: TrimMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: TrimMaxAggregateInputType
-  }
+     * */
+    _max?: TrimMaxAggregateInputType;
+  };
 
   export type GetTrimAggregateType<T extends TrimAggregateArgs> = {
-        [P in keyof T & keyof AggregateTrim]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateTrim]: P extends "_count" | "count"
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateTrim[P]>
-      : GetScalarType<T[P], AggregateTrim[P]>
-  }
-
-
-
+      : GetScalarType<T[P], AggregateTrim[P]>;
+  };
 
   export type TrimGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TrimWhereInput
-    orderBy?: TrimOrderByWithAggregationInput | TrimOrderByWithAggregationInput[]
-    by: TrimScalarFieldEnum[] | TrimScalarFieldEnum
-    having?: TrimScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: TrimCountAggregateInputType | true
-    _avg?: TrimAvgAggregateInputType
-    _sum?: TrimSumAggregateInputType
-    _min?: TrimMinAggregateInputType
-    _max?: TrimMaxAggregateInputType
-  }
+    where?: TrimWhereInput;
+    orderBy?: TrimOrderByWithAggregationInput | TrimOrderByWithAggregationInput[];
+    by: TrimScalarFieldEnum[] | TrimScalarFieldEnum;
+    having?: TrimScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: TrimCountAggregateInputType | true;
+    _avg?: TrimAvgAggregateInputType;
+    _sum?: TrimSumAggregateInputType;
+    _min?: TrimMinAggregateInputType;
+    _max?: TrimMaxAggregateInputType;
+  };
 
   export type TrimGroupByOutputType = {
-    id: string
-    name: string
-    motorSize: number
-    fuelType: string
-    transmissionType: string
-    versionId: string
-    _count: TrimCountAggregateOutputType | null
-    _avg: TrimAvgAggregateOutputType | null
-    _sum: TrimSumAggregateOutputType | null
-    _min: TrimMinAggregateOutputType | null
-    _max: TrimMaxAggregateOutputType | null
-  }
+    id: string;
+    name: string;
+    motorSize: number;
+    fuelType: string;
+    transmissionType: string;
+    versionId: string;
+    _count: TrimCountAggregateOutputType | null;
+    _avg: TrimAvgAggregateOutputType | null;
+    _sum: TrimSumAggregateOutputType | null;
+    _min: TrimMinAggregateOutputType | null;
+    _max: TrimMaxAggregateOutputType | null;
+  };
 
   type GetTrimGroupByPayload<T extends TrimGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<TrimGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof TrimGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], TrimGroupByOutputType[P]>
+      PickEnumerable<TrimGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof TrimGroupByOutputType]: P extends "_count"
+          ? T[P] extends boolean
+            ? number
             : GetScalarType<T[P], TrimGroupByOutputType[P]>
-        }
-      >
+          : GetScalarType<T[P], TrimGroupByOutputType[P]>;
+      }
     >
+  >;
 
+  export type TrimSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      name?: boolean;
+      motorSize?: boolean;
+      fuelType?: boolean;
+      transmissionType?: boolean;
+      versionId?: boolean;
+      version?: boolean | VersionDefaultArgs<ExtArgs>;
+      carListings?: boolean | Trim$carListingsArgs<ExtArgs>;
+      _count?: boolean | TrimCountOutputTypeDefaultArgs<ExtArgs>;
+    },
+    ExtArgs["result"]["trim"]
+  >;
 
-  export type TrimSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    motorSize?: boolean
-    fuelType?: boolean
-    transmissionType?: boolean
-    versionId?: boolean
-    version?: boolean | VersionDefaultArgs<ExtArgs>
-    carListings?: boolean | Trim$carListingsArgs<ExtArgs>
-    _count?: boolean | TrimCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["trim"]>
+  export type TrimSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        name?: boolean;
+        motorSize?: boolean;
+        fuelType?: boolean;
+        transmissionType?: boolean;
+        versionId?: boolean;
+        version?: boolean | VersionDefaultArgs<ExtArgs>;
+      },
+      ExtArgs["result"]["trim"]
+    >;
 
-  export type TrimSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    motorSize?: boolean
-    fuelType?: boolean
-    transmissionType?: boolean
-    versionId?: boolean
-    version?: boolean | VersionDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["trim"]>
-
-  export type TrimSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    motorSize?: boolean
-    fuelType?: boolean
-    transmissionType?: boolean
-    versionId?: boolean
-    version?: boolean | VersionDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["trim"]>
+  export type TrimSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        name?: boolean;
+        motorSize?: boolean;
+        fuelType?: boolean;
+        transmissionType?: boolean;
+        versionId?: boolean;
+        version?: boolean | VersionDefaultArgs<ExtArgs>;
+      },
+      ExtArgs["result"]["trim"]
+    >;
 
   export type TrimSelectScalar = {
-    id?: boolean
-    name?: boolean
-    motorSize?: boolean
-    fuelType?: boolean
-    transmissionType?: boolean
-    versionId?: boolean
-  }
+    id?: boolean;
+    name?: boolean;
+    motorSize?: boolean;
+    fuelType?: boolean;
+    transmissionType?: boolean;
+    versionId?: boolean;
+  };
 
-  export type TrimOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "motorSize" | "fuelType" | "transmissionType" | "versionId", ExtArgs["result"]["trim"]>
+  export type TrimOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<
+    "id" | "name" | "motorSize" | "fuelType" | "transmissionType" | "versionId",
+    ExtArgs["result"]["trim"]
+  >;
   export type TrimInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    version?: boolean | VersionDefaultArgs<ExtArgs>
-    carListings?: boolean | Trim$carListingsArgs<ExtArgs>
-    _count?: boolean | TrimCountOutputTypeDefaultArgs<ExtArgs>
-  }
+    version?: boolean | VersionDefaultArgs<ExtArgs>;
+    carListings?: boolean | Trim$carListingsArgs<ExtArgs>;
+    _count?: boolean | TrimCountOutputTypeDefaultArgs<ExtArgs>;
+  };
   export type TrimIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    version?: boolean | VersionDefaultArgs<ExtArgs>
-  }
+    version?: boolean | VersionDefaultArgs<ExtArgs>;
+  };
   export type TrimIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    version?: boolean | VersionDefaultArgs<ExtArgs>
-  }
+    version?: boolean | VersionDefaultArgs<ExtArgs>;
+  };
 
   export type $TrimPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Trim"
+    name: "Trim";
     objects: {
-      version: Prisma.$VersionPayload<ExtArgs>
-      carListings: Prisma.$CarListingPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      name: string
-      motorSize: number
-      fuelType: string
-      transmissionType: string
-      versionId: string
-    }, ExtArgs["result"]["trim"]>
-    composites: {}
-  }
+      version: Prisma.$VersionPayload<ExtArgs>;
+      carListings: Prisma.$CarListingPayload<ExtArgs>[];
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        name: string;
+        motorSize: number;
+        fuelType: string;
+        transmissionType: string;
+        versionId: string;
+      },
+      ExtArgs["result"]["trim"]
+    >;
+    composites: {};
+  };
 
-  type TrimGetPayload<S extends boolean | null | undefined | TrimDefaultArgs> = $Result.GetResult<Prisma.$TrimPayload, S>
+  type TrimGetPayload<S extends boolean | null | undefined | TrimDefaultArgs> = $Result.GetResult<
+    Prisma.$TrimPayload,
+    S
+  >;
 
-  type TrimCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TrimFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TrimCountAggregateInputType | true
-    }
+  type TrimCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Omit<
+    TrimFindManyArgs,
+    "select" | "include" | "distinct" | "omit"
+  > & {
+    select?: TrimCountAggregateInputType | true;
+  };
 
-  export interface TrimDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Trim'], meta: { name: 'Trim' } }
+  export interface TrimDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>["model"]["Trim"]; meta: { name: "Trim" } };
     /**
      * Find zero or one Trim that matches the filter.
      * @param {TrimFindUniqueArgs} args - Arguments to find a Trim
@@ -5327,7 +5658,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends TrimFindUniqueArgs>(args: SelectSubset<T, TrimFindUniqueArgs<ExtArgs>>): Prisma__TrimClient<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends TrimFindUniqueArgs>(
+      args: SelectSubset<T, TrimFindUniqueArgs<ExtArgs>>,
+    ): Prisma__TrimClient<
+      $Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one Trim that matches the filter or throw an error with `error.code='P2025'`
@@ -5341,7 +5679,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends TrimFindUniqueOrThrowArgs>(args: SelectSubset<T, TrimFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TrimClient<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends TrimFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, TrimFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__TrimClient<
+      $Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Trim that matches the filter.
@@ -5356,7 +5701,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends TrimFindFirstArgs>(args?: SelectSubset<T, TrimFindFirstArgs<ExtArgs>>): Prisma__TrimClient<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends TrimFindFirstArgs>(
+      args?: SelectSubset<T, TrimFindFirstArgs<ExtArgs>>,
+    ): Prisma__TrimClient<
+      $Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Trim that matches the filter or
@@ -5372,7 +5724,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends TrimFindFirstOrThrowArgs>(args?: SelectSubset<T, TrimFindFirstOrThrowArgs<ExtArgs>>): Prisma__TrimClient<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends TrimFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, TrimFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__TrimClient<
+      $Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more Trims that matches the filter.
@@ -5382,15 +5741,17 @@ export namespace Prisma {
      * @example
      * // Get all Trims
      * const trims = await prisma.trim.findMany()
-     * 
+     *
      * // Get first 10 Trims
      * const trims = await prisma.trim.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const trimWithIdOnly = await prisma.trim.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends TrimFindManyArgs>(args?: SelectSubset<T, TrimFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends TrimFindManyArgs>(
+      args?: SelectSubset<T, TrimFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
 
     /**
      * Create a Trim.
@@ -5402,9 +5763,16 @@ export namespace Prisma {
      *     // ... data to create a Trim
      *   }
      * })
-     * 
+     *
      */
-    create<T extends TrimCreateArgs>(args: SelectSubset<T, TrimCreateArgs<ExtArgs>>): Prisma__TrimClient<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends TrimCreateArgs>(
+      args: SelectSubset<T, TrimCreateArgs<ExtArgs>>,
+    ): Prisma__TrimClient<
+      $Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "create", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many Trims.
@@ -5416,9 +5784,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends TrimCreateManyArgs>(args?: SelectSubset<T, TrimCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends TrimCreateManyArgs>(
+      args?: SelectSubset<T, TrimCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many Trims and returns the data saved in the database.
@@ -5430,7 +5800,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Trims and only return the `id`
      * const trimWithIdOnly = await prisma.trim.createManyAndReturn({
      *   select: { id: true },
@@ -5440,9 +5810,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends TrimCreateManyAndReturnArgs>(args?: SelectSubset<T, TrimCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends TrimCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, TrimCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Delete a Trim.
@@ -5454,9 +5828,16 @@ export namespace Prisma {
      *     // ... filter to delete one Trim
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends TrimDeleteArgs>(args: SelectSubset<T, TrimDeleteArgs<ExtArgs>>): Prisma__TrimClient<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends TrimDeleteArgs>(
+      args: SelectSubset<T, TrimDeleteArgs<ExtArgs>>,
+    ): Prisma__TrimClient<
+      $Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "delete", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one Trim.
@@ -5471,9 +5852,16 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends TrimUpdateArgs>(args: SelectSubset<T, TrimUpdateArgs<ExtArgs>>): Prisma__TrimClient<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends TrimUpdateArgs>(
+      args: SelectSubset<T, TrimUpdateArgs<ExtArgs>>,
+    ): Prisma__TrimClient<
+      $Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "update", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more Trims.
@@ -5485,9 +5873,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends TrimDeleteManyArgs>(args?: SelectSubset<T, TrimDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends TrimDeleteManyArgs>(
+      args?: SelectSubset<T, TrimDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Trims.
@@ -5504,9 +5894,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends TrimUpdateManyArgs>(args: SelectSubset<T, TrimUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends TrimUpdateManyArgs>(
+      args: SelectSubset<T, TrimUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Trims and returns the data updated in the database.
@@ -5521,7 +5913,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Trims and only return the `id`
      * const trimWithIdOnly = await prisma.trim.updateManyAndReturn({
      *   select: { id: true },
@@ -5534,9 +5926,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends TrimUpdateManyAndReturnArgs>(args: SelectSubset<T, TrimUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends TrimUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, TrimUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Create or update one Trim.
@@ -5555,8 +5951,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends TrimUpsertArgs>(args: SelectSubset<T, TrimUpsertArgs<ExtArgs>>): Prisma__TrimClient<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends TrimUpsertArgs>(
+      args: SelectSubset<T, TrimUpsertArgs<ExtArgs>>,
+    ): Prisma__TrimClient<
+      $Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of Trims.
@@ -5570,16 +5972,16 @@ export namespace Prisma {
      *     // ... the filter for the Trims we want to count
      *   }
      * })
-    **/
+     * */
     count<T extends TrimCountArgs>(
       args?: Subset<T, TrimCountArgs>,
     ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
+      T extends $Utils.Record<"select", any>
+        ? T["select"] extends true
           ? number
-          : GetScalarType<T['select'], TrimCountAggregateOutputType>
+          : GetScalarType<T["select"], TrimCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a Trim.
@@ -5604,8 +6006,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends TrimAggregateArgs>(args: Subset<T, TrimAggregateArgs>): Prisma.PrismaPromise<GetTrimAggregateType<T>>
+     * */
+    aggregate<T extends TrimAggregateArgs>(
+      args: Subset<T, TrimAggregateArgs>,
+    ): Prisma.PrismaPromise<GetTrimAggregateType<T>>;
 
     /**
      * Group by Trim.
@@ -5623,70 +6027,64 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     * */
     groupBy<
       T extends TrimGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
+      HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TrimGroupByArgs['orderBy'] }
-        : { orderBy?: TrimGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
+        ? { orderBy: TrimGroupByArgs["orderBy"] }
+        : { orderBy?: TrimGroupByArgs["orderBy"] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
+      ByFields extends MaybeTupleToUnion<T["by"]>,
       ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
+      HavingFields extends GetHavingFields<T["having"]>,
       HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
+      ByEmpty extends T["by"] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, TrimGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTrimGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Trim model
-   */
-  readonly fields: TrimFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [Error, "Field ", P, ` in "having" needs to be provided in "by"`];
+            }[HavingFields]
+          : "take" extends Keys<T>
+            ? "orderBy" extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : "skip" extends Keys<T>
+              ? "orderBy" extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, TrimGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors ? GetTrimGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Trim model
+     */
+    readonly fields: TrimFieldRefs;
   }
 
   /**
@@ -5695,47 +6093,64 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__TrimClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    version<T extends VersionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VersionDefaultArgs<ExtArgs>>): Prisma__VersionClient<$Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    carListings<T extends Trim$carListingsArgs<ExtArgs> = {}>(args?: Subset<T, Trim$carListingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  export interface Prisma__TrimClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    version<T extends VersionDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, VersionDefaultArgs<ExtArgs>>,
+    ): Prisma__VersionClient<
+      $Result.GetResult<Prisma.$VersionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    carListings<T extends Trim$carListingsArgs<ExtArgs> = {}>(
+      args?: Subset<T, Trim$carListingsArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the Trim model
    */
   interface TrimFieldRefs {
-    readonly id: FieldRef<"Trim", 'String'>
-    readonly name: FieldRef<"Trim", 'String'>
-    readonly motorSize: FieldRef<"Trim", 'Int'>
-    readonly fuelType: FieldRef<"Trim", 'String'>
-    readonly transmissionType: FieldRef<"Trim", 'String'>
-    readonly versionId: FieldRef<"Trim", 'String'>
+    readonly id: FieldRef<"Trim", "String">;
+    readonly name: FieldRef<"Trim", "String">;
+    readonly motorSize: FieldRef<"Trim", "Int">;
+    readonly fuelType: FieldRef<"Trim", "String">;
+    readonly transmissionType: FieldRef<"Trim", "String">;
+    readonly versionId: FieldRef<"Trim", "String">;
   }
-    
 
   // Custom InputTypes
   /**
@@ -5745,20 +6160,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelect<ExtArgs> | null
+    select?: TrimSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimInclude<ExtArgs> | null
+    include?: TrimInclude<ExtArgs> | null;
     /**
      * Filter, which Trim to fetch.
      */
-    where: TrimWhereUniqueInput
-  }
+    where: TrimWhereUniqueInput;
+  };
 
   /**
    * Trim findUniqueOrThrow
@@ -5767,20 +6182,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelect<ExtArgs> | null
+    select?: TrimSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimInclude<ExtArgs> | null
+    include?: TrimInclude<ExtArgs> | null;
     /**
      * Filter, which Trim to fetch.
      */
-    where: TrimWhereUniqueInput
-  }
+    where: TrimWhereUniqueInput;
+  };
 
   /**
    * Trim findFirst
@@ -5789,50 +6204,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelect<ExtArgs> | null
+    select?: TrimSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimInclude<ExtArgs> | null
+    include?: TrimInclude<ExtArgs> | null;
     /**
      * Filter, which Trim to fetch.
      */
-    where?: TrimWhereInput
+    where?: TrimWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Trims to fetch.
      */
-    orderBy?: TrimOrderByWithRelationInput | TrimOrderByWithRelationInput[]
+    orderBy?: TrimOrderByWithRelationInput | TrimOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Trims.
      */
-    cursor?: TrimWhereUniqueInput
+    cursor?: TrimWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Trims from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Trims.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Trims.
      */
-    distinct?: TrimScalarFieldEnum | TrimScalarFieldEnum[]
-  }
+    distinct?: TrimScalarFieldEnum | TrimScalarFieldEnum[];
+  };
 
   /**
    * Trim findFirstOrThrow
@@ -5841,50 +6256,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelect<ExtArgs> | null
+    select?: TrimSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimInclude<ExtArgs> | null
+    include?: TrimInclude<ExtArgs> | null;
     /**
      * Filter, which Trim to fetch.
      */
-    where?: TrimWhereInput
+    where?: TrimWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Trims to fetch.
      */
-    orderBy?: TrimOrderByWithRelationInput | TrimOrderByWithRelationInput[]
+    orderBy?: TrimOrderByWithRelationInput | TrimOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Trims.
      */
-    cursor?: TrimWhereUniqueInput
+    cursor?: TrimWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Trims from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Trims.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Trims.
      */
-    distinct?: TrimScalarFieldEnum | TrimScalarFieldEnum[]
-  }
+    distinct?: TrimScalarFieldEnum | TrimScalarFieldEnum[];
+  };
 
   /**
    * Trim findMany
@@ -5893,45 +6308,45 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelect<ExtArgs> | null
+    select?: TrimSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimInclude<ExtArgs> | null
+    include?: TrimInclude<ExtArgs> | null;
     /**
      * Filter, which Trims to fetch.
      */
-    where?: TrimWhereInput
+    where?: TrimWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Trims to fetch.
      */
-    orderBy?: TrimOrderByWithRelationInput | TrimOrderByWithRelationInput[]
+    orderBy?: TrimOrderByWithRelationInput | TrimOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Trims.
      */
-    cursor?: TrimWhereUniqueInput
+    cursor?: TrimWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Trims from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Trims.
      */
-    skip?: number
-    distinct?: TrimScalarFieldEnum | TrimScalarFieldEnum[]
-  }
+    skip?: number;
+    distinct?: TrimScalarFieldEnum | TrimScalarFieldEnum[];
+  };
 
   /**
    * Trim create
@@ -5940,20 +6355,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelect<ExtArgs> | null
+    select?: TrimSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimInclude<ExtArgs> | null
+    include?: TrimInclude<ExtArgs> | null;
     /**
      * The data needed to create a Trim.
      */
-    data: XOR<TrimCreateInput, TrimUncheckedCreateInput>
-  }
+    data: XOR<TrimCreateInput, TrimUncheckedCreateInput>;
+  };
 
   /**
    * Trim createMany
@@ -5962,9 +6377,9 @@ export namespace Prisma {
     /**
      * The data used to create many Trims.
      */
-    data: TrimCreateManyInput | TrimCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: TrimCreateManyInput | TrimCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * Trim createManyAndReturn
@@ -5973,21 +6388,21 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelectCreateManyAndReturn<ExtArgs> | null
+    select?: TrimSelectCreateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * The data used to create many Trims.
      */
-    data: TrimCreateManyInput | TrimCreateManyInput[]
-    skipDuplicates?: boolean
+    data: TrimCreateManyInput | TrimCreateManyInput[];
+    skipDuplicates?: boolean;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimIncludeCreateManyAndReturn<ExtArgs> | null
-  }
+    include?: TrimIncludeCreateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * Trim update
@@ -5996,24 +6411,24 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelect<ExtArgs> | null
+    select?: TrimSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimInclude<ExtArgs> | null
+    include?: TrimInclude<ExtArgs> | null;
     /**
      * The data needed to update a Trim.
      */
-    data: XOR<TrimUpdateInput, TrimUncheckedUpdateInput>
+    data: XOR<TrimUpdateInput, TrimUncheckedUpdateInput>;
     /**
      * Choose, which Trim to update.
      */
-    where: TrimWhereUniqueInput
-  }
+    where: TrimWhereUniqueInput;
+  };
 
   /**
    * Trim updateMany
@@ -6022,16 +6437,16 @@ export namespace Prisma {
     /**
      * The data used to update Trims.
      */
-    data: XOR<TrimUpdateManyMutationInput, TrimUncheckedUpdateManyInput>
+    data: XOR<TrimUpdateManyMutationInput, TrimUncheckedUpdateManyInput>;
     /**
      * Filter which Trims to update
      */
-    where?: TrimWhereInput
+    where?: TrimWhereInput;
     /**
      * Limit how many Trims to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Trim updateManyAndReturn
@@ -6040,28 +6455,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: TrimSelectUpdateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * The data used to update Trims.
      */
-    data: XOR<TrimUpdateManyMutationInput, TrimUncheckedUpdateManyInput>
+    data: XOR<TrimUpdateManyMutationInput, TrimUncheckedUpdateManyInput>;
     /**
      * Filter which Trims to update
      */
-    where?: TrimWhereInput
+    where?: TrimWhereInput;
     /**
      * Limit how many Trims to update.
      */
-    limit?: number
+    limit?: number;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
+    include?: TrimIncludeUpdateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * Trim upsert
@@ -6070,28 +6485,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelect<ExtArgs> | null
+    select?: TrimSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimInclude<ExtArgs> | null
+    include?: TrimInclude<ExtArgs> | null;
     /**
      * The filter to search for the Trim to update in case it exists.
      */
-    where: TrimWhereUniqueInput
+    where: TrimWhereUniqueInput;
     /**
      * In case the Trim found by the `where` argument doesn't exist, create a new Trim with this data.
      */
-    create: XOR<TrimCreateInput, TrimUncheckedCreateInput>
+    create: XOR<TrimCreateInput, TrimUncheckedCreateInput>;
     /**
      * In case the Trim was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<TrimUpdateInput, TrimUncheckedUpdateInput>
-  }
+    update: XOR<TrimUpdateInput, TrimUncheckedUpdateInput>;
+  };
 
   /**
    * Trim delete
@@ -6100,20 +6515,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelect<ExtArgs> | null
+    select?: TrimSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimInclude<ExtArgs> | null
+    include?: TrimInclude<ExtArgs> | null;
     /**
      * Filter which Trim to delete.
      */
-    where: TrimWhereUniqueInput
-  }
+    where: TrimWhereUniqueInput;
+  };
 
   /**
    * Trim deleteMany
@@ -6122,12 +6537,12 @@ export namespace Prisma {
     /**
      * Filter which Trims to delete
      */
-    where?: TrimWhereInput
+    where?: TrimWhereInput;
     /**
      * Limit how many Trims to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Trim.carListings
@@ -6136,22 +6551,22 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
-    where?: CarListingWhereInput
-    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[]
-    cursor?: CarListingWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CarListingScalarFieldEnum | CarListingScalarFieldEnum[]
-  }
+    include?: CarListingInclude<ExtArgs> | null;
+    where?: CarListingWhereInput;
+    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[];
+    cursor?: CarListingWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: CarListingScalarFieldEnum | CarListingScalarFieldEnum[];
+  };
 
   /**
    * Trim without action
@@ -6160,218 +6575,236 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Trim
      */
-    select?: TrimSelect<ExtArgs> | null
+    select?: TrimSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Trim
      */
-    omit?: TrimOmit<ExtArgs> | null
+    omit?: TrimOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: TrimInclude<ExtArgs> | null
-  }
-
+    include?: TrimInclude<ExtArgs> | null;
+  };
 
   /**
    * Model Source
    */
 
   export type AggregateSource = {
-    _count: SourceCountAggregateOutputType | null
-    _min: SourceMinAggregateOutputType | null
-    _max: SourceMaxAggregateOutputType | null
-  }
+    _count: SourceCountAggregateOutputType | null;
+    _min: SourceMinAggregateOutputType | null;
+    _max: SourceMaxAggregateOutputType | null;
+  };
 
   export type SourceMinAggregateOutputType = {
-    id: string | null
-    baseUrl: string | null
-    name: string | null
-  }
+    id: string | null;
+    baseUrl: string | null;
+    name: string | null;
+  };
 
   export type SourceMaxAggregateOutputType = {
-    id: string | null
-    baseUrl: string | null
-    name: string | null
-  }
+    id: string | null;
+    baseUrl: string | null;
+    name: string | null;
+  };
 
   export type SourceCountAggregateOutputType = {
-    id: number
-    baseUrl: number
-    name: number
-    _all: number
-  }
-
+    id: number;
+    baseUrl: number;
+    name: number;
+    _all: number;
+  };
 
   export type SourceMinAggregateInputType = {
-    id?: true
-    baseUrl?: true
-    name?: true
-  }
+    id?: true;
+    baseUrl?: true;
+    name?: true;
+  };
 
   export type SourceMaxAggregateInputType = {
-    id?: true
-    baseUrl?: true
-    name?: true
-  }
+    id?: true;
+    baseUrl?: true;
+    name?: true;
+  };
 
   export type SourceCountAggregateInputType = {
-    id?: true
-    baseUrl?: true
-    name?: true
-    _all?: true
-  }
+    id?: true;
+    baseUrl?: true;
+    name?: true;
+    _all?: true;
+  };
 
   export type SourceAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Source to aggregate.
      */
-    where?: SourceWhereInput
+    where?: SourceWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Sources to fetch.
      */
-    orderBy?: SourceOrderByWithRelationInput | SourceOrderByWithRelationInput[]
+    orderBy?: SourceOrderByWithRelationInput | SourceOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: SourceWhereUniqueInput
+    cursor?: SourceWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Sources from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Sources.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Sources
-    **/
-    _count?: true | SourceCountAggregateInputType
+     * */
+    _count?: true | SourceCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: SourceMinAggregateInputType
+     * */
+    _min?: SourceMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: SourceMaxAggregateInputType
-  }
+     * */
+    _max?: SourceMaxAggregateInputType;
+  };
 
   export type GetSourceAggregateType<T extends SourceAggregateArgs> = {
-        [P in keyof T & keyof AggregateSource]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateSource]: P extends "_count" | "count"
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateSource[P]>
-      : GetScalarType<T[P], AggregateSource[P]>
-  }
-
-
-
+      : GetScalarType<T[P], AggregateSource[P]>;
+  };
 
   export type SourceGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SourceWhereInput
-    orderBy?: SourceOrderByWithAggregationInput | SourceOrderByWithAggregationInput[]
-    by: SourceScalarFieldEnum[] | SourceScalarFieldEnum
-    having?: SourceScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: SourceCountAggregateInputType | true
-    _min?: SourceMinAggregateInputType
-    _max?: SourceMaxAggregateInputType
-  }
+    where?: SourceWhereInput;
+    orderBy?: SourceOrderByWithAggregationInput | SourceOrderByWithAggregationInput[];
+    by: SourceScalarFieldEnum[] | SourceScalarFieldEnum;
+    having?: SourceScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: SourceCountAggregateInputType | true;
+    _min?: SourceMinAggregateInputType;
+    _max?: SourceMaxAggregateInputType;
+  };
 
   export type SourceGroupByOutputType = {
-    id: string
-    baseUrl: string
-    name: string
-    _count: SourceCountAggregateOutputType | null
-    _min: SourceMinAggregateOutputType | null
-    _max: SourceMaxAggregateOutputType | null
-  }
+    id: string;
+    baseUrl: string;
+    name: string;
+    _count: SourceCountAggregateOutputType | null;
+    _min: SourceMinAggregateOutputType | null;
+    _max: SourceMaxAggregateOutputType | null;
+  };
 
   type GetSourceGroupByPayload<T extends SourceGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<SourceGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof SourceGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], SourceGroupByOutputType[P]>
+      PickEnumerable<SourceGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof SourceGroupByOutputType]: P extends "_count"
+          ? T[P] extends boolean
+            ? number
             : GetScalarType<T[P], SourceGroupByOutputType[P]>
-        }
-      >
+          : GetScalarType<T[P], SourceGroupByOutputType[P]>;
+      }
     >
+  >;
 
+  export type SourceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      baseUrl?: boolean;
+      name?: boolean;
+      carListings?: boolean | Source$carListingsArgs<ExtArgs>;
+      _count?: boolean | SourceCountOutputTypeDefaultArgs<ExtArgs>;
+    },
+    ExtArgs["result"]["source"]
+  >;
 
-  export type SourceSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    baseUrl?: boolean
-    name?: boolean
-    carListings?: boolean | Source$carListingsArgs<ExtArgs>
-    _count?: boolean | SourceCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["source"]>
+  export type SourceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        baseUrl?: boolean;
+        name?: boolean;
+      },
+      ExtArgs["result"]["source"]
+    >;
 
-  export type SourceSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    baseUrl?: boolean
-    name?: boolean
-  }, ExtArgs["result"]["source"]>
-
-  export type SourceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    baseUrl?: boolean
-    name?: boolean
-  }, ExtArgs["result"]["source"]>
+  export type SourceSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        baseUrl?: boolean;
+        name?: boolean;
+      },
+      ExtArgs["result"]["source"]
+    >;
 
   export type SourceSelectScalar = {
-    id?: boolean
-    baseUrl?: boolean
-    name?: boolean
-  }
+    id?: boolean;
+    baseUrl?: boolean;
+    name?: boolean;
+  };
 
-  export type SourceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "baseUrl" | "name", ExtArgs["result"]["source"]>
+  export type SourceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<
+    "id" | "baseUrl" | "name",
+    ExtArgs["result"]["source"]
+  >;
   export type SourceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    carListings?: boolean | Source$carListingsArgs<ExtArgs>
-    _count?: boolean | SourceCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type SourceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type SourceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+    carListings?: boolean | Source$carListingsArgs<ExtArgs>;
+    _count?: boolean | SourceCountOutputTypeDefaultArgs<ExtArgs>;
+  };
+  export type SourceIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {};
+  export type SourceIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {};
 
   export type $SourcePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Source"
+    name: "Source";
     objects: {
-      carListings: Prisma.$CarListingPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      baseUrl: string
-      name: string
-    }, ExtArgs["result"]["source"]>
-    composites: {}
-  }
+      carListings: Prisma.$CarListingPayload<ExtArgs>[];
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        baseUrl: string;
+        name: string;
+      },
+      ExtArgs["result"]["source"]
+    >;
+    composites: {};
+  };
 
-  type SourceGetPayload<S extends boolean | null | undefined | SourceDefaultArgs> = $Result.GetResult<Prisma.$SourcePayload, S>
+  type SourceGetPayload<S extends boolean | null | undefined | SourceDefaultArgs> = $Result.GetResult<
+    Prisma.$SourcePayload,
+    S
+  >;
 
-  type SourceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SourceFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SourceCountAggregateInputType | true
-    }
+  type SourceCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Omit<
+    SourceFindManyArgs,
+    "select" | "include" | "distinct" | "omit"
+  > & {
+    select?: SourceCountAggregateInputType | true;
+  };
 
-  export interface SourceDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Source'], meta: { name: 'Source' } }
+  export interface SourceDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>["model"]["Source"]; meta: { name: "Source" } };
     /**
      * Find zero or one Source that matches the filter.
      * @param {SourceFindUniqueArgs} args - Arguments to find a Source
@@ -6383,7 +6816,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends SourceFindUniqueArgs>(args: SelectSubset<T, SourceFindUniqueArgs<ExtArgs>>): Prisma__SourceClient<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends SourceFindUniqueArgs>(
+      args: SelectSubset<T, SourceFindUniqueArgs<ExtArgs>>,
+    ): Prisma__SourceClient<
+      $Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one Source that matches the filter or throw an error with `error.code='P2025'`
@@ -6397,7 +6837,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends SourceFindUniqueOrThrowArgs>(args: SelectSubset<T, SourceFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SourceClient<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends SourceFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, SourceFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__SourceClient<
+      $Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Source that matches the filter.
@@ -6412,7 +6859,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends SourceFindFirstArgs>(args?: SelectSubset<T, SourceFindFirstArgs<ExtArgs>>): Prisma__SourceClient<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends SourceFindFirstArgs>(
+      args?: SelectSubset<T, SourceFindFirstArgs<ExtArgs>>,
+    ): Prisma__SourceClient<
+      $Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Source that matches the filter or
@@ -6428,7 +6882,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends SourceFindFirstOrThrowArgs>(args?: SelectSubset<T, SourceFindFirstOrThrowArgs<ExtArgs>>): Prisma__SourceClient<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends SourceFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, SourceFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__SourceClient<
+      $Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more Sources that matches the filter.
@@ -6438,15 +6899,17 @@ export namespace Prisma {
      * @example
      * // Get all Sources
      * const sources = await prisma.source.findMany()
-     * 
+     *
      * // Get first 10 Sources
      * const sources = await prisma.source.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const sourceWithIdOnly = await prisma.source.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends SourceFindManyArgs>(args?: SelectSubset<T, SourceFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends SourceFindManyArgs>(
+      args?: SelectSubset<T, SourceFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
 
     /**
      * Create a Source.
@@ -6458,9 +6921,16 @@ export namespace Prisma {
      *     // ... data to create a Source
      *   }
      * })
-     * 
+     *
      */
-    create<T extends SourceCreateArgs>(args: SelectSubset<T, SourceCreateArgs<ExtArgs>>): Prisma__SourceClient<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends SourceCreateArgs>(
+      args: SelectSubset<T, SourceCreateArgs<ExtArgs>>,
+    ): Prisma__SourceClient<
+      $Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "create", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many Sources.
@@ -6472,9 +6942,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends SourceCreateManyArgs>(args?: SelectSubset<T, SourceCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends SourceCreateManyArgs>(
+      args?: SelectSubset<T, SourceCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many Sources and returns the data saved in the database.
@@ -6486,7 +6958,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Sources and only return the `id`
      * const sourceWithIdOnly = await prisma.source.createManyAndReturn({
      *   select: { id: true },
@@ -6496,9 +6968,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends SourceCreateManyAndReturnArgs>(args?: SelectSubset<T, SourceCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends SourceCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, SourceCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Delete a Source.
@@ -6510,9 +6986,16 @@ export namespace Prisma {
      *     // ... filter to delete one Source
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends SourceDeleteArgs>(args: SelectSubset<T, SourceDeleteArgs<ExtArgs>>): Prisma__SourceClient<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends SourceDeleteArgs>(
+      args: SelectSubset<T, SourceDeleteArgs<ExtArgs>>,
+    ): Prisma__SourceClient<
+      $Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "delete", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one Source.
@@ -6527,9 +7010,16 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends SourceUpdateArgs>(args: SelectSubset<T, SourceUpdateArgs<ExtArgs>>): Prisma__SourceClient<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends SourceUpdateArgs>(
+      args: SelectSubset<T, SourceUpdateArgs<ExtArgs>>,
+    ): Prisma__SourceClient<
+      $Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "update", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more Sources.
@@ -6541,9 +7031,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends SourceDeleteManyArgs>(args?: SelectSubset<T, SourceDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends SourceDeleteManyArgs>(
+      args?: SelectSubset<T, SourceDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Sources.
@@ -6560,9 +7052,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends SourceUpdateManyArgs>(args: SelectSubset<T, SourceUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends SourceUpdateManyArgs>(
+      args: SelectSubset<T, SourceUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Sources and returns the data updated in the database.
@@ -6577,7 +7071,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Sources and only return the `id`
      * const sourceWithIdOnly = await prisma.source.updateManyAndReturn({
      *   select: { id: true },
@@ -6590,9 +7084,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends SourceUpdateManyAndReturnArgs>(args: SelectSubset<T, SourceUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends SourceUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, SourceUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Create or update one Source.
@@ -6611,8 +7109,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends SourceUpsertArgs>(args: SelectSubset<T, SourceUpsertArgs<ExtArgs>>): Prisma__SourceClient<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends SourceUpsertArgs>(
+      args: SelectSubset<T, SourceUpsertArgs<ExtArgs>>,
+    ): Prisma__SourceClient<
+      $Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of Sources.
@@ -6626,16 +7130,16 @@ export namespace Prisma {
      *     // ... the filter for the Sources we want to count
      *   }
      * })
-    **/
+     * */
     count<T extends SourceCountArgs>(
       args?: Subset<T, SourceCountArgs>,
     ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
+      T extends $Utils.Record<"select", any>
+        ? T["select"] extends true
           ? number
-          : GetScalarType<T['select'], SourceCountAggregateOutputType>
+          : GetScalarType<T["select"], SourceCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a Source.
@@ -6660,8 +7164,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends SourceAggregateArgs>(args: Subset<T, SourceAggregateArgs>): Prisma.PrismaPromise<GetSourceAggregateType<T>>
+     * */
+    aggregate<T extends SourceAggregateArgs>(
+      args: Subset<T, SourceAggregateArgs>,
+    ): Prisma.PrismaPromise<GetSourceAggregateType<T>>;
 
     /**
      * Group by Source.
@@ -6679,70 +7185,64 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     * */
     groupBy<
       T extends SourceGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
+      HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SourceGroupByArgs['orderBy'] }
-        : { orderBy?: SourceGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
+        ? { orderBy: SourceGroupByArgs["orderBy"] }
+        : { orderBy?: SourceGroupByArgs["orderBy"] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
+      ByFields extends MaybeTupleToUnion<T["by"]>,
       ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
+      HavingFields extends GetHavingFields<T["having"]>,
       HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
+      ByEmpty extends T["by"] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, SourceGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSourceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Source model
-   */
-  readonly fields: SourceFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [Error, "Field ", P, ` in "having" needs to be provided in "by"`];
+            }[HavingFields]
+          : "take" extends Keys<T>
+            ? "orderBy" extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : "skip" extends Keys<T>
+              ? "orderBy" extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, SourceGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors ? GetSourceGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Source model
+     */
+    readonly fields: SourceFieldRefs;
   }
 
   /**
@@ -6751,43 +7251,53 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__SourceClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    carListings<T extends Source$carListingsArgs<ExtArgs> = {}>(args?: Subset<T, Source$carListingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  export interface Prisma__SourceClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    carListings<T extends Source$carListingsArgs<ExtArgs> = {}>(
+      args?: Subset<T, Source$carListingsArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the Source model
    */
   interface SourceFieldRefs {
-    readonly id: FieldRef<"Source", 'String'>
-    readonly baseUrl: FieldRef<"Source", 'String'>
-    readonly name: FieldRef<"Source", 'String'>
+    readonly id: FieldRef<"Source", "String">;
+    readonly baseUrl: FieldRef<"Source", "String">;
+    readonly name: FieldRef<"Source", "String">;
   }
-    
 
   // Custom InputTypes
   /**
@@ -6797,20 +7307,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Source
      */
-    select?: SourceSelect<ExtArgs> | null
+    select?: SourceSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Source
      */
-    omit?: SourceOmit<ExtArgs> | null
+    omit?: SourceOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SourceInclude<ExtArgs> | null
+    include?: SourceInclude<ExtArgs> | null;
     /**
      * Filter, which Source to fetch.
      */
-    where: SourceWhereUniqueInput
-  }
+    where: SourceWhereUniqueInput;
+  };
 
   /**
    * Source findUniqueOrThrow
@@ -6819,20 +7329,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Source
      */
-    select?: SourceSelect<ExtArgs> | null
+    select?: SourceSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Source
      */
-    omit?: SourceOmit<ExtArgs> | null
+    omit?: SourceOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SourceInclude<ExtArgs> | null
+    include?: SourceInclude<ExtArgs> | null;
     /**
      * Filter, which Source to fetch.
      */
-    where: SourceWhereUniqueInput
-  }
+    where: SourceWhereUniqueInput;
+  };
 
   /**
    * Source findFirst
@@ -6841,50 +7351,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Source
      */
-    select?: SourceSelect<ExtArgs> | null
+    select?: SourceSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Source
      */
-    omit?: SourceOmit<ExtArgs> | null
+    omit?: SourceOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SourceInclude<ExtArgs> | null
+    include?: SourceInclude<ExtArgs> | null;
     /**
      * Filter, which Source to fetch.
      */
-    where?: SourceWhereInput
+    where?: SourceWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Sources to fetch.
      */
-    orderBy?: SourceOrderByWithRelationInput | SourceOrderByWithRelationInput[]
+    orderBy?: SourceOrderByWithRelationInput | SourceOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Sources.
      */
-    cursor?: SourceWhereUniqueInput
+    cursor?: SourceWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Sources from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Sources.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Sources.
      */
-    distinct?: SourceScalarFieldEnum | SourceScalarFieldEnum[]
-  }
+    distinct?: SourceScalarFieldEnum | SourceScalarFieldEnum[];
+  };
 
   /**
    * Source findFirstOrThrow
@@ -6893,50 +7403,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Source
      */
-    select?: SourceSelect<ExtArgs> | null
+    select?: SourceSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Source
      */
-    omit?: SourceOmit<ExtArgs> | null
+    omit?: SourceOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SourceInclude<ExtArgs> | null
+    include?: SourceInclude<ExtArgs> | null;
     /**
      * Filter, which Source to fetch.
      */
-    where?: SourceWhereInput
+    where?: SourceWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Sources to fetch.
      */
-    orderBy?: SourceOrderByWithRelationInput | SourceOrderByWithRelationInput[]
+    orderBy?: SourceOrderByWithRelationInput | SourceOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Sources.
      */
-    cursor?: SourceWhereUniqueInput
+    cursor?: SourceWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Sources from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Sources.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Sources.
      */
-    distinct?: SourceScalarFieldEnum | SourceScalarFieldEnum[]
-  }
+    distinct?: SourceScalarFieldEnum | SourceScalarFieldEnum[];
+  };
 
   /**
    * Source findMany
@@ -6945,45 +7455,45 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Source
      */
-    select?: SourceSelect<ExtArgs> | null
+    select?: SourceSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Source
      */
-    omit?: SourceOmit<ExtArgs> | null
+    omit?: SourceOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SourceInclude<ExtArgs> | null
+    include?: SourceInclude<ExtArgs> | null;
     /**
      * Filter, which Sources to fetch.
      */
-    where?: SourceWhereInput
+    where?: SourceWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Sources to fetch.
      */
-    orderBy?: SourceOrderByWithRelationInput | SourceOrderByWithRelationInput[]
+    orderBy?: SourceOrderByWithRelationInput | SourceOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Sources.
      */
-    cursor?: SourceWhereUniqueInput
+    cursor?: SourceWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Sources from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Sources.
      */
-    skip?: number
-    distinct?: SourceScalarFieldEnum | SourceScalarFieldEnum[]
-  }
+    skip?: number;
+    distinct?: SourceScalarFieldEnum | SourceScalarFieldEnum[];
+  };
 
   /**
    * Source create
@@ -6992,20 +7502,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Source
      */
-    select?: SourceSelect<ExtArgs> | null
+    select?: SourceSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Source
      */
-    omit?: SourceOmit<ExtArgs> | null
+    omit?: SourceOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SourceInclude<ExtArgs> | null
+    include?: SourceInclude<ExtArgs> | null;
     /**
      * The data needed to create a Source.
      */
-    data: XOR<SourceCreateInput, SourceUncheckedCreateInput>
-  }
+    data: XOR<SourceCreateInput, SourceUncheckedCreateInput>;
+  };
 
   /**
    * Source createMany
@@ -7014,9 +7524,9 @@ export namespace Prisma {
     /**
      * The data used to create many Sources.
      */
-    data: SourceCreateManyInput | SourceCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: SourceCreateManyInput | SourceCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * Source createManyAndReturn
@@ -7025,17 +7535,17 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Source
      */
-    select?: SourceSelectCreateManyAndReturn<ExtArgs> | null
+    select?: SourceSelectCreateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Source
      */
-    omit?: SourceOmit<ExtArgs> | null
+    omit?: SourceOmit<ExtArgs> | null;
     /**
      * The data used to create many Sources.
      */
-    data: SourceCreateManyInput | SourceCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: SourceCreateManyInput | SourceCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * Source update
@@ -7044,24 +7554,24 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Source
      */
-    select?: SourceSelect<ExtArgs> | null
+    select?: SourceSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Source
      */
-    omit?: SourceOmit<ExtArgs> | null
+    omit?: SourceOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SourceInclude<ExtArgs> | null
+    include?: SourceInclude<ExtArgs> | null;
     /**
      * The data needed to update a Source.
      */
-    data: XOR<SourceUpdateInput, SourceUncheckedUpdateInput>
+    data: XOR<SourceUpdateInput, SourceUncheckedUpdateInput>;
     /**
      * Choose, which Source to update.
      */
-    where: SourceWhereUniqueInput
-  }
+    where: SourceWhereUniqueInput;
+  };
 
   /**
    * Source updateMany
@@ -7070,16 +7580,16 @@ export namespace Prisma {
     /**
      * The data used to update Sources.
      */
-    data: XOR<SourceUpdateManyMutationInput, SourceUncheckedUpdateManyInput>
+    data: XOR<SourceUpdateManyMutationInput, SourceUncheckedUpdateManyInput>;
     /**
      * Filter which Sources to update
      */
-    where?: SourceWhereInput
+    where?: SourceWhereInput;
     /**
      * Limit how many Sources to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Source updateManyAndReturn
@@ -7088,24 +7598,24 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Source
      */
-    select?: SourceSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: SourceSelectUpdateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Source
      */
-    omit?: SourceOmit<ExtArgs> | null
+    omit?: SourceOmit<ExtArgs> | null;
     /**
      * The data used to update Sources.
      */
-    data: XOR<SourceUpdateManyMutationInput, SourceUncheckedUpdateManyInput>
+    data: XOR<SourceUpdateManyMutationInput, SourceUncheckedUpdateManyInput>;
     /**
      * Filter which Sources to update
      */
-    where?: SourceWhereInput
+    where?: SourceWhereInput;
     /**
      * Limit how many Sources to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Source upsert
@@ -7114,28 +7624,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Source
      */
-    select?: SourceSelect<ExtArgs> | null
+    select?: SourceSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Source
      */
-    omit?: SourceOmit<ExtArgs> | null
+    omit?: SourceOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SourceInclude<ExtArgs> | null
+    include?: SourceInclude<ExtArgs> | null;
     /**
      * The filter to search for the Source to update in case it exists.
      */
-    where: SourceWhereUniqueInput
+    where: SourceWhereUniqueInput;
     /**
      * In case the Source found by the `where` argument doesn't exist, create a new Source with this data.
      */
-    create: XOR<SourceCreateInput, SourceUncheckedCreateInput>
+    create: XOR<SourceCreateInput, SourceUncheckedCreateInput>;
     /**
      * In case the Source was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<SourceUpdateInput, SourceUncheckedUpdateInput>
-  }
+    update: XOR<SourceUpdateInput, SourceUncheckedUpdateInput>;
+  };
 
   /**
    * Source delete
@@ -7144,20 +7654,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Source
      */
-    select?: SourceSelect<ExtArgs> | null
+    select?: SourceSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Source
      */
-    omit?: SourceOmit<ExtArgs> | null
+    omit?: SourceOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SourceInclude<ExtArgs> | null
+    include?: SourceInclude<ExtArgs> | null;
     /**
      * Filter which Source to delete.
      */
-    where: SourceWhereUniqueInput
-  }
+    where: SourceWhereUniqueInput;
+  };
 
   /**
    * Source deleteMany
@@ -7166,12 +7676,12 @@ export namespace Prisma {
     /**
      * Filter which Sources to delete
      */
-    where?: SourceWhereInput
+    where?: SourceWhereInput;
     /**
      * Limit how many Sources to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Source.carListings
@@ -7180,22 +7690,22 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
-    where?: CarListingWhereInput
-    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[]
-    cursor?: CarListingWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CarListingScalarFieldEnum | CarListingScalarFieldEnum[]
-  }
+    include?: CarListingInclude<ExtArgs> | null;
+    where?: CarListingWhereInput;
+    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[];
+    cursor?: CarListingWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: CarListingScalarFieldEnum | CarListingScalarFieldEnum[];
+  };
 
   /**
    * Source without action
@@ -7204,242 +7714,260 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Source
      */
-    select?: SourceSelect<ExtArgs> | null
+    select?: SourceSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Source
      */
-    omit?: SourceOmit<ExtArgs> | null
+    omit?: SourceOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SourceInclude<ExtArgs> | null
-  }
-
+    include?: SourceInclude<ExtArgs> | null;
+  };
 
   /**
    * Model Seller
    */
 
   export type AggregateSeller = {
-    _count: SellerCountAggregateOutputType | null
-    _min: SellerMinAggregateOutputType | null
-    _max: SellerMaxAggregateOutputType | null
-  }
+    _count: SellerCountAggregateOutputType | null;
+    _min: SellerMinAggregateOutputType | null;
+    _max: SellerMaxAggregateOutputType | null;
+  };
 
   export type SellerMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-    email: string | null
-    phone: string | null
-    type: string | null
-  }
+    id: string | null;
+    name: string | null;
+    email: string | null;
+    phone: string | null;
+    type: string | null;
+  };
 
   export type SellerMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-    email: string | null
-    phone: string | null
-    type: string | null
-  }
+    id: string | null;
+    name: string | null;
+    email: string | null;
+    phone: string | null;
+    type: string | null;
+  };
 
   export type SellerCountAggregateOutputType = {
-    id: number
-    name: number
-    email: number
-    phone: number
-    type: number
-    _all: number
-  }
-
+    id: number;
+    name: number;
+    email: number;
+    phone: number;
+    type: number;
+    _all: number;
+  };
 
   export type SellerMinAggregateInputType = {
-    id?: true
-    name?: true
-    email?: true
-    phone?: true
-    type?: true
-  }
+    id?: true;
+    name?: true;
+    email?: true;
+    phone?: true;
+    type?: true;
+  };
 
   export type SellerMaxAggregateInputType = {
-    id?: true
-    name?: true
-    email?: true
-    phone?: true
-    type?: true
-  }
+    id?: true;
+    name?: true;
+    email?: true;
+    phone?: true;
+    type?: true;
+  };
 
   export type SellerCountAggregateInputType = {
-    id?: true
-    name?: true
-    email?: true
-    phone?: true
-    type?: true
-    _all?: true
-  }
+    id?: true;
+    name?: true;
+    email?: true;
+    phone?: true;
+    type?: true;
+    _all?: true;
+  };
 
   export type SellerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Seller to aggregate.
      */
-    where?: SellerWhereInput
+    where?: SellerWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Sellers to fetch.
      */
-    orderBy?: SellerOrderByWithRelationInput | SellerOrderByWithRelationInput[]
+    orderBy?: SellerOrderByWithRelationInput | SellerOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: SellerWhereUniqueInput
+    cursor?: SellerWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Sellers from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Sellers.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Sellers
-    **/
-    _count?: true | SellerCountAggregateInputType
+     * */
+    _count?: true | SellerCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: SellerMinAggregateInputType
+     * */
+    _min?: SellerMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: SellerMaxAggregateInputType
-  }
+     * */
+    _max?: SellerMaxAggregateInputType;
+  };
 
   export type GetSellerAggregateType<T extends SellerAggregateArgs> = {
-        [P in keyof T & keyof AggregateSeller]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateSeller]: P extends "_count" | "count"
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateSeller[P]>
-      : GetScalarType<T[P], AggregateSeller[P]>
-  }
-
-
-
+      : GetScalarType<T[P], AggregateSeller[P]>;
+  };
 
   export type SellerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SellerWhereInput
-    orderBy?: SellerOrderByWithAggregationInput | SellerOrderByWithAggregationInput[]
-    by: SellerScalarFieldEnum[] | SellerScalarFieldEnum
-    having?: SellerScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: SellerCountAggregateInputType | true
-    _min?: SellerMinAggregateInputType
-    _max?: SellerMaxAggregateInputType
-  }
+    where?: SellerWhereInput;
+    orderBy?: SellerOrderByWithAggregationInput | SellerOrderByWithAggregationInput[];
+    by: SellerScalarFieldEnum[] | SellerScalarFieldEnum;
+    having?: SellerScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: SellerCountAggregateInputType | true;
+    _min?: SellerMinAggregateInputType;
+    _max?: SellerMaxAggregateInputType;
+  };
 
   export type SellerGroupByOutputType = {
-    id: string
-    name: string
-    email: string
-    phone: string
-    type: string
-    _count: SellerCountAggregateOutputType | null
-    _min: SellerMinAggregateOutputType | null
-    _max: SellerMaxAggregateOutputType | null
-  }
+    id: string;
+    name: string;
+    email: string;
+    phone: string;
+    type: string;
+    _count: SellerCountAggregateOutputType | null;
+    _min: SellerMinAggregateOutputType | null;
+    _max: SellerMaxAggregateOutputType | null;
+  };
 
   type GetSellerGroupByPayload<T extends SellerGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<SellerGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof SellerGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], SellerGroupByOutputType[P]>
+      PickEnumerable<SellerGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof SellerGroupByOutputType]: P extends "_count"
+          ? T[P] extends boolean
+            ? number
             : GetScalarType<T[P], SellerGroupByOutputType[P]>
-        }
-      >
+          : GetScalarType<T[P], SellerGroupByOutputType[P]>;
+      }
     >
+  >;
 
+  export type SellerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      name?: boolean;
+      email?: boolean;
+      phone?: boolean;
+      type?: boolean;
+      carListings?: boolean | Seller$carListingsArgs<ExtArgs>;
+      _count?: boolean | SellerCountOutputTypeDefaultArgs<ExtArgs>;
+    },
+    ExtArgs["result"]["seller"]
+  >;
 
-  export type SellerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    email?: boolean
-    phone?: boolean
-    type?: boolean
-    carListings?: boolean | Seller$carListingsArgs<ExtArgs>
-    _count?: boolean | SellerCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["seller"]>
+  export type SellerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        name?: boolean;
+        email?: boolean;
+        phone?: boolean;
+        type?: boolean;
+      },
+      ExtArgs["result"]["seller"]
+    >;
 
-  export type SellerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    email?: boolean
-    phone?: boolean
-    type?: boolean
-  }, ExtArgs["result"]["seller"]>
-
-  export type SellerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    email?: boolean
-    phone?: boolean
-    type?: boolean
-  }, ExtArgs["result"]["seller"]>
+  export type SellerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        name?: boolean;
+        email?: boolean;
+        phone?: boolean;
+        type?: boolean;
+      },
+      ExtArgs["result"]["seller"]
+    >;
 
   export type SellerSelectScalar = {
-    id?: boolean
-    name?: boolean
-    email?: boolean
-    phone?: boolean
-    type?: boolean
-  }
+    id?: boolean;
+    name?: boolean;
+    email?: boolean;
+    phone?: boolean;
+    type?: boolean;
+  };
 
-  export type SellerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "phone" | "type", ExtArgs["result"]["seller"]>
+  export type SellerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<
+    "id" | "name" | "email" | "phone" | "type",
+    ExtArgs["result"]["seller"]
+  >;
   export type SellerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    carListings?: boolean | Seller$carListingsArgs<ExtArgs>
-    _count?: boolean | SellerCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type SellerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type SellerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+    carListings?: boolean | Seller$carListingsArgs<ExtArgs>;
+    _count?: boolean | SellerCountOutputTypeDefaultArgs<ExtArgs>;
+  };
+  export type SellerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {};
+  export type SellerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {};
 
   export type $SellerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Seller"
+    name: "Seller";
     objects: {
-      carListings: Prisma.$CarListingPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      name: string
-      email: string
-      phone: string
-      type: string
-    }, ExtArgs["result"]["seller"]>
-    composites: {}
-  }
+      carListings: Prisma.$CarListingPayload<ExtArgs>[];
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        name: string;
+        email: string;
+        phone: string;
+        type: string;
+      },
+      ExtArgs["result"]["seller"]
+    >;
+    composites: {};
+  };
 
-  type SellerGetPayload<S extends boolean | null | undefined | SellerDefaultArgs> = $Result.GetResult<Prisma.$SellerPayload, S>
+  type SellerGetPayload<S extends boolean | null | undefined | SellerDefaultArgs> = $Result.GetResult<
+    Prisma.$SellerPayload,
+    S
+  >;
 
-  type SellerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SellerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SellerCountAggregateInputType | true
-    }
+  type SellerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Omit<
+    SellerFindManyArgs,
+    "select" | "include" | "distinct" | "omit"
+  > & {
+    select?: SellerCountAggregateInputType | true;
+  };
 
-  export interface SellerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Seller'], meta: { name: 'Seller' } }
+  export interface SellerDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>["model"]["Seller"]; meta: { name: "Seller" } };
     /**
      * Find zero or one Seller that matches the filter.
      * @param {SellerFindUniqueArgs} args - Arguments to find a Seller
@@ -7451,7 +7979,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends SellerFindUniqueArgs>(args: SelectSubset<T, SellerFindUniqueArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends SellerFindUniqueArgs>(
+      args: SelectSubset<T, SellerFindUniqueArgs<ExtArgs>>,
+    ): Prisma__SellerClient<
+      $Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one Seller that matches the filter or throw an error with `error.code='P2025'`
@@ -7465,7 +8000,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends SellerFindUniqueOrThrowArgs>(args: SelectSubset<T, SellerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends SellerFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, SellerFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__SellerClient<
+      $Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Seller that matches the filter.
@@ -7480,7 +8022,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends SellerFindFirstArgs>(args?: SelectSubset<T, SellerFindFirstArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends SellerFindFirstArgs>(
+      args?: SelectSubset<T, SellerFindFirstArgs<ExtArgs>>,
+    ): Prisma__SellerClient<
+      $Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Seller that matches the filter or
@@ -7496,7 +8045,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends SellerFindFirstOrThrowArgs>(args?: SelectSubset<T, SellerFindFirstOrThrowArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends SellerFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, SellerFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__SellerClient<
+      $Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more Sellers that matches the filter.
@@ -7506,15 +8062,17 @@ export namespace Prisma {
      * @example
      * // Get all Sellers
      * const sellers = await prisma.seller.findMany()
-     * 
+     *
      * // Get first 10 Sellers
      * const sellers = await prisma.seller.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const sellerWithIdOnly = await prisma.seller.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends SellerFindManyArgs>(args?: SelectSubset<T, SellerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends SellerFindManyArgs>(
+      args?: SelectSubset<T, SellerFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
 
     /**
      * Create a Seller.
@@ -7526,9 +8084,16 @@ export namespace Prisma {
      *     // ... data to create a Seller
      *   }
      * })
-     * 
+     *
      */
-    create<T extends SellerCreateArgs>(args: SelectSubset<T, SellerCreateArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends SellerCreateArgs>(
+      args: SelectSubset<T, SellerCreateArgs<ExtArgs>>,
+    ): Prisma__SellerClient<
+      $Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "create", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many Sellers.
@@ -7540,9 +8105,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends SellerCreateManyArgs>(args?: SelectSubset<T, SellerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends SellerCreateManyArgs>(
+      args?: SelectSubset<T, SellerCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many Sellers and returns the data saved in the database.
@@ -7554,7 +8121,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Sellers and only return the `id`
      * const sellerWithIdOnly = await prisma.seller.createManyAndReturn({
      *   select: { id: true },
@@ -7564,9 +8131,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends SellerCreateManyAndReturnArgs>(args?: SelectSubset<T, SellerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends SellerCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, SellerCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Delete a Seller.
@@ -7578,9 +8149,16 @@ export namespace Prisma {
      *     // ... filter to delete one Seller
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends SellerDeleteArgs>(args: SelectSubset<T, SellerDeleteArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends SellerDeleteArgs>(
+      args: SelectSubset<T, SellerDeleteArgs<ExtArgs>>,
+    ): Prisma__SellerClient<
+      $Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one Seller.
@@ -7595,9 +8173,16 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends SellerUpdateArgs>(args: SelectSubset<T, SellerUpdateArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends SellerUpdateArgs>(
+      args: SelectSubset<T, SellerUpdateArgs<ExtArgs>>,
+    ): Prisma__SellerClient<
+      $Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "update", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more Sellers.
@@ -7609,9 +8194,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends SellerDeleteManyArgs>(args?: SelectSubset<T, SellerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends SellerDeleteManyArgs>(
+      args?: SelectSubset<T, SellerDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Sellers.
@@ -7628,9 +8215,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends SellerUpdateManyArgs>(args: SelectSubset<T, SellerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends SellerUpdateManyArgs>(
+      args: SelectSubset<T, SellerUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Sellers and returns the data updated in the database.
@@ -7645,7 +8234,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Sellers and only return the `id`
      * const sellerWithIdOnly = await prisma.seller.updateManyAndReturn({
      *   select: { id: true },
@@ -7658,9 +8247,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends SellerUpdateManyAndReturnArgs>(args: SelectSubset<T, SellerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends SellerUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, SellerUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Create or update one Seller.
@@ -7679,8 +8272,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends SellerUpsertArgs>(args: SelectSubset<T, SellerUpsertArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends SellerUpsertArgs>(
+      args: SelectSubset<T, SellerUpsertArgs<ExtArgs>>,
+    ): Prisma__SellerClient<
+      $Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of Sellers.
@@ -7694,16 +8293,16 @@ export namespace Prisma {
      *     // ... the filter for the Sellers we want to count
      *   }
      * })
-    **/
+     * */
     count<T extends SellerCountArgs>(
       args?: Subset<T, SellerCountArgs>,
     ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
+      T extends $Utils.Record<"select", any>
+        ? T["select"] extends true
           ? number
-          : GetScalarType<T['select'], SellerCountAggregateOutputType>
+          : GetScalarType<T["select"], SellerCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a Seller.
@@ -7728,8 +8327,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends SellerAggregateArgs>(args: Subset<T, SellerAggregateArgs>): Prisma.PrismaPromise<GetSellerAggregateType<T>>
+     * */
+    aggregate<T extends SellerAggregateArgs>(
+      args: Subset<T, SellerAggregateArgs>,
+    ): Prisma.PrismaPromise<GetSellerAggregateType<T>>;
 
     /**
      * Group by Seller.
@@ -7747,70 +8348,64 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     * */
     groupBy<
       T extends SellerGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
+      HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SellerGroupByArgs['orderBy'] }
-        : { orderBy?: SellerGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
+        ? { orderBy: SellerGroupByArgs["orderBy"] }
+        : { orderBy?: SellerGroupByArgs["orderBy"] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
+      ByFields extends MaybeTupleToUnion<T["by"]>,
       ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
+      HavingFields extends GetHavingFields<T["having"]>,
       HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
+      ByEmpty extends T["by"] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, SellerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSellerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Seller model
-   */
-  readonly fields: SellerFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [Error, "Field ", P, ` in "having" needs to be provided in "by"`];
+            }[HavingFields]
+          : "take" extends Keys<T>
+            ? "orderBy" extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : "skip" extends Keys<T>
+              ? "orderBy" extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, SellerGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors ? GetSellerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Seller model
+     */
+    readonly fields: SellerFieldRefs;
   }
 
   /**
@@ -7819,45 +8414,55 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__SellerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    carListings<T extends Seller$carListingsArgs<ExtArgs> = {}>(args?: Subset<T, Seller$carListingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  export interface Prisma__SellerClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    carListings<T extends Seller$carListingsArgs<ExtArgs> = {}>(
+      args?: Subset<T, Seller$carListingsArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the Seller model
    */
   interface SellerFieldRefs {
-    readonly id: FieldRef<"Seller", 'String'>
-    readonly name: FieldRef<"Seller", 'String'>
-    readonly email: FieldRef<"Seller", 'String'>
-    readonly phone: FieldRef<"Seller", 'String'>
-    readonly type: FieldRef<"Seller", 'String'>
+    readonly id: FieldRef<"Seller", "String">;
+    readonly name: FieldRef<"Seller", "String">;
+    readonly email: FieldRef<"Seller", "String">;
+    readonly phone: FieldRef<"Seller", "String">;
+    readonly type: FieldRef<"Seller", "String">;
   }
-    
 
   // Custom InputTypes
   /**
@@ -7867,20 +8472,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Seller
      */
-    select?: SellerSelect<ExtArgs> | null
+    select?: SellerSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Seller
      */
-    omit?: SellerOmit<ExtArgs> | null
+    omit?: SellerOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SellerInclude<ExtArgs> | null
+    include?: SellerInclude<ExtArgs> | null;
     /**
      * Filter, which Seller to fetch.
      */
-    where: SellerWhereUniqueInput
-  }
+    where: SellerWhereUniqueInput;
+  };
 
   /**
    * Seller findUniqueOrThrow
@@ -7889,20 +8494,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Seller
      */
-    select?: SellerSelect<ExtArgs> | null
+    select?: SellerSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Seller
      */
-    omit?: SellerOmit<ExtArgs> | null
+    omit?: SellerOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SellerInclude<ExtArgs> | null
+    include?: SellerInclude<ExtArgs> | null;
     /**
      * Filter, which Seller to fetch.
      */
-    where: SellerWhereUniqueInput
-  }
+    where: SellerWhereUniqueInput;
+  };
 
   /**
    * Seller findFirst
@@ -7911,50 +8516,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Seller
      */
-    select?: SellerSelect<ExtArgs> | null
+    select?: SellerSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Seller
      */
-    omit?: SellerOmit<ExtArgs> | null
+    omit?: SellerOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SellerInclude<ExtArgs> | null
+    include?: SellerInclude<ExtArgs> | null;
     /**
      * Filter, which Seller to fetch.
      */
-    where?: SellerWhereInput
+    where?: SellerWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Sellers to fetch.
      */
-    orderBy?: SellerOrderByWithRelationInput | SellerOrderByWithRelationInput[]
+    orderBy?: SellerOrderByWithRelationInput | SellerOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Sellers.
      */
-    cursor?: SellerWhereUniqueInput
+    cursor?: SellerWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Sellers from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Sellers.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Sellers.
      */
-    distinct?: SellerScalarFieldEnum | SellerScalarFieldEnum[]
-  }
+    distinct?: SellerScalarFieldEnum | SellerScalarFieldEnum[];
+  };
 
   /**
    * Seller findFirstOrThrow
@@ -7963,50 +8568,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Seller
      */
-    select?: SellerSelect<ExtArgs> | null
+    select?: SellerSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Seller
      */
-    omit?: SellerOmit<ExtArgs> | null
+    omit?: SellerOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SellerInclude<ExtArgs> | null
+    include?: SellerInclude<ExtArgs> | null;
     /**
      * Filter, which Seller to fetch.
      */
-    where?: SellerWhereInput
+    where?: SellerWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Sellers to fetch.
      */
-    orderBy?: SellerOrderByWithRelationInput | SellerOrderByWithRelationInput[]
+    orderBy?: SellerOrderByWithRelationInput | SellerOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Sellers.
      */
-    cursor?: SellerWhereUniqueInput
+    cursor?: SellerWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Sellers from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Sellers.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Sellers.
      */
-    distinct?: SellerScalarFieldEnum | SellerScalarFieldEnum[]
-  }
+    distinct?: SellerScalarFieldEnum | SellerScalarFieldEnum[];
+  };
 
   /**
    * Seller findMany
@@ -8015,45 +8620,45 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Seller
      */
-    select?: SellerSelect<ExtArgs> | null
+    select?: SellerSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Seller
      */
-    omit?: SellerOmit<ExtArgs> | null
+    omit?: SellerOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SellerInclude<ExtArgs> | null
+    include?: SellerInclude<ExtArgs> | null;
     /**
      * Filter, which Sellers to fetch.
      */
-    where?: SellerWhereInput
+    where?: SellerWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Sellers to fetch.
      */
-    orderBy?: SellerOrderByWithRelationInput | SellerOrderByWithRelationInput[]
+    orderBy?: SellerOrderByWithRelationInput | SellerOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Sellers.
      */
-    cursor?: SellerWhereUniqueInput
+    cursor?: SellerWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Sellers from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Sellers.
      */
-    skip?: number
-    distinct?: SellerScalarFieldEnum | SellerScalarFieldEnum[]
-  }
+    skip?: number;
+    distinct?: SellerScalarFieldEnum | SellerScalarFieldEnum[];
+  };
 
   /**
    * Seller create
@@ -8062,20 +8667,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Seller
      */
-    select?: SellerSelect<ExtArgs> | null
+    select?: SellerSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Seller
      */
-    omit?: SellerOmit<ExtArgs> | null
+    omit?: SellerOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SellerInclude<ExtArgs> | null
+    include?: SellerInclude<ExtArgs> | null;
     /**
      * The data needed to create a Seller.
      */
-    data: XOR<SellerCreateInput, SellerUncheckedCreateInput>
-  }
+    data: XOR<SellerCreateInput, SellerUncheckedCreateInput>;
+  };
 
   /**
    * Seller createMany
@@ -8084,9 +8689,9 @@ export namespace Prisma {
     /**
      * The data used to create many Sellers.
      */
-    data: SellerCreateManyInput | SellerCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: SellerCreateManyInput | SellerCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * Seller createManyAndReturn
@@ -8095,17 +8700,17 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Seller
      */
-    select?: SellerSelectCreateManyAndReturn<ExtArgs> | null
+    select?: SellerSelectCreateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Seller
      */
-    omit?: SellerOmit<ExtArgs> | null
+    omit?: SellerOmit<ExtArgs> | null;
     /**
      * The data used to create many Sellers.
      */
-    data: SellerCreateManyInput | SellerCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: SellerCreateManyInput | SellerCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * Seller update
@@ -8114,24 +8719,24 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Seller
      */
-    select?: SellerSelect<ExtArgs> | null
+    select?: SellerSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Seller
      */
-    omit?: SellerOmit<ExtArgs> | null
+    omit?: SellerOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SellerInclude<ExtArgs> | null
+    include?: SellerInclude<ExtArgs> | null;
     /**
      * The data needed to update a Seller.
      */
-    data: XOR<SellerUpdateInput, SellerUncheckedUpdateInput>
+    data: XOR<SellerUpdateInput, SellerUncheckedUpdateInput>;
     /**
      * Choose, which Seller to update.
      */
-    where: SellerWhereUniqueInput
-  }
+    where: SellerWhereUniqueInput;
+  };
 
   /**
    * Seller updateMany
@@ -8140,16 +8745,16 @@ export namespace Prisma {
     /**
      * The data used to update Sellers.
      */
-    data: XOR<SellerUpdateManyMutationInput, SellerUncheckedUpdateManyInput>
+    data: XOR<SellerUpdateManyMutationInput, SellerUncheckedUpdateManyInput>;
     /**
      * Filter which Sellers to update
      */
-    where?: SellerWhereInput
+    where?: SellerWhereInput;
     /**
      * Limit how many Sellers to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Seller updateManyAndReturn
@@ -8158,24 +8763,24 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Seller
      */
-    select?: SellerSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: SellerSelectUpdateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Seller
      */
-    omit?: SellerOmit<ExtArgs> | null
+    omit?: SellerOmit<ExtArgs> | null;
     /**
      * The data used to update Sellers.
      */
-    data: XOR<SellerUpdateManyMutationInput, SellerUncheckedUpdateManyInput>
+    data: XOR<SellerUpdateManyMutationInput, SellerUncheckedUpdateManyInput>;
     /**
      * Filter which Sellers to update
      */
-    where?: SellerWhereInput
+    where?: SellerWhereInput;
     /**
      * Limit how many Sellers to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Seller upsert
@@ -8184,28 +8789,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Seller
      */
-    select?: SellerSelect<ExtArgs> | null
+    select?: SellerSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Seller
      */
-    omit?: SellerOmit<ExtArgs> | null
+    omit?: SellerOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SellerInclude<ExtArgs> | null
+    include?: SellerInclude<ExtArgs> | null;
     /**
      * The filter to search for the Seller to update in case it exists.
      */
-    where: SellerWhereUniqueInput
+    where: SellerWhereUniqueInput;
     /**
      * In case the Seller found by the `where` argument doesn't exist, create a new Seller with this data.
      */
-    create: XOR<SellerCreateInput, SellerUncheckedCreateInput>
+    create: XOR<SellerCreateInput, SellerUncheckedCreateInput>;
     /**
      * In case the Seller was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<SellerUpdateInput, SellerUncheckedUpdateInput>
-  }
+    update: XOR<SellerUpdateInput, SellerUncheckedUpdateInput>;
+  };
 
   /**
    * Seller delete
@@ -8214,20 +8819,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Seller
      */
-    select?: SellerSelect<ExtArgs> | null
+    select?: SellerSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Seller
      */
-    omit?: SellerOmit<ExtArgs> | null
+    omit?: SellerOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SellerInclude<ExtArgs> | null
+    include?: SellerInclude<ExtArgs> | null;
     /**
      * Filter which Seller to delete.
      */
-    where: SellerWhereUniqueInput
-  }
+    where: SellerWhereUniqueInput;
+  };
 
   /**
    * Seller deleteMany
@@ -8236,12 +8841,12 @@ export namespace Prisma {
     /**
      * Filter which Sellers to delete
      */
-    where?: SellerWhereInput
+    where?: SellerWhereInput;
     /**
      * Limit how many Sellers to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Seller.carListings
@@ -8250,22 +8855,22 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
-    where?: CarListingWhereInput
-    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[]
-    cursor?: CarListingWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CarListingScalarFieldEnum | CarListingScalarFieldEnum[]
-  }
+    include?: CarListingInclude<ExtArgs> | null;
+    where?: CarListingWhereInput;
+    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[];
+    cursor?: CarListingWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: CarListingScalarFieldEnum | CarListingScalarFieldEnum[];
+  };
 
   /**
    * Seller without action
@@ -8274,454 +8879,491 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Seller
      */
-    select?: SellerSelect<ExtArgs> | null
+    select?: SellerSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Seller
      */
-    omit?: SellerOmit<ExtArgs> | null
+    omit?: SellerOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: SellerInclude<ExtArgs> | null
-  }
-
+    include?: SellerInclude<ExtArgs> | null;
+  };
 
   /**
    * Model CarListing
    */
 
   export type AggregateCarListing = {
-    _count: CarListingCountAggregateOutputType | null
-    _avg: CarListingAvgAggregateOutputType | null
-    _sum: CarListingSumAggregateOutputType | null
-    _min: CarListingMinAggregateOutputType | null
-    _max: CarListingMaxAggregateOutputType | null
-  }
+    _count: CarListingCountAggregateOutputType | null;
+    _avg: CarListingAvgAggregateOutputType | null;
+    _sum: CarListingSumAggregateOutputType | null;
+    _min: CarListingMinAggregateOutputType | null;
+    _max: CarListingMaxAggregateOutputType | null;
+  };
 
   export type CarListingAvgAggregateOutputType = {
-    price: Decimal | null
-    year: number | null
-    mileage: number | null
-  }
+    price: Decimal | null;
+    year: number | null;
+    mileage: number | null;
+  };
 
   export type CarListingSumAggregateOutputType = {
-    price: Decimal | null
-    year: number | null
-    mileage: number | null
-  }
+    price: Decimal | null;
+    year: number | null;
+    mileage: number | null;
+  };
 
   export type CarListingMinAggregateOutputType = {
-    id: string | null
-    sellerId: string | null
-    sourceId: string | null
-    url: string | null
-    title: string | null
-    description: string | null
-    price: Decimal | null
-    priceCurrency: string | null
-    trimId: string | null
-    year: number | null
-    mileage: number | null
-    exteriorColor: string | null
-    interiorColor: string | null
-    isNew: boolean | null
-    location: string | null
-    publishedAt: Date | null
-    scrapedAt: Date | null
-  }
+    id: string | null;
+    sellerId: string | null;
+    sourceId: string | null;
+    url: string | null;
+    title: string | null;
+    description: string | null;
+    price: Decimal | null;
+    priceCurrency: string | null;
+    trimId: string | null;
+    year: number | null;
+    mileage: number | null;
+    exteriorColor: string | null;
+    interiorColor: string | null;
+    isNew: boolean | null;
+    location: string | null;
+    publishedAt: Date | null;
+    scrapedAt: Date | null;
+  };
 
   export type CarListingMaxAggregateOutputType = {
-    id: string | null
-    sellerId: string | null
-    sourceId: string | null
-    url: string | null
-    title: string | null
-    description: string | null
-    price: Decimal | null
-    priceCurrency: string | null
-    trimId: string | null
-    year: number | null
-    mileage: number | null
-    exteriorColor: string | null
-    interiorColor: string | null
-    isNew: boolean | null
-    location: string | null
-    publishedAt: Date | null
-    scrapedAt: Date | null
-  }
+    id: string | null;
+    sellerId: string | null;
+    sourceId: string | null;
+    url: string | null;
+    title: string | null;
+    description: string | null;
+    price: Decimal | null;
+    priceCurrency: string | null;
+    trimId: string | null;
+    year: number | null;
+    mileage: number | null;
+    exteriorColor: string | null;
+    interiorColor: string | null;
+    isNew: boolean | null;
+    location: string | null;
+    publishedAt: Date | null;
+    scrapedAt: Date | null;
+  };
 
   export type CarListingCountAggregateOutputType = {
-    id: number
-    sellerId: number
-    sourceId: number
-    url: number
-    title: number
-    description: number
-    price: number
-    priceCurrency: number
-    trimId: number
-    year: number
-    mileage: number
-    exteriorColor: number
-    interiorColor: number
-    isNew: number
-    location: number
-    publishedAt: number
-    scrapedAt: number
-    _all: number
-  }
-
+    id: number;
+    sellerId: number;
+    sourceId: number;
+    url: number;
+    title: number;
+    description: number;
+    price: number;
+    priceCurrency: number;
+    trimId: number;
+    year: number;
+    mileage: number;
+    exteriorColor: number;
+    interiorColor: number;
+    isNew: number;
+    location: number;
+    publishedAt: number;
+    scrapedAt: number;
+    _all: number;
+  };
 
   export type CarListingAvgAggregateInputType = {
-    price?: true
-    year?: true
-    mileage?: true
-  }
+    price?: true;
+    year?: true;
+    mileage?: true;
+  };
 
   export type CarListingSumAggregateInputType = {
-    price?: true
-    year?: true
-    mileage?: true
-  }
+    price?: true;
+    year?: true;
+    mileage?: true;
+  };
 
   export type CarListingMinAggregateInputType = {
-    id?: true
-    sellerId?: true
-    sourceId?: true
-    url?: true
-    title?: true
-    description?: true
-    price?: true
-    priceCurrency?: true
-    trimId?: true
-    year?: true
-    mileage?: true
-    exteriorColor?: true
-    interiorColor?: true
-    isNew?: true
-    location?: true
-    publishedAt?: true
-    scrapedAt?: true
-  }
+    id?: true;
+    sellerId?: true;
+    sourceId?: true;
+    url?: true;
+    title?: true;
+    description?: true;
+    price?: true;
+    priceCurrency?: true;
+    trimId?: true;
+    year?: true;
+    mileage?: true;
+    exteriorColor?: true;
+    interiorColor?: true;
+    isNew?: true;
+    location?: true;
+    publishedAt?: true;
+    scrapedAt?: true;
+  };
 
   export type CarListingMaxAggregateInputType = {
-    id?: true
-    sellerId?: true
-    sourceId?: true
-    url?: true
-    title?: true
-    description?: true
-    price?: true
-    priceCurrency?: true
-    trimId?: true
-    year?: true
-    mileage?: true
-    exteriorColor?: true
-    interiorColor?: true
-    isNew?: true
-    location?: true
-    publishedAt?: true
-    scrapedAt?: true
-  }
+    id?: true;
+    sellerId?: true;
+    sourceId?: true;
+    url?: true;
+    title?: true;
+    description?: true;
+    price?: true;
+    priceCurrency?: true;
+    trimId?: true;
+    year?: true;
+    mileage?: true;
+    exteriorColor?: true;
+    interiorColor?: true;
+    isNew?: true;
+    location?: true;
+    publishedAt?: true;
+    scrapedAt?: true;
+  };
 
   export type CarListingCountAggregateInputType = {
-    id?: true
-    sellerId?: true
-    sourceId?: true
-    url?: true
-    title?: true
-    description?: true
-    price?: true
-    priceCurrency?: true
-    trimId?: true
-    year?: true
-    mileage?: true
-    exteriorColor?: true
-    interiorColor?: true
-    isNew?: true
-    location?: true
-    publishedAt?: true
-    scrapedAt?: true
-    _all?: true
-  }
+    id?: true;
+    sellerId?: true;
+    sourceId?: true;
+    url?: true;
+    title?: true;
+    description?: true;
+    price?: true;
+    priceCurrency?: true;
+    trimId?: true;
+    year?: true;
+    mileage?: true;
+    exteriorColor?: true;
+    interiorColor?: true;
+    isNew?: true;
+    location?: true;
+    publishedAt?: true;
+    scrapedAt?: true;
+    _all?: true;
+  };
 
   export type CarListingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which CarListing to aggregate.
      */
-    where?: CarListingWhereInput
+    where?: CarListingWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of CarListings to fetch.
      */
-    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[]
+    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: CarListingWhereUniqueInput
+    cursor?: CarListingWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` CarListings from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` CarListings.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned CarListings
-    **/
-    _count?: true | CarListingCountAggregateInputType
+     * */
+    _count?: true | CarListingCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to average
-    **/
-    _avg?: CarListingAvgAggregateInputType
+     * */
+    _avg?: CarListingAvgAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to sum
-    **/
-    _sum?: CarListingSumAggregateInputType
+     * */
+    _sum?: CarListingSumAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: CarListingMinAggregateInputType
+     * */
+    _min?: CarListingMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: CarListingMaxAggregateInputType
-  }
+     * */
+    _max?: CarListingMaxAggregateInputType;
+  };
 
   export type GetCarListingAggregateType<T extends CarListingAggregateArgs> = {
-        [P in keyof T & keyof AggregateCarListing]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateCarListing]: P extends "_count" | "count"
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateCarListing[P]>
-      : GetScalarType<T[P], AggregateCarListing[P]>
-  }
-
-
-
+      : GetScalarType<T[P], AggregateCarListing[P]>;
+  };
 
   export type CarListingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CarListingWhereInput
-    orderBy?: CarListingOrderByWithAggregationInput | CarListingOrderByWithAggregationInput[]
-    by: CarListingScalarFieldEnum[] | CarListingScalarFieldEnum
-    having?: CarListingScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: CarListingCountAggregateInputType | true
-    _avg?: CarListingAvgAggregateInputType
-    _sum?: CarListingSumAggregateInputType
-    _min?: CarListingMinAggregateInputType
-    _max?: CarListingMaxAggregateInputType
-  }
+    where?: CarListingWhereInput;
+    orderBy?: CarListingOrderByWithAggregationInput | CarListingOrderByWithAggregationInput[];
+    by: CarListingScalarFieldEnum[] | CarListingScalarFieldEnum;
+    having?: CarListingScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: CarListingCountAggregateInputType | true;
+    _avg?: CarListingAvgAggregateInputType;
+    _sum?: CarListingSumAggregateInputType;
+    _min?: CarListingMinAggregateInputType;
+    _max?: CarListingMaxAggregateInputType;
+  };
 
   export type CarListingGroupByOutputType = {
-    id: string
-    sellerId: string
-    sourceId: string
-    url: string
-    title: string
-    description: string
-    price: Decimal
-    priceCurrency: string
-    trimId: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date
-    scrapedAt: Date
-    _count: CarListingCountAggregateOutputType | null
-    _avg: CarListingAvgAggregateOutputType | null
-    _sum: CarListingSumAggregateOutputType | null
-    _min: CarListingMinAggregateOutputType | null
-    _max: CarListingMaxAggregateOutputType | null
-  }
+    id: string;
+    sellerId: string;
+    sourceId: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal;
+    priceCurrency: string;
+    trimId: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date;
+    scrapedAt: Date;
+    _count: CarListingCountAggregateOutputType | null;
+    _avg: CarListingAvgAggregateOutputType | null;
+    _sum: CarListingSumAggregateOutputType | null;
+    _min: CarListingMinAggregateOutputType | null;
+    _max: CarListingMaxAggregateOutputType | null;
+  };
 
   type GetCarListingGroupByPayload<T extends CarListingGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<CarListingGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof CarListingGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], CarListingGroupByOutputType[P]>
+      PickEnumerable<CarListingGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof CarListingGroupByOutputType]: P extends "_count"
+          ? T[P] extends boolean
+            ? number
             : GetScalarType<T[P], CarListingGroupByOutputType[P]>
-        }
-      >
+          : GetScalarType<T[P], CarListingGroupByOutputType[P]>;
+      }
     >
+  >;
 
+  export type CarListingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        sellerId?: boolean;
+        sourceId?: boolean;
+        url?: boolean;
+        title?: boolean;
+        description?: boolean;
+        price?: boolean;
+        priceCurrency?: boolean;
+        trimId?: boolean;
+        year?: boolean;
+        mileage?: boolean;
+        exteriorColor?: boolean;
+        interiorColor?: boolean;
+        isNew?: boolean;
+        location?: boolean;
+        publishedAt?: boolean;
+        scrapedAt?: boolean;
+        seller?: boolean | SellerDefaultArgs<ExtArgs>;
+        source?: boolean | SourceDefaultArgs<ExtArgs>;
+        trim?: boolean | TrimDefaultArgs<ExtArgs>;
+        images?: boolean | CarListing$imagesArgs<ExtArgs>;
+        priceHistory?: boolean | CarListing$priceHistoryArgs<ExtArgs>;
+        _count?: boolean | CarListingCountOutputTypeDefaultArgs<ExtArgs>;
+      },
+      ExtArgs["result"]["carListing"]
+    >;
 
-  export type CarListingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    sellerId?: boolean
-    sourceId?: boolean
-    url?: boolean
-    title?: boolean
-    description?: boolean
-    price?: boolean
-    priceCurrency?: boolean
-    trimId?: boolean
-    year?: boolean
-    mileage?: boolean
-    exteriorColor?: boolean
-    interiorColor?: boolean
-    isNew?: boolean
-    location?: boolean
-    publishedAt?: boolean
-    scrapedAt?: boolean
-    seller?: boolean | SellerDefaultArgs<ExtArgs>
-    source?: boolean | SourceDefaultArgs<ExtArgs>
-    trim?: boolean | TrimDefaultArgs<ExtArgs>
-    images?: boolean | CarListing$imagesArgs<ExtArgs>
-    priceHistory?: boolean | CarListing$priceHistoryArgs<ExtArgs>
-    _count?: boolean | CarListingCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["carListing"]>
+  export type CarListingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        sellerId?: boolean;
+        sourceId?: boolean;
+        url?: boolean;
+        title?: boolean;
+        description?: boolean;
+        price?: boolean;
+        priceCurrency?: boolean;
+        trimId?: boolean;
+        year?: boolean;
+        mileage?: boolean;
+        exteriorColor?: boolean;
+        interiorColor?: boolean;
+        isNew?: boolean;
+        location?: boolean;
+        publishedAt?: boolean;
+        scrapedAt?: boolean;
+        seller?: boolean | SellerDefaultArgs<ExtArgs>;
+        source?: boolean | SourceDefaultArgs<ExtArgs>;
+        trim?: boolean | TrimDefaultArgs<ExtArgs>;
+      },
+      ExtArgs["result"]["carListing"]
+    >;
 
-  export type CarListingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    sellerId?: boolean
-    sourceId?: boolean
-    url?: boolean
-    title?: boolean
-    description?: boolean
-    price?: boolean
-    priceCurrency?: boolean
-    trimId?: boolean
-    year?: boolean
-    mileage?: boolean
-    exteriorColor?: boolean
-    interiorColor?: boolean
-    isNew?: boolean
-    location?: boolean
-    publishedAt?: boolean
-    scrapedAt?: boolean
-    seller?: boolean | SellerDefaultArgs<ExtArgs>
-    source?: boolean | SourceDefaultArgs<ExtArgs>
-    trim?: boolean | TrimDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["carListing"]>
-
-  export type CarListingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    sellerId?: boolean
-    sourceId?: boolean
-    url?: boolean
-    title?: boolean
-    description?: boolean
-    price?: boolean
-    priceCurrency?: boolean
-    trimId?: boolean
-    year?: boolean
-    mileage?: boolean
-    exteriorColor?: boolean
-    interiorColor?: boolean
-    isNew?: boolean
-    location?: boolean
-    publishedAt?: boolean
-    scrapedAt?: boolean
-    seller?: boolean | SellerDefaultArgs<ExtArgs>
-    source?: boolean | SourceDefaultArgs<ExtArgs>
-    trim?: boolean | TrimDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["carListing"]>
+  export type CarListingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        sellerId?: boolean;
+        sourceId?: boolean;
+        url?: boolean;
+        title?: boolean;
+        description?: boolean;
+        price?: boolean;
+        priceCurrency?: boolean;
+        trimId?: boolean;
+        year?: boolean;
+        mileage?: boolean;
+        exteriorColor?: boolean;
+        interiorColor?: boolean;
+        isNew?: boolean;
+        location?: boolean;
+        publishedAt?: boolean;
+        scrapedAt?: boolean;
+        seller?: boolean | SellerDefaultArgs<ExtArgs>;
+        source?: boolean | SourceDefaultArgs<ExtArgs>;
+        trim?: boolean | TrimDefaultArgs<ExtArgs>;
+      },
+      ExtArgs["result"]["carListing"]
+    >;
 
   export type CarListingSelectScalar = {
-    id?: boolean
-    sellerId?: boolean
-    sourceId?: boolean
-    url?: boolean
-    title?: boolean
-    description?: boolean
-    price?: boolean
-    priceCurrency?: boolean
-    trimId?: boolean
-    year?: boolean
-    mileage?: boolean
-    exteriorColor?: boolean
-    interiorColor?: boolean
-    isNew?: boolean
-    location?: boolean
-    publishedAt?: boolean
-    scrapedAt?: boolean
-  }
+    id?: boolean;
+    sellerId?: boolean;
+    sourceId?: boolean;
+    url?: boolean;
+    title?: boolean;
+    description?: boolean;
+    price?: boolean;
+    priceCurrency?: boolean;
+    trimId?: boolean;
+    year?: boolean;
+    mileage?: boolean;
+    exteriorColor?: boolean;
+    interiorColor?: boolean;
+    isNew?: boolean;
+    location?: boolean;
+    publishedAt?: boolean;
+    scrapedAt?: boolean;
+  };
 
-  export type CarListingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "sellerId" | "sourceId" | "url" | "title" | "description" | "price" | "priceCurrency" | "trimId" | "year" | "mileage" | "exteriorColor" | "interiorColor" | "isNew" | "location" | "publishedAt" | "scrapedAt", ExtArgs["result"]["carListing"]>
+  export type CarListingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<
+    | "id"
+    | "sellerId"
+    | "sourceId"
+    | "url"
+    | "title"
+    | "description"
+    | "price"
+    | "priceCurrency"
+    | "trimId"
+    | "year"
+    | "mileage"
+    | "exteriorColor"
+    | "interiorColor"
+    | "isNew"
+    | "location"
+    | "publishedAt"
+    | "scrapedAt",
+    ExtArgs["result"]["carListing"]
+  >;
   export type CarListingInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    seller?: boolean | SellerDefaultArgs<ExtArgs>
-    source?: boolean | SourceDefaultArgs<ExtArgs>
-    trim?: boolean | TrimDefaultArgs<ExtArgs>
-    images?: boolean | CarListing$imagesArgs<ExtArgs>
-    priceHistory?: boolean | CarListing$priceHistoryArgs<ExtArgs>
-    _count?: boolean | CarListingCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type CarListingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    seller?: boolean | SellerDefaultArgs<ExtArgs>
-    source?: boolean | SourceDefaultArgs<ExtArgs>
-    trim?: boolean | TrimDefaultArgs<ExtArgs>
-  }
-  export type CarListingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    seller?: boolean | SellerDefaultArgs<ExtArgs>
-    source?: boolean | SourceDefaultArgs<ExtArgs>
-    trim?: boolean | TrimDefaultArgs<ExtArgs>
-  }
+    seller?: boolean | SellerDefaultArgs<ExtArgs>;
+    source?: boolean | SourceDefaultArgs<ExtArgs>;
+    trim?: boolean | TrimDefaultArgs<ExtArgs>;
+    images?: boolean | CarListing$imagesArgs<ExtArgs>;
+    priceHistory?: boolean | CarListing$priceHistoryArgs<ExtArgs>;
+    _count?: boolean | CarListingCountOutputTypeDefaultArgs<ExtArgs>;
+  };
+  export type CarListingIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    {
+      seller?: boolean | SellerDefaultArgs<ExtArgs>;
+      source?: boolean | SourceDefaultArgs<ExtArgs>;
+      trim?: boolean | TrimDefaultArgs<ExtArgs>;
+    };
+  export type CarListingIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    {
+      seller?: boolean | SellerDefaultArgs<ExtArgs>;
+      source?: boolean | SourceDefaultArgs<ExtArgs>;
+      trim?: boolean | TrimDefaultArgs<ExtArgs>;
+    };
 
   export type $CarListingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "CarListing"
+    name: "CarListing";
     objects: {
-      seller: Prisma.$SellerPayload<ExtArgs>
-      source: Prisma.$SourcePayload<ExtArgs>
-      trim: Prisma.$TrimPayload<ExtArgs>
-      images: Prisma.$ImagePayload<ExtArgs>[]
-      priceHistory: Prisma.$PriceHistoryPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      sellerId: string
-      sourceId: string
-      url: string
-      title: string
-      description: string
-      price: Prisma.Decimal
-      priceCurrency: string
-      trimId: string
-      year: number
-      mileage: number
-      exteriorColor: string
-      interiorColor: string
-      isNew: boolean
-      location: string
-      publishedAt: Date
-      scrapedAt: Date
-    }, ExtArgs["result"]["carListing"]>
-    composites: {}
-  }
+      seller: Prisma.$SellerPayload<ExtArgs>;
+      source: Prisma.$SourcePayload<ExtArgs>;
+      trim: Prisma.$TrimPayload<ExtArgs>;
+      images: Prisma.$ImagePayload<ExtArgs>[];
+      priceHistory: Prisma.$PriceHistoryPayload<ExtArgs>[];
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        sellerId: string;
+        sourceId: string;
+        url: string;
+        title: string;
+        description: string;
+        price: Prisma.Decimal;
+        priceCurrency: string;
+        trimId: string;
+        year: number;
+        mileage: number;
+        exteriorColor: string;
+        interiorColor: string;
+        isNew: boolean;
+        location: string;
+        publishedAt: Date;
+        scrapedAt: Date;
+      },
+      ExtArgs["result"]["carListing"]
+    >;
+    composites: {};
+  };
 
-  type CarListingGetPayload<S extends boolean | null | undefined | CarListingDefaultArgs> = $Result.GetResult<Prisma.$CarListingPayload, S>
+  type CarListingGetPayload<S extends boolean | null | undefined | CarListingDefaultArgs> = $Result.GetResult<
+    Prisma.$CarListingPayload,
+    S
+  >;
 
-  type CarListingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<CarListingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: CarListingCountAggregateInputType | true
-    }
+  type CarListingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Omit<
+    CarListingFindManyArgs,
+    "select" | "include" | "distinct" | "omit"
+  > & {
+    select?: CarListingCountAggregateInputType | true;
+  };
 
-  export interface CarListingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CarListing'], meta: { name: 'CarListing' } }
+  export interface CarListingDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>["model"]["CarListing"]; meta: { name: "CarListing" } };
     /**
      * Find zero or one CarListing that matches the filter.
      * @param {CarListingFindUniqueArgs} args - Arguments to find a CarListing
@@ -8733,7 +9375,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends CarListingFindUniqueArgs>(args: SelectSubset<T, CarListingFindUniqueArgs<ExtArgs>>): Prisma__CarListingClient<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends CarListingFindUniqueArgs>(
+      args: SelectSubset<T, CarListingFindUniqueArgs<ExtArgs>>,
+    ): Prisma__CarListingClient<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one CarListing that matches the filter or throw an error with `error.code='P2025'`
@@ -8747,7 +9396,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends CarListingFindUniqueOrThrowArgs>(args: SelectSubset<T, CarListingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CarListingClient<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends CarListingFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, CarListingFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__CarListingClient<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first CarListing that matches the filter.
@@ -8762,7 +9418,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends CarListingFindFirstArgs>(args?: SelectSubset<T, CarListingFindFirstArgs<ExtArgs>>): Prisma__CarListingClient<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends CarListingFindFirstArgs>(
+      args?: SelectSubset<T, CarListingFindFirstArgs<ExtArgs>>,
+    ): Prisma__CarListingClient<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first CarListing that matches the filter or
@@ -8778,7 +9441,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends CarListingFindFirstOrThrowArgs>(args?: SelectSubset<T, CarListingFindFirstOrThrowArgs<ExtArgs>>): Prisma__CarListingClient<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends CarListingFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, CarListingFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__CarListingClient<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more CarListings that matches the filter.
@@ -8788,15 +9458,17 @@ export namespace Prisma {
      * @example
      * // Get all CarListings
      * const carListings = await prisma.carListing.findMany()
-     * 
+     *
      * // Get first 10 CarListings
      * const carListings = await prisma.carListing.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const carListingWithIdOnly = await prisma.carListing.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends CarListingFindManyArgs>(args?: SelectSubset<T, CarListingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends CarListingFindManyArgs>(
+      args?: SelectSubset<T, CarListingFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
 
     /**
      * Create a CarListing.
@@ -8808,9 +9480,16 @@ export namespace Prisma {
      *     // ... data to create a CarListing
      *   }
      * })
-     * 
+     *
      */
-    create<T extends CarListingCreateArgs>(args: SelectSubset<T, CarListingCreateArgs<ExtArgs>>): Prisma__CarListingClient<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends CarListingCreateArgs>(
+      args: SelectSubset<T, CarListingCreateArgs<ExtArgs>>,
+    ): Prisma__CarListingClient<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "create", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many CarListings.
@@ -8822,9 +9501,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends CarListingCreateManyArgs>(args?: SelectSubset<T, CarListingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends CarListingCreateManyArgs>(
+      args?: SelectSubset<T, CarListingCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many CarListings and returns the data saved in the database.
@@ -8836,7 +9517,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many CarListings and only return the `id`
      * const carListingWithIdOnly = await prisma.carListing.createManyAndReturn({
      *   select: { id: true },
@@ -8846,9 +9527,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends CarListingCreateManyAndReturnArgs>(args?: SelectSubset<T, CarListingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends CarListingCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, CarListingCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Delete a CarListing.
@@ -8860,9 +9545,16 @@ export namespace Prisma {
      *     // ... filter to delete one CarListing
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends CarListingDeleteArgs>(args: SelectSubset<T, CarListingDeleteArgs<ExtArgs>>): Prisma__CarListingClient<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends CarListingDeleteArgs>(
+      args: SelectSubset<T, CarListingDeleteArgs<ExtArgs>>,
+    ): Prisma__CarListingClient<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one CarListing.
@@ -8877,9 +9569,16 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends CarListingUpdateArgs>(args: SelectSubset<T, CarListingUpdateArgs<ExtArgs>>): Prisma__CarListingClient<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends CarListingUpdateArgs>(
+      args: SelectSubset<T, CarListingUpdateArgs<ExtArgs>>,
+    ): Prisma__CarListingClient<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "update", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more CarListings.
@@ -8891,9 +9590,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends CarListingDeleteManyArgs>(args?: SelectSubset<T, CarListingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends CarListingDeleteManyArgs>(
+      args?: SelectSubset<T, CarListingDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more CarListings.
@@ -8910,9 +9611,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends CarListingUpdateManyArgs>(args: SelectSubset<T, CarListingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends CarListingUpdateManyArgs>(
+      args: SelectSubset<T, CarListingUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more CarListings and returns the data updated in the database.
@@ -8927,7 +9630,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more CarListings and only return the `id`
      * const carListingWithIdOnly = await prisma.carListing.updateManyAndReturn({
      *   select: { id: true },
@@ -8940,9 +9643,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends CarListingUpdateManyAndReturnArgs>(args: SelectSubset<T, CarListingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends CarListingUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, CarListingUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Create or update one CarListing.
@@ -8961,8 +9668,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends CarListingUpsertArgs>(args: SelectSubset<T, CarListingUpsertArgs<ExtArgs>>): Prisma__CarListingClient<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends CarListingUpsertArgs>(
+      args: SelectSubset<T, CarListingUpsertArgs<ExtArgs>>,
+    ): Prisma__CarListingClient<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of CarListings.
@@ -8976,16 +9689,16 @@ export namespace Prisma {
      *     // ... the filter for the CarListings we want to count
      *   }
      * })
-    **/
+     * */
     count<T extends CarListingCountArgs>(
       args?: Subset<T, CarListingCountArgs>,
     ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
+      T extends $Utils.Record<"select", any>
+        ? T["select"] extends true
           ? number
-          : GetScalarType<T['select'], CarListingCountAggregateOutputType>
+          : GetScalarType<T["select"], CarListingCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a CarListing.
@@ -9010,8 +9723,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends CarListingAggregateArgs>(args: Subset<T, CarListingAggregateArgs>): Prisma.PrismaPromise<GetCarListingAggregateType<T>>
+     * */
+    aggregate<T extends CarListingAggregateArgs>(
+      args: Subset<T, CarListingAggregateArgs>,
+    ): Prisma.PrismaPromise<GetCarListingAggregateType<T>>;
 
     /**
      * Group by CarListing.
@@ -9029,70 +9744,64 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     * */
     groupBy<
       T extends CarListingGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
+      HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: CarListingGroupByArgs['orderBy'] }
-        : { orderBy?: CarListingGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
+        ? { orderBy: CarListingGroupByArgs["orderBy"] }
+        : { orderBy?: CarListingGroupByArgs["orderBy"] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
+      ByFields extends MaybeTupleToUnion<T["by"]>,
       ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
+      HavingFields extends GetHavingFields<T["having"]>,
       HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
+      ByEmpty extends T["by"] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, CarListingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCarListingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the CarListing model
-   */
-  readonly fields: CarListingFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [Error, "Field ", P, ` in "having" needs to be provided in "by"`];
+            }[HavingFields]
+          : "take" extends Keys<T>
+            ? "orderBy" extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : "skip" extends Keys<T>
+              ? "orderBy" extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, CarListingGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors ? GetCarListingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the CarListing model
+     */
+    readonly fields: CarListingFieldRefs;
   }
 
   /**
@@ -9101,61 +9810,94 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__CarListingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    seller<T extends SellerDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SellerDefaultArgs<ExtArgs>>): Prisma__SellerClient<$Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    source<T extends SourceDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SourceDefaultArgs<ExtArgs>>): Prisma__SourceClient<$Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    trim<T extends TrimDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TrimDefaultArgs<ExtArgs>>): Prisma__TrimClient<$Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    images<T extends CarListing$imagesArgs<ExtArgs> = {}>(args?: Subset<T, CarListing$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    priceHistory<T extends CarListing$priceHistoryArgs<ExtArgs> = {}>(args?: Subset<T, CarListing$priceHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  export interface Prisma__CarListingClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    seller<T extends SellerDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, SellerDefaultArgs<ExtArgs>>,
+    ): Prisma__SellerClient<
+      $Result.GetResult<Prisma.$SellerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    source<T extends SourceDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, SourceDefaultArgs<ExtArgs>>,
+    ): Prisma__SourceClient<
+      $Result.GetResult<Prisma.$SourcePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    trim<T extends TrimDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, TrimDefaultArgs<ExtArgs>>,
+    ): Prisma__TrimClient<
+      $Result.GetResult<Prisma.$TrimPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
+    images<T extends CarListing$imagesArgs<ExtArgs> = {}>(
+      args?: Subset<T, CarListing$imagesArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
+    priceHistory<T extends CarListing$priceHistoryArgs<ExtArgs> = {}>(
+      args?: Subset<T, CarListing$priceHistoryArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the CarListing model
    */
   interface CarListingFieldRefs {
-    readonly id: FieldRef<"CarListing", 'String'>
-    readonly sellerId: FieldRef<"CarListing", 'String'>
-    readonly sourceId: FieldRef<"CarListing", 'String'>
-    readonly url: FieldRef<"CarListing", 'String'>
-    readonly title: FieldRef<"CarListing", 'String'>
-    readonly description: FieldRef<"CarListing", 'String'>
-    readonly price: FieldRef<"CarListing", 'Decimal'>
-    readonly priceCurrency: FieldRef<"CarListing", 'String'>
-    readonly trimId: FieldRef<"CarListing", 'String'>
-    readonly year: FieldRef<"CarListing", 'Int'>
-    readonly mileage: FieldRef<"CarListing", 'Int'>
-    readonly exteriorColor: FieldRef<"CarListing", 'String'>
-    readonly interiorColor: FieldRef<"CarListing", 'String'>
-    readonly isNew: FieldRef<"CarListing", 'Boolean'>
-    readonly location: FieldRef<"CarListing", 'String'>
-    readonly publishedAt: FieldRef<"CarListing", 'DateTime'>
-    readonly scrapedAt: FieldRef<"CarListing", 'DateTime'>
+    readonly id: FieldRef<"CarListing", "String">;
+    readonly sellerId: FieldRef<"CarListing", "String">;
+    readonly sourceId: FieldRef<"CarListing", "String">;
+    readonly url: FieldRef<"CarListing", "String">;
+    readonly title: FieldRef<"CarListing", "String">;
+    readonly description: FieldRef<"CarListing", "String">;
+    readonly price: FieldRef<"CarListing", "Decimal">;
+    readonly priceCurrency: FieldRef<"CarListing", "String">;
+    readonly trimId: FieldRef<"CarListing", "String">;
+    readonly year: FieldRef<"CarListing", "Int">;
+    readonly mileage: FieldRef<"CarListing", "Int">;
+    readonly exteriorColor: FieldRef<"CarListing", "String">;
+    readonly interiorColor: FieldRef<"CarListing", "String">;
+    readonly isNew: FieldRef<"CarListing", "Boolean">;
+    readonly location: FieldRef<"CarListing", "String">;
+    readonly publishedAt: FieldRef<"CarListing", "DateTime">;
+    readonly scrapedAt: FieldRef<"CarListing", "DateTime">;
   }
-    
 
   // Custom InputTypes
   /**
@@ -9165,20 +9907,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
+    include?: CarListingInclude<ExtArgs> | null;
     /**
      * Filter, which CarListing to fetch.
      */
-    where: CarListingWhereUniqueInput
-  }
+    where: CarListingWhereUniqueInput;
+  };
 
   /**
    * CarListing findUniqueOrThrow
@@ -9187,20 +9929,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
+    include?: CarListingInclude<ExtArgs> | null;
     /**
      * Filter, which CarListing to fetch.
      */
-    where: CarListingWhereUniqueInput
-  }
+    where: CarListingWhereUniqueInput;
+  };
 
   /**
    * CarListing findFirst
@@ -9209,50 +9951,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
+    include?: CarListingInclude<ExtArgs> | null;
     /**
      * Filter, which CarListing to fetch.
      */
-    where?: CarListingWhereInput
+    where?: CarListingWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of CarListings to fetch.
      */
-    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[]
+    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for CarListings.
      */
-    cursor?: CarListingWhereUniqueInput
+    cursor?: CarListingWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` CarListings from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` CarListings.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of CarListings.
      */
-    distinct?: CarListingScalarFieldEnum | CarListingScalarFieldEnum[]
-  }
+    distinct?: CarListingScalarFieldEnum | CarListingScalarFieldEnum[];
+  };
 
   /**
    * CarListing findFirstOrThrow
@@ -9261,50 +10003,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
+    include?: CarListingInclude<ExtArgs> | null;
     /**
      * Filter, which CarListing to fetch.
      */
-    where?: CarListingWhereInput
+    where?: CarListingWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of CarListings to fetch.
      */
-    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[]
+    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for CarListings.
      */
-    cursor?: CarListingWhereUniqueInput
+    cursor?: CarListingWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` CarListings from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` CarListings.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of CarListings.
      */
-    distinct?: CarListingScalarFieldEnum | CarListingScalarFieldEnum[]
-  }
+    distinct?: CarListingScalarFieldEnum | CarListingScalarFieldEnum[];
+  };
 
   /**
    * CarListing findMany
@@ -9313,45 +10055,45 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
+    include?: CarListingInclude<ExtArgs> | null;
     /**
      * Filter, which CarListings to fetch.
      */
-    where?: CarListingWhereInput
+    where?: CarListingWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of CarListings to fetch.
      */
-    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[]
+    orderBy?: CarListingOrderByWithRelationInput | CarListingOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing CarListings.
      */
-    cursor?: CarListingWhereUniqueInput
+    cursor?: CarListingWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` CarListings from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` CarListings.
      */
-    skip?: number
-    distinct?: CarListingScalarFieldEnum | CarListingScalarFieldEnum[]
-  }
+    skip?: number;
+    distinct?: CarListingScalarFieldEnum | CarListingScalarFieldEnum[];
+  };
 
   /**
    * CarListing create
@@ -9360,20 +10102,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
+    include?: CarListingInclude<ExtArgs> | null;
     /**
      * The data needed to create a CarListing.
      */
-    data: XOR<CarListingCreateInput, CarListingUncheckedCreateInput>
-  }
+    data: XOR<CarListingCreateInput, CarListingUncheckedCreateInput>;
+  };
 
   /**
    * CarListing createMany
@@ -9382,9 +10124,9 @@ export namespace Prisma {
     /**
      * The data used to create many CarListings.
      */
-    data: CarListingCreateManyInput | CarListingCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: CarListingCreateManyInput | CarListingCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * CarListing createManyAndReturn
@@ -9393,21 +10135,21 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelectCreateManyAndReturn<ExtArgs> | null
+    select?: CarListingSelectCreateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * The data used to create many CarListings.
      */
-    data: CarListingCreateManyInput | CarListingCreateManyInput[]
-    skipDuplicates?: boolean
+    data: CarListingCreateManyInput | CarListingCreateManyInput[];
+    skipDuplicates?: boolean;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingIncludeCreateManyAndReturn<ExtArgs> | null
-  }
+    include?: CarListingIncludeCreateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * CarListing update
@@ -9416,24 +10158,24 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
+    include?: CarListingInclude<ExtArgs> | null;
     /**
      * The data needed to update a CarListing.
      */
-    data: XOR<CarListingUpdateInput, CarListingUncheckedUpdateInput>
+    data: XOR<CarListingUpdateInput, CarListingUncheckedUpdateInput>;
     /**
      * Choose, which CarListing to update.
      */
-    where: CarListingWhereUniqueInput
-  }
+    where: CarListingWhereUniqueInput;
+  };
 
   /**
    * CarListing updateMany
@@ -9442,16 +10184,16 @@ export namespace Prisma {
     /**
      * The data used to update CarListings.
      */
-    data: XOR<CarListingUpdateManyMutationInput, CarListingUncheckedUpdateManyInput>
+    data: XOR<CarListingUpdateManyMutationInput, CarListingUncheckedUpdateManyInput>;
     /**
      * Filter which CarListings to update
      */
-    where?: CarListingWhereInput
+    where?: CarListingWhereInput;
     /**
      * Limit how many CarListings to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * CarListing updateManyAndReturn
@@ -9460,28 +10202,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: CarListingSelectUpdateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * The data used to update CarListings.
      */
-    data: XOR<CarListingUpdateManyMutationInput, CarListingUncheckedUpdateManyInput>
+    data: XOR<CarListingUpdateManyMutationInput, CarListingUncheckedUpdateManyInput>;
     /**
      * Filter which CarListings to update
      */
-    where?: CarListingWhereInput
+    where?: CarListingWhereInput;
     /**
      * Limit how many CarListings to update.
      */
-    limit?: number
+    limit?: number;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
+    include?: CarListingIncludeUpdateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * CarListing upsert
@@ -9490,28 +10232,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
+    include?: CarListingInclude<ExtArgs> | null;
     /**
      * The filter to search for the CarListing to update in case it exists.
      */
-    where: CarListingWhereUniqueInput
+    where: CarListingWhereUniqueInput;
     /**
      * In case the CarListing found by the `where` argument doesn't exist, create a new CarListing with this data.
      */
-    create: XOR<CarListingCreateInput, CarListingUncheckedCreateInput>
+    create: XOR<CarListingCreateInput, CarListingUncheckedCreateInput>;
     /**
      * In case the CarListing was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<CarListingUpdateInput, CarListingUncheckedUpdateInput>
-  }
+    update: XOR<CarListingUpdateInput, CarListingUncheckedUpdateInput>;
+  };
 
   /**
    * CarListing delete
@@ -9520,20 +10262,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
+    include?: CarListingInclude<ExtArgs> | null;
     /**
      * Filter which CarListing to delete.
      */
-    where: CarListingWhereUniqueInput
-  }
+    where: CarListingWhereUniqueInput;
+  };
 
   /**
    * CarListing deleteMany
@@ -9542,12 +10284,12 @@ export namespace Prisma {
     /**
      * Filter which CarListings to delete
      */
-    where?: CarListingWhereInput
+    where?: CarListingWhereInput;
     /**
      * Limit how many CarListings to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * CarListing.images
@@ -9556,22 +10298,22 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelect<ExtArgs> | null
+    select?: ImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageInclude<ExtArgs> | null
-    where?: ImageWhereInput
-    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
-    cursor?: ImageWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[]
-  }
+    include?: ImageInclude<ExtArgs> | null;
+    where?: ImageWhereInput;
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[];
+    cursor?: ImageWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[];
+  };
 
   /**
    * CarListing.priceHistory
@@ -9580,22 +10322,22 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the PriceHistory
      */
-    select?: PriceHistorySelect<ExtArgs> | null
+    select?: PriceHistorySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PriceHistory
      */
-    omit?: PriceHistoryOmit<ExtArgs> | null
+    omit?: PriceHistoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PriceHistoryInclude<ExtArgs> | null
-    where?: PriceHistoryWhereInput
-    orderBy?: PriceHistoryOrderByWithRelationInput | PriceHistoryOrderByWithRelationInput[]
-    cursor?: PriceHistoryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: PriceHistoryScalarFieldEnum | PriceHistoryScalarFieldEnum[]
-  }
+    include?: PriceHistoryInclude<ExtArgs> | null;
+    where?: PriceHistoryWhereInput;
+    orderBy?: PriceHistoryOrderByWithRelationInput | PriceHistoryOrderByWithRelationInput[];
+    cursor?: PriceHistoryWhereUniqueInput;
+    take?: number;
+    skip?: number;
+    distinct?: PriceHistoryScalarFieldEnum | PriceHistoryScalarFieldEnum[];
+  };
 
   /**
    * CarListing without action
@@ -9604,222 +10346,240 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the CarListing
      */
-    select?: CarListingSelect<ExtArgs> | null
+    select?: CarListingSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the CarListing
      */
-    omit?: CarListingOmit<ExtArgs> | null
+    omit?: CarListingOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: CarListingInclude<ExtArgs> | null
-  }
-
+    include?: CarListingInclude<ExtArgs> | null;
+  };
 
   /**
    * Model Image
    */
 
   export type AggregateImage = {
-    _count: ImageCountAggregateOutputType | null
-    _min: ImageMinAggregateOutputType | null
-    _max: ImageMaxAggregateOutputType | null
-  }
+    _count: ImageCountAggregateOutputType | null;
+    _min: ImageMinAggregateOutputType | null;
+    _max: ImageMaxAggregateOutputType | null;
+  };
 
   export type ImageMinAggregateOutputType = {
-    id: string | null
-    listingId: string | null
-    url: string | null
-  }
+    id: string | null;
+    listingId: string | null;
+    url: string | null;
+  };
 
   export type ImageMaxAggregateOutputType = {
-    id: string | null
-    listingId: string | null
-    url: string | null
-  }
+    id: string | null;
+    listingId: string | null;
+    url: string | null;
+  };
 
   export type ImageCountAggregateOutputType = {
-    id: number
-    listingId: number
-    url: number
-    _all: number
-  }
-
+    id: number;
+    listingId: number;
+    url: number;
+    _all: number;
+  };
 
   export type ImageMinAggregateInputType = {
-    id?: true
-    listingId?: true
-    url?: true
-  }
+    id?: true;
+    listingId?: true;
+    url?: true;
+  };
 
   export type ImageMaxAggregateInputType = {
-    id?: true
-    listingId?: true
-    url?: true
-  }
+    id?: true;
+    listingId?: true;
+    url?: true;
+  };
 
   export type ImageCountAggregateInputType = {
-    id?: true
-    listingId?: true
-    url?: true
-    _all?: true
-  }
+    id?: true;
+    listingId?: true;
+    url?: true;
+    _all?: true;
+  };
 
   export type ImageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which Image to aggregate.
      */
-    where?: ImageWhereInput
+    where?: ImageWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Images to fetch.
      */
-    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: ImageWhereUniqueInput
+    cursor?: ImageWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Images from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Images.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Images
-    **/
-    _count?: true | ImageCountAggregateInputType
+     * */
+    _count?: true | ImageCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: ImageMinAggregateInputType
+     * */
+    _min?: ImageMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: ImageMaxAggregateInputType
-  }
+     * */
+    _max?: ImageMaxAggregateInputType;
+  };
 
   export type GetImageAggregateType<T extends ImageAggregateArgs> = {
-        [P in keyof T & keyof AggregateImage]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateImage]: P extends "_count" | "count"
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateImage[P]>
-      : GetScalarType<T[P], AggregateImage[P]>
-  }
-
-
-
+      : GetScalarType<T[P], AggregateImage[P]>;
+  };
 
   export type ImageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ImageWhereInput
-    orderBy?: ImageOrderByWithAggregationInput | ImageOrderByWithAggregationInput[]
-    by: ImageScalarFieldEnum[] | ImageScalarFieldEnum
-    having?: ImageScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ImageCountAggregateInputType | true
-    _min?: ImageMinAggregateInputType
-    _max?: ImageMaxAggregateInputType
-  }
+    where?: ImageWhereInput;
+    orderBy?: ImageOrderByWithAggregationInput | ImageOrderByWithAggregationInput[];
+    by: ImageScalarFieldEnum[] | ImageScalarFieldEnum;
+    having?: ImageScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: ImageCountAggregateInputType | true;
+    _min?: ImageMinAggregateInputType;
+    _max?: ImageMaxAggregateInputType;
+  };
 
   export type ImageGroupByOutputType = {
-    id: string
-    listingId: string
-    url: string
-    _count: ImageCountAggregateOutputType | null
-    _min: ImageMinAggregateOutputType | null
-    _max: ImageMaxAggregateOutputType | null
-  }
+    id: string;
+    listingId: string;
+    url: string;
+    _count: ImageCountAggregateOutputType | null;
+    _min: ImageMinAggregateOutputType | null;
+    _max: ImageMaxAggregateOutputType | null;
+  };
 
   type GetImageGroupByPayload<T extends ImageGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<ImageGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ImageGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ImageGroupByOutputType[P]>
+      PickEnumerable<ImageGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof ImageGroupByOutputType]: P extends "_count"
+          ? T[P] extends boolean
+            ? number
             : GetScalarType<T[P], ImageGroupByOutputType[P]>
-        }
-      >
+          : GetScalarType<T[P], ImageGroupByOutputType[P]>;
+      }
     >
+  >;
 
+  export type ImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      listingId?: boolean;
+      url?: boolean;
+      carListing?: boolean | CarListingDefaultArgs<ExtArgs>;
+    },
+    ExtArgs["result"]["image"]
+  >;
 
-  export type ImageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    listingId?: boolean
-    url?: boolean
-    carListing?: boolean | CarListingDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["image"]>
+  export type ImageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        listingId?: boolean;
+        url?: boolean;
+        carListing?: boolean | CarListingDefaultArgs<ExtArgs>;
+      },
+      ExtArgs["result"]["image"]
+    >;
 
-  export type ImageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    listingId?: boolean
-    url?: boolean
-    carListing?: boolean | CarListingDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["image"]>
-
-  export type ImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    listingId?: boolean
-    url?: boolean
-    carListing?: boolean | CarListingDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["image"]>
+  export type ImageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        listingId?: boolean;
+        url?: boolean;
+        carListing?: boolean | CarListingDefaultArgs<ExtArgs>;
+      },
+      ExtArgs["result"]["image"]
+    >;
 
   export type ImageSelectScalar = {
-    id?: boolean
-    listingId?: boolean
-    url?: boolean
-  }
+    id?: boolean;
+    listingId?: boolean;
+    url?: boolean;
+  };
 
-  export type ImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "listingId" | "url", ExtArgs["result"]["image"]>
+  export type ImageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<
+    "id" | "listingId" | "url",
+    ExtArgs["result"]["image"]
+  >;
   export type ImageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    carListing?: boolean | CarListingDefaultArgs<ExtArgs>
-  }
+    carListing?: boolean | CarListingDefaultArgs<ExtArgs>;
+  };
   export type ImageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    carListing?: boolean | CarListingDefaultArgs<ExtArgs>
-  }
+    carListing?: boolean | CarListingDefaultArgs<ExtArgs>;
+  };
   export type ImageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    carListing?: boolean | CarListingDefaultArgs<ExtArgs>
-  }
+    carListing?: boolean | CarListingDefaultArgs<ExtArgs>;
+  };
 
   export type $ImagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Image"
+    name: "Image";
     objects: {
-      carListing: Prisma.$CarListingPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      listingId: string
-      url: string
-    }, ExtArgs["result"]["image"]>
-    composites: {}
-  }
+      carListing: Prisma.$CarListingPayload<ExtArgs>;
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        listingId: string;
+        url: string;
+      },
+      ExtArgs["result"]["image"]
+    >;
+    composites: {};
+  };
 
-  type ImageGetPayload<S extends boolean | null | undefined | ImageDefaultArgs> = $Result.GetResult<Prisma.$ImagePayload, S>
+  type ImageGetPayload<S extends boolean | null | undefined | ImageDefaultArgs> = $Result.GetResult<
+    Prisma.$ImagePayload,
+    S
+  >;
 
-  type ImageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ImageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ImageCountAggregateInputType | true
-    }
+  type ImageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Omit<
+    ImageFindManyArgs,
+    "select" | "include" | "distinct" | "omit"
+  > & {
+    select?: ImageCountAggregateInputType | true;
+  };
 
-  export interface ImageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Image'], meta: { name: 'Image' } }
+  export interface ImageDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>["model"]["Image"]; meta: { name: "Image" } };
     /**
      * Find zero or one Image that matches the filter.
      * @param {ImageFindUniqueArgs} args - Arguments to find a Image
@@ -9831,7 +10591,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends ImageFindUniqueArgs>(args: SelectSubset<T, ImageFindUniqueArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ImageFindUniqueArgs>(
+      args: SelectSubset<T, ImageFindUniqueArgs<ExtArgs>>,
+    ): Prisma__ImageClient<
+      $Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one Image that matches the filter or throw an error with `error.code='P2025'`
@@ -9845,7 +10612,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends ImageFindUniqueOrThrowArgs>(args: SelectSubset<T, ImageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ImageFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, ImageFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__ImageClient<
+      $Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Image that matches the filter.
@@ -9860,7 +10634,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends ImageFindFirstArgs>(args?: SelectSubset<T, ImageFindFirstArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ImageFindFirstArgs>(
+      args?: SelectSubset<T, ImageFindFirstArgs<ExtArgs>>,
+    ): Prisma__ImageClient<
+      $Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first Image that matches the filter or
@@ -9876,7 +10657,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends ImageFindFirstOrThrowArgs>(args?: SelectSubset<T, ImageFindFirstOrThrowArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ImageFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, ImageFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__ImageClient<
+      $Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more Images that matches the filter.
@@ -9886,15 +10674,17 @@ export namespace Prisma {
      * @example
      * // Get all Images
      * const images = await prisma.image.findMany()
-     * 
+     *
      * // Get first 10 Images
      * const images = await prisma.image.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const imageWithIdOnly = await prisma.image.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends ImageFindManyArgs>(args?: SelectSubset<T, ImageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ImageFindManyArgs>(
+      args?: SelectSubset<T, ImageFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
 
     /**
      * Create a Image.
@@ -9906,9 +10696,16 @@ export namespace Prisma {
      *     // ... data to create a Image
      *   }
      * })
-     * 
+     *
      */
-    create<T extends ImageCreateArgs>(args: SelectSubset<T, ImageCreateArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ImageCreateArgs>(
+      args: SelectSubset<T, ImageCreateArgs<ExtArgs>>,
+    ): Prisma__ImageClient<
+      $Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "create", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many Images.
@@ -9920,9 +10717,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends ImageCreateManyArgs>(args?: SelectSubset<T, ImageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ImageCreateManyArgs>(
+      args?: SelectSubset<T, ImageCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many Images and returns the data saved in the database.
@@ -9934,7 +10733,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Images and only return the `id`
      * const imageWithIdOnly = await prisma.image.createManyAndReturn({
      *   select: { id: true },
@@ -9944,9 +10743,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends ImageCreateManyAndReturnArgs>(args?: SelectSubset<T, ImageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ImageCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, ImageCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Delete a Image.
@@ -9958,9 +10761,16 @@ export namespace Prisma {
      *     // ... filter to delete one Image
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends ImageDeleteArgs>(args: SelectSubset<T, ImageDeleteArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ImageDeleteArgs>(
+      args: SelectSubset<T, ImageDeleteArgs<ExtArgs>>,
+    ): Prisma__ImageClient<
+      $Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one Image.
@@ -9975,9 +10785,16 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends ImageUpdateArgs>(args: SelectSubset<T, ImageUpdateArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ImageUpdateArgs>(
+      args: SelectSubset<T, ImageUpdateArgs<ExtArgs>>,
+    ): Prisma__ImageClient<
+      $Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "update", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more Images.
@@ -9989,9 +10806,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends ImageDeleteManyArgs>(args?: SelectSubset<T, ImageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ImageDeleteManyArgs>(
+      args?: SelectSubset<T, ImageDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Images.
@@ -10008,9 +10827,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends ImageUpdateManyArgs>(args: SelectSubset<T, ImageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ImageUpdateManyArgs>(
+      args: SelectSubset<T, ImageUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more Images and returns the data updated in the database.
@@ -10025,7 +10846,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Images and only return the `id`
      * const imageWithIdOnly = await prisma.image.updateManyAndReturn({
      *   select: { id: true },
@@ -10038,9 +10859,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends ImageUpdateManyAndReturnArgs>(args: SelectSubset<T, ImageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ImageUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, ImageUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Create or update one Image.
@@ -10059,8 +10884,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends ImageUpsertArgs>(args: SelectSubset<T, ImageUpsertArgs<ExtArgs>>): Prisma__ImageClient<$Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends ImageUpsertArgs>(
+      args: SelectSubset<T, ImageUpsertArgs<ExtArgs>>,
+    ): Prisma__ImageClient<
+      $Result.GetResult<Prisma.$ImagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of Images.
@@ -10074,16 +10905,16 @@ export namespace Prisma {
      *     // ... the filter for the Images we want to count
      *   }
      * })
-    **/
+     * */
     count<T extends ImageCountArgs>(
       args?: Subset<T, ImageCountArgs>,
     ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
+      T extends $Utils.Record<"select", any>
+        ? T["select"] extends true
           ? number
-          : GetScalarType<T['select'], ImageCountAggregateOutputType>
+          : GetScalarType<T["select"], ImageCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a Image.
@@ -10108,8 +10939,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends ImageAggregateArgs>(args: Subset<T, ImageAggregateArgs>): Prisma.PrismaPromise<GetImageAggregateType<T>>
+     * */
+    aggregate<T extends ImageAggregateArgs>(
+      args: Subset<T, ImageAggregateArgs>,
+    ): Prisma.PrismaPromise<GetImageAggregateType<T>>;
 
     /**
      * Group by Image.
@@ -10127,70 +10960,64 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     * */
     groupBy<
       T extends ImageGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
+      HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ImageGroupByArgs['orderBy'] }
-        : { orderBy?: ImageGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
+        ? { orderBy: ImageGroupByArgs["orderBy"] }
+        : { orderBy?: ImageGroupByArgs["orderBy"] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
+      ByFields extends MaybeTupleToUnion<T["by"]>,
       ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
+      HavingFields extends GetHavingFields<T["having"]>,
       HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
+      ByEmpty extends T["by"] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ImageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetImageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Image model
-   */
-  readonly fields: ImageFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [Error, "Field ", P, ` in "having" needs to be provided in "by"`];
+            }[HavingFields]
+          : "take" extends Keys<T>
+            ? "orderBy" extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : "skip" extends Keys<T>
+              ? "orderBy" extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, ImageGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors ? GetImageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the Image model
+     */
+    readonly fields: ImageFieldRefs;
   }
 
   /**
@@ -10199,43 +11026,56 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ImageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    carListing<T extends CarListingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CarListingDefaultArgs<ExtArgs>>): Prisma__CarListingClient<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  export interface Prisma__ImageClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    carListing<T extends CarListingDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, CarListingDefaultArgs<ExtArgs>>,
+    ): Prisma__CarListingClient<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the Image model
    */
   interface ImageFieldRefs {
-    readonly id: FieldRef<"Image", 'String'>
-    readonly listingId: FieldRef<"Image", 'String'>
-    readonly url: FieldRef<"Image", 'String'>
+    readonly id: FieldRef<"Image", "String">;
+    readonly listingId: FieldRef<"Image", "String">;
+    readonly url: FieldRef<"Image", "String">;
   }
-    
 
   // Custom InputTypes
   /**
@@ -10245,20 +11085,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelect<ExtArgs> | null
+    select?: ImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageInclude<ExtArgs> | null
+    include?: ImageInclude<ExtArgs> | null;
     /**
      * Filter, which Image to fetch.
      */
-    where: ImageWhereUniqueInput
-  }
+    where: ImageWhereUniqueInput;
+  };
 
   /**
    * Image findUniqueOrThrow
@@ -10267,20 +11107,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelect<ExtArgs> | null
+    select?: ImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageInclude<ExtArgs> | null
+    include?: ImageInclude<ExtArgs> | null;
     /**
      * Filter, which Image to fetch.
      */
-    where: ImageWhereUniqueInput
-  }
+    where: ImageWhereUniqueInput;
+  };
 
   /**
    * Image findFirst
@@ -10289,50 +11129,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelect<ExtArgs> | null
+    select?: ImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageInclude<ExtArgs> | null
+    include?: ImageInclude<ExtArgs> | null;
     /**
      * Filter, which Image to fetch.
      */
-    where?: ImageWhereInput
+    where?: ImageWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Images to fetch.
      */
-    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Images.
      */
-    cursor?: ImageWhereUniqueInput
+    cursor?: ImageWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Images from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Images.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Images.
      */
-    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[]
-  }
+    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[];
+  };
 
   /**
    * Image findFirstOrThrow
@@ -10341,50 +11181,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelect<ExtArgs> | null
+    select?: ImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageInclude<ExtArgs> | null
+    include?: ImageInclude<ExtArgs> | null;
     /**
      * Filter, which Image to fetch.
      */
-    where?: ImageWhereInput
+    where?: ImageWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Images to fetch.
      */
-    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Images.
      */
-    cursor?: ImageWhereUniqueInput
+    cursor?: ImageWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Images from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Images.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Images.
      */
-    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[]
-  }
+    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[];
+  };
 
   /**
    * Image findMany
@@ -10393,45 +11233,45 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelect<ExtArgs> | null
+    select?: ImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageInclude<ExtArgs> | null
+    include?: ImageInclude<ExtArgs> | null;
     /**
      * Filter, which Images to fetch.
      */
-    where?: ImageWhereInput
+    where?: ImageWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Images to fetch.
      */
-    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[]
+    orderBy?: ImageOrderByWithRelationInput | ImageOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Images.
      */
-    cursor?: ImageWhereUniqueInput
+    cursor?: ImageWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Images from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Images.
      */
-    skip?: number
-    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[]
-  }
+    skip?: number;
+    distinct?: ImageScalarFieldEnum | ImageScalarFieldEnum[];
+  };
 
   /**
    * Image create
@@ -10440,20 +11280,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelect<ExtArgs> | null
+    select?: ImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageInclude<ExtArgs> | null
+    include?: ImageInclude<ExtArgs> | null;
     /**
      * The data needed to create a Image.
      */
-    data: XOR<ImageCreateInput, ImageUncheckedCreateInput>
-  }
+    data: XOR<ImageCreateInput, ImageUncheckedCreateInput>;
+  };
 
   /**
    * Image createMany
@@ -10462,9 +11302,9 @@ export namespace Prisma {
     /**
      * The data used to create many Images.
      */
-    data: ImageCreateManyInput | ImageCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: ImageCreateManyInput | ImageCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * Image createManyAndReturn
@@ -10473,21 +11313,21 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelectCreateManyAndReturn<ExtArgs> | null
+    select?: ImageSelectCreateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * The data used to create many Images.
      */
-    data: ImageCreateManyInput | ImageCreateManyInput[]
-    skipDuplicates?: boolean
+    data: ImageCreateManyInput | ImageCreateManyInput[];
+    skipDuplicates?: boolean;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageIncludeCreateManyAndReturn<ExtArgs> | null
-  }
+    include?: ImageIncludeCreateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * Image update
@@ -10496,24 +11336,24 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelect<ExtArgs> | null
+    select?: ImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageInclude<ExtArgs> | null
+    include?: ImageInclude<ExtArgs> | null;
     /**
      * The data needed to update a Image.
      */
-    data: XOR<ImageUpdateInput, ImageUncheckedUpdateInput>
+    data: XOR<ImageUpdateInput, ImageUncheckedUpdateInput>;
     /**
      * Choose, which Image to update.
      */
-    where: ImageWhereUniqueInput
-  }
+    where: ImageWhereUniqueInput;
+  };
 
   /**
    * Image updateMany
@@ -10522,16 +11362,16 @@ export namespace Prisma {
     /**
      * The data used to update Images.
      */
-    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyInput>
+    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyInput>;
     /**
      * Filter which Images to update
      */
-    where?: ImageWhereInput
+    where?: ImageWhereInput;
     /**
      * Limit how many Images to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Image updateManyAndReturn
@@ -10540,28 +11380,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: ImageSelectUpdateManyAndReturn<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * The data used to update Images.
      */
-    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyInput>
+    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyInput>;
     /**
      * Filter which Images to update
      */
-    where?: ImageWhereInput
+    where?: ImageWhereInput;
     /**
      * Limit how many Images to update.
      */
-    limit?: number
+    limit?: number;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
+    include?: ImageIncludeUpdateManyAndReturn<ExtArgs> | null;
+  };
 
   /**
    * Image upsert
@@ -10570,28 +11410,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelect<ExtArgs> | null
+    select?: ImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageInclude<ExtArgs> | null
+    include?: ImageInclude<ExtArgs> | null;
     /**
      * The filter to search for the Image to update in case it exists.
      */
-    where: ImageWhereUniqueInput
+    where: ImageWhereUniqueInput;
     /**
      * In case the Image found by the `where` argument doesn't exist, create a new Image with this data.
      */
-    create: XOR<ImageCreateInput, ImageUncheckedCreateInput>
+    create: XOR<ImageCreateInput, ImageUncheckedCreateInput>;
     /**
      * In case the Image was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<ImageUpdateInput, ImageUncheckedUpdateInput>
-  }
+    update: XOR<ImageUpdateInput, ImageUncheckedUpdateInput>;
+  };
 
   /**
    * Image delete
@@ -10600,20 +11440,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelect<ExtArgs> | null
+    select?: ImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageInclude<ExtArgs> | null
+    include?: ImageInclude<ExtArgs> | null;
     /**
      * Filter which Image to delete.
      */
-    where: ImageWhereUniqueInput
-  }
+    where: ImageWhereUniqueInput;
+  };
 
   /**
    * Image deleteMany
@@ -10622,12 +11462,12 @@ export namespace Prisma {
     /**
      * Filter which Images to delete
      */
-    where?: ImageWhereInput
+    where?: ImageWhereInput;
     /**
      * Limit how many Images to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * Image without action
@@ -10636,280 +11476,306 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the Image
      */
-    select?: ImageSelect<ExtArgs> | null
+    select?: ImageSelect<ExtArgs> | null;
     /**
      * Omit specific fields from the Image
      */
-    omit?: ImageOmit<ExtArgs> | null
+    omit?: ImageOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: ImageInclude<ExtArgs> | null
-  }
-
+    include?: ImageInclude<ExtArgs> | null;
+  };
 
   /**
    * Model PriceHistory
    */
 
   export type AggregatePriceHistory = {
-    _count: PriceHistoryCountAggregateOutputType | null
-    _avg: PriceHistoryAvgAggregateOutputType | null
-    _sum: PriceHistorySumAggregateOutputType | null
-    _min: PriceHistoryMinAggregateOutputType | null
-    _max: PriceHistoryMaxAggregateOutputType | null
-  }
+    _count: PriceHistoryCountAggregateOutputType | null;
+    _avg: PriceHistoryAvgAggregateOutputType | null;
+    _sum: PriceHistorySumAggregateOutputType | null;
+    _min: PriceHistoryMinAggregateOutputType | null;
+    _max: PriceHistoryMaxAggregateOutputType | null;
+  };
 
   export type PriceHistoryAvgAggregateOutputType = {
-    price: Decimal | null
-  }
+    price: Decimal | null;
+  };
 
   export type PriceHistorySumAggregateOutputType = {
-    price: Decimal | null
-  }
+    price: Decimal | null;
+  };
 
   export type PriceHistoryMinAggregateOutputType = {
-    id: string | null
-    price: Decimal | null
-    priceCurrency: string | null
-    recordedAt: Date | null
-    listingId: string | null
-  }
+    id: string | null;
+    price: Decimal | null;
+    priceCurrency: string | null;
+    recordedAt: Date | null;
+    listingId: string | null;
+  };
 
   export type PriceHistoryMaxAggregateOutputType = {
-    id: string | null
-    price: Decimal | null
-    priceCurrency: string | null
-    recordedAt: Date | null
-    listingId: string | null
-  }
+    id: string | null;
+    price: Decimal | null;
+    priceCurrency: string | null;
+    recordedAt: Date | null;
+    listingId: string | null;
+  };
 
   export type PriceHistoryCountAggregateOutputType = {
-    id: number
-    price: number
-    priceCurrency: number
-    recordedAt: number
-    listingId: number
-    _all: number
-  }
-
+    id: number;
+    price: number;
+    priceCurrency: number;
+    recordedAt: number;
+    listingId: number;
+    _all: number;
+  };
 
   export type PriceHistoryAvgAggregateInputType = {
-    price?: true
-  }
+    price?: true;
+  };
 
   export type PriceHistorySumAggregateInputType = {
-    price?: true
-  }
+    price?: true;
+  };
 
   export type PriceHistoryMinAggregateInputType = {
-    id?: true
-    price?: true
-    priceCurrency?: true
-    recordedAt?: true
-    listingId?: true
-  }
+    id?: true;
+    price?: true;
+    priceCurrency?: true;
+    recordedAt?: true;
+    listingId?: true;
+  };
 
   export type PriceHistoryMaxAggregateInputType = {
-    id?: true
-    price?: true
-    priceCurrency?: true
-    recordedAt?: true
-    listingId?: true
-  }
+    id?: true;
+    price?: true;
+    priceCurrency?: true;
+    recordedAt?: true;
+    listingId?: true;
+  };
 
   export type PriceHistoryCountAggregateInputType = {
-    id?: true
-    price?: true
-    priceCurrency?: true
-    recordedAt?: true
-    listingId?: true
-    _all?: true
-  }
+    id?: true;
+    price?: true;
+    priceCurrency?: true;
+    recordedAt?: true;
+    listingId?: true;
+    _all?: true;
+  };
 
   export type PriceHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Filter which PriceHistory to aggregate.
      */
-    where?: PriceHistoryWhereInput
+    where?: PriceHistoryWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of PriceHistories to fetch.
      */
-    orderBy?: PriceHistoryOrderByWithRelationInput | PriceHistoryOrderByWithRelationInput[]
+    orderBy?: PriceHistoryOrderByWithRelationInput | PriceHistoryOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
-    cursor?: PriceHistoryWhereUniqueInput
+    cursor?: PriceHistoryWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` PriceHistories from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` PriceHistories.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned PriceHistories
-    **/
-    _count?: true | PriceHistoryCountAggregateInputType
+     * */
+    _count?: true | PriceHistoryCountAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to average
-    **/
-    _avg?: PriceHistoryAvgAggregateInputType
+     * */
+    _avg?: PriceHistoryAvgAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to sum
-    **/
-    _sum?: PriceHistorySumAggregateInputType
+     * */
+    _sum?: PriceHistorySumAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
-    _min?: PriceHistoryMinAggregateInputType
+     * */
+    _min?: PriceHistoryMinAggregateInputType;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
-    _max?: PriceHistoryMaxAggregateInputType
-  }
+     * */
+    _max?: PriceHistoryMaxAggregateInputType;
+  };
 
   export type GetPriceHistoryAggregateType<T extends PriceHistoryAggregateArgs> = {
-        [P in keyof T & keyof AggregatePriceHistory]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregatePriceHistory]: P extends "_count" | "count"
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregatePriceHistory[P]>
-      : GetScalarType<T[P], AggregatePriceHistory[P]>
-  }
-
-
-
+      : GetScalarType<T[P], AggregatePriceHistory[P]>;
+  };
 
   export type PriceHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PriceHistoryWhereInput
-    orderBy?: PriceHistoryOrderByWithAggregationInput | PriceHistoryOrderByWithAggregationInput[]
-    by: PriceHistoryScalarFieldEnum[] | PriceHistoryScalarFieldEnum
-    having?: PriceHistoryScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PriceHistoryCountAggregateInputType | true
-    _avg?: PriceHistoryAvgAggregateInputType
-    _sum?: PriceHistorySumAggregateInputType
-    _min?: PriceHistoryMinAggregateInputType
-    _max?: PriceHistoryMaxAggregateInputType
-  }
+    where?: PriceHistoryWhereInput;
+    orderBy?: PriceHistoryOrderByWithAggregationInput | PriceHistoryOrderByWithAggregationInput[];
+    by: PriceHistoryScalarFieldEnum[] | PriceHistoryScalarFieldEnum;
+    having?: PriceHistoryScalarWhereWithAggregatesInput;
+    take?: number;
+    skip?: number;
+    _count?: PriceHistoryCountAggregateInputType | true;
+    _avg?: PriceHistoryAvgAggregateInputType;
+    _sum?: PriceHistorySumAggregateInputType;
+    _min?: PriceHistoryMinAggregateInputType;
+    _max?: PriceHistoryMaxAggregateInputType;
+  };
 
   export type PriceHistoryGroupByOutputType = {
-    id: string
-    price: Decimal
-    priceCurrency: string
-    recordedAt: Date
-    listingId: string
-    _count: PriceHistoryCountAggregateOutputType | null
-    _avg: PriceHistoryAvgAggregateOutputType | null
-    _sum: PriceHistorySumAggregateOutputType | null
-    _min: PriceHistoryMinAggregateOutputType | null
-    _max: PriceHistoryMaxAggregateOutputType | null
-  }
+    id: string;
+    price: Decimal;
+    priceCurrency: string;
+    recordedAt: Date;
+    listingId: string;
+    _count: PriceHistoryCountAggregateOutputType | null;
+    _avg: PriceHistoryAvgAggregateOutputType | null;
+    _sum: PriceHistorySumAggregateOutputType | null;
+    _min: PriceHistoryMinAggregateOutputType | null;
+    _max: PriceHistoryMaxAggregateOutputType | null;
+  };
 
   type GetPriceHistoryGroupByPayload<T extends PriceHistoryGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<PriceHistoryGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PriceHistoryGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PriceHistoryGroupByOutputType[P]>
+      PickEnumerable<PriceHistoryGroupByOutputType, T["by"]> & {
+        [P in keyof T & keyof PriceHistoryGroupByOutputType]: P extends "_count"
+          ? T[P] extends boolean
+            ? number
             : GetScalarType<T[P], PriceHistoryGroupByOutputType[P]>
-        }
-      >
+          : GetScalarType<T[P], PriceHistoryGroupByOutputType[P]>;
+      }
     >
+  >;
 
+  export type PriceHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetSelect<
+      {
+        id?: boolean;
+        price?: boolean;
+        priceCurrency?: boolean;
+        recordedAt?: boolean;
+        listingId?: boolean;
+        carListing?: boolean | CarListingDefaultArgs<ExtArgs>;
+      },
+      ExtArgs["result"]["priceHistory"]
+    >;
 
-  export type PriceHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    price?: boolean
-    priceCurrency?: boolean
-    recordedAt?: boolean
-    listingId?: boolean
-    carListing?: boolean | CarListingDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["priceHistory"]>
+  export type PriceHistorySelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      price?: boolean;
+      priceCurrency?: boolean;
+      recordedAt?: boolean;
+      listingId?: boolean;
+      carListing?: boolean | CarListingDefaultArgs<ExtArgs>;
+    },
+    ExtArgs["result"]["priceHistory"]
+  >;
 
-  export type PriceHistorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    price?: boolean
-    priceCurrency?: boolean
-    recordedAt?: boolean
-    listingId?: boolean
-    carListing?: boolean | CarListingDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["priceHistory"]>
-
-  export type PriceHistorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    price?: boolean
-    priceCurrency?: boolean
-    recordedAt?: boolean
-    listingId?: boolean
-    carListing?: boolean | CarListingDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["priceHistory"]>
+  export type PriceHistorySelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      id?: boolean;
+      price?: boolean;
+      priceCurrency?: boolean;
+      recordedAt?: boolean;
+      listingId?: boolean;
+      carListing?: boolean | CarListingDefaultArgs<ExtArgs>;
+    },
+    ExtArgs["result"]["priceHistory"]
+  >;
 
   export type PriceHistorySelectScalar = {
-    id?: boolean
-    price?: boolean
-    priceCurrency?: boolean
-    recordedAt?: boolean
-    listingId?: boolean
-  }
+    id?: boolean;
+    price?: boolean;
+    priceCurrency?: boolean;
+    recordedAt?: boolean;
+    listingId?: boolean;
+  };
 
-  export type PriceHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "price" | "priceCurrency" | "recordedAt" | "listingId", ExtArgs["result"]["priceHistory"]>
+  export type PriceHistoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    $Extensions.GetOmit<
+      "id" | "price" | "priceCurrency" | "recordedAt" | "listingId",
+      ExtArgs["result"]["priceHistory"]
+    >;
   export type PriceHistoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    carListing?: boolean | CarListingDefaultArgs<ExtArgs>
-  }
-  export type PriceHistoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    carListing?: boolean | CarListingDefaultArgs<ExtArgs>
-  }
-  export type PriceHistoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    carListing?: boolean | CarListingDefaultArgs<ExtArgs>
-  }
+    carListing?: boolean | CarListingDefaultArgs<ExtArgs>;
+  };
+  export type PriceHistoryIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    carListing?: boolean | CarListingDefaultArgs<ExtArgs>;
+  };
+  export type PriceHistoryIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    carListing?: boolean | CarListingDefaultArgs<ExtArgs>;
+  };
 
   export type $PriceHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "PriceHistory"
+    name: "PriceHistory";
     objects: {
-      carListing: Prisma.$CarListingPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      price: Prisma.Decimal
-      priceCurrency: string
-      recordedAt: Date
-      listingId: string
-    }, ExtArgs["result"]["priceHistory"]>
-    composites: {}
-  }
+      carListing: Prisma.$CarListingPayload<ExtArgs>;
+    };
+    scalars: $Extensions.GetPayloadResult<
+      {
+        id: string;
+        price: Prisma.Decimal;
+        priceCurrency: string;
+        recordedAt: Date;
+        listingId: string;
+      },
+      ExtArgs["result"]["priceHistory"]
+    >;
+    composites: {};
+  };
 
-  type PriceHistoryGetPayload<S extends boolean | null | undefined | PriceHistoryDefaultArgs> = $Result.GetResult<Prisma.$PriceHistoryPayload, S>
+  type PriceHistoryGetPayload<S extends boolean | null | undefined | PriceHistoryDefaultArgs> = $Result.GetResult<
+    Prisma.$PriceHistoryPayload,
+    S
+  >;
 
-  type PriceHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PriceHistoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PriceHistoryCountAggregateInputType | true
-    }
+  type PriceHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = Omit<
+    PriceHistoryFindManyArgs,
+    "select" | "include" | "distinct" | "omit"
+  > & {
+    select?: PriceHistoryCountAggregateInputType | true;
+  };
 
-  export interface PriceHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PriceHistory'], meta: { name: 'PriceHistory' } }
+  export interface PriceHistoryDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>["model"]["PriceHistory"]; meta: { name: "PriceHistory" } };
     /**
      * Find zero or one PriceHistory that matches the filter.
      * @param {PriceHistoryFindUniqueArgs} args - Arguments to find a PriceHistory
@@ -10921,7 +11787,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends PriceHistoryFindUniqueArgs>(args: SelectSubset<T, PriceHistoryFindUniqueArgs<ExtArgs>>): Prisma__PriceHistoryClient<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends PriceHistoryFindUniqueArgs>(
+      args: SelectSubset<T, PriceHistoryFindUniqueArgs<ExtArgs>>,
+    ): Prisma__PriceHistoryClient<
+      $Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find one PriceHistory that matches the filter or throw an error with `error.code='P2025'`
@@ -10935,7 +11808,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends PriceHistoryFindUniqueOrThrowArgs>(args: SelectSubset<T, PriceHistoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PriceHistoryClient<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends PriceHistoryFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, PriceHistoryFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__PriceHistoryClient<
+      $Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first PriceHistory that matches the filter.
@@ -10950,7 +11830,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends PriceHistoryFindFirstArgs>(args?: SelectSubset<T, PriceHistoryFindFirstArgs<ExtArgs>>): Prisma__PriceHistoryClient<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends PriceHistoryFindFirstArgs>(
+      args?: SelectSubset<T, PriceHistoryFindFirstArgs<ExtArgs>>,
+    ): Prisma__PriceHistoryClient<
+      $Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find the first PriceHistory that matches the filter or
@@ -10966,7 +11853,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends PriceHistoryFindFirstOrThrowArgs>(args?: SelectSubset<T, PriceHistoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__PriceHistoryClient<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends PriceHistoryFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, PriceHistoryFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__PriceHistoryClient<
+      $Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Find zero or more PriceHistories that matches the filter.
@@ -10976,15 +11870,17 @@ export namespace Prisma {
      * @example
      * // Get all PriceHistories
      * const priceHistories = await prisma.priceHistory.findMany()
-     * 
+     *
      * // Get first 10 PriceHistories
      * const priceHistories = await prisma.priceHistory.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `id`
      * const priceHistoryWithIdOnly = await prisma.priceHistory.findMany({ select: { id: true } })
-     * 
+     *
      */
-    findMany<T extends PriceHistoryFindManyArgs>(args?: SelectSubset<T, PriceHistoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends PriceHistoryFindManyArgs>(
+      args?: SelectSubset<T, PriceHistoryFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>;
 
     /**
      * Create a PriceHistory.
@@ -10996,9 +11892,16 @@ export namespace Prisma {
      *     // ... data to create a PriceHistory
      *   }
      * })
-     * 
+     *
      */
-    create<T extends PriceHistoryCreateArgs>(args: SelectSubset<T, PriceHistoryCreateArgs<ExtArgs>>): Prisma__PriceHistoryClient<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends PriceHistoryCreateArgs>(
+      args: SelectSubset<T, PriceHistoryCreateArgs<ExtArgs>>,
+    ): Prisma__PriceHistoryClient<
+      $Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Create many PriceHistories.
@@ -11010,9 +11913,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends PriceHistoryCreateManyArgs>(args?: SelectSubset<T, PriceHistoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends PriceHistoryCreateManyArgs>(
+      args?: SelectSubset<T, PriceHistoryCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Create many PriceHistories and returns the data saved in the database.
@@ -11024,7 +11929,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many PriceHistories and only return the `id`
      * const priceHistoryWithIdOnly = await prisma.priceHistory.createManyAndReturn({
      *   select: { id: true },
@@ -11034,9 +11939,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends PriceHistoryCreateManyAndReturnArgs>(args?: SelectSubset<T, PriceHistoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends PriceHistoryCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, PriceHistoryCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Delete a PriceHistory.
@@ -11048,9 +11957,16 @@ export namespace Prisma {
      *     // ... filter to delete one PriceHistory
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends PriceHistoryDeleteArgs>(args: SelectSubset<T, PriceHistoryDeleteArgs<ExtArgs>>): Prisma__PriceHistoryClient<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends PriceHistoryDeleteArgs>(
+      args: SelectSubset<T, PriceHistoryDeleteArgs<ExtArgs>>,
+    ): Prisma__PriceHistoryClient<
+      $Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Update one PriceHistory.
@@ -11065,9 +11981,16 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends PriceHistoryUpdateArgs>(args: SelectSubset<T, PriceHistoryUpdateArgs<ExtArgs>>): Prisma__PriceHistoryClient<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends PriceHistoryUpdateArgs>(
+      args: SelectSubset<T, PriceHistoryUpdateArgs<ExtArgs>>,
+    ): Prisma__PriceHistoryClient<
+      $Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Delete zero or more PriceHistories.
@@ -11079,9 +12002,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends PriceHistoryDeleteManyArgs>(args?: SelectSubset<T, PriceHistoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends PriceHistoryDeleteManyArgs>(
+      args?: SelectSubset<T, PriceHistoryDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more PriceHistories.
@@ -11098,9 +12023,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends PriceHistoryUpdateManyArgs>(args: SelectSubset<T, PriceHistoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends PriceHistoryUpdateManyArgs>(
+      args: SelectSubset<T, PriceHistoryUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>;
 
     /**
      * Update zero or more PriceHistories and returns the data updated in the database.
@@ -11115,7 +12042,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more PriceHistories and only return the `id`
      * const priceHistoryWithIdOnly = await prisma.priceHistory.updateManyAndReturn({
      *   select: { id: true },
@@ -11128,9 +12055,13 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends PriceHistoryUpdateManyAndReturnArgs>(args: SelectSubset<T, PriceHistoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends PriceHistoryUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, PriceHistoryUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>
+    >;
 
     /**
      * Create or update one PriceHistory.
@@ -11149,8 +12080,14 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends PriceHistoryUpsertArgs>(args: SelectSubset<T, PriceHistoryUpsertArgs<ExtArgs>>): Prisma__PriceHistoryClient<$Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends PriceHistoryUpsertArgs>(
+      args: SelectSubset<T, PriceHistoryUpsertArgs<ExtArgs>>,
+    ): Prisma__PriceHistoryClient<
+      $Result.GetResult<Prisma.$PriceHistoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
 
     /**
      * Count the number of PriceHistories.
@@ -11164,16 +12101,16 @@ export namespace Prisma {
      *     // ... the filter for the PriceHistories we want to count
      *   }
      * })
-    **/
+     * */
     count<T extends PriceHistoryCountArgs>(
       args?: Subset<T, PriceHistoryCountArgs>,
     ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
+      T extends $Utils.Record<"select", any>
+        ? T["select"] extends true
           ? number
-          : GetScalarType<T['select'], PriceHistoryCountAggregateOutputType>
+          : GetScalarType<T["select"], PriceHistoryCountAggregateOutputType>
         : number
-    >
+    >;
 
     /**
      * Allows you to perform aggregations operations on a PriceHistory.
@@ -11198,8 +12135,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends PriceHistoryAggregateArgs>(args: Subset<T, PriceHistoryAggregateArgs>): Prisma.PrismaPromise<GetPriceHistoryAggregateType<T>>
+     * */
+    aggregate<T extends PriceHistoryAggregateArgs>(
+      args: Subset<T, PriceHistoryAggregateArgs>,
+    ): Prisma.PrismaPromise<GetPriceHistoryAggregateType<T>>;
 
     /**
      * Group by PriceHistory.
@@ -11217,70 +12156,64 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     * */
     groupBy<
       T extends PriceHistoryGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
+      HasSelectOrTake extends Or<Extends<"skip", Keys<T>>, Extends<"take", Keys<T>>>,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PriceHistoryGroupByArgs['orderBy'] }
-        : { orderBy?: PriceHistoryGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
+        ? { orderBy: PriceHistoryGroupByArgs["orderBy"] }
+        : { orderBy?: PriceHistoryGroupByArgs["orderBy"] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T["orderBy"]>>>,
+      ByFields extends MaybeTupleToUnion<T["by"]>,
       ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
+      HavingFields extends GetHavingFields<T["having"]>,
       HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
+      ByEmpty extends T["by"] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PriceHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPriceHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the PriceHistory model
-   */
-  readonly fields: PriceHistoryFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [Error, "Field ", P, ` in "having" needs to be provided in "by"`];
+            }[HavingFields]
+          : "take" extends Keys<T>
+            ? "orderBy" extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : "skip" extends Keys<T>
+              ? "orderBy" extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`;
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, PriceHistoryGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors ? GetPriceHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>;
+    /**
+     * Fields of the PriceHistory model
+     */
+    readonly fields: PriceHistoryFieldRefs;
   }
 
   /**
@@ -11289,45 +12222,58 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__PriceHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    carListing<T extends CarListingDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CarListingDefaultArgs<ExtArgs>>): Prisma__CarListingClient<$Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  export interface Prisma__PriceHistoryClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise";
+    carListing<T extends CarListingDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, CarListingDefaultArgs<ExtArgs>>,
+    ): Prisma__CarListingClient<
+      $Result.GetResult<Prisma.$CarListingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null,
+      onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>;
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null,
+    ): $Utils.JsPromise<T | TResult>;
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
      * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
      * @returns A Promise for the completion of the callback.
      */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
   }
-
-
-
 
   /**
    * Fields of the PriceHistory model
    */
   interface PriceHistoryFieldRefs {
-    readonly id: FieldRef<"PriceHistory", 'String'>
-    readonly price: FieldRef<"PriceHistory", 'Decimal'>
-    readonly priceCurrency: FieldRef<"PriceHistory", 'String'>
-    readonly recordedAt: FieldRef<"PriceHistory", 'DateTime'>
-    readonly listingId: FieldRef<"PriceHistory", 'String'>
+    readonly id: FieldRef<"PriceHistory", "String">;
+    readonly price: FieldRef<"PriceHistory", "Decimal">;
+    readonly priceCurrency: FieldRef<"PriceHistory", "String">;
+    readonly recordedAt: FieldRef<"PriceHistory", "DateTime">;
+    readonly listingId: FieldRef<"PriceHistory", "String">;
   }
-    
 
   // Custom InputTypes
   /**
@@ -11337,20 +12283,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the PriceHistory
      */
-    select?: PriceHistorySelect<ExtArgs> | null
+    select?: PriceHistorySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PriceHistory
      */
-    omit?: PriceHistoryOmit<ExtArgs> | null
+    omit?: PriceHistoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PriceHistoryInclude<ExtArgs> | null
+    include?: PriceHistoryInclude<ExtArgs> | null;
     /**
      * Filter, which PriceHistory to fetch.
      */
-    where: PriceHistoryWhereUniqueInput
-  }
+    where: PriceHistoryWhereUniqueInput;
+  };
 
   /**
    * PriceHistory findUniqueOrThrow
@@ -11359,20 +12305,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the PriceHistory
      */
-    select?: PriceHistorySelect<ExtArgs> | null
+    select?: PriceHistorySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PriceHistory
      */
-    omit?: PriceHistoryOmit<ExtArgs> | null
+    omit?: PriceHistoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PriceHistoryInclude<ExtArgs> | null
+    include?: PriceHistoryInclude<ExtArgs> | null;
     /**
      * Filter, which PriceHistory to fetch.
      */
-    where: PriceHistoryWhereUniqueInput
-  }
+    where: PriceHistoryWhereUniqueInput;
+  };
 
   /**
    * PriceHistory findFirst
@@ -11381,50 +12327,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the PriceHistory
      */
-    select?: PriceHistorySelect<ExtArgs> | null
+    select?: PriceHistorySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PriceHistory
      */
-    omit?: PriceHistoryOmit<ExtArgs> | null
+    omit?: PriceHistoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PriceHistoryInclude<ExtArgs> | null
+    include?: PriceHistoryInclude<ExtArgs> | null;
     /**
      * Filter, which PriceHistory to fetch.
      */
-    where?: PriceHistoryWhereInput
+    where?: PriceHistoryWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of PriceHistories to fetch.
      */
-    orderBy?: PriceHistoryOrderByWithRelationInput | PriceHistoryOrderByWithRelationInput[]
+    orderBy?: PriceHistoryOrderByWithRelationInput | PriceHistoryOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for PriceHistories.
      */
-    cursor?: PriceHistoryWhereUniqueInput
+    cursor?: PriceHistoryWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` PriceHistories from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` PriceHistories.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of PriceHistories.
      */
-    distinct?: PriceHistoryScalarFieldEnum | PriceHistoryScalarFieldEnum[]
-  }
+    distinct?: PriceHistoryScalarFieldEnum | PriceHistoryScalarFieldEnum[];
+  };
 
   /**
    * PriceHistory findFirstOrThrow
@@ -11433,50 +12379,50 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the PriceHistory
      */
-    select?: PriceHistorySelect<ExtArgs> | null
+    select?: PriceHistorySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PriceHistory
      */
-    omit?: PriceHistoryOmit<ExtArgs> | null
+    omit?: PriceHistoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PriceHistoryInclude<ExtArgs> | null
+    include?: PriceHistoryInclude<ExtArgs> | null;
     /**
      * Filter, which PriceHistory to fetch.
      */
-    where?: PriceHistoryWhereInput
+    where?: PriceHistoryWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of PriceHistories to fetch.
      */
-    orderBy?: PriceHistoryOrderByWithRelationInput | PriceHistoryOrderByWithRelationInput[]
+    orderBy?: PriceHistoryOrderByWithRelationInput | PriceHistoryOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for PriceHistories.
      */
-    cursor?: PriceHistoryWhereUniqueInput
+    cursor?: PriceHistoryWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` PriceHistories from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` PriceHistories.
      */
-    skip?: number
+    skip?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of PriceHistories.
      */
-    distinct?: PriceHistoryScalarFieldEnum | PriceHistoryScalarFieldEnum[]
-  }
+    distinct?: PriceHistoryScalarFieldEnum | PriceHistoryScalarFieldEnum[];
+  };
 
   /**
    * PriceHistory findMany
@@ -11485,45 +12431,45 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the PriceHistory
      */
-    select?: PriceHistorySelect<ExtArgs> | null
+    select?: PriceHistorySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PriceHistory
      */
-    omit?: PriceHistoryOmit<ExtArgs> | null
+    omit?: PriceHistoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PriceHistoryInclude<ExtArgs> | null
+    include?: PriceHistoryInclude<ExtArgs> | null;
     /**
      * Filter, which PriceHistories to fetch.
      */
-    where?: PriceHistoryWhereInput
+    where?: PriceHistoryWhereInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of PriceHistories to fetch.
      */
-    orderBy?: PriceHistoryOrderByWithRelationInput | PriceHistoryOrderByWithRelationInput[]
+    orderBy?: PriceHistoryOrderByWithRelationInput | PriceHistoryOrderByWithRelationInput[];
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing PriceHistories.
      */
-    cursor?: PriceHistoryWhereUniqueInput
+    cursor?: PriceHistoryWhereUniqueInput;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` PriceHistories from the position of the cursor.
      */
-    take?: number
+    take?: number;
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` PriceHistories.
      */
-    skip?: number
-    distinct?: PriceHistoryScalarFieldEnum | PriceHistoryScalarFieldEnum[]
-  }
+    skip?: number;
+    distinct?: PriceHistoryScalarFieldEnum | PriceHistoryScalarFieldEnum[];
+  };
 
   /**
    * PriceHistory create
@@ -11532,20 +12478,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the PriceHistory
      */
-    select?: PriceHistorySelect<ExtArgs> | null
+    select?: PriceHistorySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PriceHistory
      */
-    omit?: PriceHistoryOmit<ExtArgs> | null
+    omit?: PriceHistoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PriceHistoryInclude<ExtArgs> | null
+    include?: PriceHistoryInclude<ExtArgs> | null;
     /**
      * The data needed to create a PriceHistory.
      */
-    data: XOR<PriceHistoryCreateInput, PriceHistoryUncheckedCreateInput>
-  }
+    data: XOR<PriceHistoryCreateInput, PriceHistoryUncheckedCreateInput>;
+  };
 
   /**
    * PriceHistory createMany
@@ -11554,32 +12500,33 @@ export namespace Prisma {
     /**
      * The data used to create many PriceHistories.
      */
-    data: PriceHistoryCreateManyInput | PriceHistoryCreateManyInput[]
-    skipDuplicates?: boolean
-  }
+    data: PriceHistoryCreateManyInput | PriceHistoryCreateManyInput[];
+    skipDuplicates?: boolean;
+  };
 
   /**
    * PriceHistory createManyAndReturn
    */
-  export type PriceHistoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PriceHistory
-     */
-    select?: PriceHistorySelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the PriceHistory
-     */
-    omit?: PriceHistoryOmit<ExtArgs> | null
-    /**
-     * The data used to create many PriceHistories.
-     */
-    data: PriceHistoryCreateManyInput | PriceHistoryCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PriceHistoryIncludeCreateManyAndReturn<ExtArgs> | null
-  }
+  export type PriceHistoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    {
+      /**
+       * Select specific fields to fetch from the PriceHistory
+       */
+      select?: PriceHistorySelectCreateManyAndReturn<ExtArgs> | null;
+      /**
+       * Omit specific fields from the PriceHistory
+       */
+      omit?: PriceHistoryOmit<ExtArgs> | null;
+      /**
+       * The data used to create many PriceHistories.
+       */
+      data: PriceHistoryCreateManyInput | PriceHistoryCreateManyInput[];
+      skipDuplicates?: boolean;
+      /**
+       * Choose, which related nodes to fetch as well
+       */
+      include?: PriceHistoryIncludeCreateManyAndReturn<ExtArgs> | null;
+    };
 
   /**
    * PriceHistory update
@@ -11588,24 +12535,24 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the PriceHistory
      */
-    select?: PriceHistorySelect<ExtArgs> | null
+    select?: PriceHistorySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PriceHistory
      */
-    omit?: PriceHistoryOmit<ExtArgs> | null
+    omit?: PriceHistoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PriceHistoryInclude<ExtArgs> | null
+    include?: PriceHistoryInclude<ExtArgs> | null;
     /**
      * The data needed to update a PriceHistory.
      */
-    data: XOR<PriceHistoryUpdateInput, PriceHistoryUncheckedUpdateInput>
+    data: XOR<PriceHistoryUpdateInput, PriceHistoryUncheckedUpdateInput>;
     /**
      * Choose, which PriceHistory to update.
      */
-    where: PriceHistoryWhereUniqueInput
-  }
+    where: PriceHistoryWhereUniqueInput;
+  };
 
   /**
    * PriceHistory updateMany
@@ -11614,46 +12561,47 @@ export namespace Prisma {
     /**
      * The data used to update PriceHistories.
      */
-    data: XOR<PriceHistoryUpdateManyMutationInput, PriceHistoryUncheckedUpdateManyInput>
+    data: XOR<PriceHistoryUpdateManyMutationInput, PriceHistoryUncheckedUpdateManyInput>;
     /**
      * Filter which PriceHistories to update
      */
-    where?: PriceHistoryWhereInput
+    where?: PriceHistoryWhereInput;
     /**
      * Limit how many PriceHistories to update.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * PriceHistory updateManyAndReturn
    */
-  export type PriceHistoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PriceHistory
-     */
-    select?: PriceHistorySelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the PriceHistory
-     */
-    omit?: PriceHistoryOmit<ExtArgs> | null
-    /**
-     * The data used to update PriceHistories.
-     */
-    data: XOR<PriceHistoryUpdateManyMutationInput, PriceHistoryUncheckedUpdateManyInput>
-    /**
-     * Filter which PriceHistories to update
-     */
-    where?: PriceHistoryWhereInput
-    /**
-     * Limit how many PriceHistories to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PriceHistoryIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
+  export type PriceHistoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    {
+      /**
+       * Select specific fields to fetch from the PriceHistory
+       */
+      select?: PriceHistorySelectUpdateManyAndReturn<ExtArgs> | null;
+      /**
+       * Omit specific fields from the PriceHistory
+       */
+      omit?: PriceHistoryOmit<ExtArgs> | null;
+      /**
+       * The data used to update PriceHistories.
+       */
+      data: XOR<PriceHistoryUpdateManyMutationInput, PriceHistoryUncheckedUpdateManyInput>;
+      /**
+       * Filter which PriceHistories to update
+       */
+      where?: PriceHistoryWhereInput;
+      /**
+       * Limit how many PriceHistories to update.
+       */
+      limit?: number;
+      /**
+       * Choose, which related nodes to fetch as well
+       */
+      include?: PriceHistoryIncludeUpdateManyAndReturn<ExtArgs> | null;
+    };
 
   /**
    * PriceHistory upsert
@@ -11662,28 +12610,28 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the PriceHistory
      */
-    select?: PriceHistorySelect<ExtArgs> | null
+    select?: PriceHistorySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PriceHistory
      */
-    omit?: PriceHistoryOmit<ExtArgs> | null
+    omit?: PriceHistoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PriceHistoryInclude<ExtArgs> | null
+    include?: PriceHistoryInclude<ExtArgs> | null;
     /**
      * The filter to search for the PriceHistory to update in case it exists.
      */
-    where: PriceHistoryWhereUniqueInput
+    where: PriceHistoryWhereUniqueInput;
     /**
      * In case the PriceHistory found by the `where` argument doesn't exist, create a new PriceHistory with this data.
      */
-    create: XOR<PriceHistoryCreateInput, PriceHistoryUncheckedCreateInput>
+    create: XOR<PriceHistoryCreateInput, PriceHistoryUncheckedCreateInput>;
     /**
      * In case the PriceHistory was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<PriceHistoryUpdateInput, PriceHistoryUncheckedUpdateInput>
-  }
+    update: XOR<PriceHistoryUpdateInput, PriceHistoryUncheckedUpdateInput>;
+  };
 
   /**
    * PriceHistory delete
@@ -11692,20 +12640,20 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the PriceHistory
      */
-    select?: PriceHistorySelect<ExtArgs> | null
+    select?: PriceHistorySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PriceHistory
      */
-    omit?: PriceHistoryOmit<ExtArgs> | null
+    omit?: PriceHistoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PriceHistoryInclude<ExtArgs> | null
+    include?: PriceHistoryInclude<ExtArgs> | null;
     /**
      * Filter which PriceHistory to delete.
      */
-    where: PriceHistoryWhereUniqueInput
-  }
+    where: PriceHistoryWhereUniqueInput;
+  };
 
   /**
    * PriceHistory deleteMany
@@ -11714,12 +12662,12 @@ export namespace Prisma {
     /**
      * Filter which PriceHistories to delete
      */
-    where?: PriceHistoryWhereInput
+    where?: PriceHistoryWhereInput;
     /**
      * Limit how many PriceHistories to delete.
      */
-    limit?: number
-  }
+    limit?: number;
+  };
 
   /**
    * PriceHistory without action
@@ -11728,3759 +12676,3890 @@ export namespace Prisma {
     /**
      * Select specific fields to fetch from the PriceHistory
      */
-    select?: PriceHistorySelect<ExtArgs> | null
+    select?: PriceHistorySelect<ExtArgs> | null;
     /**
      * Omit specific fields from the PriceHistory
      */
-    omit?: PriceHistoryOmit<ExtArgs> | null
+    omit?: PriceHistoryOmit<ExtArgs> | null;
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PriceHistoryInclude<ExtArgs> | null
-  }
-
+    include?: PriceHistoryInclude<ExtArgs> | null;
+  };
 
   /**
    * Enums
    */
 
   export const TransactionIsolationLevel: {
-    ReadUncommitted: 'ReadUncommitted',
-    ReadCommitted: 'ReadCommitted',
-    RepeatableRead: 'RepeatableRead',
-    Serializable: 'Serializable'
+    ReadUncommitted: "ReadUncommitted";
+    ReadCommitted: "ReadCommitted";
+    RepeatableRead: "RepeatableRead";
+    Serializable: "Serializable";
   };
 
-  export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
-
+  export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel];
 
   export const BrandScalarFieldEnum: {
-    id: 'id',
-    name: 'name'
+    id: "id";
+    name: "name";
   };
 
-  export type BrandScalarFieldEnum = (typeof BrandScalarFieldEnum)[keyof typeof BrandScalarFieldEnum]
-
+  export type BrandScalarFieldEnum = (typeof BrandScalarFieldEnum)[keyof typeof BrandScalarFieldEnum];
 
   export const ModelScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    bodyType: 'bodyType',
-    brandId: 'brandId'
+    id: "id";
+    name: "name";
+    bodyType: "bodyType";
+    brandId: "brandId";
   };
 
-  export type ModelScalarFieldEnum = (typeof ModelScalarFieldEnum)[keyof typeof ModelScalarFieldEnum]
-
+  export type ModelScalarFieldEnum = (typeof ModelScalarFieldEnum)[keyof typeof ModelScalarFieldEnum];
 
   export const VersionScalarFieldEnum: {
-    id: 'id',
-    versionName: 'versionName',
-    year: 'year',
-    modelId: 'modelId'
+    id: "id";
+    versionName: "versionName";
+    year: "year";
+    modelId: "modelId";
   };
 
-  export type VersionScalarFieldEnum = (typeof VersionScalarFieldEnum)[keyof typeof VersionScalarFieldEnum]
-
+  export type VersionScalarFieldEnum = (typeof VersionScalarFieldEnum)[keyof typeof VersionScalarFieldEnum];
 
   export const TrimScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    motorSize: 'motorSize',
-    fuelType: 'fuelType',
-    transmissionType: 'transmissionType',
-    versionId: 'versionId'
+    id: "id";
+    name: "name";
+    motorSize: "motorSize";
+    fuelType: "fuelType";
+    transmissionType: "transmissionType";
+    versionId: "versionId";
   };
 
-  export type TrimScalarFieldEnum = (typeof TrimScalarFieldEnum)[keyof typeof TrimScalarFieldEnum]
-
+  export type TrimScalarFieldEnum = (typeof TrimScalarFieldEnum)[keyof typeof TrimScalarFieldEnum];
 
   export const SourceScalarFieldEnum: {
-    id: 'id',
-    baseUrl: 'baseUrl',
-    name: 'name'
+    id: "id";
+    baseUrl: "baseUrl";
+    name: "name";
   };
 
-  export type SourceScalarFieldEnum = (typeof SourceScalarFieldEnum)[keyof typeof SourceScalarFieldEnum]
-
+  export type SourceScalarFieldEnum = (typeof SourceScalarFieldEnum)[keyof typeof SourceScalarFieldEnum];
 
   export const SellerScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    email: 'email',
-    phone: 'phone',
-    type: 'type'
+    id: "id";
+    name: "name";
+    email: "email";
+    phone: "phone";
+    type: "type";
   };
 
-  export type SellerScalarFieldEnum = (typeof SellerScalarFieldEnum)[keyof typeof SellerScalarFieldEnum]
-
+  export type SellerScalarFieldEnum = (typeof SellerScalarFieldEnum)[keyof typeof SellerScalarFieldEnum];
 
   export const CarListingScalarFieldEnum: {
-    id: 'id',
-    sellerId: 'sellerId',
-    sourceId: 'sourceId',
-    url: 'url',
-    title: 'title',
-    description: 'description',
-    price: 'price',
-    priceCurrency: 'priceCurrency',
-    trimId: 'trimId',
-    year: 'year',
-    mileage: 'mileage',
-    exteriorColor: 'exteriorColor',
-    interiorColor: 'interiorColor',
-    isNew: 'isNew',
-    location: 'location',
-    publishedAt: 'publishedAt',
-    scrapedAt: 'scrapedAt'
+    id: "id";
+    sellerId: "sellerId";
+    sourceId: "sourceId";
+    url: "url";
+    title: "title";
+    description: "description";
+    price: "price";
+    priceCurrency: "priceCurrency";
+    trimId: "trimId";
+    year: "year";
+    mileage: "mileage";
+    exteriorColor: "exteriorColor";
+    interiorColor: "interiorColor";
+    isNew: "isNew";
+    location: "location";
+    publishedAt: "publishedAt";
+    scrapedAt: "scrapedAt";
   };
 
-  export type CarListingScalarFieldEnum = (typeof CarListingScalarFieldEnum)[keyof typeof CarListingScalarFieldEnum]
-
+  export type CarListingScalarFieldEnum = (typeof CarListingScalarFieldEnum)[keyof typeof CarListingScalarFieldEnum];
 
   export const ImageScalarFieldEnum: {
-    id: 'id',
-    listingId: 'listingId',
-    url: 'url'
+    id: "id";
+    listingId: "listingId";
+    url: "url";
   };
 
-  export type ImageScalarFieldEnum = (typeof ImageScalarFieldEnum)[keyof typeof ImageScalarFieldEnum]
-
+  export type ImageScalarFieldEnum = (typeof ImageScalarFieldEnum)[keyof typeof ImageScalarFieldEnum];
 
   export const PriceHistoryScalarFieldEnum: {
-    id: 'id',
-    price: 'price',
-    priceCurrency: 'priceCurrency',
-    recordedAt: 'recordedAt',
-    listingId: 'listingId'
+    id: "id";
+    price: "price";
+    priceCurrency: "priceCurrency";
+    recordedAt: "recordedAt";
+    listingId: "listingId";
   };
 
-  export type PriceHistoryScalarFieldEnum = (typeof PriceHistoryScalarFieldEnum)[keyof typeof PriceHistoryScalarFieldEnum]
-
+  export type PriceHistoryScalarFieldEnum =
+    (typeof PriceHistoryScalarFieldEnum)[keyof typeof PriceHistoryScalarFieldEnum];
 
   export const SortOrder: {
-    asc: 'asc',
-    desc: 'desc'
+    asc: "asc";
+    desc: "desc";
   };
 
-  export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
+  export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
 
   export const QueryMode: {
-    default: 'default',
-    insensitive: 'insensitive'
+    default: "default";
+    insensitive: "insensitive";
   };
 
-  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
 
   /**
    * Field references
    */
 
-
   /**
    * Reference to a field of type 'String'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
-    
-
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "String">;
 
   /**
    * Reference to a field of type 'String[]'
    */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
-    
-
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "String[]">;
 
   /**
    * Reference to a field of type 'Int'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "Int">;
 
   /**
    * Reference to a field of type 'Int[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "Int[]">;
 
   /**
    * Reference to a field of type 'Decimal'
    */
-  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
-    
-
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "Decimal">;
 
   /**
    * Reference to a field of type 'Decimal[]'
    */
-  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
-
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "Decimal[]">;
 
   /**
    * Reference to a field of type 'Boolean'
    */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "Boolean">;
 
   /**
    * Reference to a field of type 'DateTime'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "DateTime">;
 
   /**
    * Reference to a field of type 'DateTime[]'
    */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "DateTime[]">;
 
   /**
    * Reference to a field of type 'Float'
    */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "Float">;
 
   /**
    * Reference to a field of type 'Float[]'
    */
-  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, "Float[]">;
+
   /**
    * Deep Input Types
    */
 
-
   export type BrandWhereInput = {
-    AND?: BrandWhereInput | BrandWhereInput[]
-    OR?: BrandWhereInput[]
-    NOT?: BrandWhereInput | BrandWhereInput[]
-    id?: StringFilter<"Brand"> | string
-    name?: StringFilter<"Brand"> | string
-    models?: ModelListRelationFilter
-  }
+    AND?: BrandWhereInput | BrandWhereInput[];
+    OR?: BrandWhereInput[];
+    NOT?: BrandWhereInput | BrandWhereInput[];
+    id?: StringFilter<"Brand"> | string;
+    name?: StringFilter<"Brand"> | string;
+    models?: ModelListRelationFilter;
+  };
 
   export type BrandOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    models?: ModelOrderByRelationAggregateInput
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    models?: ModelOrderByRelationAggregateInput;
+  };
 
-  export type BrandWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: BrandWhereInput | BrandWhereInput[]
-    OR?: BrandWhereInput[]
-    NOT?: BrandWhereInput | BrandWhereInput[]
-    name?: StringFilter<"Brand"> | string
-    models?: ModelListRelationFilter
-  }, "id">
+  export type BrandWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: BrandWhereInput | BrandWhereInput[];
+      OR?: BrandWhereInput[];
+      NOT?: BrandWhereInput | BrandWhereInput[];
+      name?: StringFilter<"Brand"> | string;
+      models?: ModelListRelationFilter;
+    },
+    "id"
+  >;
 
   export type BrandOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    _count?: BrandCountOrderByAggregateInput
-    _max?: BrandMaxOrderByAggregateInput
-    _min?: BrandMinOrderByAggregateInput
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    _count?: BrandCountOrderByAggregateInput;
+    _max?: BrandMaxOrderByAggregateInput;
+    _min?: BrandMinOrderByAggregateInput;
+  };
 
   export type BrandScalarWhereWithAggregatesInput = {
-    AND?: BrandScalarWhereWithAggregatesInput | BrandScalarWhereWithAggregatesInput[]
-    OR?: BrandScalarWhereWithAggregatesInput[]
-    NOT?: BrandScalarWhereWithAggregatesInput | BrandScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Brand"> | string
-    name?: StringWithAggregatesFilter<"Brand"> | string
-  }
+    AND?: BrandScalarWhereWithAggregatesInput | BrandScalarWhereWithAggregatesInput[];
+    OR?: BrandScalarWhereWithAggregatesInput[];
+    NOT?: BrandScalarWhereWithAggregatesInput | BrandScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<"Brand"> | string;
+    name?: StringWithAggregatesFilter<"Brand"> | string;
+  };
 
   export type ModelWhereInput = {
-    AND?: ModelWhereInput | ModelWhereInput[]
-    OR?: ModelWhereInput[]
-    NOT?: ModelWhereInput | ModelWhereInput[]
-    id?: StringFilter<"Model"> | string
-    name?: StringFilter<"Model"> | string
-    bodyType?: StringFilter<"Model"> | string
-    brandId?: StringFilter<"Model"> | string
-    brand?: XOR<BrandScalarRelationFilter, BrandWhereInput>
-    versions?: VersionListRelationFilter
-  }
+    AND?: ModelWhereInput | ModelWhereInput[];
+    OR?: ModelWhereInput[];
+    NOT?: ModelWhereInput | ModelWhereInput[];
+    id?: StringFilter<"Model"> | string;
+    name?: StringFilter<"Model"> | string;
+    bodyType?: StringFilter<"Model"> | string;
+    brandId?: StringFilter<"Model"> | string;
+    brand?: XOR<BrandScalarRelationFilter, BrandWhereInput>;
+    versions?: VersionListRelationFilter;
+  };
 
   export type ModelOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    bodyType?: SortOrder
-    brandId?: SortOrder
-    brand?: BrandOrderByWithRelationInput
-    versions?: VersionOrderByRelationAggregateInput
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    bodyType?: SortOrder;
+    brandId?: SortOrder;
+    brand?: BrandOrderByWithRelationInput;
+    versions?: VersionOrderByRelationAggregateInput;
+  };
 
-  export type ModelWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: ModelWhereInput | ModelWhereInput[]
-    OR?: ModelWhereInput[]
-    NOT?: ModelWhereInput | ModelWhereInput[]
-    name?: StringFilter<"Model"> | string
-    bodyType?: StringFilter<"Model"> | string
-    brandId?: StringFilter<"Model"> | string
-    brand?: XOR<BrandScalarRelationFilter, BrandWhereInput>
-    versions?: VersionListRelationFilter
-  }, "id">
+  export type ModelWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: ModelWhereInput | ModelWhereInput[];
+      OR?: ModelWhereInput[];
+      NOT?: ModelWhereInput | ModelWhereInput[];
+      name?: StringFilter<"Model"> | string;
+      bodyType?: StringFilter<"Model"> | string;
+      brandId?: StringFilter<"Model"> | string;
+      brand?: XOR<BrandScalarRelationFilter, BrandWhereInput>;
+      versions?: VersionListRelationFilter;
+    },
+    "id"
+  >;
 
   export type ModelOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    bodyType?: SortOrder
-    brandId?: SortOrder
-    _count?: ModelCountOrderByAggregateInput
-    _max?: ModelMaxOrderByAggregateInput
-    _min?: ModelMinOrderByAggregateInput
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    bodyType?: SortOrder;
+    brandId?: SortOrder;
+    _count?: ModelCountOrderByAggregateInput;
+    _max?: ModelMaxOrderByAggregateInput;
+    _min?: ModelMinOrderByAggregateInput;
+  };
 
   export type ModelScalarWhereWithAggregatesInput = {
-    AND?: ModelScalarWhereWithAggregatesInput | ModelScalarWhereWithAggregatesInput[]
-    OR?: ModelScalarWhereWithAggregatesInput[]
-    NOT?: ModelScalarWhereWithAggregatesInput | ModelScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Model"> | string
-    name?: StringWithAggregatesFilter<"Model"> | string
-    bodyType?: StringWithAggregatesFilter<"Model"> | string
-    brandId?: StringWithAggregatesFilter<"Model"> | string
-  }
+    AND?: ModelScalarWhereWithAggregatesInput | ModelScalarWhereWithAggregatesInput[];
+    OR?: ModelScalarWhereWithAggregatesInput[];
+    NOT?: ModelScalarWhereWithAggregatesInput | ModelScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<"Model"> | string;
+    name?: StringWithAggregatesFilter<"Model"> | string;
+    bodyType?: StringWithAggregatesFilter<"Model"> | string;
+    brandId?: StringWithAggregatesFilter<"Model"> | string;
+  };
 
   export type VersionWhereInput = {
-    AND?: VersionWhereInput | VersionWhereInput[]
-    OR?: VersionWhereInput[]
-    NOT?: VersionWhereInput | VersionWhereInput[]
-    id?: StringFilter<"Version"> | string
-    versionName?: StringFilter<"Version"> | string
-    year?: IntFilter<"Version"> | number
-    modelId?: StringFilter<"Version"> | string
-    model?: XOR<ModelScalarRelationFilter, ModelWhereInput>
-    trims?: TrimListRelationFilter
-  }
+    AND?: VersionWhereInput | VersionWhereInput[];
+    OR?: VersionWhereInput[];
+    NOT?: VersionWhereInput | VersionWhereInput[];
+    id?: StringFilter<"Version"> | string;
+    versionName?: StringFilter<"Version"> | string;
+    year?: IntFilter<"Version"> | number;
+    modelId?: StringFilter<"Version"> | string;
+    model?: XOR<ModelScalarRelationFilter, ModelWhereInput>;
+    trims?: TrimListRelationFilter;
+  };
 
   export type VersionOrderByWithRelationInput = {
-    id?: SortOrder
-    versionName?: SortOrder
-    year?: SortOrder
-    modelId?: SortOrder
-    model?: ModelOrderByWithRelationInput
-    trims?: TrimOrderByRelationAggregateInput
-  }
+    id?: SortOrder;
+    versionName?: SortOrder;
+    year?: SortOrder;
+    modelId?: SortOrder;
+    model?: ModelOrderByWithRelationInput;
+    trims?: TrimOrderByRelationAggregateInput;
+  };
 
-  export type VersionWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: VersionWhereInput | VersionWhereInput[]
-    OR?: VersionWhereInput[]
-    NOT?: VersionWhereInput | VersionWhereInput[]
-    versionName?: StringFilter<"Version"> | string
-    year?: IntFilter<"Version"> | number
-    modelId?: StringFilter<"Version"> | string
-    model?: XOR<ModelScalarRelationFilter, ModelWhereInput>
-    trims?: TrimListRelationFilter
-  }, "id">
+  export type VersionWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: VersionWhereInput | VersionWhereInput[];
+      OR?: VersionWhereInput[];
+      NOT?: VersionWhereInput | VersionWhereInput[];
+      versionName?: StringFilter<"Version"> | string;
+      year?: IntFilter<"Version"> | number;
+      modelId?: StringFilter<"Version"> | string;
+      model?: XOR<ModelScalarRelationFilter, ModelWhereInput>;
+      trims?: TrimListRelationFilter;
+    },
+    "id"
+  >;
 
   export type VersionOrderByWithAggregationInput = {
-    id?: SortOrder
-    versionName?: SortOrder
-    year?: SortOrder
-    modelId?: SortOrder
-    _count?: VersionCountOrderByAggregateInput
-    _avg?: VersionAvgOrderByAggregateInput
-    _max?: VersionMaxOrderByAggregateInput
-    _min?: VersionMinOrderByAggregateInput
-    _sum?: VersionSumOrderByAggregateInput
-  }
+    id?: SortOrder;
+    versionName?: SortOrder;
+    year?: SortOrder;
+    modelId?: SortOrder;
+    _count?: VersionCountOrderByAggregateInput;
+    _avg?: VersionAvgOrderByAggregateInput;
+    _max?: VersionMaxOrderByAggregateInput;
+    _min?: VersionMinOrderByAggregateInput;
+    _sum?: VersionSumOrderByAggregateInput;
+  };
 
   export type VersionScalarWhereWithAggregatesInput = {
-    AND?: VersionScalarWhereWithAggregatesInput | VersionScalarWhereWithAggregatesInput[]
-    OR?: VersionScalarWhereWithAggregatesInput[]
-    NOT?: VersionScalarWhereWithAggregatesInput | VersionScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Version"> | string
-    versionName?: StringWithAggregatesFilter<"Version"> | string
-    year?: IntWithAggregatesFilter<"Version"> | number
-    modelId?: StringWithAggregatesFilter<"Version"> | string
-  }
+    AND?: VersionScalarWhereWithAggregatesInput | VersionScalarWhereWithAggregatesInput[];
+    OR?: VersionScalarWhereWithAggregatesInput[];
+    NOT?: VersionScalarWhereWithAggregatesInput | VersionScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<"Version"> | string;
+    versionName?: StringWithAggregatesFilter<"Version"> | string;
+    year?: IntWithAggregatesFilter<"Version"> | number;
+    modelId?: StringWithAggregatesFilter<"Version"> | string;
+  };
 
   export type TrimWhereInput = {
-    AND?: TrimWhereInput | TrimWhereInput[]
-    OR?: TrimWhereInput[]
-    NOT?: TrimWhereInput | TrimWhereInput[]
-    id?: StringFilter<"Trim"> | string
-    name?: StringFilter<"Trim"> | string
-    motorSize?: IntFilter<"Trim"> | number
-    fuelType?: StringFilter<"Trim"> | string
-    transmissionType?: StringFilter<"Trim"> | string
-    versionId?: StringFilter<"Trim"> | string
-    version?: XOR<VersionScalarRelationFilter, VersionWhereInput>
-    carListings?: CarListingListRelationFilter
-  }
+    AND?: TrimWhereInput | TrimWhereInput[];
+    OR?: TrimWhereInput[];
+    NOT?: TrimWhereInput | TrimWhereInput[];
+    id?: StringFilter<"Trim"> | string;
+    name?: StringFilter<"Trim"> | string;
+    motorSize?: IntFilter<"Trim"> | number;
+    fuelType?: StringFilter<"Trim"> | string;
+    transmissionType?: StringFilter<"Trim"> | string;
+    versionId?: StringFilter<"Trim"> | string;
+    version?: XOR<VersionScalarRelationFilter, VersionWhereInput>;
+    carListings?: CarListingListRelationFilter;
+  };
 
   export type TrimOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    motorSize?: SortOrder
-    fuelType?: SortOrder
-    transmissionType?: SortOrder
-    versionId?: SortOrder
-    version?: VersionOrderByWithRelationInput
-    carListings?: CarListingOrderByRelationAggregateInput
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    motorSize?: SortOrder;
+    fuelType?: SortOrder;
+    transmissionType?: SortOrder;
+    versionId?: SortOrder;
+    version?: VersionOrderByWithRelationInput;
+    carListings?: CarListingOrderByRelationAggregateInput;
+  };
 
-  export type TrimWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: TrimWhereInput | TrimWhereInput[]
-    OR?: TrimWhereInput[]
-    NOT?: TrimWhereInput | TrimWhereInput[]
-    name?: StringFilter<"Trim"> | string
-    motorSize?: IntFilter<"Trim"> | number
-    fuelType?: StringFilter<"Trim"> | string
-    transmissionType?: StringFilter<"Trim"> | string
-    versionId?: StringFilter<"Trim"> | string
-    version?: XOR<VersionScalarRelationFilter, VersionWhereInput>
-    carListings?: CarListingListRelationFilter
-  }, "id">
+  export type TrimWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: TrimWhereInput | TrimWhereInput[];
+      OR?: TrimWhereInput[];
+      NOT?: TrimWhereInput | TrimWhereInput[];
+      name?: StringFilter<"Trim"> | string;
+      motorSize?: IntFilter<"Trim"> | number;
+      fuelType?: StringFilter<"Trim"> | string;
+      transmissionType?: StringFilter<"Trim"> | string;
+      versionId?: StringFilter<"Trim"> | string;
+      version?: XOR<VersionScalarRelationFilter, VersionWhereInput>;
+      carListings?: CarListingListRelationFilter;
+    },
+    "id"
+  >;
 
   export type TrimOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    motorSize?: SortOrder
-    fuelType?: SortOrder
-    transmissionType?: SortOrder
-    versionId?: SortOrder
-    _count?: TrimCountOrderByAggregateInput
-    _avg?: TrimAvgOrderByAggregateInput
-    _max?: TrimMaxOrderByAggregateInput
-    _min?: TrimMinOrderByAggregateInput
-    _sum?: TrimSumOrderByAggregateInput
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    motorSize?: SortOrder;
+    fuelType?: SortOrder;
+    transmissionType?: SortOrder;
+    versionId?: SortOrder;
+    _count?: TrimCountOrderByAggregateInput;
+    _avg?: TrimAvgOrderByAggregateInput;
+    _max?: TrimMaxOrderByAggregateInput;
+    _min?: TrimMinOrderByAggregateInput;
+    _sum?: TrimSumOrderByAggregateInput;
+  };
 
   export type TrimScalarWhereWithAggregatesInput = {
-    AND?: TrimScalarWhereWithAggregatesInput | TrimScalarWhereWithAggregatesInput[]
-    OR?: TrimScalarWhereWithAggregatesInput[]
-    NOT?: TrimScalarWhereWithAggregatesInput | TrimScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Trim"> | string
-    name?: StringWithAggregatesFilter<"Trim"> | string
-    motorSize?: IntWithAggregatesFilter<"Trim"> | number
-    fuelType?: StringWithAggregatesFilter<"Trim"> | string
-    transmissionType?: StringWithAggregatesFilter<"Trim"> | string
-    versionId?: StringWithAggregatesFilter<"Trim"> | string
-  }
+    AND?: TrimScalarWhereWithAggregatesInput | TrimScalarWhereWithAggregatesInput[];
+    OR?: TrimScalarWhereWithAggregatesInput[];
+    NOT?: TrimScalarWhereWithAggregatesInput | TrimScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<"Trim"> | string;
+    name?: StringWithAggregatesFilter<"Trim"> | string;
+    motorSize?: IntWithAggregatesFilter<"Trim"> | number;
+    fuelType?: StringWithAggregatesFilter<"Trim"> | string;
+    transmissionType?: StringWithAggregatesFilter<"Trim"> | string;
+    versionId?: StringWithAggregatesFilter<"Trim"> | string;
+  };
 
   export type SourceWhereInput = {
-    AND?: SourceWhereInput | SourceWhereInput[]
-    OR?: SourceWhereInput[]
-    NOT?: SourceWhereInput | SourceWhereInput[]
-    id?: StringFilter<"Source"> | string
-    baseUrl?: StringFilter<"Source"> | string
-    name?: StringFilter<"Source"> | string
-    carListings?: CarListingListRelationFilter
-  }
+    AND?: SourceWhereInput | SourceWhereInput[];
+    OR?: SourceWhereInput[];
+    NOT?: SourceWhereInput | SourceWhereInput[];
+    id?: StringFilter<"Source"> | string;
+    baseUrl?: StringFilter<"Source"> | string;
+    name?: StringFilter<"Source"> | string;
+    carListings?: CarListingListRelationFilter;
+  };
 
   export type SourceOrderByWithRelationInput = {
-    id?: SortOrder
-    baseUrl?: SortOrder
-    name?: SortOrder
-    carListings?: CarListingOrderByRelationAggregateInput
-  }
+    id?: SortOrder;
+    baseUrl?: SortOrder;
+    name?: SortOrder;
+    carListings?: CarListingOrderByRelationAggregateInput;
+  };
 
-  export type SourceWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: SourceWhereInput | SourceWhereInput[]
-    OR?: SourceWhereInput[]
-    NOT?: SourceWhereInput | SourceWhereInput[]
-    baseUrl?: StringFilter<"Source"> | string
-    name?: StringFilter<"Source"> | string
-    carListings?: CarListingListRelationFilter
-  }, "id">
+  export type SourceWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: SourceWhereInput | SourceWhereInput[];
+      OR?: SourceWhereInput[];
+      NOT?: SourceWhereInput | SourceWhereInput[];
+      baseUrl?: StringFilter<"Source"> | string;
+      name?: StringFilter<"Source"> | string;
+      carListings?: CarListingListRelationFilter;
+    },
+    "id"
+  >;
 
   export type SourceOrderByWithAggregationInput = {
-    id?: SortOrder
-    baseUrl?: SortOrder
-    name?: SortOrder
-    _count?: SourceCountOrderByAggregateInput
-    _max?: SourceMaxOrderByAggregateInput
-    _min?: SourceMinOrderByAggregateInput
-  }
+    id?: SortOrder;
+    baseUrl?: SortOrder;
+    name?: SortOrder;
+    _count?: SourceCountOrderByAggregateInput;
+    _max?: SourceMaxOrderByAggregateInput;
+    _min?: SourceMinOrderByAggregateInput;
+  };
 
   export type SourceScalarWhereWithAggregatesInput = {
-    AND?: SourceScalarWhereWithAggregatesInput | SourceScalarWhereWithAggregatesInput[]
-    OR?: SourceScalarWhereWithAggregatesInput[]
-    NOT?: SourceScalarWhereWithAggregatesInput | SourceScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Source"> | string
-    baseUrl?: StringWithAggregatesFilter<"Source"> | string
-    name?: StringWithAggregatesFilter<"Source"> | string
-  }
+    AND?: SourceScalarWhereWithAggregatesInput | SourceScalarWhereWithAggregatesInput[];
+    OR?: SourceScalarWhereWithAggregatesInput[];
+    NOT?: SourceScalarWhereWithAggregatesInput | SourceScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<"Source"> | string;
+    baseUrl?: StringWithAggregatesFilter<"Source"> | string;
+    name?: StringWithAggregatesFilter<"Source"> | string;
+  };
 
   export type SellerWhereInput = {
-    AND?: SellerWhereInput | SellerWhereInput[]
-    OR?: SellerWhereInput[]
-    NOT?: SellerWhereInput | SellerWhereInput[]
-    id?: StringFilter<"Seller"> | string
-    name?: StringFilter<"Seller"> | string
-    email?: StringFilter<"Seller"> | string
-    phone?: StringFilter<"Seller"> | string
-    type?: StringFilter<"Seller"> | string
-    carListings?: CarListingListRelationFilter
-  }
+    AND?: SellerWhereInput | SellerWhereInput[];
+    OR?: SellerWhereInput[];
+    NOT?: SellerWhereInput | SellerWhereInput[];
+    id?: StringFilter<"Seller"> | string;
+    name?: StringFilter<"Seller"> | string;
+    email?: StringFilter<"Seller"> | string;
+    phone?: StringFilter<"Seller"> | string;
+    type?: StringFilter<"Seller"> | string;
+    carListings?: CarListingListRelationFilter;
+  };
 
   export type SellerOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    type?: SortOrder
-    carListings?: CarListingOrderByRelationAggregateInput
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    email?: SortOrder;
+    phone?: SortOrder;
+    type?: SortOrder;
+    carListings?: CarListingOrderByRelationAggregateInput;
+  };
 
-  export type SellerWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: SellerWhereInput | SellerWhereInput[]
-    OR?: SellerWhereInput[]
-    NOT?: SellerWhereInput | SellerWhereInput[]
-    name?: StringFilter<"Seller"> | string
-    email?: StringFilter<"Seller"> | string
-    phone?: StringFilter<"Seller"> | string
-    type?: StringFilter<"Seller"> | string
-    carListings?: CarListingListRelationFilter
-  }, "id">
+  export type SellerWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: SellerWhereInput | SellerWhereInput[];
+      OR?: SellerWhereInput[];
+      NOT?: SellerWhereInput | SellerWhereInput[];
+      name?: StringFilter<"Seller"> | string;
+      email?: StringFilter<"Seller"> | string;
+      phone?: StringFilter<"Seller"> | string;
+      type?: StringFilter<"Seller"> | string;
+      carListings?: CarListingListRelationFilter;
+    },
+    "id"
+  >;
 
   export type SellerOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    type?: SortOrder
-    _count?: SellerCountOrderByAggregateInput
-    _max?: SellerMaxOrderByAggregateInput
-    _min?: SellerMinOrderByAggregateInput
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    email?: SortOrder;
+    phone?: SortOrder;
+    type?: SortOrder;
+    _count?: SellerCountOrderByAggregateInput;
+    _max?: SellerMaxOrderByAggregateInput;
+    _min?: SellerMinOrderByAggregateInput;
+  };
 
   export type SellerScalarWhereWithAggregatesInput = {
-    AND?: SellerScalarWhereWithAggregatesInput | SellerScalarWhereWithAggregatesInput[]
-    OR?: SellerScalarWhereWithAggregatesInput[]
-    NOT?: SellerScalarWhereWithAggregatesInput | SellerScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Seller"> | string
-    name?: StringWithAggregatesFilter<"Seller"> | string
-    email?: StringWithAggregatesFilter<"Seller"> | string
-    phone?: StringWithAggregatesFilter<"Seller"> | string
-    type?: StringWithAggregatesFilter<"Seller"> | string
-  }
+    AND?: SellerScalarWhereWithAggregatesInput | SellerScalarWhereWithAggregatesInput[];
+    OR?: SellerScalarWhereWithAggregatesInput[];
+    NOT?: SellerScalarWhereWithAggregatesInput | SellerScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<"Seller"> | string;
+    name?: StringWithAggregatesFilter<"Seller"> | string;
+    email?: StringWithAggregatesFilter<"Seller"> | string;
+    phone?: StringWithAggregatesFilter<"Seller"> | string;
+    type?: StringWithAggregatesFilter<"Seller"> | string;
+  };
 
   export type CarListingWhereInput = {
-    AND?: CarListingWhereInput | CarListingWhereInput[]
-    OR?: CarListingWhereInput[]
-    NOT?: CarListingWhereInput | CarListingWhereInput[]
-    id?: StringFilter<"CarListing"> | string
-    sellerId?: StringFilter<"CarListing"> | string
-    sourceId?: StringFilter<"CarListing"> | string
-    url?: StringFilter<"CarListing"> | string
-    title?: StringFilter<"CarListing"> | string
-    description?: StringFilter<"CarListing"> | string
-    price?: DecimalFilter<"CarListing"> | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFilter<"CarListing"> | string
-    trimId?: StringFilter<"CarListing"> | string
-    year?: IntFilter<"CarListing"> | number
-    mileage?: IntFilter<"CarListing"> | number
-    exteriorColor?: StringFilter<"CarListing"> | string
-    interiorColor?: StringFilter<"CarListing"> | string
-    isNew?: BoolFilter<"CarListing"> | boolean
-    location?: StringFilter<"CarListing"> | string
-    publishedAt?: DateTimeFilter<"CarListing"> | Date | string
-    scrapedAt?: DateTimeFilter<"CarListing"> | Date | string
-    seller?: XOR<SellerScalarRelationFilter, SellerWhereInput>
-    source?: XOR<SourceScalarRelationFilter, SourceWhereInput>
-    trim?: XOR<TrimScalarRelationFilter, TrimWhereInput>
-    images?: ImageListRelationFilter
-    priceHistory?: PriceHistoryListRelationFilter
-  }
+    AND?: CarListingWhereInput | CarListingWhereInput[];
+    OR?: CarListingWhereInput[];
+    NOT?: CarListingWhereInput | CarListingWhereInput[];
+    id?: StringFilter<"CarListing"> | string;
+    sellerId?: StringFilter<"CarListing"> | string;
+    sourceId?: StringFilter<"CarListing"> | string;
+    url?: StringFilter<"CarListing"> | string;
+    title?: StringFilter<"CarListing"> | string;
+    description?: StringFilter<"CarListing"> | string;
+    price?: DecimalFilter<"CarListing"> | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFilter<"CarListing"> | string;
+    trimId?: StringFilter<"CarListing"> | string;
+    year?: IntFilter<"CarListing"> | number;
+    mileage?: IntFilter<"CarListing"> | number;
+    exteriorColor?: StringFilter<"CarListing"> | string;
+    interiorColor?: StringFilter<"CarListing"> | string;
+    isNew?: BoolFilter<"CarListing"> | boolean;
+    location?: StringFilter<"CarListing"> | string;
+    publishedAt?: DateTimeFilter<"CarListing"> | Date | string;
+    scrapedAt?: DateTimeFilter<"CarListing"> | Date | string;
+    seller?: XOR<SellerScalarRelationFilter, SellerWhereInput>;
+    source?: XOR<SourceScalarRelationFilter, SourceWhereInput>;
+    trim?: XOR<TrimScalarRelationFilter, TrimWhereInput>;
+    images?: ImageListRelationFilter;
+    priceHistory?: PriceHistoryListRelationFilter;
+  };
 
   export type CarListingOrderByWithRelationInput = {
-    id?: SortOrder
-    sellerId?: SortOrder
-    sourceId?: SortOrder
-    url?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    price?: SortOrder
-    priceCurrency?: SortOrder
-    trimId?: SortOrder
-    year?: SortOrder
-    mileage?: SortOrder
-    exteriorColor?: SortOrder
-    interiorColor?: SortOrder
-    isNew?: SortOrder
-    location?: SortOrder
-    publishedAt?: SortOrder
-    scrapedAt?: SortOrder
-    seller?: SellerOrderByWithRelationInput
-    source?: SourceOrderByWithRelationInput
-    trim?: TrimOrderByWithRelationInput
-    images?: ImageOrderByRelationAggregateInput
-    priceHistory?: PriceHistoryOrderByRelationAggregateInput
-  }
+    id?: SortOrder;
+    sellerId?: SortOrder;
+    sourceId?: SortOrder;
+    url?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    price?: SortOrder;
+    priceCurrency?: SortOrder;
+    trimId?: SortOrder;
+    year?: SortOrder;
+    mileage?: SortOrder;
+    exteriorColor?: SortOrder;
+    interiorColor?: SortOrder;
+    isNew?: SortOrder;
+    location?: SortOrder;
+    publishedAt?: SortOrder;
+    scrapedAt?: SortOrder;
+    seller?: SellerOrderByWithRelationInput;
+    source?: SourceOrderByWithRelationInput;
+    trim?: TrimOrderByWithRelationInput;
+    images?: ImageOrderByRelationAggregateInput;
+    priceHistory?: PriceHistoryOrderByRelationAggregateInput;
+  };
 
-  export type CarListingWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: CarListingWhereInput | CarListingWhereInput[]
-    OR?: CarListingWhereInput[]
-    NOT?: CarListingWhereInput | CarListingWhereInput[]
-    sellerId?: StringFilter<"CarListing"> | string
-    sourceId?: StringFilter<"CarListing"> | string
-    url?: StringFilter<"CarListing"> | string
-    title?: StringFilter<"CarListing"> | string
-    description?: StringFilter<"CarListing"> | string
-    price?: DecimalFilter<"CarListing"> | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFilter<"CarListing"> | string
-    trimId?: StringFilter<"CarListing"> | string
-    year?: IntFilter<"CarListing"> | number
-    mileage?: IntFilter<"CarListing"> | number
-    exteriorColor?: StringFilter<"CarListing"> | string
-    interiorColor?: StringFilter<"CarListing"> | string
-    isNew?: BoolFilter<"CarListing"> | boolean
-    location?: StringFilter<"CarListing"> | string
-    publishedAt?: DateTimeFilter<"CarListing"> | Date | string
-    scrapedAt?: DateTimeFilter<"CarListing"> | Date | string
-    seller?: XOR<SellerScalarRelationFilter, SellerWhereInput>
-    source?: XOR<SourceScalarRelationFilter, SourceWhereInput>
-    trim?: XOR<TrimScalarRelationFilter, TrimWhereInput>
-    images?: ImageListRelationFilter
-    priceHistory?: PriceHistoryListRelationFilter
-  }, "id">
+  export type CarListingWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: CarListingWhereInput | CarListingWhereInput[];
+      OR?: CarListingWhereInput[];
+      NOT?: CarListingWhereInput | CarListingWhereInput[];
+      sellerId?: StringFilter<"CarListing"> | string;
+      sourceId?: StringFilter<"CarListing"> | string;
+      url?: StringFilter<"CarListing"> | string;
+      title?: StringFilter<"CarListing"> | string;
+      description?: StringFilter<"CarListing"> | string;
+      price?: DecimalFilter<"CarListing"> | Decimal | DecimalJsLike | number | string;
+      priceCurrency?: StringFilter<"CarListing"> | string;
+      trimId?: StringFilter<"CarListing"> | string;
+      year?: IntFilter<"CarListing"> | number;
+      mileage?: IntFilter<"CarListing"> | number;
+      exteriorColor?: StringFilter<"CarListing"> | string;
+      interiorColor?: StringFilter<"CarListing"> | string;
+      isNew?: BoolFilter<"CarListing"> | boolean;
+      location?: StringFilter<"CarListing"> | string;
+      publishedAt?: DateTimeFilter<"CarListing"> | Date | string;
+      scrapedAt?: DateTimeFilter<"CarListing"> | Date | string;
+      seller?: XOR<SellerScalarRelationFilter, SellerWhereInput>;
+      source?: XOR<SourceScalarRelationFilter, SourceWhereInput>;
+      trim?: XOR<TrimScalarRelationFilter, TrimWhereInput>;
+      images?: ImageListRelationFilter;
+      priceHistory?: PriceHistoryListRelationFilter;
+    },
+    "id"
+  >;
 
   export type CarListingOrderByWithAggregationInput = {
-    id?: SortOrder
-    sellerId?: SortOrder
-    sourceId?: SortOrder
-    url?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    price?: SortOrder
-    priceCurrency?: SortOrder
-    trimId?: SortOrder
-    year?: SortOrder
-    mileage?: SortOrder
-    exteriorColor?: SortOrder
-    interiorColor?: SortOrder
-    isNew?: SortOrder
-    location?: SortOrder
-    publishedAt?: SortOrder
-    scrapedAt?: SortOrder
-    _count?: CarListingCountOrderByAggregateInput
-    _avg?: CarListingAvgOrderByAggregateInput
-    _max?: CarListingMaxOrderByAggregateInput
-    _min?: CarListingMinOrderByAggregateInput
-    _sum?: CarListingSumOrderByAggregateInput
-  }
+    id?: SortOrder;
+    sellerId?: SortOrder;
+    sourceId?: SortOrder;
+    url?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    price?: SortOrder;
+    priceCurrency?: SortOrder;
+    trimId?: SortOrder;
+    year?: SortOrder;
+    mileage?: SortOrder;
+    exteriorColor?: SortOrder;
+    interiorColor?: SortOrder;
+    isNew?: SortOrder;
+    location?: SortOrder;
+    publishedAt?: SortOrder;
+    scrapedAt?: SortOrder;
+    _count?: CarListingCountOrderByAggregateInput;
+    _avg?: CarListingAvgOrderByAggregateInput;
+    _max?: CarListingMaxOrderByAggregateInput;
+    _min?: CarListingMinOrderByAggregateInput;
+    _sum?: CarListingSumOrderByAggregateInput;
+  };
 
   export type CarListingScalarWhereWithAggregatesInput = {
-    AND?: CarListingScalarWhereWithAggregatesInput | CarListingScalarWhereWithAggregatesInput[]
-    OR?: CarListingScalarWhereWithAggregatesInput[]
-    NOT?: CarListingScalarWhereWithAggregatesInput | CarListingScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"CarListing"> | string
-    sellerId?: StringWithAggregatesFilter<"CarListing"> | string
-    sourceId?: StringWithAggregatesFilter<"CarListing"> | string
-    url?: StringWithAggregatesFilter<"CarListing"> | string
-    title?: StringWithAggregatesFilter<"CarListing"> | string
-    description?: StringWithAggregatesFilter<"CarListing"> | string
-    price?: DecimalWithAggregatesFilter<"CarListing"> | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringWithAggregatesFilter<"CarListing"> | string
-    trimId?: StringWithAggregatesFilter<"CarListing"> | string
-    year?: IntWithAggregatesFilter<"CarListing"> | number
-    mileage?: IntWithAggregatesFilter<"CarListing"> | number
-    exteriorColor?: StringWithAggregatesFilter<"CarListing"> | string
-    interiorColor?: StringWithAggregatesFilter<"CarListing"> | string
-    isNew?: BoolWithAggregatesFilter<"CarListing"> | boolean
-    location?: StringWithAggregatesFilter<"CarListing"> | string
-    publishedAt?: DateTimeWithAggregatesFilter<"CarListing"> | Date | string
-    scrapedAt?: DateTimeWithAggregatesFilter<"CarListing"> | Date | string
-  }
+    AND?: CarListingScalarWhereWithAggregatesInput | CarListingScalarWhereWithAggregatesInput[];
+    OR?: CarListingScalarWhereWithAggregatesInput[];
+    NOT?: CarListingScalarWhereWithAggregatesInput | CarListingScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<"CarListing"> | string;
+    sellerId?: StringWithAggregatesFilter<"CarListing"> | string;
+    sourceId?: StringWithAggregatesFilter<"CarListing"> | string;
+    url?: StringWithAggregatesFilter<"CarListing"> | string;
+    title?: StringWithAggregatesFilter<"CarListing"> | string;
+    description?: StringWithAggregatesFilter<"CarListing"> | string;
+    price?: DecimalWithAggregatesFilter<"CarListing"> | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringWithAggregatesFilter<"CarListing"> | string;
+    trimId?: StringWithAggregatesFilter<"CarListing"> | string;
+    year?: IntWithAggregatesFilter<"CarListing"> | number;
+    mileage?: IntWithAggregatesFilter<"CarListing"> | number;
+    exteriorColor?: StringWithAggregatesFilter<"CarListing"> | string;
+    interiorColor?: StringWithAggregatesFilter<"CarListing"> | string;
+    isNew?: BoolWithAggregatesFilter<"CarListing"> | boolean;
+    location?: StringWithAggregatesFilter<"CarListing"> | string;
+    publishedAt?: DateTimeWithAggregatesFilter<"CarListing"> | Date | string;
+    scrapedAt?: DateTimeWithAggregatesFilter<"CarListing"> | Date | string;
+  };
 
   export type ImageWhereInput = {
-    AND?: ImageWhereInput | ImageWhereInput[]
-    OR?: ImageWhereInput[]
-    NOT?: ImageWhereInput | ImageWhereInput[]
-    id?: StringFilter<"Image"> | string
-    listingId?: StringFilter<"Image"> | string
-    url?: StringFilter<"Image"> | string
-    carListing?: XOR<CarListingScalarRelationFilter, CarListingWhereInput>
-  }
+    AND?: ImageWhereInput | ImageWhereInput[];
+    OR?: ImageWhereInput[];
+    NOT?: ImageWhereInput | ImageWhereInput[];
+    id?: StringFilter<"Image"> | string;
+    listingId?: StringFilter<"Image"> | string;
+    url?: StringFilter<"Image"> | string;
+    carListing?: XOR<CarListingScalarRelationFilter, CarListingWhereInput>;
+  };
 
   export type ImageOrderByWithRelationInput = {
-    id?: SortOrder
-    listingId?: SortOrder
-    url?: SortOrder
-    carListing?: CarListingOrderByWithRelationInput
-  }
+    id?: SortOrder;
+    listingId?: SortOrder;
+    url?: SortOrder;
+    carListing?: CarListingOrderByWithRelationInput;
+  };
 
-  export type ImageWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: ImageWhereInput | ImageWhereInput[]
-    OR?: ImageWhereInput[]
-    NOT?: ImageWhereInput | ImageWhereInput[]
-    listingId?: StringFilter<"Image"> | string
-    url?: StringFilter<"Image"> | string
-    carListing?: XOR<CarListingScalarRelationFilter, CarListingWhereInput>
-  }, "id">
+  export type ImageWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: ImageWhereInput | ImageWhereInput[];
+      OR?: ImageWhereInput[];
+      NOT?: ImageWhereInput | ImageWhereInput[];
+      listingId?: StringFilter<"Image"> | string;
+      url?: StringFilter<"Image"> | string;
+      carListing?: XOR<CarListingScalarRelationFilter, CarListingWhereInput>;
+    },
+    "id"
+  >;
 
   export type ImageOrderByWithAggregationInput = {
-    id?: SortOrder
-    listingId?: SortOrder
-    url?: SortOrder
-    _count?: ImageCountOrderByAggregateInput
-    _max?: ImageMaxOrderByAggregateInput
-    _min?: ImageMinOrderByAggregateInput
-  }
+    id?: SortOrder;
+    listingId?: SortOrder;
+    url?: SortOrder;
+    _count?: ImageCountOrderByAggregateInput;
+    _max?: ImageMaxOrderByAggregateInput;
+    _min?: ImageMinOrderByAggregateInput;
+  };
 
   export type ImageScalarWhereWithAggregatesInput = {
-    AND?: ImageScalarWhereWithAggregatesInput | ImageScalarWhereWithAggregatesInput[]
-    OR?: ImageScalarWhereWithAggregatesInput[]
-    NOT?: ImageScalarWhereWithAggregatesInput | ImageScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Image"> | string
-    listingId?: StringWithAggregatesFilter<"Image"> | string
-    url?: StringWithAggregatesFilter<"Image"> | string
-  }
+    AND?: ImageScalarWhereWithAggregatesInput | ImageScalarWhereWithAggregatesInput[];
+    OR?: ImageScalarWhereWithAggregatesInput[];
+    NOT?: ImageScalarWhereWithAggregatesInput | ImageScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<"Image"> | string;
+    listingId?: StringWithAggregatesFilter<"Image"> | string;
+    url?: StringWithAggregatesFilter<"Image"> | string;
+  };
 
   export type PriceHistoryWhereInput = {
-    AND?: PriceHistoryWhereInput | PriceHistoryWhereInput[]
-    OR?: PriceHistoryWhereInput[]
-    NOT?: PriceHistoryWhereInput | PriceHistoryWhereInput[]
-    id?: StringFilter<"PriceHistory"> | string
-    price?: DecimalFilter<"PriceHistory"> | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFilter<"PriceHistory"> | string
-    recordedAt?: DateTimeFilter<"PriceHistory"> | Date | string
-    listingId?: StringFilter<"PriceHistory"> | string
-    carListing?: XOR<CarListingScalarRelationFilter, CarListingWhereInput>
-  }
+    AND?: PriceHistoryWhereInput | PriceHistoryWhereInput[];
+    OR?: PriceHistoryWhereInput[];
+    NOT?: PriceHistoryWhereInput | PriceHistoryWhereInput[];
+    id?: StringFilter<"PriceHistory"> | string;
+    price?: DecimalFilter<"PriceHistory"> | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFilter<"PriceHistory"> | string;
+    recordedAt?: DateTimeFilter<"PriceHistory"> | Date | string;
+    listingId?: StringFilter<"PriceHistory"> | string;
+    carListing?: XOR<CarListingScalarRelationFilter, CarListingWhereInput>;
+  };
 
   export type PriceHistoryOrderByWithRelationInput = {
-    id?: SortOrder
-    price?: SortOrder
-    priceCurrency?: SortOrder
-    recordedAt?: SortOrder
-    listingId?: SortOrder
-    carListing?: CarListingOrderByWithRelationInput
-  }
+    id?: SortOrder;
+    price?: SortOrder;
+    priceCurrency?: SortOrder;
+    recordedAt?: SortOrder;
+    listingId?: SortOrder;
+    carListing?: CarListingOrderByWithRelationInput;
+  };
 
-  export type PriceHistoryWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: PriceHistoryWhereInput | PriceHistoryWhereInput[]
-    OR?: PriceHistoryWhereInput[]
-    NOT?: PriceHistoryWhereInput | PriceHistoryWhereInput[]
-    price?: DecimalFilter<"PriceHistory"> | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFilter<"PriceHistory"> | string
-    recordedAt?: DateTimeFilter<"PriceHistory"> | Date | string
-    listingId?: StringFilter<"PriceHistory"> | string
-    carListing?: XOR<CarListingScalarRelationFilter, CarListingWhereInput>
-  }, "id">
+  export type PriceHistoryWhereUniqueInput = Prisma.AtLeast<
+    {
+      id?: string;
+      AND?: PriceHistoryWhereInput | PriceHistoryWhereInput[];
+      OR?: PriceHistoryWhereInput[];
+      NOT?: PriceHistoryWhereInput | PriceHistoryWhereInput[];
+      price?: DecimalFilter<"PriceHistory"> | Decimal | DecimalJsLike | number | string;
+      priceCurrency?: StringFilter<"PriceHistory"> | string;
+      recordedAt?: DateTimeFilter<"PriceHistory"> | Date | string;
+      listingId?: StringFilter<"PriceHistory"> | string;
+      carListing?: XOR<CarListingScalarRelationFilter, CarListingWhereInput>;
+    },
+    "id"
+  >;
 
   export type PriceHistoryOrderByWithAggregationInput = {
-    id?: SortOrder
-    price?: SortOrder
-    priceCurrency?: SortOrder
-    recordedAt?: SortOrder
-    listingId?: SortOrder
-    _count?: PriceHistoryCountOrderByAggregateInput
-    _avg?: PriceHistoryAvgOrderByAggregateInput
-    _max?: PriceHistoryMaxOrderByAggregateInput
-    _min?: PriceHistoryMinOrderByAggregateInput
-    _sum?: PriceHistorySumOrderByAggregateInput
-  }
+    id?: SortOrder;
+    price?: SortOrder;
+    priceCurrency?: SortOrder;
+    recordedAt?: SortOrder;
+    listingId?: SortOrder;
+    _count?: PriceHistoryCountOrderByAggregateInput;
+    _avg?: PriceHistoryAvgOrderByAggregateInput;
+    _max?: PriceHistoryMaxOrderByAggregateInput;
+    _min?: PriceHistoryMinOrderByAggregateInput;
+    _sum?: PriceHistorySumOrderByAggregateInput;
+  };
 
   export type PriceHistoryScalarWhereWithAggregatesInput = {
-    AND?: PriceHistoryScalarWhereWithAggregatesInput | PriceHistoryScalarWhereWithAggregatesInput[]
-    OR?: PriceHistoryScalarWhereWithAggregatesInput[]
-    NOT?: PriceHistoryScalarWhereWithAggregatesInput | PriceHistoryScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"PriceHistory"> | string
-    price?: DecimalWithAggregatesFilter<"PriceHistory"> | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringWithAggregatesFilter<"PriceHistory"> | string
-    recordedAt?: DateTimeWithAggregatesFilter<"PriceHistory"> | Date | string
-    listingId?: StringWithAggregatesFilter<"PriceHistory"> | string
-  }
+    AND?: PriceHistoryScalarWhereWithAggregatesInput | PriceHistoryScalarWhereWithAggregatesInput[];
+    OR?: PriceHistoryScalarWhereWithAggregatesInput[];
+    NOT?: PriceHistoryScalarWhereWithAggregatesInput | PriceHistoryScalarWhereWithAggregatesInput[];
+    id?: StringWithAggregatesFilter<"PriceHistory"> | string;
+    price?: DecimalWithAggregatesFilter<"PriceHistory"> | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringWithAggregatesFilter<"PriceHistory"> | string;
+    recordedAt?: DateTimeWithAggregatesFilter<"PriceHistory"> | Date | string;
+    listingId?: StringWithAggregatesFilter<"PriceHistory"> | string;
+  };
 
   export type BrandCreateInput = {
-    id?: string
-    name: string
-    models?: ModelCreateNestedManyWithoutBrandInput
-  }
+    id?: string;
+    name: string;
+    models?: ModelCreateNestedManyWithoutBrandInput;
+  };
 
   export type BrandUncheckedCreateInput = {
-    id?: string
-    name: string
-    models?: ModelUncheckedCreateNestedManyWithoutBrandInput
-  }
+    id?: string;
+    name: string;
+    models?: ModelUncheckedCreateNestedManyWithoutBrandInput;
+  };
 
   export type BrandUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    models?: ModelUpdateManyWithoutBrandNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    models?: ModelUpdateManyWithoutBrandNestedInput;
+  };
 
   export type BrandUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    models?: ModelUncheckedUpdateManyWithoutBrandNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    models?: ModelUncheckedUpdateManyWithoutBrandNestedInput;
+  };
 
   export type BrandCreateManyInput = {
-    id?: string
-    name: string
-  }
+    id?: string;
+    name: string;
+  };
 
   export type BrandUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type BrandUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type ModelCreateInput = {
-    id?: string
-    name: string
-    bodyType: string
-    brand: BrandCreateNestedOneWithoutModelsInput
-    versions?: VersionCreateNestedManyWithoutModelInput
-  }
+    id?: string;
+    name: string;
+    bodyType: string;
+    brand: BrandCreateNestedOneWithoutModelsInput;
+    versions?: VersionCreateNestedManyWithoutModelInput;
+  };
 
   export type ModelUncheckedCreateInput = {
-    id?: string
-    name: string
-    bodyType: string
-    brandId: string
-    versions?: VersionUncheckedCreateNestedManyWithoutModelInput
-  }
+    id?: string;
+    name: string;
+    bodyType: string;
+    brandId: string;
+    versions?: VersionUncheckedCreateNestedManyWithoutModelInput;
+  };
 
   export type ModelUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    bodyType?: StringFieldUpdateOperationsInput | string
-    brand?: BrandUpdateOneRequiredWithoutModelsNestedInput
-    versions?: VersionUpdateManyWithoutModelNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    bodyType?: StringFieldUpdateOperationsInput | string;
+    brand?: BrandUpdateOneRequiredWithoutModelsNestedInput;
+    versions?: VersionUpdateManyWithoutModelNestedInput;
+  };
 
   export type ModelUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    bodyType?: StringFieldUpdateOperationsInput | string
-    brandId?: StringFieldUpdateOperationsInput | string
-    versions?: VersionUncheckedUpdateManyWithoutModelNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    bodyType?: StringFieldUpdateOperationsInput | string;
+    brandId?: StringFieldUpdateOperationsInput | string;
+    versions?: VersionUncheckedUpdateManyWithoutModelNestedInput;
+  };
 
   export type ModelCreateManyInput = {
-    id?: string
-    name: string
-    bodyType: string
-    brandId: string
-  }
+    id?: string;
+    name: string;
+    bodyType: string;
+    brandId: string;
+  };
 
   export type ModelUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    bodyType?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    bodyType?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type ModelUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    bodyType?: StringFieldUpdateOperationsInput | string
-    brandId?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    bodyType?: StringFieldUpdateOperationsInput | string;
+    brandId?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type VersionCreateInput = {
-    id?: string
-    versionName: string
-    year: number
-    model: ModelCreateNestedOneWithoutVersionsInput
-    trims?: TrimCreateNestedManyWithoutVersionInput
-  }
+    id?: string;
+    versionName: string;
+    year: number;
+    model: ModelCreateNestedOneWithoutVersionsInput;
+    trims?: TrimCreateNestedManyWithoutVersionInput;
+  };
 
   export type VersionUncheckedCreateInput = {
-    id?: string
-    versionName: string
-    year: number
-    modelId: string
-    trims?: TrimUncheckedCreateNestedManyWithoutVersionInput
-  }
+    id?: string;
+    versionName: string;
+    year: number;
+    modelId: string;
+    trims?: TrimUncheckedCreateNestedManyWithoutVersionInput;
+  };
 
   export type VersionUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    versionName?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    model?: ModelUpdateOneRequiredWithoutVersionsNestedInput
-    trims?: TrimUpdateManyWithoutVersionNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    versionName?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    model?: ModelUpdateOneRequiredWithoutVersionsNestedInput;
+    trims?: TrimUpdateManyWithoutVersionNestedInput;
+  };
 
   export type VersionUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    versionName?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    modelId?: StringFieldUpdateOperationsInput | string
-    trims?: TrimUncheckedUpdateManyWithoutVersionNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    versionName?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    modelId?: StringFieldUpdateOperationsInput | string;
+    trims?: TrimUncheckedUpdateManyWithoutVersionNestedInput;
+  };
 
   export type VersionCreateManyInput = {
-    id?: string
-    versionName: string
-    year: number
-    modelId: string
-  }
+    id?: string;
+    versionName: string;
+    year: number;
+    modelId: string;
+  };
 
   export type VersionUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    versionName?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    versionName?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+  };
 
   export type VersionUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    versionName?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    modelId?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    versionName?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    modelId?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type TrimCreateInput = {
-    id?: string
-    name: string
-    motorSize: number
-    fuelType: string
-    transmissionType: string
-    version: VersionCreateNestedOneWithoutTrimsInput
-    carListings?: CarListingCreateNestedManyWithoutTrimInput
-  }
+    id?: string;
+    name: string;
+    motorSize: number;
+    fuelType: string;
+    transmissionType: string;
+    version: VersionCreateNestedOneWithoutTrimsInput;
+    carListings?: CarListingCreateNestedManyWithoutTrimInput;
+  };
 
   export type TrimUncheckedCreateInput = {
-    id?: string
-    name: string
-    motorSize: number
-    fuelType: string
-    transmissionType: string
-    versionId: string
-    carListings?: CarListingUncheckedCreateNestedManyWithoutTrimInput
-  }
+    id?: string;
+    name: string;
+    motorSize: number;
+    fuelType: string;
+    transmissionType: string;
+    versionId: string;
+    carListings?: CarListingUncheckedCreateNestedManyWithoutTrimInput;
+  };
 
   export type TrimUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    motorSize?: IntFieldUpdateOperationsInput | number
-    fuelType?: StringFieldUpdateOperationsInput | string
-    transmissionType?: StringFieldUpdateOperationsInput | string
-    version?: VersionUpdateOneRequiredWithoutTrimsNestedInput
-    carListings?: CarListingUpdateManyWithoutTrimNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    motorSize?: IntFieldUpdateOperationsInput | number;
+    fuelType?: StringFieldUpdateOperationsInput | string;
+    transmissionType?: StringFieldUpdateOperationsInput | string;
+    version?: VersionUpdateOneRequiredWithoutTrimsNestedInput;
+    carListings?: CarListingUpdateManyWithoutTrimNestedInput;
+  };
 
   export type TrimUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    motorSize?: IntFieldUpdateOperationsInput | number
-    fuelType?: StringFieldUpdateOperationsInput | string
-    transmissionType?: StringFieldUpdateOperationsInput | string
-    versionId?: StringFieldUpdateOperationsInput | string
-    carListings?: CarListingUncheckedUpdateManyWithoutTrimNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    motorSize?: IntFieldUpdateOperationsInput | number;
+    fuelType?: StringFieldUpdateOperationsInput | string;
+    transmissionType?: StringFieldUpdateOperationsInput | string;
+    versionId?: StringFieldUpdateOperationsInput | string;
+    carListings?: CarListingUncheckedUpdateManyWithoutTrimNestedInput;
+  };
 
   export type TrimCreateManyInput = {
-    id?: string
-    name: string
-    motorSize: number
-    fuelType: string
-    transmissionType: string
-    versionId: string
-  }
+    id?: string;
+    name: string;
+    motorSize: number;
+    fuelType: string;
+    transmissionType: string;
+    versionId: string;
+  };
 
   export type TrimUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    motorSize?: IntFieldUpdateOperationsInput | number
-    fuelType?: StringFieldUpdateOperationsInput | string
-    transmissionType?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    motorSize?: IntFieldUpdateOperationsInput | number;
+    fuelType?: StringFieldUpdateOperationsInput | string;
+    transmissionType?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type TrimUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    motorSize?: IntFieldUpdateOperationsInput | number
-    fuelType?: StringFieldUpdateOperationsInput | string
-    transmissionType?: StringFieldUpdateOperationsInput | string
-    versionId?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    motorSize?: IntFieldUpdateOperationsInput | number;
+    fuelType?: StringFieldUpdateOperationsInput | string;
+    transmissionType?: StringFieldUpdateOperationsInput | string;
+    versionId?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type SourceCreateInput = {
-    id?: string
-    baseUrl: string
-    name: string
-    carListings?: CarListingCreateNestedManyWithoutSourceInput
-  }
+    id?: string;
+    baseUrl: string;
+    name: string;
+    carListings?: CarListingCreateNestedManyWithoutSourceInput;
+  };
 
   export type SourceUncheckedCreateInput = {
-    id?: string
-    baseUrl: string
-    name: string
-    carListings?: CarListingUncheckedCreateNestedManyWithoutSourceInput
-  }
+    id?: string;
+    baseUrl: string;
+    name: string;
+    carListings?: CarListingUncheckedCreateNestedManyWithoutSourceInput;
+  };
 
   export type SourceUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    baseUrl?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    carListings?: CarListingUpdateManyWithoutSourceNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    baseUrl?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    carListings?: CarListingUpdateManyWithoutSourceNestedInput;
+  };
 
   export type SourceUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    baseUrl?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    carListings?: CarListingUncheckedUpdateManyWithoutSourceNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    baseUrl?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    carListings?: CarListingUncheckedUpdateManyWithoutSourceNestedInput;
+  };
 
   export type SourceCreateManyInput = {
-    id?: string
-    baseUrl: string
-    name: string
-  }
+    id?: string;
+    baseUrl: string;
+    name: string;
+  };
 
   export type SourceUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    baseUrl?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    baseUrl?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type SourceUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    baseUrl?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    baseUrl?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type SellerCreateInput = {
-    id?: string
-    name: string
-    email: string
-    phone: string
-    type: string
-    carListings?: CarListingCreateNestedManyWithoutSellerInput
-  }
+    id?: string;
+    name: string;
+    email: string;
+    phone: string;
+    type: string;
+    carListings?: CarListingCreateNestedManyWithoutSellerInput;
+  };
 
   export type SellerUncheckedCreateInput = {
-    id?: string
-    name: string
-    email: string
-    phone: string
-    type: string
-    carListings?: CarListingUncheckedCreateNestedManyWithoutSellerInput
-  }
+    id?: string;
+    name: string;
+    email: string;
+    phone: string;
+    type: string;
+    carListings?: CarListingUncheckedCreateNestedManyWithoutSellerInput;
+  };
 
   export type SellerUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    carListings?: CarListingUpdateManyWithoutSellerNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    phone?: StringFieldUpdateOperationsInput | string;
+    type?: StringFieldUpdateOperationsInput | string;
+    carListings?: CarListingUpdateManyWithoutSellerNestedInput;
+  };
 
   export type SellerUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    carListings?: CarListingUncheckedUpdateManyWithoutSellerNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    phone?: StringFieldUpdateOperationsInput | string;
+    type?: StringFieldUpdateOperationsInput | string;
+    carListings?: CarListingUncheckedUpdateManyWithoutSellerNestedInput;
+  };
 
   export type SellerCreateManyInput = {
-    id?: string
-    name: string
-    email: string
-    phone: string
-    type: string
-  }
+    id?: string;
+    name: string;
+    email: string;
+    phone: string;
+    type: string;
+  };
 
   export type SellerUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    phone?: StringFieldUpdateOperationsInput | string;
+    type?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type SellerUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    phone?: StringFieldUpdateOperationsInput | string;
+    type?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type CarListingCreateInput = {
-    id?: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-    seller: SellerCreateNestedOneWithoutCarListingsInput
-    source: SourceCreateNestedOneWithoutCarListingsInput
-    trim: TrimCreateNestedOneWithoutCarListingsInput
-    images?: ImageCreateNestedManyWithoutCarListingInput
-    priceHistory?: PriceHistoryCreateNestedManyWithoutCarListingInput
-  }
+    id?: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+    seller: SellerCreateNestedOneWithoutCarListingsInput;
+    source: SourceCreateNestedOneWithoutCarListingsInput;
+    trim: TrimCreateNestedOneWithoutCarListingsInput;
+    images?: ImageCreateNestedManyWithoutCarListingInput;
+    priceHistory?: PriceHistoryCreateNestedManyWithoutCarListingInput;
+  };
 
   export type CarListingUncheckedCreateInput = {
-    id?: string
-    sellerId: string
-    sourceId: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    trimId: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-    images?: ImageUncheckedCreateNestedManyWithoutCarListingInput
-    priceHistory?: PriceHistoryUncheckedCreateNestedManyWithoutCarListingInput
-  }
+    id?: string;
+    sellerId: string;
+    sourceId: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    trimId: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+    images?: ImageUncheckedCreateNestedManyWithoutCarListingInput;
+    priceHistory?: PriceHistoryUncheckedCreateNestedManyWithoutCarListingInput;
+  };
 
   export type CarListingUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seller?: SellerUpdateOneRequiredWithoutCarListingsNestedInput
-    source?: SourceUpdateOneRequiredWithoutCarListingsNestedInput
-    trim?: TrimUpdateOneRequiredWithoutCarListingsNestedInput
-    images?: ImageUpdateManyWithoutCarListingNestedInput
-    priceHistory?: PriceHistoryUpdateManyWithoutCarListingNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    seller?: SellerUpdateOneRequiredWithoutCarListingsNestedInput;
+    source?: SourceUpdateOneRequiredWithoutCarListingsNestedInput;
+    trim?: TrimUpdateOneRequiredWithoutCarListingsNestedInput;
+    images?: ImageUpdateManyWithoutCarListingNestedInput;
+    priceHistory?: PriceHistoryUpdateManyWithoutCarListingNestedInput;
+  };
 
   export type CarListingUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sellerId?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    trimId?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    images?: ImageUncheckedUpdateManyWithoutCarListingNestedInput
-    priceHistory?: PriceHistoryUncheckedUpdateManyWithoutCarListingNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    sellerId?: StringFieldUpdateOperationsInput | string;
+    sourceId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    trimId?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    images?: ImageUncheckedUpdateManyWithoutCarListingNestedInput;
+    priceHistory?: PriceHistoryUncheckedUpdateManyWithoutCarListingNestedInput;
+  };
 
   export type CarListingCreateManyInput = {
-    id?: string
-    sellerId: string
-    sourceId: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    trimId: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-  }
+    id?: string;
+    sellerId: string;
+    sourceId: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    trimId: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+  };
 
   export type CarListingUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type CarListingUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sellerId?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    trimId?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    sellerId?: StringFieldUpdateOperationsInput | string;
+    sourceId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    trimId?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type ImageCreateInput = {
-    id?: string
-    url: string
-    carListing: CarListingCreateNestedOneWithoutImagesInput
-  }
+    id?: string;
+    url: string;
+    carListing: CarListingCreateNestedOneWithoutImagesInput;
+  };
 
   export type ImageUncheckedCreateInput = {
-    id?: string
-    listingId: string
-    url: string
-  }
+    id?: string;
+    listingId: string;
+    url: string;
+  };
 
   export type ImageUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    carListing?: CarListingUpdateOneRequiredWithoutImagesNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    carListing?: CarListingUpdateOneRequiredWithoutImagesNestedInput;
+  };
 
   export type ImageUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    listingId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    listingId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type ImageCreateManyInput = {
-    id?: string
-    listingId: string
-    url: string
-  }
+    id?: string;
+    listingId: string;
+    url: string;
+  };
 
   export type ImageUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type ImageUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    listingId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    listingId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type PriceHistoryCreateInput = {
-    id?: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    recordedAt: Date | string
-    carListing: CarListingCreateNestedOneWithoutPriceHistoryInput
-  }
+    id?: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    recordedAt: Date | string;
+    carListing: CarListingCreateNestedOneWithoutPriceHistoryInput;
+  };
 
   export type PriceHistoryUncheckedCreateInput = {
-    id?: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    recordedAt: Date | string
-    listingId: string
-  }
+    id?: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    recordedAt: Date | string;
+    listingId: string;
+  };
 
   export type PriceHistoryUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    carListing?: CarListingUpdateOneRequiredWithoutPriceHistoryNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    carListing?: CarListingUpdateOneRequiredWithoutPriceHistoryNestedInput;
+  };
 
   export type PriceHistoryUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    listingId?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    listingId?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type PriceHistoryCreateManyInput = {
-    id?: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    recordedAt: Date | string
-    listingId: string
-  }
+    id?: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    recordedAt: Date | string;
+    listingId: string;
+  };
 
   export type PriceHistoryUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type PriceHistoryUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    listingId?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    listingId?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type StringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringFilter<$PrismaModel> | string
-  }
+    equals?: string | StringFieldRefInput<$PrismaModel>;
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    lt?: string | StringFieldRefInput<$PrismaModel>;
+    lte?: string | StringFieldRefInput<$PrismaModel>;
+    gt?: string | StringFieldRefInput<$PrismaModel>;
+    gte?: string | StringFieldRefInput<$PrismaModel>;
+    contains?: string | StringFieldRefInput<$PrismaModel>;
+    startsWith?: string | StringFieldRefInput<$PrismaModel>;
+    endsWith?: string | StringFieldRefInput<$PrismaModel>;
+    mode?: QueryMode;
+    not?: NestedStringFilter<$PrismaModel> | string;
+  };
 
   export type ModelListRelationFilter = {
-    every?: ModelWhereInput
-    some?: ModelWhereInput
-    none?: ModelWhereInput
-  }
+    every?: ModelWhereInput;
+    some?: ModelWhereInput;
+    none?: ModelWhereInput;
+  };
 
   export type ModelOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
+    _count?: SortOrder;
+  };
 
   export type BrandCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+  };
 
   export type BrandMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+  };
 
   export type BrandMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+  };
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
+    equals?: string | StringFieldRefInput<$PrismaModel>;
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    lt?: string | StringFieldRefInput<$PrismaModel>;
+    lte?: string | StringFieldRefInput<$PrismaModel>;
+    gt?: string | StringFieldRefInput<$PrismaModel>;
+    gte?: string | StringFieldRefInput<$PrismaModel>;
+    contains?: string | StringFieldRefInput<$PrismaModel>;
+    startsWith?: string | StringFieldRefInput<$PrismaModel>;
+    endsWith?: string | StringFieldRefInput<$PrismaModel>;
+    mode?: QueryMode;
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedStringFilter<$PrismaModel>;
+    _max?: NestedStringFilter<$PrismaModel>;
+  };
 
   export type BrandScalarRelationFilter = {
-    is?: BrandWhereInput
-    isNot?: BrandWhereInput
-  }
+    is?: BrandWhereInput;
+    isNot?: BrandWhereInput;
+  };
 
   export type VersionListRelationFilter = {
-    every?: VersionWhereInput
-    some?: VersionWhereInput
-    none?: VersionWhereInput
-  }
+    every?: VersionWhereInput;
+    some?: VersionWhereInput;
+    none?: VersionWhereInput;
+  };
 
   export type VersionOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
+    _count?: SortOrder;
+  };
 
   export type ModelCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    bodyType?: SortOrder
-    brandId?: SortOrder
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    bodyType?: SortOrder;
+    brandId?: SortOrder;
+  };
 
   export type ModelMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    bodyType?: SortOrder
-    brandId?: SortOrder
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    bodyType?: SortOrder;
+    brandId?: SortOrder;
+  };
 
   export type ModelMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    bodyType?: SortOrder
-    brandId?: SortOrder
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    bodyType?: SortOrder;
+    brandId?: SortOrder;
+  };
 
   export type IntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
+    equals?: number | IntFieldRefInput<$PrismaModel>;
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    lt?: number | IntFieldRefInput<$PrismaModel>;
+    lte?: number | IntFieldRefInput<$PrismaModel>;
+    gt?: number | IntFieldRefInput<$PrismaModel>;
+    gte?: number | IntFieldRefInput<$PrismaModel>;
+    not?: NestedIntFilter<$PrismaModel> | number;
+  };
 
   export type ModelScalarRelationFilter = {
-    is?: ModelWhereInput
-    isNot?: ModelWhereInput
-  }
+    is?: ModelWhereInput;
+    isNot?: ModelWhereInput;
+  };
 
   export type TrimListRelationFilter = {
-    every?: TrimWhereInput
-    some?: TrimWhereInput
-    none?: TrimWhereInput
-  }
+    every?: TrimWhereInput;
+    some?: TrimWhereInput;
+    none?: TrimWhereInput;
+  };
 
   export type TrimOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
+    _count?: SortOrder;
+  };
 
   export type VersionCountOrderByAggregateInput = {
-    id?: SortOrder
-    versionName?: SortOrder
-    year?: SortOrder
-    modelId?: SortOrder
-  }
+    id?: SortOrder;
+    versionName?: SortOrder;
+    year?: SortOrder;
+    modelId?: SortOrder;
+  };
 
   export type VersionAvgOrderByAggregateInput = {
-    year?: SortOrder
-  }
+    year?: SortOrder;
+  };
 
   export type VersionMaxOrderByAggregateInput = {
-    id?: SortOrder
-    versionName?: SortOrder
-    year?: SortOrder
-    modelId?: SortOrder
-  }
+    id?: SortOrder;
+    versionName?: SortOrder;
+    year?: SortOrder;
+    modelId?: SortOrder;
+  };
 
   export type VersionMinOrderByAggregateInput = {
-    id?: SortOrder
-    versionName?: SortOrder
-    year?: SortOrder
-    modelId?: SortOrder
-  }
+    id?: SortOrder;
+    versionName?: SortOrder;
+    year?: SortOrder;
+    modelId?: SortOrder;
+  };
 
   export type VersionSumOrderByAggregateInput = {
-    year?: SortOrder
-  }
+    year?: SortOrder;
+  };
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
+    equals?: number | IntFieldRefInput<$PrismaModel>;
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    lt?: number | IntFieldRefInput<$PrismaModel>;
+    lte?: number | IntFieldRefInput<$PrismaModel>;
+    gt?: number | IntFieldRefInput<$PrismaModel>;
+    gte?: number | IntFieldRefInput<$PrismaModel>;
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _avg?: NestedFloatFilter<$PrismaModel>;
+    _sum?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedIntFilter<$PrismaModel>;
+    _max?: NestedIntFilter<$PrismaModel>;
+  };
 
   export type VersionScalarRelationFilter = {
-    is?: VersionWhereInput
-    isNot?: VersionWhereInput
-  }
+    is?: VersionWhereInput;
+    isNot?: VersionWhereInput;
+  };
 
   export type CarListingListRelationFilter = {
-    every?: CarListingWhereInput
-    some?: CarListingWhereInput
-    none?: CarListingWhereInput
-  }
+    every?: CarListingWhereInput;
+    some?: CarListingWhereInput;
+    none?: CarListingWhereInput;
+  };
 
   export type CarListingOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
+    _count?: SortOrder;
+  };
 
   export type TrimCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    motorSize?: SortOrder
-    fuelType?: SortOrder
-    transmissionType?: SortOrder
-    versionId?: SortOrder
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    motorSize?: SortOrder;
+    fuelType?: SortOrder;
+    transmissionType?: SortOrder;
+    versionId?: SortOrder;
+  };
 
   export type TrimAvgOrderByAggregateInput = {
-    motorSize?: SortOrder
-  }
+    motorSize?: SortOrder;
+  };
 
   export type TrimMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    motorSize?: SortOrder
-    fuelType?: SortOrder
-    transmissionType?: SortOrder
-    versionId?: SortOrder
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    motorSize?: SortOrder;
+    fuelType?: SortOrder;
+    transmissionType?: SortOrder;
+    versionId?: SortOrder;
+  };
 
   export type TrimMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    motorSize?: SortOrder
-    fuelType?: SortOrder
-    transmissionType?: SortOrder
-    versionId?: SortOrder
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    motorSize?: SortOrder;
+    fuelType?: SortOrder;
+    transmissionType?: SortOrder;
+    versionId?: SortOrder;
+  };
 
   export type TrimSumOrderByAggregateInput = {
-    motorSize?: SortOrder
-  }
+    motorSize?: SortOrder;
+  };
 
   export type SourceCountOrderByAggregateInput = {
-    id?: SortOrder
-    baseUrl?: SortOrder
-    name?: SortOrder
-  }
+    id?: SortOrder;
+    baseUrl?: SortOrder;
+    name?: SortOrder;
+  };
 
   export type SourceMaxOrderByAggregateInput = {
-    id?: SortOrder
-    baseUrl?: SortOrder
-    name?: SortOrder
-  }
+    id?: SortOrder;
+    baseUrl?: SortOrder;
+    name?: SortOrder;
+  };
 
   export type SourceMinOrderByAggregateInput = {
-    id?: SortOrder
-    baseUrl?: SortOrder
-    name?: SortOrder
-  }
+    id?: SortOrder;
+    baseUrl?: SortOrder;
+    name?: SortOrder;
+  };
 
   export type SellerCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    type?: SortOrder
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    email?: SortOrder;
+    phone?: SortOrder;
+    type?: SortOrder;
+  };
 
   export type SellerMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    type?: SortOrder
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    email?: SortOrder;
+    phone?: SortOrder;
+    type?: SortOrder;
+  };
 
   export type SellerMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    phone?: SortOrder
-    type?: SortOrder
-  }
+    id?: SortOrder;
+    name?: SortOrder;
+    email?: SortOrder;
+    phone?: SortOrder;
+    type?: SortOrder;
+  };
 
   export type DecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-  }
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>;
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>;
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string;
+  };
 
   export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>;
+    not?: NestedBoolFilter<$PrismaModel> | boolean;
+  };
 
   export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string;
+  };
 
   export type SellerScalarRelationFilter = {
-    is?: SellerWhereInput
-    isNot?: SellerWhereInput
-  }
+    is?: SellerWhereInput;
+    isNot?: SellerWhereInput;
+  };
 
   export type SourceScalarRelationFilter = {
-    is?: SourceWhereInput
-    isNot?: SourceWhereInput
-  }
+    is?: SourceWhereInput;
+    isNot?: SourceWhereInput;
+  };
 
   export type TrimScalarRelationFilter = {
-    is?: TrimWhereInput
-    isNot?: TrimWhereInput
-  }
+    is?: TrimWhereInput;
+    isNot?: TrimWhereInput;
+  };
 
   export type ImageListRelationFilter = {
-    every?: ImageWhereInput
-    some?: ImageWhereInput
-    none?: ImageWhereInput
-  }
+    every?: ImageWhereInput;
+    some?: ImageWhereInput;
+    none?: ImageWhereInput;
+  };
 
   export type PriceHistoryListRelationFilter = {
-    every?: PriceHistoryWhereInput
-    some?: PriceHistoryWhereInput
-    none?: PriceHistoryWhereInput
-  }
+    every?: PriceHistoryWhereInput;
+    some?: PriceHistoryWhereInput;
+    none?: PriceHistoryWhereInput;
+  };
 
   export type ImageOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
+    _count?: SortOrder;
+  };
 
   export type PriceHistoryOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
+    _count?: SortOrder;
+  };
 
   export type CarListingCountOrderByAggregateInput = {
-    id?: SortOrder
-    sellerId?: SortOrder
-    sourceId?: SortOrder
-    url?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    price?: SortOrder
-    priceCurrency?: SortOrder
-    trimId?: SortOrder
-    year?: SortOrder
-    mileage?: SortOrder
-    exteriorColor?: SortOrder
-    interiorColor?: SortOrder
-    isNew?: SortOrder
-    location?: SortOrder
-    publishedAt?: SortOrder
-    scrapedAt?: SortOrder
-  }
+    id?: SortOrder;
+    sellerId?: SortOrder;
+    sourceId?: SortOrder;
+    url?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    price?: SortOrder;
+    priceCurrency?: SortOrder;
+    trimId?: SortOrder;
+    year?: SortOrder;
+    mileage?: SortOrder;
+    exteriorColor?: SortOrder;
+    interiorColor?: SortOrder;
+    isNew?: SortOrder;
+    location?: SortOrder;
+    publishedAt?: SortOrder;
+    scrapedAt?: SortOrder;
+  };
 
   export type CarListingAvgOrderByAggregateInput = {
-    price?: SortOrder
-    year?: SortOrder
-    mileage?: SortOrder
-  }
+    price?: SortOrder;
+    year?: SortOrder;
+    mileage?: SortOrder;
+  };
 
   export type CarListingMaxOrderByAggregateInput = {
-    id?: SortOrder
-    sellerId?: SortOrder
-    sourceId?: SortOrder
-    url?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    price?: SortOrder
-    priceCurrency?: SortOrder
-    trimId?: SortOrder
-    year?: SortOrder
-    mileage?: SortOrder
-    exteriorColor?: SortOrder
-    interiorColor?: SortOrder
-    isNew?: SortOrder
-    location?: SortOrder
-    publishedAt?: SortOrder
-    scrapedAt?: SortOrder
-  }
+    id?: SortOrder;
+    sellerId?: SortOrder;
+    sourceId?: SortOrder;
+    url?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    price?: SortOrder;
+    priceCurrency?: SortOrder;
+    trimId?: SortOrder;
+    year?: SortOrder;
+    mileage?: SortOrder;
+    exteriorColor?: SortOrder;
+    interiorColor?: SortOrder;
+    isNew?: SortOrder;
+    location?: SortOrder;
+    publishedAt?: SortOrder;
+    scrapedAt?: SortOrder;
+  };
 
   export type CarListingMinOrderByAggregateInput = {
-    id?: SortOrder
-    sellerId?: SortOrder
-    sourceId?: SortOrder
-    url?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    price?: SortOrder
-    priceCurrency?: SortOrder
-    trimId?: SortOrder
-    year?: SortOrder
-    mileage?: SortOrder
-    exteriorColor?: SortOrder
-    interiorColor?: SortOrder
-    isNew?: SortOrder
-    location?: SortOrder
-    publishedAt?: SortOrder
-    scrapedAt?: SortOrder
-  }
+    id?: SortOrder;
+    sellerId?: SortOrder;
+    sourceId?: SortOrder;
+    url?: SortOrder;
+    title?: SortOrder;
+    description?: SortOrder;
+    price?: SortOrder;
+    priceCurrency?: SortOrder;
+    trimId?: SortOrder;
+    year?: SortOrder;
+    mileage?: SortOrder;
+    exteriorColor?: SortOrder;
+    interiorColor?: SortOrder;
+    isNew?: SortOrder;
+    location?: SortOrder;
+    publishedAt?: SortOrder;
+    scrapedAt?: SortOrder;
+  };
 
   export type CarListingSumOrderByAggregateInput = {
-    price?: SortOrder
-    year?: SortOrder
-    mileage?: SortOrder
-  }
+    price?: SortOrder;
+    year?: SortOrder;
+    mileage?: SortOrder;
+  };
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedDecimalFilter<$PrismaModel>
-    _sum?: NestedDecimalFilter<$PrismaModel>
-    _min?: NestedDecimalFilter<$PrismaModel>
-    _max?: NestedDecimalFilter<$PrismaModel>
-  }
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>;
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>;
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _avg?: NestedDecimalFilter<$PrismaModel>;
+    _sum?: NestedDecimalFilter<$PrismaModel>;
+    _min?: NestedDecimalFilter<$PrismaModel>;
+    _max?: NestedDecimalFilter<$PrismaModel>;
+  };
 
   export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>;
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedBoolFilter<$PrismaModel>;
+    _max?: NestedBoolFilter<$PrismaModel>;
+  };
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedDateTimeFilter<$PrismaModel>;
+    _max?: NestedDateTimeFilter<$PrismaModel>;
+  };
 
   export type CarListingScalarRelationFilter = {
-    is?: CarListingWhereInput
-    isNot?: CarListingWhereInput
-  }
+    is?: CarListingWhereInput;
+    isNot?: CarListingWhereInput;
+  };
 
   export type ImageCountOrderByAggregateInput = {
-    id?: SortOrder
-    listingId?: SortOrder
-    url?: SortOrder
-  }
+    id?: SortOrder;
+    listingId?: SortOrder;
+    url?: SortOrder;
+  };
 
   export type ImageMaxOrderByAggregateInput = {
-    id?: SortOrder
-    listingId?: SortOrder
-    url?: SortOrder
-  }
+    id?: SortOrder;
+    listingId?: SortOrder;
+    url?: SortOrder;
+  };
 
   export type ImageMinOrderByAggregateInput = {
-    id?: SortOrder
-    listingId?: SortOrder
-    url?: SortOrder
-  }
+    id?: SortOrder;
+    listingId?: SortOrder;
+    url?: SortOrder;
+  };
 
   export type PriceHistoryCountOrderByAggregateInput = {
-    id?: SortOrder
-    price?: SortOrder
-    priceCurrency?: SortOrder
-    recordedAt?: SortOrder
-    listingId?: SortOrder
-  }
+    id?: SortOrder;
+    price?: SortOrder;
+    priceCurrency?: SortOrder;
+    recordedAt?: SortOrder;
+    listingId?: SortOrder;
+  };
 
   export type PriceHistoryAvgOrderByAggregateInput = {
-    price?: SortOrder
-  }
+    price?: SortOrder;
+  };
 
   export type PriceHistoryMaxOrderByAggregateInput = {
-    id?: SortOrder
-    price?: SortOrder
-    priceCurrency?: SortOrder
-    recordedAt?: SortOrder
-    listingId?: SortOrder
-  }
+    id?: SortOrder;
+    price?: SortOrder;
+    priceCurrency?: SortOrder;
+    recordedAt?: SortOrder;
+    listingId?: SortOrder;
+  };
 
   export type PriceHistoryMinOrderByAggregateInput = {
-    id?: SortOrder
-    price?: SortOrder
-    priceCurrency?: SortOrder
-    recordedAt?: SortOrder
-    listingId?: SortOrder
-  }
+    id?: SortOrder;
+    price?: SortOrder;
+    priceCurrency?: SortOrder;
+    recordedAt?: SortOrder;
+    listingId?: SortOrder;
+  };
 
   export type PriceHistorySumOrderByAggregateInput = {
-    price?: SortOrder
-  }
+    price?: SortOrder;
+  };
 
   export type ModelCreateNestedManyWithoutBrandInput = {
-    create?: XOR<ModelCreateWithoutBrandInput, ModelUncheckedCreateWithoutBrandInput> | ModelCreateWithoutBrandInput[] | ModelUncheckedCreateWithoutBrandInput[]
-    connectOrCreate?: ModelCreateOrConnectWithoutBrandInput | ModelCreateOrConnectWithoutBrandInput[]
-    createMany?: ModelCreateManyBrandInputEnvelope
-    connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-  }
+    create?:
+      | XOR<ModelCreateWithoutBrandInput, ModelUncheckedCreateWithoutBrandInput>
+      | ModelCreateWithoutBrandInput[]
+      | ModelUncheckedCreateWithoutBrandInput[];
+    connectOrCreate?: ModelCreateOrConnectWithoutBrandInput | ModelCreateOrConnectWithoutBrandInput[];
+    createMany?: ModelCreateManyBrandInputEnvelope;
+    connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[];
+  };
 
   export type ModelUncheckedCreateNestedManyWithoutBrandInput = {
-    create?: XOR<ModelCreateWithoutBrandInput, ModelUncheckedCreateWithoutBrandInput> | ModelCreateWithoutBrandInput[] | ModelUncheckedCreateWithoutBrandInput[]
-    connectOrCreate?: ModelCreateOrConnectWithoutBrandInput | ModelCreateOrConnectWithoutBrandInput[]
-    createMany?: ModelCreateManyBrandInputEnvelope
-    connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-  }
+    create?:
+      | XOR<ModelCreateWithoutBrandInput, ModelUncheckedCreateWithoutBrandInput>
+      | ModelCreateWithoutBrandInput[]
+      | ModelUncheckedCreateWithoutBrandInput[];
+    connectOrCreate?: ModelCreateOrConnectWithoutBrandInput | ModelCreateOrConnectWithoutBrandInput[];
+    createMany?: ModelCreateManyBrandInputEnvelope;
+    connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[];
+  };
 
   export type StringFieldUpdateOperationsInput = {
-    set?: string
-  }
+    set?: string;
+  };
 
   export type ModelUpdateManyWithoutBrandNestedInput = {
-    create?: XOR<ModelCreateWithoutBrandInput, ModelUncheckedCreateWithoutBrandInput> | ModelCreateWithoutBrandInput[] | ModelUncheckedCreateWithoutBrandInput[]
-    connectOrCreate?: ModelCreateOrConnectWithoutBrandInput | ModelCreateOrConnectWithoutBrandInput[]
-    upsert?: ModelUpsertWithWhereUniqueWithoutBrandInput | ModelUpsertWithWhereUniqueWithoutBrandInput[]
-    createMany?: ModelCreateManyBrandInputEnvelope
-    set?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-    disconnect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-    delete?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-    connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-    update?: ModelUpdateWithWhereUniqueWithoutBrandInput | ModelUpdateWithWhereUniqueWithoutBrandInput[]
-    updateMany?: ModelUpdateManyWithWhereWithoutBrandInput | ModelUpdateManyWithWhereWithoutBrandInput[]
-    deleteMany?: ModelScalarWhereInput | ModelScalarWhereInput[]
-  }
+    create?:
+      | XOR<ModelCreateWithoutBrandInput, ModelUncheckedCreateWithoutBrandInput>
+      | ModelCreateWithoutBrandInput[]
+      | ModelUncheckedCreateWithoutBrandInput[];
+    connectOrCreate?: ModelCreateOrConnectWithoutBrandInput | ModelCreateOrConnectWithoutBrandInput[];
+    upsert?: ModelUpsertWithWhereUniqueWithoutBrandInput | ModelUpsertWithWhereUniqueWithoutBrandInput[];
+    createMany?: ModelCreateManyBrandInputEnvelope;
+    set?: ModelWhereUniqueInput | ModelWhereUniqueInput[];
+    disconnect?: ModelWhereUniqueInput | ModelWhereUniqueInput[];
+    delete?: ModelWhereUniqueInput | ModelWhereUniqueInput[];
+    connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[];
+    update?: ModelUpdateWithWhereUniqueWithoutBrandInput | ModelUpdateWithWhereUniqueWithoutBrandInput[];
+    updateMany?: ModelUpdateManyWithWhereWithoutBrandInput | ModelUpdateManyWithWhereWithoutBrandInput[];
+    deleteMany?: ModelScalarWhereInput | ModelScalarWhereInput[];
+  };
 
   export type ModelUncheckedUpdateManyWithoutBrandNestedInput = {
-    create?: XOR<ModelCreateWithoutBrandInput, ModelUncheckedCreateWithoutBrandInput> | ModelCreateWithoutBrandInput[] | ModelUncheckedCreateWithoutBrandInput[]
-    connectOrCreate?: ModelCreateOrConnectWithoutBrandInput | ModelCreateOrConnectWithoutBrandInput[]
-    upsert?: ModelUpsertWithWhereUniqueWithoutBrandInput | ModelUpsertWithWhereUniqueWithoutBrandInput[]
-    createMany?: ModelCreateManyBrandInputEnvelope
-    set?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-    disconnect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-    delete?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-    connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[]
-    update?: ModelUpdateWithWhereUniqueWithoutBrandInput | ModelUpdateWithWhereUniqueWithoutBrandInput[]
-    updateMany?: ModelUpdateManyWithWhereWithoutBrandInput | ModelUpdateManyWithWhereWithoutBrandInput[]
-    deleteMany?: ModelScalarWhereInput | ModelScalarWhereInput[]
-  }
+    create?:
+      | XOR<ModelCreateWithoutBrandInput, ModelUncheckedCreateWithoutBrandInput>
+      | ModelCreateWithoutBrandInput[]
+      | ModelUncheckedCreateWithoutBrandInput[];
+    connectOrCreate?: ModelCreateOrConnectWithoutBrandInput | ModelCreateOrConnectWithoutBrandInput[];
+    upsert?: ModelUpsertWithWhereUniqueWithoutBrandInput | ModelUpsertWithWhereUniqueWithoutBrandInput[];
+    createMany?: ModelCreateManyBrandInputEnvelope;
+    set?: ModelWhereUniqueInput | ModelWhereUniqueInput[];
+    disconnect?: ModelWhereUniqueInput | ModelWhereUniqueInput[];
+    delete?: ModelWhereUniqueInput | ModelWhereUniqueInput[];
+    connect?: ModelWhereUniqueInput | ModelWhereUniqueInput[];
+    update?: ModelUpdateWithWhereUniqueWithoutBrandInput | ModelUpdateWithWhereUniqueWithoutBrandInput[];
+    updateMany?: ModelUpdateManyWithWhereWithoutBrandInput | ModelUpdateManyWithWhereWithoutBrandInput[];
+    deleteMany?: ModelScalarWhereInput | ModelScalarWhereInput[];
+  };
 
   export type BrandCreateNestedOneWithoutModelsInput = {
-    create?: XOR<BrandCreateWithoutModelsInput, BrandUncheckedCreateWithoutModelsInput>
-    connectOrCreate?: BrandCreateOrConnectWithoutModelsInput
-    connect?: BrandWhereUniqueInput
-  }
+    create?: XOR<BrandCreateWithoutModelsInput, BrandUncheckedCreateWithoutModelsInput>;
+    connectOrCreate?: BrandCreateOrConnectWithoutModelsInput;
+    connect?: BrandWhereUniqueInput;
+  };
 
   export type VersionCreateNestedManyWithoutModelInput = {
-    create?: XOR<VersionCreateWithoutModelInput, VersionUncheckedCreateWithoutModelInput> | VersionCreateWithoutModelInput[] | VersionUncheckedCreateWithoutModelInput[]
-    connectOrCreate?: VersionCreateOrConnectWithoutModelInput | VersionCreateOrConnectWithoutModelInput[]
-    createMany?: VersionCreateManyModelInputEnvelope
-    connect?: VersionWhereUniqueInput | VersionWhereUniqueInput[]
-  }
+    create?:
+      | XOR<VersionCreateWithoutModelInput, VersionUncheckedCreateWithoutModelInput>
+      | VersionCreateWithoutModelInput[]
+      | VersionUncheckedCreateWithoutModelInput[];
+    connectOrCreate?: VersionCreateOrConnectWithoutModelInput | VersionCreateOrConnectWithoutModelInput[];
+    createMany?: VersionCreateManyModelInputEnvelope;
+    connect?: VersionWhereUniqueInput | VersionWhereUniqueInput[];
+  };
 
   export type VersionUncheckedCreateNestedManyWithoutModelInput = {
-    create?: XOR<VersionCreateWithoutModelInput, VersionUncheckedCreateWithoutModelInput> | VersionCreateWithoutModelInput[] | VersionUncheckedCreateWithoutModelInput[]
-    connectOrCreate?: VersionCreateOrConnectWithoutModelInput | VersionCreateOrConnectWithoutModelInput[]
-    createMany?: VersionCreateManyModelInputEnvelope
-    connect?: VersionWhereUniqueInput | VersionWhereUniqueInput[]
-  }
+    create?:
+      | XOR<VersionCreateWithoutModelInput, VersionUncheckedCreateWithoutModelInput>
+      | VersionCreateWithoutModelInput[]
+      | VersionUncheckedCreateWithoutModelInput[];
+    connectOrCreate?: VersionCreateOrConnectWithoutModelInput | VersionCreateOrConnectWithoutModelInput[];
+    createMany?: VersionCreateManyModelInputEnvelope;
+    connect?: VersionWhereUniqueInput | VersionWhereUniqueInput[];
+  };
 
   export type BrandUpdateOneRequiredWithoutModelsNestedInput = {
-    create?: XOR<BrandCreateWithoutModelsInput, BrandUncheckedCreateWithoutModelsInput>
-    connectOrCreate?: BrandCreateOrConnectWithoutModelsInput
-    upsert?: BrandUpsertWithoutModelsInput
-    connect?: BrandWhereUniqueInput
-    update?: XOR<XOR<BrandUpdateToOneWithWhereWithoutModelsInput, BrandUpdateWithoutModelsInput>, BrandUncheckedUpdateWithoutModelsInput>
-  }
+    create?: XOR<BrandCreateWithoutModelsInput, BrandUncheckedCreateWithoutModelsInput>;
+    connectOrCreate?: BrandCreateOrConnectWithoutModelsInput;
+    upsert?: BrandUpsertWithoutModelsInput;
+    connect?: BrandWhereUniqueInput;
+    update?: XOR<
+      XOR<BrandUpdateToOneWithWhereWithoutModelsInput, BrandUpdateWithoutModelsInput>,
+      BrandUncheckedUpdateWithoutModelsInput
+    >;
+  };
 
   export type VersionUpdateManyWithoutModelNestedInput = {
-    create?: XOR<VersionCreateWithoutModelInput, VersionUncheckedCreateWithoutModelInput> | VersionCreateWithoutModelInput[] | VersionUncheckedCreateWithoutModelInput[]
-    connectOrCreate?: VersionCreateOrConnectWithoutModelInput | VersionCreateOrConnectWithoutModelInput[]
-    upsert?: VersionUpsertWithWhereUniqueWithoutModelInput | VersionUpsertWithWhereUniqueWithoutModelInput[]
-    createMany?: VersionCreateManyModelInputEnvelope
-    set?: VersionWhereUniqueInput | VersionWhereUniqueInput[]
-    disconnect?: VersionWhereUniqueInput | VersionWhereUniqueInput[]
-    delete?: VersionWhereUniqueInput | VersionWhereUniqueInput[]
-    connect?: VersionWhereUniqueInput | VersionWhereUniqueInput[]
-    update?: VersionUpdateWithWhereUniqueWithoutModelInput | VersionUpdateWithWhereUniqueWithoutModelInput[]
-    updateMany?: VersionUpdateManyWithWhereWithoutModelInput | VersionUpdateManyWithWhereWithoutModelInput[]
-    deleteMany?: VersionScalarWhereInput | VersionScalarWhereInput[]
-  }
+    create?:
+      | XOR<VersionCreateWithoutModelInput, VersionUncheckedCreateWithoutModelInput>
+      | VersionCreateWithoutModelInput[]
+      | VersionUncheckedCreateWithoutModelInput[];
+    connectOrCreate?: VersionCreateOrConnectWithoutModelInput | VersionCreateOrConnectWithoutModelInput[];
+    upsert?: VersionUpsertWithWhereUniqueWithoutModelInput | VersionUpsertWithWhereUniqueWithoutModelInput[];
+    createMany?: VersionCreateManyModelInputEnvelope;
+    set?: VersionWhereUniqueInput | VersionWhereUniqueInput[];
+    disconnect?: VersionWhereUniqueInput | VersionWhereUniqueInput[];
+    delete?: VersionWhereUniqueInput | VersionWhereUniqueInput[];
+    connect?: VersionWhereUniqueInput | VersionWhereUniqueInput[];
+    update?: VersionUpdateWithWhereUniqueWithoutModelInput | VersionUpdateWithWhereUniqueWithoutModelInput[];
+    updateMany?: VersionUpdateManyWithWhereWithoutModelInput | VersionUpdateManyWithWhereWithoutModelInput[];
+    deleteMany?: VersionScalarWhereInput | VersionScalarWhereInput[];
+  };
 
   export type VersionUncheckedUpdateManyWithoutModelNestedInput = {
-    create?: XOR<VersionCreateWithoutModelInput, VersionUncheckedCreateWithoutModelInput> | VersionCreateWithoutModelInput[] | VersionUncheckedCreateWithoutModelInput[]
-    connectOrCreate?: VersionCreateOrConnectWithoutModelInput | VersionCreateOrConnectWithoutModelInput[]
-    upsert?: VersionUpsertWithWhereUniqueWithoutModelInput | VersionUpsertWithWhereUniqueWithoutModelInput[]
-    createMany?: VersionCreateManyModelInputEnvelope
-    set?: VersionWhereUniqueInput | VersionWhereUniqueInput[]
-    disconnect?: VersionWhereUniqueInput | VersionWhereUniqueInput[]
-    delete?: VersionWhereUniqueInput | VersionWhereUniqueInput[]
-    connect?: VersionWhereUniqueInput | VersionWhereUniqueInput[]
-    update?: VersionUpdateWithWhereUniqueWithoutModelInput | VersionUpdateWithWhereUniqueWithoutModelInput[]
-    updateMany?: VersionUpdateManyWithWhereWithoutModelInput | VersionUpdateManyWithWhereWithoutModelInput[]
-    deleteMany?: VersionScalarWhereInput | VersionScalarWhereInput[]
-  }
+    create?:
+      | XOR<VersionCreateWithoutModelInput, VersionUncheckedCreateWithoutModelInput>
+      | VersionCreateWithoutModelInput[]
+      | VersionUncheckedCreateWithoutModelInput[];
+    connectOrCreate?: VersionCreateOrConnectWithoutModelInput | VersionCreateOrConnectWithoutModelInput[];
+    upsert?: VersionUpsertWithWhereUniqueWithoutModelInput | VersionUpsertWithWhereUniqueWithoutModelInput[];
+    createMany?: VersionCreateManyModelInputEnvelope;
+    set?: VersionWhereUniqueInput | VersionWhereUniqueInput[];
+    disconnect?: VersionWhereUniqueInput | VersionWhereUniqueInput[];
+    delete?: VersionWhereUniqueInput | VersionWhereUniqueInput[];
+    connect?: VersionWhereUniqueInput | VersionWhereUniqueInput[];
+    update?: VersionUpdateWithWhereUniqueWithoutModelInput | VersionUpdateWithWhereUniqueWithoutModelInput[];
+    updateMany?: VersionUpdateManyWithWhereWithoutModelInput | VersionUpdateManyWithWhereWithoutModelInput[];
+    deleteMany?: VersionScalarWhereInput | VersionScalarWhereInput[];
+  };
 
   export type ModelCreateNestedOneWithoutVersionsInput = {
-    create?: XOR<ModelCreateWithoutVersionsInput, ModelUncheckedCreateWithoutVersionsInput>
-    connectOrCreate?: ModelCreateOrConnectWithoutVersionsInput
-    connect?: ModelWhereUniqueInput
-  }
+    create?: XOR<ModelCreateWithoutVersionsInput, ModelUncheckedCreateWithoutVersionsInput>;
+    connectOrCreate?: ModelCreateOrConnectWithoutVersionsInput;
+    connect?: ModelWhereUniqueInput;
+  };
 
   export type TrimCreateNestedManyWithoutVersionInput = {
-    create?: XOR<TrimCreateWithoutVersionInput, TrimUncheckedCreateWithoutVersionInput> | TrimCreateWithoutVersionInput[] | TrimUncheckedCreateWithoutVersionInput[]
-    connectOrCreate?: TrimCreateOrConnectWithoutVersionInput | TrimCreateOrConnectWithoutVersionInput[]
-    createMany?: TrimCreateManyVersionInputEnvelope
-    connect?: TrimWhereUniqueInput | TrimWhereUniqueInput[]
-  }
+    create?:
+      | XOR<TrimCreateWithoutVersionInput, TrimUncheckedCreateWithoutVersionInput>
+      | TrimCreateWithoutVersionInput[]
+      | TrimUncheckedCreateWithoutVersionInput[];
+    connectOrCreate?: TrimCreateOrConnectWithoutVersionInput | TrimCreateOrConnectWithoutVersionInput[];
+    createMany?: TrimCreateManyVersionInputEnvelope;
+    connect?: TrimWhereUniqueInput | TrimWhereUniqueInput[];
+  };
 
   export type TrimUncheckedCreateNestedManyWithoutVersionInput = {
-    create?: XOR<TrimCreateWithoutVersionInput, TrimUncheckedCreateWithoutVersionInput> | TrimCreateWithoutVersionInput[] | TrimUncheckedCreateWithoutVersionInput[]
-    connectOrCreate?: TrimCreateOrConnectWithoutVersionInput | TrimCreateOrConnectWithoutVersionInput[]
-    createMany?: TrimCreateManyVersionInputEnvelope
-    connect?: TrimWhereUniqueInput | TrimWhereUniqueInput[]
-  }
+    create?:
+      | XOR<TrimCreateWithoutVersionInput, TrimUncheckedCreateWithoutVersionInput>
+      | TrimCreateWithoutVersionInput[]
+      | TrimUncheckedCreateWithoutVersionInput[];
+    connectOrCreate?: TrimCreateOrConnectWithoutVersionInput | TrimCreateOrConnectWithoutVersionInput[];
+    createMany?: TrimCreateManyVersionInputEnvelope;
+    connect?: TrimWhereUniqueInput | TrimWhereUniqueInput[];
+  };
 
   export type IntFieldUpdateOperationsInput = {
-    set?: number
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
+    set?: number;
+    increment?: number;
+    decrement?: number;
+    multiply?: number;
+    divide?: number;
+  };
 
   export type ModelUpdateOneRequiredWithoutVersionsNestedInput = {
-    create?: XOR<ModelCreateWithoutVersionsInput, ModelUncheckedCreateWithoutVersionsInput>
-    connectOrCreate?: ModelCreateOrConnectWithoutVersionsInput
-    upsert?: ModelUpsertWithoutVersionsInput
-    connect?: ModelWhereUniqueInput
-    update?: XOR<XOR<ModelUpdateToOneWithWhereWithoutVersionsInput, ModelUpdateWithoutVersionsInput>, ModelUncheckedUpdateWithoutVersionsInput>
-  }
+    create?: XOR<ModelCreateWithoutVersionsInput, ModelUncheckedCreateWithoutVersionsInput>;
+    connectOrCreate?: ModelCreateOrConnectWithoutVersionsInput;
+    upsert?: ModelUpsertWithoutVersionsInput;
+    connect?: ModelWhereUniqueInput;
+    update?: XOR<
+      XOR<ModelUpdateToOneWithWhereWithoutVersionsInput, ModelUpdateWithoutVersionsInput>,
+      ModelUncheckedUpdateWithoutVersionsInput
+    >;
+  };
 
   export type TrimUpdateManyWithoutVersionNestedInput = {
-    create?: XOR<TrimCreateWithoutVersionInput, TrimUncheckedCreateWithoutVersionInput> | TrimCreateWithoutVersionInput[] | TrimUncheckedCreateWithoutVersionInput[]
-    connectOrCreate?: TrimCreateOrConnectWithoutVersionInput | TrimCreateOrConnectWithoutVersionInput[]
-    upsert?: TrimUpsertWithWhereUniqueWithoutVersionInput | TrimUpsertWithWhereUniqueWithoutVersionInput[]
-    createMany?: TrimCreateManyVersionInputEnvelope
-    set?: TrimWhereUniqueInput | TrimWhereUniqueInput[]
-    disconnect?: TrimWhereUniqueInput | TrimWhereUniqueInput[]
-    delete?: TrimWhereUniqueInput | TrimWhereUniqueInput[]
-    connect?: TrimWhereUniqueInput | TrimWhereUniqueInput[]
-    update?: TrimUpdateWithWhereUniqueWithoutVersionInput | TrimUpdateWithWhereUniqueWithoutVersionInput[]
-    updateMany?: TrimUpdateManyWithWhereWithoutVersionInput | TrimUpdateManyWithWhereWithoutVersionInput[]
-    deleteMany?: TrimScalarWhereInput | TrimScalarWhereInput[]
-  }
+    create?:
+      | XOR<TrimCreateWithoutVersionInput, TrimUncheckedCreateWithoutVersionInput>
+      | TrimCreateWithoutVersionInput[]
+      | TrimUncheckedCreateWithoutVersionInput[];
+    connectOrCreate?: TrimCreateOrConnectWithoutVersionInput | TrimCreateOrConnectWithoutVersionInput[];
+    upsert?: TrimUpsertWithWhereUniqueWithoutVersionInput | TrimUpsertWithWhereUniqueWithoutVersionInput[];
+    createMany?: TrimCreateManyVersionInputEnvelope;
+    set?: TrimWhereUniqueInput | TrimWhereUniqueInput[];
+    disconnect?: TrimWhereUniqueInput | TrimWhereUniqueInput[];
+    delete?: TrimWhereUniqueInput | TrimWhereUniqueInput[];
+    connect?: TrimWhereUniqueInput | TrimWhereUniqueInput[];
+    update?: TrimUpdateWithWhereUniqueWithoutVersionInput | TrimUpdateWithWhereUniqueWithoutVersionInput[];
+    updateMany?: TrimUpdateManyWithWhereWithoutVersionInput | TrimUpdateManyWithWhereWithoutVersionInput[];
+    deleteMany?: TrimScalarWhereInput | TrimScalarWhereInput[];
+  };
 
   export type TrimUncheckedUpdateManyWithoutVersionNestedInput = {
-    create?: XOR<TrimCreateWithoutVersionInput, TrimUncheckedCreateWithoutVersionInput> | TrimCreateWithoutVersionInput[] | TrimUncheckedCreateWithoutVersionInput[]
-    connectOrCreate?: TrimCreateOrConnectWithoutVersionInput | TrimCreateOrConnectWithoutVersionInput[]
-    upsert?: TrimUpsertWithWhereUniqueWithoutVersionInput | TrimUpsertWithWhereUniqueWithoutVersionInput[]
-    createMany?: TrimCreateManyVersionInputEnvelope
-    set?: TrimWhereUniqueInput | TrimWhereUniqueInput[]
-    disconnect?: TrimWhereUniqueInput | TrimWhereUniqueInput[]
-    delete?: TrimWhereUniqueInput | TrimWhereUniqueInput[]
-    connect?: TrimWhereUniqueInput | TrimWhereUniqueInput[]
-    update?: TrimUpdateWithWhereUniqueWithoutVersionInput | TrimUpdateWithWhereUniqueWithoutVersionInput[]
-    updateMany?: TrimUpdateManyWithWhereWithoutVersionInput | TrimUpdateManyWithWhereWithoutVersionInput[]
-    deleteMany?: TrimScalarWhereInput | TrimScalarWhereInput[]
-  }
+    create?:
+      | XOR<TrimCreateWithoutVersionInput, TrimUncheckedCreateWithoutVersionInput>
+      | TrimCreateWithoutVersionInput[]
+      | TrimUncheckedCreateWithoutVersionInput[];
+    connectOrCreate?: TrimCreateOrConnectWithoutVersionInput | TrimCreateOrConnectWithoutVersionInput[];
+    upsert?: TrimUpsertWithWhereUniqueWithoutVersionInput | TrimUpsertWithWhereUniqueWithoutVersionInput[];
+    createMany?: TrimCreateManyVersionInputEnvelope;
+    set?: TrimWhereUniqueInput | TrimWhereUniqueInput[];
+    disconnect?: TrimWhereUniqueInput | TrimWhereUniqueInput[];
+    delete?: TrimWhereUniqueInput | TrimWhereUniqueInput[];
+    connect?: TrimWhereUniqueInput | TrimWhereUniqueInput[];
+    update?: TrimUpdateWithWhereUniqueWithoutVersionInput | TrimUpdateWithWhereUniqueWithoutVersionInput[];
+    updateMany?: TrimUpdateManyWithWhereWithoutVersionInput | TrimUpdateManyWithWhereWithoutVersionInput[];
+    deleteMany?: TrimScalarWhereInput | TrimScalarWhereInput[];
+  };
 
   export type VersionCreateNestedOneWithoutTrimsInput = {
-    create?: XOR<VersionCreateWithoutTrimsInput, VersionUncheckedCreateWithoutTrimsInput>
-    connectOrCreate?: VersionCreateOrConnectWithoutTrimsInput
-    connect?: VersionWhereUniqueInput
-  }
+    create?: XOR<VersionCreateWithoutTrimsInput, VersionUncheckedCreateWithoutTrimsInput>;
+    connectOrCreate?: VersionCreateOrConnectWithoutTrimsInput;
+    connect?: VersionWhereUniqueInput;
+  };
 
   export type CarListingCreateNestedManyWithoutTrimInput = {
-    create?: XOR<CarListingCreateWithoutTrimInput, CarListingUncheckedCreateWithoutTrimInput> | CarListingCreateWithoutTrimInput[] | CarListingUncheckedCreateWithoutTrimInput[]
-    connectOrCreate?: CarListingCreateOrConnectWithoutTrimInput | CarListingCreateOrConnectWithoutTrimInput[]
-    createMany?: CarListingCreateManyTrimInputEnvelope
-    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-  }
+    create?:
+      | XOR<CarListingCreateWithoutTrimInput, CarListingUncheckedCreateWithoutTrimInput>
+      | CarListingCreateWithoutTrimInput[]
+      | CarListingUncheckedCreateWithoutTrimInput[];
+    connectOrCreate?: CarListingCreateOrConnectWithoutTrimInput | CarListingCreateOrConnectWithoutTrimInput[];
+    createMany?: CarListingCreateManyTrimInputEnvelope;
+    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+  };
 
   export type CarListingUncheckedCreateNestedManyWithoutTrimInput = {
-    create?: XOR<CarListingCreateWithoutTrimInput, CarListingUncheckedCreateWithoutTrimInput> | CarListingCreateWithoutTrimInput[] | CarListingUncheckedCreateWithoutTrimInput[]
-    connectOrCreate?: CarListingCreateOrConnectWithoutTrimInput | CarListingCreateOrConnectWithoutTrimInput[]
-    createMany?: CarListingCreateManyTrimInputEnvelope
-    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-  }
+    create?:
+      | XOR<CarListingCreateWithoutTrimInput, CarListingUncheckedCreateWithoutTrimInput>
+      | CarListingCreateWithoutTrimInput[]
+      | CarListingUncheckedCreateWithoutTrimInput[];
+    connectOrCreate?: CarListingCreateOrConnectWithoutTrimInput | CarListingCreateOrConnectWithoutTrimInput[];
+    createMany?: CarListingCreateManyTrimInputEnvelope;
+    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+  };
 
   export type VersionUpdateOneRequiredWithoutTrimsNestedInput = {
-    create?: XOR<VersionCreateWithoutTrimsInput, VersionUncheckedCreateWithoutTrimsInput>
-    connectOrCreate?: VersionCreateOrConnectWithoutTrimsInput
-    upsert?: VersionUpsertWithoutTrimsInput
-    connect?: VersionWhereUniqueInput
-    update?: XOR<XOR<VersionUpdateToOneWithWhereWithoutTrimsInput, VersionUpdateWithoutTrimsInput>, VersionUncheckedUpdateWithoutTrimsInput>
-  }
+    create?: XOR<VersionCreateWithoutTrimsInput, VersionUncheckedCreateWithoutTrimsInput>;
+    connectOrCreate?: VersionCreateOrConnectWithoutTrimsInput;
+    upsert?: VersionUpsertWithoutTrimsInput;
+    connect?: VersionWhereUniqueInput;
+    update?: XOR<
+      XOR<VersionUpdateToOneWithWhereWithoutTrimsInput, VersionUpdateWithoutTrimsInput>,
+      VersionUncheckedUpdateWithoutTrimsInput
+    >;
+  };
 
   export type CarListingUpdateManyWithoutTrimNestedInput = {
-    create?: XOR<CarListingCreateWithoutTrimInput, CarListingUncheckedCreateWithoutTrimInput> | CarListingCreateWithoutTrimInput[] | CarListingUncheckedCreateWithoutTrimInput[]
-    connectOrCreate?: CarListingCreateOrConnectWithoutTrimInput | CarListingCreateOrConnectWithoutTrimInput[]
-    upsert?: CarListingUpsertWithWhereUniqueWithoutTrimInput | CarListingUpsertWithWhereUniqueWithoutTrimInput[]
-    createMany?: CarListingCreateManyTrimInputEnvelope
-    set?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    disconnect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    delete?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    update?: CarListingUpdateWithWhereUniqueWithoutTrimInput | CarListingUpdateWithWhereUniqueWithoutTrimInput[]
-    updateMany?: CarListingUpdateManyWithWhereWithoutTrimInput | CarListingUpdateManyWithWhereWithoutTrimInput[]
-    deleteMany?: CarListingScalarWhereInput | CarListingScalarWhereInput[]
-  }
+    create?:
+      | XOR<CarListingCreateWithoutTrimInput, CarListingUncheckedCreateWithoutTrimInput>
+      | CarListingCreateWithoutTrimInput[]
+      | CarListingUncheckedCreateWithoutTrimInput[];
+    connectOrCreate?: CarListingCreateOrConnectWithoutTrimInput | CarListingCreateOrConnectWithoutTrimInput[];
+    upsert?: CarListingUpsertWithWhereUniqueWithoutTrimInput | CarListingUpsertWithWhereUniqueWithoutTrimInput[];
+    createMany?: CarListingCreateManyTrimInputEnvelope;
+    set?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    disconnect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    delete?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    update?: CarListingUpdateWithWhereUniqueWithoutTrimInput | CarListingUpdateWithWhereUniqueWithoutTrimInput[];
+    updateMany?: CarListingUpdateManyWithWhereWithoutTrimInput | CarListingUpdateManyWithWhereWithoutTrimInput[];
+    deleteMany?: CarListingScalarWhereInput | CarListingScalarWhereInput[];
+  };
 
   export type CarListingUncheckedUpdateManyWithoutTrimNestedInput = {
-    create?: XOR<CarListingCreateWithoutTrimInput, CarListingUncheckedCreateWithoutTrimInput> | CarListingCreateWithoutTrimInput[] | CarListingUncheckedCreateWithoutTrimInput[]
-    connectOrCreate?: CarListingCreateOrConnectWithoutTrimInput | CarListingCreateOrConnectWithoutTrimInput[]
-    upsert?: CarListingUpsertWithWhereUniqueWithoutTrimInput | CarListingUpsertWithWhereUniqueWithoutTrimInput[]
-    createMany?: CarListingCreateManyTrimInputEnvelope
-    set?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    disconnect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    delete?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    update?: CarListingUpdateWithWhereUniqueWithoutTrimInput | CarListingUpdateWithWhereUniqueWithoutTrimInput[]
-    updateMany?: CarListingUpdateManyWithWhereWithoutTrimInput | CarListingUpdateManyWithWhereWithoutTrimInput[]
-    deleteMany?: CarListingScalarWhereInput | CarListingScalarWhereInput[]
-  }
+    create?:
+      | XOR<CarListingCreateWithoutTrimInput, CarListingUncheckedCreateWithoutTrimInput>
+      | CarListingCreateWithoutTrimInput[]
+      | CarListingUncheckedCreateWithoutTrimInput[];
+    connectOrCreate?: CarListingCreateOrConnectWithoutTrimInput | CarListingCreateOrConnectWithoutTrimInput[];
+    upsert?: CarListingUpsertWithWhereUniqueWithoutTrimInput | CarListingUpsertWithWhereUniqueWithoutTrimInput[];
+    createMany?: CarListingCreateManyTrimInputEnvelope;
+    set?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    disconnect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    delete?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    update?: CarListingUpdateWithWhereUniqueWithoutTrimInput | CarListingUpdateWithWhereUniqueWithoutTrimInput[];
+    updateMany?: CarListingUpdateManyWithWhereWithoutTrimInput | CarListingUpdateManyWithWhereWithoutTrimInput[];
+    deleteMany?: CarListingScalarWhereInput | CarListingScalarWhereInput[];
+  };
 
   export type CarListingCreateNestedManyWithoutSourceInput = {
-    create?: XOR<CarListingCreateWithoutSourceInput, CarListingUncheckedCreateWithoutSourceInput> | CarListingCreateWithoutSourceInput[] | CarListingUncheckedCreateWithoutSourceInput[]
-    connectOrCreate?: CarListingCreateOrConnectWithoutSourceInput | CarListingCreateOrConnectWithoutSourceInput[]
-    createMany?: CarListingCreateManySourceInputEnvelope
-    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-  }
+    create?:
+      | XOR<CarListingCreateWithoutSourceInput, CarListingUncheckedCreateWithoutSourceInput>
+      | CarListingCreateWithoutSourceInput[]
+      | CarListingUncheckedCreateWithoutSourceInput[];
+    connectOrCreate?: CarListingCreateOrConnectWithoutSourceInput | CarListingCreateOrConnectWithoutSourceInput[];
+    createMany?: CarListingCreateManySourceInputEnvelope;
+    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+  };
 
   export type CarListingUncheckedCreateNestedManyWithoutSourceInput = {
-    create?: XOR<CarListingCreateWithoutSourceInput, CarListingUncheckedCreateWithoutSourceInput> | CarListingCreateWithoutSourceInput[] | CarListingUncheckedCreateWithoutSourceInput[]
-    connectOrCreate?: CarListingCreateOrConnectWithoutSourceInput | CarListingCreateOrConnectWithoutSourceInput[]
-    createMany?: CarListingCreateManySourceInputEnvelope
-    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-  }
+    create?:
+      | XOR<CarListingCreateWithoutSourceInput, CarListingUncheckedCreateWithoutSourceInput>
+      | CarListingCreateWithoutSourceInput[]
+      | CarListingUncheckedCreateWithoutSourceInput[];
+    connectOrCreate?: CarListingCreateOrConnectWithoutSourceInput | CarListingCreateOrConnectWithoutSourceInput[];
+    createMany?: CarListingCreateManySourceInputEnvelope;
+    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+  };
 
   export type CarListingUpdateManyWithoutSourceNestedInput = {
-    create?: XOR<CarListingCreateWithoutSourceInput, CarListingUncheckedCreateWithoutSourceInput> | CarListingCreateWithoutSourceInput[] | CarListingUncheckedCreateWithoutSourceInput[]
-    connectOrCreate?: CarListingCreateOrConnectWithoutSourceInput | CarListingCreateOrConnectWithoutSourceInput[]
-    upsert?: CarListingUpsertWithWhereUniqueWithoutSourceInput | CarListingUpsertWithWhereUniqueWithoutSourceInput[]
-    createMany?: CarListingCreateManySourceInputEnvelope
-    set?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    disconnect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    delete?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    update?: CarListingUpdateWithWhereUniqueWithoutSourceInput | CarListingUpdateWithWhereUniqueWithoutSourceInput[]
-    updateMany?: CarListingUpdateManyWithWhereWithoutSourceInput | CarListingUpdateManyWithWhereWithoutSourceInput[]
-    deleteMany?: CarListingScalarWhereInput | CarListingScalarWhereInput[]
-  }
+    create?:
+      | XOR<CarListingCreateWithoutSourceInput, CarListingUncheckedCreateWithoutSourceInput>
+      | CarListingCreateWithoutSourceInput[]
+      | CarListingUncheckedCreateWithoutSourceInput[];
+    connectOrCreate?: CarListingCreateOrConnectWithoutSourceInput | CarListingCreateOrConnectWithoutSourceInput[];
+    upsert?: CarListingUpsertWithWhereUniqueWithoutSourceInput | CarListingUpsertWithWhereUniqueWithoutSourceInput[];
+    createMany?: CarListingCreateManySourceInputEnvelope;
+    set?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    disconnect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    delete?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    update?: CarListingUpdateWithWhereUniqueWithoutSourceInput | CarListingUpdateWithWhereUniqueWithoutSourceInput[];
+    updateMany?: CarListingUpdateManyWithWhereWithoutSourceInput | CarListingUpdateManyWithWhereWithoutSourceInput[];
+    deleteMany?: CarListingScalarWhereInput | CarListingScalarWhereInput[];
+  };
 
   export type CarListingUncheckedUpdateManyWithoutSourceNestedInput = {
-    create?: XOR<CarListingCreateWithoutSourceInput, CarListingUncheckedCreateWithoutSourceInput> | CarListingCreateWithoutSourceInput[] | CarListingUncheckedCreateWithoutSourceInput[]
-    connectOrCreate?: CarListingCreateOrConnectWithoutSourceInput | CarListingCreateOrConnectWithoutSourceInput[]
-    upsert?: CarListingUpsertWithWhereUniqueWithoutSourceInput | CarListingUpsertWithWhereUniqueWithoutSourceInput[]
-    createMany?: CarListingCreateManySourceInputEnvelope
-    set?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    disconnect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    delete?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    update?: CarListingUpdateWithWhereUniqueWithoutSourceInput | CarListingUpdateWithWhereUniqueWithoutSourceInput[]
-    updateMany?: CarListingUpdateManyWithWhereWithoutSourceInput | CarListingUpdateManyWithWhereWithoutSourceInput[]
-    deleteMany?: CarListingScalarWhereInput | CarListingScalarWhereInput[]
-  }
+    create?:
+      | XOR<CarListingCreateWithoutSourceInput, CarListingUncheckedCreateWithoutSourceInput>
+      | CarListingCreateWithoutSourceInput[]
+      | CarListingUncheckedCreateWithoutSourceInput[];
+    connectOrCreate?: CarListingCreateOrConnectWithoutSourceInput | CarListingCreateOrConnectWithoutSourceInput[];
+    upsert?: CarListingUpsertWithWhereUniqueWithoutSourceInput | CarListingUpsertWithWhereUniqueWithoutSourceInput[];
+    createMany?: CarListingCreateManySourceInputEnvelope;
+    set?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    disconnect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    delete?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    update?: CarListingUpdateWithWhereUniqueWithoutSourceInput | CarListingUpdateWithWhereUniqueWithoutSourceInput[];
+    updateMany?: CarListingUpdateManyWithWhereWithoutSourceInput | CarListingUpdateManyWithWhereWithoutSourceInput[];
+    deleteMany?: CarListingScalarWhereInput | CarListingScalarWhereInput[];
+  };
 
   export type CarListingCreateNestedManyWithoutSellerInput = {
-    create?: XOR<CarListingCreateWithoutSellerInput, CarListingUncheckedCreateWithoutSellerInput> | CarListingCreateWithoutSellerInput[] | CarListingUncheckedCreateWithoutSellerInput[]
-    connectOrCreate?: CarListingCreateOrConnectWithoutSellerInput | CarListingCreateOrConnectWithoutSellerInput[]
-    createMany?: CarListingCreateManySellerInputEnvelope
-    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-  }
+    create?:
+      | XOR<CarListingCreateWithoutSellerInput, CarListingUncheckedCreateWithoutSellerInput>
+      | CarListingCreateWithoutSellerInput[]
+      | CarListingUncheckedCreateWithoutSellerInput[];
+    connectOrCreate?: CarListingCreateOrConnectWithoutSellerInput | CarListingCreateOrConnectWithoutSellerInput[];
+    createMany?: CarListingCreateManySellerInputEnvelope;
+    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+  };
 
   export type CarListingUncheckedCreateNestedManyWithoutSellerInput = {
-    create?: XOR<CarListingCreateWithoutSellerInput, CarListingUncheckedCreateWithoutSellerInput> | CarListingCreateWithoutSellerInput[] | CarListingUncheckedCreateWithoutSellerInput[]
-    connectOrCreate?: CarListingCreateOrConnectWithoutSellerInput | CarListingCreateOrConnectWithoutSellerInput[]
-    createMany?: CarListingCreateManySellerInputEnvelope
-    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-  }
+    create?:
+      | XOR<CarListingCreateWithoutSellerInput, CarListingUncheckedCreateWithoutSellerInput>
+      | CarListingCreateWithoutSellerInput[]
+      | CarListingUncheckedCreateWithoutSellerInput[];
+    connectOrCreate?: CarListingCreateOrConnectWithoutSellerInput | CarListingCreateOrConnectWithoutSellerInput[];
+    createMany?: CarListingCreateManySellerInputEnvelope;
+    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+  };
 
   export type CarListingUpdateManyWithoutSellerNestedInput = {
-    create?: XOR<CarListingCreateWithoutSellerInput, CarListingUncheckedCreateWithoutSellerInput> | CarListingCreateWithoutSellerInput[] | CarListingUncheckedCreateWithoutSellerInput[]
-    connectOrCreate?: CarListingCreateOrConnectWithoutSellerInput | CarListingCreateOrConnectWithoutSellerInput[]
-    upsert?: CarListingUpsertWithWhereUniqueWithoutSellerInput | CarListingUpsertWithWhereUniqueWithoutSellerInput[]
-    createMany?: CarListingCreateManySellerInputEnvelope
-    set?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    disconnect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    delete?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    update?: CarListingUpdateWithWhereUniqueWithoutSellerInput | CarListingUpdateWithWhereUniqueWithoutSellerInput[]
-    updateMany?: CarListingUpdateManyWithWhereWithoutSellerInput | CarListingUpdateManyWithWhereWithoutSellerInput[]
-    deleteMany?: CarListingScalarWhereInput | CarListingScalarWhereInput[]
-  }
+    create?:
+      | XOR<CarListingCreateWithoutSellerInput, CarListingUncheckedCreateWithoutSellerInput>
+      | CarListingCreateWithoutSellerInput[]
+      | CarListingUncheckedCreateWithoutSellerInput[];
+    connectOrCreate?: CarListingCreateOrConnectWithoutSellerInput | CarListingCreateOrConnectWithoutSellerInput[];
+    upsert?: CarListingUpsertWithWhereUniqueWithoutSellerInput | CarListingUpsertWithWhereUniqueWithoutSellerInput[];
+    createMany?: CarListingCreateManySellerInputEnvelope;
+    set?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    disconnect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    delete?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    update?: CarListingUpdateWithWhereUniqueWithoutSellerInput | CarListingUpdateWithWhereUniqueWithoutSellerInput[];
+    updateMany?: CarListingUpdateManyWithWhereWithoutSellerInput | CarListingUpdateManyWithWhereWithoutSellerInput[];
+    deleteMany?: CarListingScalarWhereInput | CarListingScalarWhereInput[];
+  };
 
   export type CarListingUncheckedUpdateManyWithoutSellerNestedInput = {
-    create?: XOR<CarListingCreateWithoutSellerInput, CarListingUncheckedCreateWithoutSellerInput> | CarListingCreateWithoutSellerInput[] | CarListingUncheckedCreateWithoutSellerInput[]
-    connectOrCreate?: CarListingCreateOrConnectWithoutSellerInput | CarListingCreateOrConnectWithoutSellerInput[]
-    upsert?: CarListingUpsertWithWhereUniqueWithoutSellerInput | CarListingUpsertWithWhereUniqueWithoutSellerInput[]
-    createMany?: CarListingCreateManySellerInputEnvelope
-    set?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    disconnect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    delete?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[]
-    update?: CarListingUpdateWithWhereUniqueWithoutSellerInput | CarListingUpdateWithWhereUniqueWithoutSellerInput[]
-    updateMany?: CarListingUpdateManyWithWhereWithoutSellerInput | CarListingUpdateManyWithWhereWithoutSellerInput[]
-    deleteMany?: CarListingScalarWhereInput | CarListingScalarWhereInput[]
-  }
+    create?:
+      | XOR<CarListingCreateWithoutSellerInput, CarListingUncheckedCreateWithoutSellerInput>
+      | CarListingCreateWithoutSellerInput[]
+      | CarListingUncheckedCreateWithoutSellerInput[];
+    connectOrCreate?: CarListingCreateOrConnectWithoutSellerInput | CarListingCreateOrConnectWithoutSellerInput[];
+    upsert?: CarListingUpsertWithWhereUniqueWithoutSellerInput | CarListingUpsertWithWhereUniqueWithoutSellerInput[];
+    createMany?: CarListingCreateManySellerInputEnvelope;
+    set?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    disconnect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    delete?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    connect?: CarListingWhereUniqueInput | CarListingWhereUniqueInput[];
+    update?: CarListingUpdateWithWhereUniqueWithoutSellerInput | CarListingUpdateWithWhereUniqueWithoutSellerInput[];
+    updateMany?: CarListingUpdateManyWithWhereWithoutSellerInput | CarListingUpdateManyWithWhereWithoutSellerInput[];
+    deleteMany?: CarListingScalarWhereInput | CarListingScalarWhereInput[];
+  };
 
   export type SellerCreateNestedOneWithoutCarListingsInput = {
-    create?: XOR<SellerCreateWithoutCarListingsInput, SellerUncheckedCreateWithoutCarListingsInput>
-    connectOrCreate?: SellerCreateOrConnectWithoutCarListingsInput
-    connect?: SellerWhereUniqueInput
-  }
+    create?: XOR<SellerCreateWithoutCarListingsInput, SellerUncheckedCreateWithoutCarListingsInput>;
+    connectOrCreate?: SellerCreateOrConnectWithoutCarListingsInput;
+    connect?: SellerWhereUniqueInput;
+  };
 
   export type SourceCreateNestedOneWithoutCarListingsInput = {
-    create?: XOR<SourceCreateWithoutCarListingsInput, SourceUncheckedCreateWithoutCarListingsInput>
-    connectOrCreate?: SourceCreateOrConnectWithoutCarListingsInput
-    connect?: SourceWhereUniqueInput
-  }
+    create?: XOR<SourceCreateWithoutCarListingsInput, SourceUncheckedCreateWithoutCarListingsInput>;
+    connectOrCreate?: SourceCreateOrConnectWithoutCarListingsInput;
+    connect?: SourceWhereUniqueInput;
+  };
 
   export type TrimCreateNestedOneWithoutCarListingsInput = {
-    create?: XOR<TrimCreateWithoutCarListingsInput, TrimUncheckedCreateWithoutCarListingsInput>
-    connectOrCreate?: TrimCreateOrConnectWithoutCarListingsInput
-    connect?: TrimWhereUniqueInput
-  }
+    create?: XOR<TrimCreateWithoutCarListingsInput, TrimUncheckedCreateWithoutCarListingsInput>;
+    connectOrCreate?: TrimCreateOrConnectWithoutCarListingsInput;
+    connect?: TrimWhereUniqueInput;
+  };
 
   export type ImageCreateNestedManyWithoutCarListingInput = {
-    create?: XOR<ImageCreateWithoutCarListingInput, ImageUncheckedCreateWithoutCarListingInput> | ImageCreateWithoutCarListingInput[] | ImageUncheckedCreateWithoutCarListingInput[]
-    connectOrCreate?: ImageCreateOrConnectWithoutCarListingInput | ImageCreateOrConnectWithoutCarListingInput[]
-    createMany?: ImageCreateManyCarListingInputEnvelope
-    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
-  }
+    create?:
+      | XOR<ImageCreateWithoutCarListingInput, ImageUncheckedCreateWithoutCarListingInput>
+      | ImageCreateWithoutCarListingInput[]
+      | ImageUncheckedCreateWithoutCarListingInput[];
+    connectOrCreate?: ImageCreateOrConnectWithoutCarListingInput | ImageCreateOrConnectWithoutCarListingInput[];
+    createMany?: ImageCreateManyCarListingInputEnvelope;
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[];
+  };
 
   export type PriceHistoryCreateNestedManyWithoutCarListingInput = {
-    create?: XOR<PriceHistoryCreateWithoutCarListingInput, PriceHistoryUncheckedCreateWithoutCarListingInput> | PriceHistoryCreateWithoutCarListingInput[] | PriceHistoryUncheckedCreateWithoutCarListingInput[]
-    connectOrCreate?: PriceHistoryCreateOrConnectWithoutCarListingInput | PriceHistoryCreateOrConnectWithoutCarListingInput[]
-    createMany?: PriceHistoryCreateManyCarListingInputEnvelope
-    connect?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[]
-  }
+    create?:
+      | XOR<PriceHistoryCreateWithoutCarListingInput, PriceHistoryUncheckedCreateWithoutCarListingInput>
+      | PriceHistoryCreateWithoutCarListingInput[]
+      | PriceHistoryUncheckedCreateWithoutCarListingInput[];
+    connectOrCreate?:
+      | PriceHistoryCreateOrConnectWithoutCarListingInput
+      | PriceHistoryCreateOrConnectWithoutCarListingInput[];
+    createMany?: PriceHistoryCreateManyCarListingInputEnvelope;
+    connect?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[];
+  };
 
   export type ImageUncheckedCreateNestedManyWithoutCarListingInput = {
-    create?: XOR<ImageCreateWithoutCarListingInput, ImageUncheckedCreateWithoutCarListingInput> | ImageCreateWithoutCarListingInput[] | ImageUncheckedCreateWithoutCarListingInput[]
-    connectOrCreate?: ImageCreateOrConnectWithoutCarListingInput | ImageCreateOrConnectWithoutCarListingInput[]
-    createMany?: ImageCreateManyCarListingInputEnvelope
-    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
-  }
+    create?:
+      | XOR<ImageCreateWithoutCarListingInput, ImageUncheckedCreateWithoutCarListingInput>
+      | ImageCreateWithoutCarListingInput[]
+      | ImageUncheckedCreateWithoutCarListingInput[];
+    connectOrCreate?: ImageCreateOrConnectWithoutCarListingInput | ImageCreateOrConnectWithoutCarListingInput[];
+    createMany?: ImageCreateManyCarListingInputEnvelope;
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[];
+  };
 
   export type PriceHistoryUncheckedCreateNestedManyWithoutCarListingInput = {
-    create?: XOR<PriceHistoryCreateWithoutCarListingInput, PriceHistoryUncheckedCreateWithoutCarListingInput> | PriceHistoryCreateWithoutCarListingInput[] | PriceHistoryUncheckedCreateWithoutCarListingInput[]
-    connectOrCreate?: PriceHistoryCreateOrConnectWithoutCarListingInput | PriceHistoryCreateOrConnectWithoutCarListingInput[]
-    createMany?: PriceHistoryCreateManyCarListingInputEnvelope
-    connect?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[]
-  }
+    create?:
+      | XOR<PriceHistoryCreateWithoutCarListingInput, PriceHistoryUncheckedCreateWithoutCarListingInput>
+      | PriceHistoryCreateWithoutCarListingInput[]
+      | PriceHistoryUncheckedCreateWithoutCarListingInput[];
+    connectOrCreate?:
+      | PriceHistoryCreateOrConnectWithoutCarListingInput
+      | PriceHistoryCreateOrConnectWithoutCarListingInput[];
+    createMany?: PriceHistoryCreateManyCarListingInputEnvelope;
+    connect?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[];
+  };
 
   export type DecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
-  }
+    set?: Decimal | DecimalJsLike | number | string;
+    increment?: Decimal | DecimalJsLike | number | string;
+    decrement?: Decimal | DecimalJsLike | number | string;
+    multiply?: Decimal | DecimalJsLike | number | string;
+    divide?: Decimal | DecimalJsLike | number | string;
+  };
 
   export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
+    set?: boolean;
+  };
 
   export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
-  }
+    set?: Date | string;
+  };
 
   export type SellerUpdateOneRequiredWithoutCarListingsNestedInput = {
-    create?: XOR<SellerCreateWithoutCarListingsInput, SellerUncheckedCreateWithoutCarListingsInput>
-    connectOrCreate?: SellerCreateOrConnectWithoutCarListingsInput
-    upsert?: SellerUpsertWithoutCarListingsInput
-    connect?: SellerWhereUniqueInput
-    update?: XOR<XOR<SellerUpdateToOneWithWhereWithoutCarListingsInput, SellerUpdateWithoutCarListingsInput>, SellerUncheckedUpdateWithoutCarListingsInput>
-  }
+    create?: XOR<SellerCreateWithoutCarListingsInput, SellerUncheckedCreateWithoutCarListingsInput>;
+    connectOrCreate?: SellerCreateOrConnectWithoutCarListingsInput;
+    upsert?: SellerUpsertWithoutCarListingsInput;
+    connect?: SellerWhereUniqueInput;
+    update?: XOR<
+      XOR<SellerUpdateToOneWithWhereWithoutCarListingsInput, SellerUpdateWithoutCarListingsInput>,
+      SellerUncheckedUpdateWithoutCarListingsInput
+    >;
+  };
 
   export type SourceUpdateOneRequiredWithoutCarListingsNestedInput = {
-    create?: XOR<SourceCreateWithoutCarListingsInput, SourceUncheckedCreateWithoutCarListingsInput>
-    connectOrCreate?: SourceCreateOrConnectWithoutCarListingsInput
-    upsert?: SourceUpsertWithoutCarListingsInput
-    connect?: SourceWhereUniqueInput
-    update?: XOR<XOR<SourceUpdateToOneWithWhereWithoutCarListingsInput, SourceUpdateWithoutCarListingsInput>, SourceUncheckedUpdateWithoutCarListingsInput>
-  }
+    create?: XOR<SourceCreateWithoutCarListingsInput, SourceUncheckedCreateWithoutCarListingsInput>;
+    connectOrCreate?: SourceCreateOrConnectWithoutCarListingsInput;
+    upsert?: SourceUpsertWithoutCarListingsInput;
+    connect?: SourceWhereUniqueInput;
+    update?: XOR<
+      XOR<SourceUpdateToOneWithWhereWithoutCarListingsInput, SourceUpdateWithoutCarListingsInput>,
+      SourceUncheckedUpdateWithoutCarListingsInput
+    >;
+  };
 
   export type TrimUpdateOneRequiredWithoutCarListingsNestedInput = {
-    create?: XOR<TrimCreateWithoutCarListingsInput, TrimUncheckedCreateWithoutCarListingsInput>
-    connectOrCreate?: TrimCreateOrConnectWithoutCarListingsInput
-    upsert?: TrimUpsertWithoutCarListingsInput
-    connect?: TrimWhereUniqueInput
-    update?: XOR<XOR<TrimUpdateToOneWithWhereWithoutCarListingsInput, TrimUpdateWithoutCarListingsInput>, TrimUncheckedUpdateWithoutCarListingsInput>
-  }
+    create?: XOR<TrimCreateWithoutCarListingsInput, TrimUncheckedCreateWithoutCarListingsInput>;
+    connectOrCreate?: TrimCreateOrConnectWithoutCarListingsInput;
+    upsert?: TrimUpsertWithoutCarListingsInput;
+    connect?: TrimWhereUniqueInput;
+    update?: XOR<
+      XOR<TrimUpdateToOneWithWhereWithoutCarListingsInput, TrimUpdateWithoutCarListingsInput>,
+      TrimUncheckedUpdateWithoutCarListingsInput
+    >;
+  };
 
   export type ImageUpdateManyWithoutCarListingNestedInput = {
-    create?: XOR<ImageCreateWithoutCarListingInput, ImageUncheckedCreateWithoutCarListingInput> | ImageCreateWithoutCarListingInput[] | ImageUncheckedCreateWithoutCarListingInput[]
-    connectOrCreate?: ImageCreateOrConnectWithoutCarListingInput | ImageCreateOrConnectWithoutCarListingInput[]
-    upsert?: ImageUpsertWithWhereUniqueWithoutCarListingInput | ImageUpsertWithWhereUniqueWithoutCarListingInput[]
-    createMany?: ImageCreateManyCarListingInputEnvelope
-    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
-    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
-    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
-    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
-    update?: ImageUpdateWithWhereUniqueWithoutCarListingInput | ImageUpdateWithWhereUniqueWithoutCarListingInput[]
-    updateMany?: ImageUpdateManyWithWhereWithoutCarListingInput | ImageUpdateManyWithWhereWithoutCarListingInput[]
-    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
-  }
+    create?:
+      | XOR<ImageCreateWithoutCarListingInput, ImageUncheckedCreateWithoutCarListingInput>
+      | ImageCreateWithoutCarListingInput[]
+      | ImageUncheckedCreateWithoutCarListingInput[];
+    connectOrCreate?: ImageCreateOrConnectWithoutCarListingInput | ImageCreateOrConnectWithoutCarListingInput[];
+    upsert?: ImageUpsertWithWhereUniqueWithoutCarListingInput | ImageUpsertWithWhereUniqueWithoutCarListingInput[];
+    createMany?: ImageCreateManyCarListingInputEnvelope;
+    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[];
+    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[];
+    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[];
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[];
+    update?: ImageUpdateWithWhereUniqueWithoutCarListingInput | ImageUpdateWithWhereUniqueWithoutCarListingInput[];
+    updateMany?: ImageUpdateManyWithWhereWithoutCarListingInput | ImageUpdateManyWithWhereWithoutCarListingInput[];
+    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[];
+  };
 
   export type PriceHistoryUpdateManyWithoutCarListingNestedInput = {
-    create?: XOR<PriceHistoryCreateWithoutCarListingInput, PriceHistoryUncheckedCreateWithoutCarListingInput> | PriceHistoryCreateWithoutCarListingInput[] | PriceHistoryUncheckedCreateWithoutCarListingInput[]
-    connectOrCreate?: PriceHistoryCreateOrConnectWithoutCarListingInput | PriceHistoryCreateOrConnectWithoutCarListingInput[]
-    upsert?: PriceHistoryUpsertWithWhereUniqueWithoutCarListingInput | PriceHistoryUpsertWithWhereUniqueWithoutCarListingInput[]
-    createMany?: PriceHistoryCreateManyCarListingInputEnvelope
-    set?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[]
-    disconnect?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[]
-    delete?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[]
-    connect?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[]
-    update?: PriceHistoryUpdateWithWhereUniqueWithoutCarListingInput | PriceHistoryUpdateWithWhereUniqueWithoutCarListingInput[]
-    updateMany?: PriceHistoryUpdateManyWithWhereWithoutCarListingInput | PriceHistoryUpdateManyWithWhereWithoutCarListingInput[]
-    deleteMany?: PriceHistoryScalarWhereInput | PriceHistoryScalarWhereInput[]
-  }
+    create?:
+      | XOR<PriceHistoryCreateWithoutCarListingInput, PriceHistoryUncheckedCreateWithoutCarListingInput>
+      | PriceHistoryCreateWithoutCarListingInput[]
+      | PriceHistoryUncheckedCreateWithoutCarListingInput[];
+    connectOrCreate?:
+      | PriceHistoryCreateOrConnectWithoutCarListingInput
+      | PriceHistoryCreateOrConnectWithoutCarListingInput[];
+    upsert?:
+      | PriceHistoryUpsertWithWhereUniqueWithoutCarListingInput
+      | PriceHistoryUpsertWithWhereUniqueWithoutCarListingInput[];
+    createMany?: PriceHistoryCreateManyCarListingInputEnvelope;
+    set?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[];
+    disconnect?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[];
+    delete?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[];
+    connect?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[];
+    update?:
+      | PriceHistoryUpdateWithWhereUniqueWithoutCarListingInput
+      | PriceHistoryUpdateWithWhereUniqueWithoutCarListingInput[];
+    updateMany?:
+      | PriceHistoryUpdateManyWithWhereWithoutCarListingInput
+      | PriceHistoryUpdateManyWithWhereWithoutCarListingInput[];
+    deleteMany?: PriceHistoryScalarWhereInput | PriceHistoryScalarWhereInput[];
+  };
 
   export type ImageUncheckedUpdateManyWithoutCarListingNestedInput = {
-    create?: XOR<ImageCreateWithoutCarListingInput, ImageUncheckedCreateWithoutCarListingInput> | ImageCreateWithoutCarListingInput[] | ImageUncheckedCreateWithoutCarListingInput[]
-    connectOrCreate?: ImageCreateOrConnectWithoutCarListingInput | ImageCreateOrConnectWithoutCarListingInput[]
-    upsert?: ImageUpsertWithWhereUniqueWithoutCarListingInput | ImageUpsertWithWhereUniqueWithoutCarListingInput[]
-    createMany?: ImageCreateManyCarListingInputEnvelope
-    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
-    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
-    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
-    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[]
-    update?: ImageUpdateWithWhereUniqueWithoutCarListingInput | ImageUpdateWithWhereUniqueWithoutCarListingInput[]
-    updateMany?: ImageUpdateManyWithWhereWithoutCarListingInput | ImageUpdateManyWithWhereWithoutCarListingInput[]
-    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[]
-  }
+    create?:
+      | XOR<ImageCreateWithoutCarListingInput, ImageUncheckedCreateWithoutCarListingInput>
+      | ImageCreateWithoutCarListingInput[]
+      | ImageUncheckedCreateWithoutCarListingInput[];
+    connectOrCreate?: ImageCreateOrConnectWithoutCarListingInput | ImageCreateOrConnectWithoutCarListingInput[];
+    upsert?: ImageUpsertWithWhereUniqueWithoutCarListingInput | ImageUpsertWithWhereUniqueWithoutCarListingInput[];
+    createMany?: ImageCreateManyCarListingInputEnvelope;
+    set?: ImageWhereUniqueInput | ImageWhereUniqueInput[];
+    disconnect?: ImageWhereUniqueInput | ImageWhereUniqueInput[];
+    delete?: ImageWhereUniqueInput | ImageWhereUniqueInput[];
+    connect?: ImageWhereUniqueInput | ImageWhereUniqueInput[];
+    update?: ImageUpdateWithWhereUniqueWithoutCarListingInput | ImageUpdateWithWhereUniqueWithoutCarListingInput[];
+    updateMany?: ImageUpdateManyWithWhereWithoutCarListingInput | ImageUpdateManyWithWhereWithoutCarListingInput[];
+    deleteMany?: ImageScalarWhereInput | ImageScalarWhereInput[];
+  };
 
   export type PriceHistoryUncheckedUpdateManyWithoutCarListingNestedInput = {
-    create?: XOR<PriceHistoryCreateWithoutCarListingInput, PriceHistoryUncheckedCreateWithoutCarListingInput> | PriceHistoryCreateWithoutCarListingInput[] | PriceHistoryUncheckedCreateWithoutCarListingInput[]
-    connectOrCreate?: PriceHistoryCreateOrConnectWithoutCarListingInput | PriceHistoryCreateOrConnectWithoutCarListingInput[]
-    upsert?: PriceHistoryUpsertWithWhereUniqueWithoutCarListingInput | PriceHistoryUpsertWithWhereUniqueWithoutCarListingInput[]
-    createMany?: PriceHistoryCreateManyCarListingInputEnvelope
-    set?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[]
-    disconnect?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[]
-    delete?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[]
-    connect?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[]
-    update?: PriceHistoryUpdateWithWhereUniqueWithoutCarListingInput | PriceHistoryUpdateWithWhereUniqueWithoutCarListingInput[]
-    updateMany?: PriceHistoryUpdateManyWithWhereWithoutCarListingInput | PriceHistoryUpdateManyWithWhereWithoutCarListingInput[]
-    deleteMany?: PriceHistoryScalarWhereInput | PriceHistoryScalarWhereInput[]
-  }
+    create?:
+      | XOR<PriceHistoryCreateWithoutCarListingInput, PriceHistoryUncheckedCreateWithoutCarListingInput>
+      | PriceHistoryCreateWithoutCarListingInput[]
+      | PriceHistoryUncheckedCreateWithoutCarListingInput[];
+    connectOrCreate?:
+      | PriceHistoryCreateOrConnectWithoutCarListingInput
+      | PriceHistoryCreateOrConnectWithoutCarListingInput[];
+    upsert?:
+      | PriceHistoryUpsertWithWhereUniqueWithoutCarListingInput
+      | PriceHistoryUpsertWithWhereUniqueWithoutCarListingInput[];
+    createMany?: PriceHistoryCreateManyCarListingInputEnvelope;
+    set?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[];
+    disconnect?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[];
+    delete?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[];
+    connect?: PriceHistoryWhereUniqueInput | PriceHistoryWhereUniqueInput[];
+    update?:
+      | PriceHistoryUpdateWithWhereUniqueWithoutCarListingInput
+      | PriceHistoryUpdateWithWhereUniqueWithoutCarListingInput[];
+    updateMany?:
+      | PriceHistoryUpdateManyWithWhereWithoutCarListingInput
+      | PriceHistoryUpdateManyWithWhereWithoutCarListingInput[];
+    deleteMany?: PriceHistoryScalarWhereInput | PriceHistoryScalarWhereInput[];
+  };
 
   export type CarListingCreateNestedOneWithoutImagesInput = {
-    create?: XOR<CarListingCreateWithoutImagesInput, CarListingUncheckedCreateWithoutImagesInput>
-    connectOrCreate?: CarListingCreateOrConnectWithoutImagesInput
-    connect?: CarListingWhereUniqueInput
-  }
+    create?: XOR<CarListingCreateWithoutImagesInput, CarListingUncheckedCreateWithoutImagesInput>;
+    connectOrCreate?: CarListingCreateOrConnectWithoutImagesInput;
+    connect?: CarListingWhereUniqueInput;
+  };
 
   export type CarListingUpdateOneRequiredWithoutImagesNestedInput = {
-    create?: XOR<CarListingCreateWithoutImagesInput, CarListingUncheckedCreateWithoutImagesInput>
-    connectOrCreate?: CarListingCreateOrConnectWithoutImagesInput
-    upsert?: CarListingUpsertWithoutImagesInput
-    connect?: CarListingWhereUniqueInput
-    update?: XOR<XOR<CarListingUpdateToOneWithWhereWithoutImagesInput, CarListingUpdateWithoutImagesInput>, CarListingUncheckedUpdateWithoutImagesInput>
-  }
+    create?: XOR<CarListingCreateWithoutImagesInput, CarListingUncheckedCreateWithoutImagesInput>;
+    connectOrCreate?: CarListingCreateOrConnectWithoutImagesInput;
+    upsert?: CarListingUpsertWithoutImagesInput;
+    connect?: CarListingWhereUniqueInput;
+    update?: XOR<
+      XOR<CarListingUpdateToOneWithWhereWithoutImagesInput, CarListingUpdateWithoutImagesInput>,
+      CarListingUncheckedUpdateWithoutImagesInput
+    >;
+  };
 
   export type CarListingCreateNestedOneWithoutPriceHistoryInput = {
-    create?: XOR<CarListingCreateWithoutPriceHistoryInput, CarListingUncheckedCreateWithoutPriceHistoryInput>
-    connectOrCreate?: CarListingCreateOrConnectWithoutPriceHistoryInput
-    connect?: CarListingWhereUniqueInput
-  }
+    create?: XOR<CarListingCreateWithoutPriceHistoryInput, CarListingUncheckedCreateWithoutPriceHistoryInput>;
+    connectOrCreate?: CarListingCreateOrConnectWithoutPriceHistoryInput;
+    connect?: CarListingWhereUniqueInput;
+  };
 
   export type CarListingUpdateOneRequiredWithoutPriceHistoryNestedInput = {
-    create?: XOR<CarListingCreateWithoutPriceHistoryInput, CarListingUncheckedCreateWithoutPriceHistoryInput>
-    connectOrCreate?: CarListingCreateOrConnectWithoutPriceHistoryInput
-    upsert?: CarListingUpsertWithoutPriceHistoryInput
-    connect?: CarListingWhereUniqueInput
-    update?: XOR<XOR<CarListingUpdateToOneWithWhereWithoutPriceHistoryInput, CarListingUpdateWithoutPriceHistoryInput>, CarListingUncheckedUpdateWithoutPriceHistoryInput>
-  }
+    create?: XOR<CarListingCreateWithoutPriceHistoryInput, CarListingUncheckedCreateWithoutPriceHistoryInput>;
+    connectOrCreate?: CarListingCreateOrConnectWithoutPriceHistoryInput;
+    upsert?: CarListingUpsertWithoutPriceHistoryInput;
+    connect?: CarListingWhereUniqueInput;
+    update?: XOR<
+      XOR<CarListingUpdateToOneWithWhereWithoutPriceHistoryInput, CarListingUpdateWithoutPriceHistoryInput>,
+      CarListingUncheckedUpdateWithoutPriceHistoryInput
+    >;
+  };
 
   export type NestedStringFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringFilter<$PrismaModel> | string
-  }
+    equals?: string | StringFieldRefInput<$PrismaModel>;
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    lt?: string | StringFieldRefInput<$PrismaModel>;
+    lte?: string | StringFieldRefInput<$PrismaModel>;
+    gt?: string | StringFieldRefInput<$PrismaModel>;
+    gte?: string | StringFieldRefInput<$PrismaModel>;
+    contains?: string | StringFieldRefInput<$PrismaModel>;
+    startsWith?: string | StringFieldRefInput<$PrismaModel>;
+    endsWith?: string | StringFieldRefInput<$PrismaModel>;
+    not?: NestedStringFilter<$PrismaModel> | string;
+  };
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[] | ListStringFieldRefInput<$PrismaModel>
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedStringFilter<$PrismaModel>
-    _max?: NestedStringFilter<$PrismaModel>
-  }
+    equals?: string | StringFieldRefInput<$PrismaModel>;
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>;
+    lt?: string | StringFieldRefInput<$PrismaModel>;
+    lte?: string | StringFieldRefInput<$PrismaModel>;
+    gt?: string | StringFieldRefInput<$PrismaModel>;
+    gte?: string | StringFieldRefInput<$PrismaModel>;
+    contains?: string | StringFieldRefInput<$PrismaModel>;
+    startsWith?: string | StringFieldRefInput<$PrismaModel>;
+    endsWith?: string | StringFieldRefInput<$PrismaModel>;
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedStringFilter<$PrismaModel>;
+    _max?: NestedStringFilter<$PrismaModel>;
+  };
 
   export type NestedIntFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntFilter<$PrismaModel> | number
-  }
+    equals?: number | IntFieldRefInput<$PrismaModel>;
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    lt?: number | IntFieldRefInput<$PrismaModel>;
+    lte?: number | IntFieldRefInput<$PrismaModel>;
+    gt?: number | IntFieldRefInput<$PrismaModel>;
+    gte?: number | IntFieldRefInput<$PrismaModel>;
+    not?: NestedIntFilter<$PrismaModel> | number;
+  };
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[] | ListIntFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedFloatFilter<$PrismaModel>
-    _sum?: NestedIntFilter<$PrismaModel>
-    _min?: NestedIntFilter<$PrismaModel>
-    _max?: NestedIntFilter<$PrismaModel>
-  }
+    equals?: number | IntFieldRefInput<$PrismaModel>;
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>;
+    lt?: number | IntFieldRefInput<$PrismaModel>;
+    lte?: number | IntFieldRefInput<$PrismaModel>;
+    gt?: number | IntFieldRefInput<$PrismaModel>;
+    gte?: number | IntFieldRefInput<$PrismaModel>;
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _avg?: NestedFloatFilter<$PrismaModel>;
+    _sum?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedIntFilter<$PrismaModel>;
+    _max?: NestedIntFilter<$PrismaModel>;
+  };
 
   export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
-  }
+    equals?: number | FloatFieldRefInput<$PrismaModel>;
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>;
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>;
+    lt?: number | FloatFieldRefInput<$PrismaModel>;
+    lte?: number | FloatFieldRefInput<$PrismaModel>;
+    gt?: number | FloatFieldRefInput<$PrismaModel>;
+    gte?: number | FloatFieldRefInput<$PrismaModel>;
+    not?: NestedFloatFilter<$PrismaModel> | number;
+  };
 
   export type NestedDecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-  }
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>;
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>;
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string;
+  };
 
   export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>;
+    not?: NestedBoolFilter<$PrismaModel> | boolean;
+  };
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string;
+  };
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedDecimalFilter<$PrismaModel>
-    _sum?: NestedDecimalFilter<$PrismaModel>
-    _min?: NestedDecimalFilter<$PrismaModel>
-    _max?: NestedDecimalFilter<$PrismaModel>
-  }
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>;
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>;
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>;
+    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _avg?: NestedDecimalFilter<$PrismaModel>;
+    _sum?: NestedDecimalFilter<$PrismaModel>;
+    _min?: NestedDecimalFilter<$PrismaModel>;
+    _max?: NestedDecimalFilter<$PrismaModel>;
+  };
 
   export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>;
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedBoolFilter<$PrismaModel>;
+    _max?: NestedBoolFilter<$PrismaModel>;
+  };
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>;
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>;
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string;
+    _count?: NestedIntFilter<$PrismaModel>;
+    _min?: NestedDateTimeFilter<$PrismaModel>;
+    _max?: NestedDateTimeFilter<$PrismaModel>;
+  };
 
   export type ModelCreateWithoutBrandInput = {
-    id?: string
-    name: string
-    bodyType: string
-    versions?: VersionCreateNestedManyWithoutModelInput
-  }
+    id?: string;
+    name: string;
+    bodyType: string;
+    versions?: VersionCreateNestedManyWithoutModelInput;
+  };
 
   export type ModelUncheckedCreateWithoutBrandInput = {
-    id?: string
-    name: string
-    bodyType: string
-    versions?: VersionUncheckedCreateNestedManyWithoutModelInput
-  }
+    id?: string;
+    name: string;
+    bodyType: string;
+    versions?: VersionUncheckedCreateNestedManyWithoutModelInput;
+  };
 
   export type ModelCreateOrConnectWithoutBrandInput = {
-    where: ModelWhereUniqueInput
-    create: XOR<ModelCreateWithoutBrandInput, ModelUncheckedCreateWithoutBrandInput>
-  }
+    where: ModelWhereUniqueInput;
+    create: XOR<ModelCreateWithoutBrandInput, ModelUncheckedCreateWithoutBrandInput>;
+  };
 
   export type ModelCreateManyBrandInputEnvelope = {
-    data: ModelCreateManyBrandInput | ModelCreateManyBrandInput[]
-    skipDuplicates?: boolean
-  }
+    data: ModelCreateManyBrandInput | ModelCreateManyBrandInput[];
+    skipDuplicates?: boolean;
+  };
 
   export type ModelUpsertWithWhereUniqueWithoutBrandInput = {
-    where: ModelWhereUniqueInput
-    update: XOR<ModelUpdateWithoutBrandInput, ModelUncheckedUpdateWithoutBrandInput>
-    create: XOR<ModelCreateWithoutBrandInput, ModelUncheckedCreateWithoutBrandInput>
-  }
+    where: ModelWhereUniqueInput;
+    update: XOR<ModelUpdateWithoutBrandInput, ModelUncheckedUpdateWithoutBrandInput>;
+    create: XOR<ModelCreateWithoutBrandInput, ModelUncheckedCreateWithoutBrandInput>;
+  };
 
   export type ModelUpdateWithWhereUniqueWithoutBrandInput = {
-    where: ModelWhereUniqueInput
-    data: XOR<ModelUpdateWithoutBrandInput, ModelUncheckedUpdateWithoutBrandInput>
-  }
+    where: ModelWhereUniqueInput;
+    data: XOR<ModelUpdateWithoutBrandInput, ModelUncheckedUpdateWithoutBrandInput>;
+  };
 
   export type ModelUpdateManyWithWhereWithoutBrandInput = {
-    where: ModelScalarWhereInput
-    data: XOR<ModelUpdateManyMutationInput, ModelUncheckedUpdateManyWithoutBrandInput>
-  }
+    where: ModelScalarWhereInput;
+    data: XOR<ModelUpdateManyMutationInput, ModelUncheckedUpdateManyWithoutBrandInput>;
+  };
 
   export type ModelScalarWhereInput = {
-    AND?: ModelScalarWhereInput | ModelScalarWhereInput[]
-    OR?: ModelScalarWhereInput[]
-    NOT?: ModelScalarWhereInput | ModelScalarWhereInput[]
-    id?: StringFilter<"Model"> | string
-    name?: StringFilter<"Model"> | string
-    bodyType?: StringFilter<"Model"> | string
-    brandId?: StringFilter<"Model"> | string
-  }
+    AND?: ModelScalarWhereInput | ModelScalarWhereInput[];
+    OR?: ModelScalarWhereInput[];
+    NOT?: ModelScalarWhereInput | ModelScalarWhereInput[];
+    id?: StringFilter<"Model"> | string;
+    name?: StringFilter<"Model"> | string;
+    bodyType?: StringFilter<"Model"> | string;
+    brandId?: StringFilter<"Model"> | string;
+  };
 
   export type BrandCreateWithoutModelsInput = {
-    id?: string
-    name: string
-  }
+    id?: string;
+    name: string;
+  };
 
   export type BrandUncheckedCreateWithoutModelsInput = {
-    id?: string
-    name: string
-  }
+    id?: string;
+    name: string;
+  };
 
   export type BrandCreateOrConnectWithoutModelsInput = {
-    where: BrandWhereUniqueInput
-    create: XOR<BrandCreateWithoutModelsInput, BrandUncheckedCreateWithoutModelsInput>
-  }
+    where: BrandWhereUniqueInput;
+    create: XOR<BrandCreateWithoutModelsInput, BrandUncheckedCreateWithoutModelsInput>;
+  };
 
   export type VersionCreateWithoutModelInput = {
-    id?: string
-    versionName: string
-    year: number
-    trims?: TrimCreateNestedManyWithoutVersionInput
-  }
+    id?: string;
+    versionName: string;
+    year: number;
+    trims?: TrimCreateNestedManyWithoutVersionInput;
+  };
 
   export type VersionUncheckedCreateWithoutModelInput = {
-    id?: string
-    versionName: string
-    year: number
-    trims?: TrimUncheckedCreateNestedManyWithoutVersionInput
-  }
+    id?: string;
+    versionName: string;
+    year: number;
+    trims?: TrimUncheckedCreateNestedManyWithoutVersionInput;
+  };
 
   export type VersionCreateOrConnectWithoutModelInput = {
-    where: VersionWhereUniqueInput
-    create: XOR<VersionCreateWithoutModelInput, VersionUncheckedCreateWithoutModelInput>
-  }
+    where: VersionWhereUniqueInput;
+    create: XOR<VersionCreateWithoutModelInput, VersionUncheckedCreateWithoutModelInput>;
+  };
 
   export type VersionCreateManyModelInputEnvelope = {
-    data: VersionCreateManyModelInput | VersionCreateManyModelInput[]
-    skipDuplicates?: boolean
-  }
+    data: VersionCreateManyModelInput | VersionCreateManyModelInput[];
+    skipDuplicates?: boolean;
+  };
 
   export type BrandUpsertWithoutModelsInput = {
-    update: XOR<BrandUpdateWithoutModelsInput, BrandUncheckedUpdateWithoutModelsInput>
-    create: XOR<BrandCreateWithoutModelsInput, BrandUncheckedCreateWithoutModelsInput>
-    where?: BrandWhereInput
-  }
+    update: XOR<BrandUpdateWithoutModelsInput, BrandUncheckedUpdateWithoutModelsInput>;
+    create: XOR<BrandCreateWithoutModelsInput, BrandUncheckedCreateWithoutModelsInput>;
+    where?: BrandWhereInput;
+  };
 
   export type BrandUpdateToOneWithWhereWithoutModelsInput = {
-    where?: BrandWhereInput
-    data: XOR<BrandUpdateWithoutModelsInput, BrandUncheckedUpdateWithoutModelsInput>
-  }
+    where?: BrandWhereInput;
+    data: XOR<BrandUpdateWithoutModelsInput, BrandUncheckedUpdateWithoutModelsInput>;
+  };
 
   export type BrandUpdateWithoutModelsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type BrandUncheckedUpdateWithoutModelsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type VersionUpsertWithWhereUniqueWithoutModelInput = {
-    where: VersionWhereUniqueInput
-    update: XOR<VersionUpdateWithoutModelInput, VersionUncheckedUpdateWithoutModelInput>
-    create: XOR<VersionCreateWithoutModelInput, VersionUncheckedCreateWithoutModelInput>
-  }
+    where: VersionWhereUniqueInput;
+    update: XOR<VersionUpdateWithoutModelInput, VersionUncheckedUpdateWithoutModelInput>;
+    create: XOR<VersionCreateWithoutModelInput, VersionUncheckedCreateWithoutModelInput>;
+  };
 
   export type VersionUpdateWithWhereUniqueWithoutModelInput = {
-    where: VersionWhereUniqueInput
-    data: XOR<VersionUpdateWithoutModelInput, VersionUncheckedUpdateWithoutModelInput>
-  }
+    where: VersionWhereUniqueInput;
+    data: XOR<VersionUpdateWithoutModelInput, VersionUncheckedUpdateWithoutModelInput>;
+  };
 
   export type VersionUpdateManyWithWhereWithoutModelInput = {
-    where: VersionScalarWhereInput
-    data: XOR<VersionUpdateManyMutationInput, VersionUncheckedUpdateManyWithoutModelInput>
-  }
+    where: VersionScalarWhereInput;
+    data: XOR<VersionUpdateManyMutationInput, VersionUncheckedUpdateManyWithoutModelInput>;
+  };
 
   export type VersionScalarWhereInput = {
-    AND?: VersionScalarWhereInput | VersionScalarWhereInput[]
-    OR?: VersionScalarWhereInput[]
-    NOT?: VersionScalarWhereInput | VersionScalarWhereInput[]
-    id?: StringFilter<"Version"> | string
-    versionName?: StringFilter<"Version"> | string
-    year?: IntFilter<"Version"> | number
-    modelId?: StringFilter<"Version"> | string
-  }
+    AND?: VersionScalarWhereInput | VersionScalarWhereInput[];
+    OR?: VersionScalarWhereInput[];
+    NOT?: VersionScalarWhereInput | VersionScalarWhereInput[];
+    id?: StringFilter<"Version"> | string;
+    versionName?: StringFilter<"Version"> | string;
+    year?: IntFilter<"Version"> | number;
+    modelId?: StringFilter<"Version"> | string;
+  };
 
   export type ModelCreateWithoutVersionsInput = {
-    id?: string
-    name: string
-    bodyType: string
-    brand: BrandCreateNestedOneWithoutModelsInput
-  }
+    id?: string;
+    name: string;
+    bodyType: string;
+    brand: BrandCreateNestedOneWithoutModelsInput;
+  };
 
   export type ModelUncheckedCreateWithoutVersionsInput = {
-    id?: string
-    name: string
-    bodyType: string
-    brandId: string
-  }
+    id?: string;
+    name: string;
+    bodyType: string;
+    brandId: string;
+  };
 
   export type ModelCreateOrConnectWithoutVersionsInput = {
-    where: ModelWhereUniqueInput
-    create: XOR<ModelCreateWithoutVersionsInput, ModelUncheckedCreateWithoutVersionsInput>
-  }
+    where: ModelWhereUniqueInput;
+    create: XOR<ModelCreateWithoutVersionsInput, ModelUncheckedCreateWithoutVersionsInput>;
+  };
 
   export type TrimCreateWithoutVersionInput = {
-    id?: string
-    name: string
-    motorSize: number
-    fuelType: string
-    transmissionType: string
-    carListings?: CarListingCreateNestedManyWithoutTrimInput
-  }
+    id?: string;
+    name: string;
+    motorSize: number;
+    fuelType: string;
+    transmissionType: string;
+    carListings?: CarListingCreateNestedManyWithoutTrimInput;
+  };
 
   export type TrimUncheckedCreateWithoutVersionInput = {
-    id?: string
-    name: string
-    motorSize: number
-    fuelType: string
-    transmissionType: string
-    carListings?: CarListingUncheckedCreateNestedManyWithoutTrimInput
-  }
+    id?: string;
+    name: string;
+    motorSize: number;
+    fuelType: string;
+    transmissionType: string;
+    carListings?: CarListingUncheckedCreateNestedManyWithoutTrimInput;
+  };
 
   export type TrimCreateOrConnectWithoutVersionInput = {
-    where: TrimWhereUniqueInput
-    create: XOR<TrimCreateWithoutVersionInput, TrimUncheckedCreateWithoutVersionInput>
-  }
+    where: TrimWhereUniqueInput;
+    create: XOR<TrimCreateWithoutVersionInput, TrimUncheckedCreateWithoutVersionInput>;
+  };
 
   export type TrimCreateManyVersionInputEnvelope = {
-    data: TrimCreateManyVersionInput | TrimCreateManyVersionInput[]
-    skipDuplicates?: boolean
-  }
+    data: TrimCreateManyVersionInput | TrimCreateManyVersionInput[];
+    skipDuplicates?: boolean;
+  };
 
   export type ModelUpsertWithoutVersionsInput = {
-    update: XOR<ModelUpdateWithoutVersionsInput, ModelUncheckedUpdateWithoutVersionsInput>
-    create: XOR<ModelCreateWithoutVersionsInput, ModelUncheckedCreateWithoutVersionsInput>
-    where?: ModelWhereInput
-  }
+    update: XOR<ModelUpdateWithoutVersionsInput, ModelUncheckedUpdateWithoutVersionsInput>;
+    create: XOR<ModelCreateWithoutVersionsInput, ModelUncheckedCreateWithoutVersionsInput>;
+    where?: ModelWhereInput;
+  };
 
   export type ModelUpdateToOneWithWhereWithoutVersionsInput = {
-    where?: ModelWhereInput
-    data: XOR<ModelUpdateWithoutVersionsInput, ModelUncheckedUpdateWithoutVersionsInput>
-  }
+    where?: ModelWhereInput;
+    data: XOR<ModelUpdateWithoutVersionsInput, ModelUncheckedUpdateWithoutVersionsInput>;
+  };
 
   export type ModelUpdateWithoutVersionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    bodyType?: StringFieldUpdateOperationsInput | string
-    brand?: BrandUpdateOneRequiredWithoutModelsNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    bodyType?: StringFieldUpdateOperationsInput | string;
+    brand?: BrandUpdateOneRequiredWithoutModelsNestedInput;
+  };
 
   export type ModelUncheckedUpdateWithoutVersionsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    bodyType?: StringFieldUpdateOperationsInput | string
-    brandId?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    bodyType?: StringFieldUpdateOperationsInput | string;
+    brandId?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type TrimUpsertWithWhereUniqueWithoutVersionInput = {
-    where: TrimWhereUniqueInput
-    update: XOR<TrimUpdateWithoutVersionInput, TrimUncheckedUpdateWithoutVersionInput>
-    create: XOR<TrimCreateWithoutVersionInput, TrimUncheckedCreateWithoutVersionInput>
-  }
+    where: TrimWhereUniqueInput;
+    update: XOR<TrimUpdateWithoutVersionInput, TrimUncheckedUpdateWithoutVersionInput>;
+    create: XOR<TrimCreateWithoutVersionInput, TrimUncheckedCreateWithoutVersionInput>;
+  };
 
   export type TrimUpdateWithWhereUniqueWithoutVersionInput = {
-    where: TrimWhereUniqueInput
-    data: XOR<TrimUpdateWithoutVersionInput, TrimUncheckedUpdateWithoutVersionInput>
-  }
+    where: TrimWhereUniqueInput;
+    data: XOR<TrimUpdateWithoutVersionInput, TrimUncheckedUpdateWithoutVersionInput>;
+  };
 
   export type TrimUpdateManyWithWhereWithoutVersionInput = {
-    where: TrimScalarWhereInput
-    data: XOR<TrimUpdateManyMutationInput, TrimUncheckedUpdateManyWithoutVersionInput>
-  }
+    where: TrimScalarWhereInput;
+    data: XOR<TrimUpdateManyMutationInput, TrimUncheckedUpdateManyWithoutVersionInput>;
+  };
 
   export type TrimScalarWhereInput = {
-    AND?: TrimScalarWhereInput | TrimScalarWhereInput[]
-    OR?: TrimScalarWhereInput[]
-    NOT?: TrimScalarWhereInput | TrimScalarWhereInput[]
-    id?: StringFilter<"Trim"> | string
-    name?: StringFilter<"Trim"> | string
-    motorSize?: IntFilter<"Trim"> | number
-    fuelType?: StringFilter<"Trim"> | string
-    transmissionType?: StringFilter<"Trim"> | string
-    versionId?: StringFilter<"Trim"> | string
-  }
+    AND?: TrimScalarWhereInput | TrimScalarWhereInput[];
+    OR?: TrimScalarWhereInput[];
+    NOT?: TrimScalarWhereInput | TrimScalarWhereInput[];
+    id?: StringFilter<"Trim"> | string;
+    name?: StringFilter<"Trim"> | string;
+    motorSize?: IntFilter<"Trim"> | number;
+    fuelType?: StringFilter<"Trim"> | string;
+    transmissionType?: StringFilter<"Trim"> | string;
+    versionId?: StringFilter<"Trim"> | string;
+  };
 
   export type VersionCreateWithoutTrimsInput = {
-    id?: string
-    versionName: string
-    year: number
-    model: ModelCreateNestedOneWithoutVersionsInput
-  }
+    id?: string;
+    versionName: string;
+    year: number;
+    model: ModelCreateNestedOneWithoutVersionsInput;
+  };
 
   export type VersionUncheckedCreateWithoutTrimsInput = {
-    id?: string
-    versionName: string
-    year: number
-    modelId: string
-  }
+    id?: string;
+    versionName: string;
+    year: number;
+    modelId: string;
+  };
 
   export type VersionCreateOrConnectWithoutTrimsInput = {
-    where: VersionWhereUniqueInput
-    create: XOR<VersionCreateWithoutTrimsInput, VersionUncheckedCreateWithoutTrimsInput>
-  }
+    where: VersionWhereUniqueInput;
+    create: XOR<VersionCreateWithoutTrimsInput, VersionUncheckedCreateWithoutTrimsInput>;
+  };
 
   export type CarListingCreateWithoutTrimInput = {
-    id?: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-    seller: SellerCreateNestedOneWithoutCarListingsInput
-    source: SourceCreateNestedOneWithoutCarListingsInput
-    images?: ImageCreateNestedManyWithoutCarListingInput
-    priceHistory?: PriceHistoryCreateNestedManyWithoutCarListingInput
-  }
+    id?: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+    seller: SellerCreateNestedOneWithoutCarListingsInput;
+    source: SourceCreateNestedOneWithoutCarListingsInput;
+    images?: ImageCreateNestedManyWithoutCarListingInput;
+    priceHistory?: PriceHistoryCreateNestedManyWithoutCarListingInput;
+  };
 
   export type CarListingUncheckedCreateWithoutTrimInput = {
-    id?: string
-    sellerId: string
-    sourceId: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-    images?: ImageUncheckedCreateNestedManyWithoutCarListingInput
-    priceHistory?: PriceHistoryUncheckedCreateNestedManyWithoutCarListingInput
-  }
+    id?: string;
+    sellerId: string;
+    sourceId: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+    images?: ImageUncheckedCreateNestedManyWithoutCarListingInput;
+    priceHistory?: PriceHistoryUncheckedCreateNestedManyWithoutCarListingInput;
+  };
 
   export type CarListingCreateOrConnectWithoutTrimInput = {
-    where: CarListingWhereUniqueInput
-    create: XOR<CarListingCreateWithoutTrimInput, CarListingUncheckedCreateWithoutTrimInput>
-  }
+    where: CarListingWhereUniqueInput;
+    create: XOR<CarListingCreateWithoutTrimInput, CarListingUncheckedCreateWithoutTrimInput>;
+  };
 
   export type CarListingCreateManyTrimInputEnvelope = {
-    data: CarListingCreateManyTrimInput | CarListingCreateManyTrimInput[]
-    skipDuplicates?: boolean
-  }
+    data: CarListingCreateManyTrimInput | CarListingCreateManyTrimInput[];
+    skipDuplicates?: boolean;
+  };
 
   export type VersionUpsertWithoutTrimsInput = {
-    update: XOR<VersionUpdateWithoutTrimsInput, VersionUncheckedUpdateWithoutTrimsInput>
-    create: XOR<VersionCreateWithoutTrimsInput, VersionUncheckedCreateWithoutTrimsInput>
-    where?: VersionWhereInput
-  }
+    update: XOR<VersionUpdateWithoutTrimsInput, VersionUncheckedUpdateWithoutTrimsInput>;
+    create: XOR<VersionCreateWithoutTrimsInput, VersionUncheckedCreateWithoutTrimsInput>;
+    where?: VersionWhereInput;
+  };
 
   export type VersionUpdateToOneWithWhereWithoutTrimsInput = {
-    where?: VersionWhereInput
-    data: XOR<VersionUpdateWithoutTrimsInput, VersionUncheckedUpdateWithoutTrimsInput>
-  }
+    where?: VersionWhereInput;
+    data: XOR<VersionUpdateWithoutTrimsInput, VersionUncheckedUpdateWithoutTrimsInput>;
+  };
 
   export type VersionUpdateWithoutTrimsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    versionName?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    model?: ModelUpdateOneRequiredWithoutVersionsNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    versionName?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    model?: ModelUpdateOneRequiredWithoutVersionsNestedInput;
+  };
 
   export type VersionUncheckedUpdateWithoutTrimsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    versionName?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    modelId?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    versionName?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    modelId?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type CarListingUpsertWithWhereUniqueWithoutTrimInput = {
-    where: CarListingWhereUniqueInput
-    update: XOR<CarListingUpdateWithoutTrimInput, CarListingUncheckedUpdateWithoutTrimInput>
-    create: XOR<CarListingCreateWithoutTrimInput, CarListingUncheckedCreateWithoutTrimInput>
-  }
+    where: CarListingWhereUniqueInput;
+    update: XOR<CarListingUpdateWithoutTrimInput, CarListingUncheckedUpdateWithoutTrimInput>;
+    create: XOR<CarListingCreateWithoutTrimInput, CarListingUncheckedCreateWithoutTrimInput>;
+  };
 
   export type CarListingUpdateWithWhereUniqueWithoutTrimInput = {
-    where: CarListingWhereUniqueInput
-    data: XOR<CarListingUpdateWithoutTrimInput, CarListingUncheckedUpdateWithoutTrimInput>
-  }
+    where: CarListingWhereUniqueInput;
+    data: XOR<CarListingUpdateWithoutTrimInput, CarListingUncheckedUpdateWithoutTrimInput>;
+  };
 
   export type CarListingUpdateManyWithWhereWithoutTrimInput = {
-    where: CarListingScalarWhereInput
-    data: XOR<CarListingUpdateManyMutationInput, CarListingUncheckedUpdateManyWithoutTrimInput>
-  }
+    where: CarListingScalarWhereInput;
+    data: XOR<CarListingUpdateManyMutationInput, CarListingUncheckedUpdateManyWithoutTrimInput>;
+  };
 
   export type CarListingScalarWhereInput = {
-    AND?: CarListingScalarWhereInput | CarListingScalarWhereInput[]
-    OR?: CarListingScalarWhereInput[]
-    NOT?: CarListingScalarWhereInput | CarListingScalarWhereInput[]
-    id?: StringFilter<"CarListing"> | string
-    sellerId?: StringFilter<"CarListing"> | string
-    sourceId?: StringFilter<"CarListing"> | string
-    url?: StringFilter<"CarListing"> | string
-    title?: StringFilter<"CarListing"> | string
-    description?: StringFilter<"CarListing"> | string
-    price?: DecimalFilter<"CarListing"> | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFilter<"CarListing"> | string
-    trimId?: StringFilter<"CarListing"> | string
-    year?: IntFilter<"CarListing"> | number
-    mileage?: IntFilter<"CarListing"> | number
-    exteriorColor?: StringFilter<"CarListing"> | string
-    interiorColor?: StringFilter<"CarListing"> | string
-    isNew?: BoolFilter<"CarListing"> | boolean
-    location?: StringFilter<"CarListing"> | string
-    publishedAt?: DateTimeFilter<"CarListing"> | Date | string
-    scrapedAt?: DateTimeFilter<"CarListing"> | Date | string
-  }
+    AND?: CarListingScalarWhereInput | CarListingScalarWhereInput[];
+    OR?: CarListingScalarWhereInput[];
+    NOT?: CarListingScalarWhereInput | CarListingScalarWhereInput[];
+    id?: StringFilter<"CarListing"> | string;
+    sellerId?: StringFilter<"CarListing"> | string;
+    sourceId?: StringFilter<"CarListing"> | string;
+    url?: StringFilter<"CarListing"> | string;
+    title?: StringFilter<"CarListing"> | string;
+    description?: StringFilter<"CarListing"> | string;
+    price?: DecimalFilter<"CarListing"> | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFilter<"CarListing"> | string;
+    trimId?: StringFilter<"CarListing"> | string;
+    year?: IntFilter<"CarListing"> | number;
+    mileage?: IntFilter<"CarListing"> | number;
+    exteriorColor?: StringFilter<"CarListing"> | string;
+    interiorColor?: StringFilter<"CarListing"> | string;
+    isNew?: BoolFilter<"CarListing"> | boolean;
+    location?: StringFilter<"CarListing"> | string;
+    publishedAt?: DateTimeFilter<"CarListing"> | Date | string;
+    scrapedAt?: DateTimeFilter<"CarListing"> | Date | string;
+  };
 
   export type CarListingCreateWithoutSourceInput = {
-    id?: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-    seller: SellerCreateNestedOneWithoutCarListingsInput
-    trim: TrimCreateNestedOneWithoutCarListingsInput
-    images?: ImageCreateNestedManyWithoutCarListingInput
-    priceHistory?: PriceHistoryCreateNestedManyWithoutCarListingInput
-  }
+    id?: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+    seller: SellerCreateNestedOneWithoutCarListingsInput;
+    trim: TrimCreateNestedOneWithoutCarListingsInput;
+    images?: ImageCreateNestedManyWithoutCarListingInput;
+    priceHistory?: PriceHistoryCreateNestedManyWithoutCarListingInput;
+  };
 
   export type CarListingUncheckedCreateWithoutSourceInput = {
-    id?: string
-    sellerId: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    trimId: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-    images?: ImageUncheckedCreateNestedManyWithoutCarListingInput
-    priceHistory?: PriceHistoryUncheckedCreateNestedManyWithoutCarListingInput
-  }
+    id?: string;
+    sellerId: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    trimId: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+    images?: ImageUncheckedCreateNestedManyWithoutCarListingInput;
+    priceHistory?: PriceHistoryUncheckedCreateNestedManyWithoutCarListingInput;
+  };
 
   export type CarListingCreateOrConnectWithoutSourceInput = {
-    where: CarListingWhereUniqueInput
-    create: XOR<CarListingCreateWithoutSourceInput, CarListingUncheckedCreateWithoutSourceInput>
-  }
+    where: CarListingWhereUniqueInput;
+    create: XOR<CarListingCreateWithoutSourceInput, CarListingUncheckedCreateWithoutSourceInput>;
+  };
 
   export type CarListingCreateManySourceInputEnvelope = {
-    data: CarListingCreateManySourceInput | CarListingCreateManySourceInput[]
-    skipDuplicates?: boolean
-  }
+    data: CarListingCreateManySourceInput | CarListingCreateManySourceInput[];
+    skipDuplicates?: boolean;
+  };
 
   export type CarListingUpsertWithWhereUniqueWithoutSourceInput = {
-    where: CarListingWhereUniqueInput
-    update: XOR<CarListingUpdateWithoutSourceInput, CarListingUncheckedUpdateWithoutSourceInput>
-    create: XOR<CarListingCreateWithoutSourceInput, CarListingUncheckedCreateWithoutSourceInput>
-  }
+    where: CarListingWhereUniqueInput;
+    update: XOR<CarListingUpdateWithoutSourceInput, CarListingUncheckedUpdateWithoutSourceInput>;
+    create: XOR<CarListingCreateWithoutSourceInput, CarListingUncheckedCreateWithoutSourceInput>;
+  };
 
   export type CarListingUpdateWithWhereUniqueWithoutSourceInput = {
-    where: CarListingWhereUniqueInput
-    data: XOR<CarListingUpdateWithoutSourceInput, CarListingUncheckedUpdateWithoutSourceInput>
-  }
+    where: CarListingWhereUniqueInput;
+    data: XOR<CarListingUpdateWithoutSourceInput, CarListingUncheckedUpdateWithoutSourceInput>;
+  };
 
   export type CarListingUpdateManyWithWhereWithoutSourceInput = {
-    where: CarListingScalarWhereInput
-    data: XOR<CarListingUpdateManyMutationInput, CarListingUncheckedUpdateManyWithoutSourceInput>
-  }
+    where: CarListingScalarWhereInput;
+    data: XOR<CarListingUpdateManyMutationInput, CarListingUncheckedUpdateManyWithoutSourceInput>;
+  };
 
   export type CarListingCreateWithoutSellerInput = {
-    id?: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-    source: SourceCreateNestedOneWithoutCarListingsInput
-    trim: TrimCreateNestedOneWithoutCarListingsInput
-    images?: ImageCreateNestedManyWithoutCarListingInput
-    priceHistory?: PriceHistoryCreateNestedManyWithoutCarListingInput
-  }
+    id?: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+    source: SourceCreateNestedOneWithoutCarListingsInput;
+    trim: TrimCreateNestedOneWithoutCarListingsInput;
+    images?: ImageCreateNestedManyWithoutCarListingInput;
+    priceHistory?: PriceHistoryCreateNestedManyWithoutCarListingInput;
+  };
 
   export type CarListingUncheckedCreateWithoutSellerInput = {
-    id?: string
-    sourceId: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    trimId: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-    images?: ImageUncheckedCreateNestedManyWithoutCarListingInput
-    priceHistory?: PriceHistoryUncheckedCreateNestedManyWithoutCarListingInput
-  }
+    id?: string;
+    sourceId: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    trimId: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+    images?: ImageUncheckedCreateNestedManyWithoutCarListingInput;
+    priceHistory?: PriceHistoryUncheckedCreateNestedManyWithoutCarListingInput;
+  };
 
   export type CarListingCreateOrConnectWithoutSellerInput = {
-    where: CarListingWhereUniqueInput
-    create: XOR<CarListingCreateWithoutSellerInput, CarListingUncheckedCreateWithoutSellerInput>
-  }
+    where: CarListingWhereUniqueInput;
+    create: XOR<CarListingCreateWithoutSellerInput, CarListingUncheckedCreateWithoutSellerInput>;
+  };
 
   export type CarListingCreateManySellerInputEnvelope = {
-    data: CarListingCreateManySellerInput | CarListingCreateManySellerInput[]
-    skipDuplicates?: boolean
-  }
+    data: CarListingCreateManySellerInput | CarListingCreateManySellerInput[];
+    skipDuplicates?: boolean;
+  };
 
   export type CarListingUpsertWithWhereUniqueWithoutSellerInput = {
-    where: CarListingWhereUniqueInput
-    update: XOR<CarListingUpdateWithoutSellerInput, CarListingUncheckedUpdateWithoutSellerInput>
-    create: XOR<CarListingCreateWithoutSellerInput, CarListingUncheckedCreateWithoutSellerInput>
-  }
+    where: CarListingWhereUniqueInput;
+    update: XOR<CarListingUpdateWithoutSellerInput, CarListingUncheckedUpdateWithoutSellerInput>;
+    create: XOR<CarListingCreateWithoutSellerInput, CarListingUncheckedCreateWithoutSellerInput>;
+  };
 
   export type CarListingUpdateWithWhereUniqueWithoutSellerInput = {
-    where: CarListingWhereUniqueInput
-    data: XOR<CarListingUpdateWithoutSellerInput, CarListingUncheckedUpdateWithoutSellerInput>
-  }
+    where: CarListingWhereUniqueInput;
+    data: XOR<CarListingUpdateWithoutSellerInput, CarListingUncheckedUpdateWithoutSellerInput>;
+  };
 
   export type CarListingUpdateManyWithWhereWithoutSellerInput = {
-    where: CarListingScalarWhereInput
-    data: XOR<CarListingUpdateManyMutationInput, CarListingUncheckedUpdateManyWithoutSellerInput>
-  }
+    where: CarListingScalarWhereInput;
+    data: XOR<CarListingUpdateManyMutationInput, CarListingUncheckedUpdateManyWithoutSellerInput>;
+  };
 
   export type SellerCreateWithoutCarListingsInput = {
-    id?: string
-    name: string
-    email: string
-    phone: string
-    type: string
-  }
+    id?: string;
+    name: string;
+    email: string;
+    phone: string;
+    type: string;
+  };
 
   export type SellerUncheckedCreateWithoutCarListingsInput = {
-    id?: string
-    name: string
-    email: string
-    phone: string
-    type: string
-  }
+    id?: string;
+    name: string;
+    email: string;
+    phone: string;
+    type: string;
+  };
 
   export type SellerCreateOrConnectWithoutCarListingsInput = {
-    where: SellerWhereUniqueInput
-    create: XOR<SellerCreateWithoutCarListingsInput, SellerUncheckedCreateWithoutCarListingsInput>
-  }
+    where: SellerWhereUniqueInput;
+    create: XOR<SellerCreateWithoutCarListingsInput, SellerUncheckedCreateWithoutCarListingsInput>;
+  };
 
   export type SourceCreateWithoutCarListingsInput = {
-    id?: string
-    baseUrl: string
-    name: string
-  }
+    id?: string;
+    baseUrl: string;
+    name: string;
+  };
 
   export type SourceUncheckedCreateWithoutCarListingsInput = {
-    id?: string
-    baseUrl: string
-    name: string
-  }
+    id?: string;
+    baseUrl: string;
+    name: string;
+  };
 
   export type SourceCreateOrConnectWithoutCarListingsInput = {
-    where: SourceWhereUniqueInput
-    create: XOR<SourceCreateWithoutCarListingsInput, SourceUncheckedCreateWithoutCarListingsInput>
-  }
+    where: SourceWhereUniqueInput;
+    create: XOR<SourceCreateWithoutCarListingsInput, SourceUncheckedCreateWithoutCarListingsInput>;
+  };
 
   export type TrimCreateWithoutCarListingsInput = {
-    id?: string
-    name: string
-    motorSize: number
-    fuelType: string
-    transmissionType: string
-    version: VersionCreateNestedOneWithoutTrimsInput
-  }
+    id?: string;
+    name: string;
+    motorSize: number;
+    fuelType: string;
+    transmissionType: string;
+    version: VersionCreateNestedOneWithoutTrimsInput;
+  };
 
   export type TrimUncheckedCreateWithoutCarListingsInput = {
-    id?: string
-    name: string
-    motorSize: number
-    fuelType: string
-    transmissionType: string
-    versionId: string
-  }
+    id?: string;
+    name: string;
+    motorSize: number;
+    fuelType: string;
+    transmissionType: string;
+    versionId: string;
+  };
 
   export type TrimCreateOrConnectWithoutCarListingsInput = {
-    where: TrimWhereUniqueInput
-    create: XOR<TrimCreateWithoutCarListingsInput, TrimUncheckedCreateWithoutCarListingsInput>
-  }
+    where: TrimWhereUniqueInput;
+    create: XOR<TrimCreateWithoutCarListingsInput, TrimUncheckedCreateWithoutCarListingsInput>;
+  };
 
   export type ImageCreateWithoutCarListingInput = {
-    id?: string
-    url: string
-  }
+    id?: string;
+    url: string;
+  };
 
   export type ImageUncheckedCreateWithoutCarListingInput = {
-    id?: string
-    url: string
-  }
+    id?: string;
+    url: string;
+  };
 
   export type ImageCreateOrConnectWithoutCarListingInput = {
-    where: ImageWhereUniqueInput
-    create: XOR<ImageCreateWithoutCarListingInput, ImageUncheckedCreateWithoutCarListingInput>
-  }
+    where: ImageWhereUniqueInput;
+    create: XOR<ImageCreateWithoutCarListingInput, ImageUncheckedCreateWithoutCarListingInput>;
+  };
 
   export type ImageCreateManyCarListingInputEnvelope = {
-    data: ImageCreateManyCarListingInput | ImageCreateManyCarListingInput[]
-    skipDuplicates?: boolean
-  }
+    data: ImageCreateManyCarListingInput | ImageCreateManyCarListingInput[];
+    skipDuplicates?: boolean;
+  };
 
   export type PriceHistoryCreateWithoutCarListingInput = {
-    id?: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    recordedAt: Date | string
-  }
+    id?: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    recordedAt: Date | string;
+  };
 
   export type PriceHistoryUncheckedCreateWithoutCarListingInput = {
-    id?: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    recordedAt: Date | string
-  }
+    id?: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    recordedAt: Date | string;
+  };
 
   export type PriceHistoryCreateOrConnectWithoutCarListingInput = {
-    where: PriceHistoryWhereUniqueInput
-    create: XOR<PriceHistoryCreateWithoutCarListingInput, PriceHistoryUncheckedCreateWithoutCarListingInput>
-  }
+    where: PriceHistoryWhereUniqueInput;
+    create: XOR<PriceHistoryCreateWithoutCarListingInput, PriceHistoryUncheckedCreateWithoutCarListingInput>;
+  };
 
   export type PriceHistoryCreateManyCarListingInputEnvelope = {
-    data: PriceHistoryCreateManyCarListingInput | PriceHistoryCreateManyCarListingInput[]
-    skipDuplicates?: boolean
-  }
+    data: PriceHistoryCreateManyCarListingInput | PriceHistoryCreateManyCarListingInput[];
+    skipDuplicates?: boolean;
+  };
 
   export type SellerUpsertWithoutCarListingsInput = {
-    update: XOR<SellerUpdateWithoutCarListingsInput, SellerUncheckedUpdateWithoutCarListingsInput>
-    create: XOR<SellerCreateWithoutCarListingsInput, SellerUncheckedCreateWithoutCarListingsInput>
-    where?: SellerWhereInput
-  }
+    update: XOR<SellerUpdateWithoutCarListingsInput, SellerUncheckedUpdateWithoutCarListingsInput>;
+    create: XOR<SellerCreateWithoutCarListingsInput, SellerUncheckedCreateWithoutCarListingsInput>;
+    where?: SellerWhereInput;
+  };
 
   export type SellerUpdateToOneWithWhereWithoutCarListingsInput = {
-    where?: SellerWhereInput
-    data: XOR<SellerUpdateWithoutCarListingsInput, SellerUncheckedUpdateWithoutCarListingsInput>
-  }
+    where?: SellerWhereInput;
+    data: XOR<SellerUpdateWithoutCarListingsInput, SellerUncheckedUpdateWithoutCarListingsInput>;
+  };
 
   export type SellerUpdateWithoutCarListingsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    phone?: StringFieldUpdateOperationsInput | string;
+    type?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type SellerUncheckedUpdateWithoutCarListingsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    phone?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    email?: StringFieldUpdateOperationsInput | string;
+    phone?: StringFieldUpdateOperationsInput | string;
+    type?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type SourceUpsertWithoutCarListingsInput = {
-    update: XOR<SourceUpdateWithoutCarListingsInput, SourceUncheckedUpdateWithoutCarListingsInput>
-    create: XOR<SourceCreateWithoutCarListingsInput, SourceUncheckedCreateWithoutCarListingsInput>
-    where?: SourceWhereInput
-  }
+    update: XOR<SourceUpdateWithoutCarListingsInput, SourceUncheckedUpdateWithoutCarListingsInput>;
+    create: XOR<SourceCreateWithoutCarListingsInput, SourceUncheckedCreateWithoutCarListingsInput>;
+    where?: SourceWhereInput;
+  };
 
   export type SourceUpdateToOneWithWhereWithoutCarListingsInput = {
-    where?: SourceWhereInput
-    data: XOR<SourceUpdateWithoutCarListingsInput, SourceUncheckedUpdateWithoutCarListingsInput>
-  }
+    where?: SourceWhereInput;
+    data: XOR<SourceUpdateWithoutCarListingsInput, SourceUncheckedUpdateWithoutCarListingsInput>;
+  };
 
   export type SourceUpdateWithoutCarListingsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    baseUrl?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    baseUrl?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type SourceUncheckedUpdateWithoutCarListingsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    baseUrl?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    baseUrl?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type TrimUpsertWithoutCarListingsInput = {
-    update: XOR<TrimUpdateWithoutCarListingsInput, TrimUncheckedUpdateWithoutCarListingsInput>
-    create: XOR<TrimCreateWithoutCarListingsInput, TrimUncheckedCreateWithoutCarListingsInput>
-    where?: TrimWhereInput
-  }
+    update: XOR<TrimUpdateWithoutCarListingsInput, TrimUncheckedUpdateWithoutCarListingsInput>;
+    create: XOR<TrimCreateWithoutCarListingsInput, TrimUncheckedCreateWithoutCarListingsInput>;
+    where?: TrimWhereInput;
+  };
 
   export type TrimUpdateToOneWithWhereWithoutCarListingsInput = {
-    where?: TrimWhereInput
-    data: XOR<TrimUpdateWithoutCarListingsInput, TrimUncheckedUpdateWithoutCarListingsInput>
-  }
+    where?: TrimWhereInput;
+    data: XOR<TrimUpdateWithoutCarListingsInput, TrimUncheckedUpdateWithoutCarListingsInput>;
+  };
 
   export type TrimUpdateWithoutCarListingsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    motorSize?: IntFieldUpdateOperationsInput | number
-    fuelType?: StringFieldUpdateOperationsInput | string
-    transmissionType?: StringFieldUpdateOperationsInput | string
-    version?: VersionUpdateOneRequiredWithoutTrimsNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    motorSize?: IntFieldUpdateOperationsInput | number;
+    fuelType?: StringFieldUpdateOperationsInput | string;
+    transmissionType?: StringFieldUpdateOperationsInput | string;
+    version?: VersionUpdateOneRequiredWithoutTrimsNestedInput;
+  };
 
   export type TrimUncheckedUpdateWithoutCarListingsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    motorSize?: IntFieldUpdateOperationsInput | number
-    fuelType?: StringFieldUpdateOperationsInput | string
-    transmissionType?: StringFieldUpdateOperationsInput | string
-    versionId?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    motorSize?: IntFieldUpdateOperationsInput | number;
+    fuelType?: StringFieldUpdateOperationsInput | string;
+    transmissionType?: StringFieldUpdateOperationsInput | string;
+    versionId?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type ImageUpsertWithWhereUniqueWithoutCarListingInput = {
-    where: ImageWhereUniqueInput
-    update: XOR<ImageUpdateWithoutCarListingInput, ImageUncheckedUpdateWithoutCarListingInput>
-    create: XOR<ImageCreateWithoutCarListingInput, ImageUncheckedCreateWithoutCarListingInput>
-  }
+    where: ImageWhereUniqueInput;
+    update: XOR<ImageUpdateWithoutCarListingInput, ImageUncheckedUpdateWithoutCarListingInput>;
+    create: XOR<ImageCreateWithoutCarListingInput, ImageUncheckedCreateWithoutCarListingInput>;
+  };
 
   export type ImageUpdateWithWhereUniqueWithoutCarListingInput = {
-    where: ImageWhereUniqueInput
-    data: XOR<ImageUpdateWithoutCarListingInput, ImageUncheckedUpdateWithoutCarListingInput>
-  }
+    where: ImageWhereUniqueInput;
+    data: XOR<ImageUpdateWithoutCarListingInput, ImageUncheckedUpdateWithoutCarListingInput>;
+  };
 
   export type ImageUpdateManyWithWhereWithoutCarListingInput = {
-    where: ImageScalarWhereInput
-    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyWithoutCarListingInput>
-  }
+    where: ImageScalarWhereInput;
+    data: XOR<ImageUpdateManyMutationInput, ImageUncheckedUpdateManyWithoutCarListingInput>;
+  };
 
   export type ImageScalarWhereInput = {
-    AND?: ImageScalarWhereInput | ImageScalarWhereInput[]
-    OR?: ImageScalarWhereInput[]
-    NOT?: ImageScalarWhereInput | ImageScalarWhereInput[]
-    id?: StringFilter<"Image"> | string
-    listingId?: StringFilter<"Image"> | string
-    url?: StringFilter<"Image"> | string
-  }
+    AND?: ImageScalarWhereInput | ImageScalarWhereInput[];
+    OR?: ImageScalarWhereInput[];
+    NOT?: ImageScalarWhereInput | ImageScalarWhereInput[];
+    id?: StringFilter<"Image"> | string;
+    listingId?: StringFilter<"Image"> | string;
+    url?: StringFilter<"Image"> | string;
+  };
 
   export type PriceHistoryUpsertWithWhereUniqueWithoutCarListingInput = {
-    where: PriceHistoryWhereUniqueInput
-    update: XOR<PriceHistoryUpdateWithoutCarListingInput, PriceHistoryUncheckedUpdateWithoutCarListingInput>
-    create: XOR<PriceHistoryCreateWithoutCarListingInput, PriceHistoryUncheckedCreateWithoutCarListingInput>
-  }
+    where: PriceHistoryWhereUniqueInput;
+    update: XOR<PriceHistoryUpdateWithoutCarListingInput, PriceHistoryUncheckedUpdateWithoutCarListingInput>;
+    create: XOR<PriceHistoryCreateWithoutCarListingInput, PriceHistoryUncheckedCreateWithoutCarListingInput>;
+  };
 
   export type PriceHistoryUpdateWithWhereUniqueWithoutCarListingInput = {
-    where: PriceHistoryWhereUniqueInput
-    data: XOR<PriceHistoryUpdateWithoutCarListingInput, PriceHistoryUncheckedUpdateWithoutCarListingInput>
-  }
+    where: PriceHistoryWhereUniqueInput;
+    data: XOR<PriceHistoryUpdateWithoutCarListingInput, PriceHistoryUncheckedUpdateWithoutCarListingInput>;
+  };
 
   export type PriceHistoryUpdateManyWithWhereWithoutCarListingInput = {
-    where: PriceHistoryScalarWhereInput
-    data: XOR<PriceHistoryUpdateManyMutationInput, PriceHistoryUncheckedUpdateManyWithoutCarListingInput>
-  }
+    where: PriceHistoryScalarWhereInput;
+    data: XOR<PriceHistoryUpdateManyMutationInput, PriceHistoryUncheckedUpdateManyWithoutCarListingInput>;
+  };
 
   export type PriceHistoryScalarWhereInput = {
-    AND?: PriceHistoryScalarWhereInput | PriceHistoryScalarWhereInput[]
-    OR?: PriceHistoryScalarWhereInput[]
-    NOT?: PriceHistoryScalarWhereInput | PriceHistoryScalarWhereInput[]
-    id?: StringFilter<"PriceHistory"> | string
-    price?: DecimalFilter<"PriceHistory"> | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFilter<"PriceHistory"> | string
-    recordedAt?: DateTimeFilter<"PriceHistory"> | Date | string
-    listingId?: StringFilter<"PriceHistory"> | string
-  }
+    AND?: PriceHistoryScalarWhereInput | PriceHistoryScalarWhereInput[];
+    OR?: PriceHistoryScalarWhereInput[];
+    NOT?: PriceHistoryScalarWhereInput | PriceHistoryScalarWhereInput[];
+    id?: StringFilter<"PriceHistory"> | string;
+    price?: DecimalFilter<"PriceHistory"> | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFilter<"PriceHistory"> | string;
+    recordedAt?: DateTimeFilter<"PriceHistory"> | Date | string;
+    listingId?: StringFilter<"PriceHistory"> | string;
+  };
 
   export type CarListingCreateWithoutImagesInput = {
-    id?: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-    seller: SellerCreateNestedOneWithoutCarListingsInput
-    source: SourceCreateNestedOneWithoutCarListingsInput
-    trim: TrimCreateNestedOneWithoutCarListingsInput
-    priceHistory?: PriceHistoryCreateNestedManyWithoutCarListingInput
-  }
+    id?: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+    seller: SellerCreateNestedOneWithoutCarListingsInput;
+    source: SourceCreateNestedOneWithoutCarListingsInput;
+    trim: TrimCreateNestedOneWithoutCarListingsInput;
+    priceHistory?: PriceHistoryCreateNestedManyWithoutCarListingInput;
+  };
 
   export type CarListingUncheckedCreateWithoutImagesInput = {
-    id?: string
-    sellerId: string
-    sourceId: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    trimId: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-    priceHistory?: PriceHistoryUncheckedCreateNestedManyWithoutCarListingInput
-  }
+    id?: string;
+    sellerId: string;
+    sourceId: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    trimId: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+    priceHistory?: PriceHistoryUncheckedCreateNestedManyWithoutCarListingInput;
+  };
 
   export type CarListingCreateOrConnectWithoutImagesInput = {
-    where: CarListingWhereUniqueInput
-    create: XOR<CarListingCreateWithoutImagesInput, CarListingUncheckedCreateWithoutImagesInput>
-  }
+    where: CarListingWhereUniqueInput;
+    create: XOR<CarListingCreateWithoutImagesInput, CarListingUncheckedCreateWithoutImagesInput>;
+  };
 
   export type CarListingUpsertWithoutImagesInput = {
-    update: XOR<CarListingUpdateWithoutImagesInput, CarListingUncheckedUpdateWithoutImagesInput>
-    create: XOR<CarListingCreateWithoutImagesInput, CarListingUncheckedCreateWithoutImagesInput>
-    where?: CarListingWhereInput
-  }
+    update: XOR<CarListingUpdateWithoutImagesInput, CarListingUncheckedUpdateWithoutImagesInput>;
+    create: XOR<CarListingCreateWithoutImagesInput, CarListingUncheckedCreateWithoutImagesInput>;
+    where?: CarListingWhereInput;
+  };
 
   export type CarListingUpdateToOneWithWhereWithoutImagesInput = {
-    where?: CarListingWhereInput
-    data: XOR<CarListingUpdateWithoutImagesInput, CarListingUncheckedUpdateWithoutImagesInput>
-  }
+    where?: CarListingWhereInput;
+    data: XOR<CarListingUpdateWithoutImagesInput, CarListingUncheckedUpdateWithoutImagesInput>;
+  };
 
   export type CarListingUpdateWithoutImagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seller?: SellerUpdateOneRequiredWithoutCarListingsNestedInput
-    source?: SourceUpdateOneRequiredWithoutCarListingsNestedInput
-    trim?: TrimUpdateOneRequiredWithoutCarListingsNestedInput
-    priceHistory?: PriceHistoryUpdateManyWithoutCarListingNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    seller?: SellerUpdateOneRequiredWithoutCarListingsNestedInput;
+    source?: SourceUpdateOneRequiredWithoutCarListingsNestedInput;
+    trim?: TrimUpdateOneRequiredWithoutCarListingsNestedInput;
+    priceHistory?: PriceHistoryUpdateManyWithoutCarListingNestedInput;
+  };
 
   export type CarListingUncheckedUpdateWithoutImagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sellerId?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    trimId?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    priceHistory?: PriceHistoryUncheckedUpdateManyWithoutCarListingNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    sellerId?: StringFieldUpdateOperationsInput | string;
+    sourceId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    trimId?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    priceHistory?: PriceHistoryUncheckedUpdateManyWithoutCarListingNestedInput;
+  };
 
   export type CarListingCreateWithoutPriceHistoryInput = {
-    id?: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-    seller: SellerCreateNestedOneWithoutCarListingsInput
-    source: SourceCreateNestedOneWithoutCarListingsInput
-    trim: TrimCreateNestedOneWithoutCarListingsInput
-    images?: ImageCreateNestedManyWithoutCarListingInput
-  }
+    id?: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+    seller: SellerCreateNestedOneWithoutCarListingsInput;
+    source: SourceCreateNestedOneWithoutCarListingsInput;
+    trim: TrimCreateNestedOneWithoutCarListingsInput;
+    images?: ImageCreateNestedManyWithoutCarListingInput;
+  };
 
   export type CarListingUncheckedCreateWithoutPriceHistoryInput = {
-    id?: string
-    sellerId: string
-    sourceId: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    trimId: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-    images?: ImageUncheckedCreateNestedManyWithoutCarListingInput
-  }
+    id?: string;
+    sellerId: string;
+    sourceId: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    trimId: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+    images?: ImageUncheckedCreateNestedManyWithoutCarListingInput;
+  };
 
   export type CarListingCreateOrConnectWithoutPriceHistoryInput = {
-    where: CarListingWhereUniqueInput
-    create: XOR<CarListingCreateWithoutPriceHistoryInput, CarListingUncheckedCreateWithoutPriceHistoryInput>
-  }
+    where: CarListingWhereUniqueInput;
+    create: XOR<CarListingCreateWithoutPriceHistoryInput, CarListingUncheckedCreateWithoutPriceHistoryInput>;
+  };
 
   export type CarListingUpsertWithoutPriceHistoryInput = {
-    update: XOR<CarListingUpdateWithoutPriceHistoryInput, CarListingUncheckedUpdateWithoutPriceHistoryInput>
-    create: XOR<CarListingCreateWithoutPriceHistoryInput, CarListingUncheckedCreateWithoutPriceHistoryInput>
-    where?: CarListingWhereInput
-  }
+    update: XOR<CarListingUpdateWithoutPriceHistoryInput, CarListingUncheckedUpdateWithoutPriceHistoryInput>;
+    create: XOR<CarListingCreateWithoutPriceHistoryInput, CarListingUncheckedCreateWithoutPriceHistoryInput>;
+    where?: CarListingWhereInput;
+  };
 
   export type CarListingUpdateToOneWithWhereWithoutPriceHistoryInput = {
-    where?: CarListingWhereInput
-    data: XOR<CarListingUpdateWithoutPriceHistoryInput, CarListingUncheckedUpdateWithoutPriceHistoryInput>
-  }
+    where?: CarListingWhereInput;
+    data: XOR<CarListingUpdateWithoutPriceHistoryInput, CarListingUncheckedUpdateWithoutPriceHistoryInput>;
+  };
 
   export type CarListingUpdateWithoutPriceHistoryInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seller?: SellerUpdateOneRequiredWithoutCarListingsNestedInput
-    source?: SourceUpdateOneRequiredWithoutCarListingsNestedInput
-    trim?: TrimUpdateOneRequiredWithoutCarListingsNestedInput
-    images?: ImageUpdateManyWithoutCarListingNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    seller?: SellerUpdateOneRequiredWithoutCarListingsNestedInput;
+    source?: SourceUpdateOneRequiredWithoutCarListingsNestedInput;
+    trim?: TrimUpdateOneRequiredWithoutCarListingsNestedInput;
+    images?: ImageUpdateManyWithoutCarListingNestedInput;
+  };
 
   export type CarListingUncheckedUpdateWithoutPriceHistoryInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sellerId?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    trimId?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    images?: ImageUncheckedUpdateManyWithoutCarListingNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    sellerId?: StringFieldUpdateOperationsInput | string;
+    sourceId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    trimId?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    images?: ImageUncheckedUpdateManyWithoutCarListingNestedInput;
+  };
 
   export type ModelCreateManyBrandInput = {
-    id?: string
-    name: string
-    bodyType: string
-  }
+    id?: string;
+    name: string;
+    bodyType: string;
+  };
 
   export type ModelUpdateWithoutBrandInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    bodyType?: StringFieldUpdateOperationsInput | string
-    versions?: VersionUpdateManyWithoutModelNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    bodyType?: StringFieldUpdateOperationsInput | string;
+    versions?: VersionUpdateManyWithoutModelNestedInput;
+  };
 
   export type ModelUncheckedUpdateWithoutBrandInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    bodyType?: StringFieldUpdateOperationsInput | string
-    versions?: VersionUncheckedUpdateManyWithoutModelNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    bodyType?: StringFieldUpdateOperationsInput | string;
+    versions?: VersionUncheckedUpdateManyWithoutModelNestedInput;
+  };
 
   export type ModelUncheckedUpdateManyWithoutBrandInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    bodyType?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    bodyType?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type VersionCreateManyModelInput = {
-    id?: string
-    versionName: string
-    year: number
-  }
+    id?: string;
+    versionName: string;
+    year: number;
+  };
 
   export type VersionUpdateWithoutModelInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    versionName?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    trims?: TrimUpdateManyWithoutVersionNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    versionName?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    trims?: TrimUpdateManyWithoutVersionNestedInput;
+  };
 
   export type VersionUncheckedUpdateWithoutModelInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    versionName?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    trims?: TrimUncheckedUpdateManyWithoutVersionNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    versionName?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    trims?: TrimUncheckedUpdateManyWithoutVersionNestedInput;
+  };
 
   export type VersionUncheckedUpdateManyWithoutModelInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    versionName?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    versionName?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+  };
 
   export type TrimCreateManyVersionInput = {
-    id?: string
-    name: string
-    motorSize: number
-    fuelType: string
-    transmissionType: string
-  }
+    id?: string;
+    name: string;
+    motorSize: number;
+    fuelType: string;
+    transmissionType: string;
+  };
 
   export type TrimUpdateWithoutVersionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    motorSize?: IntFieldUpdateOperationsInput | number
-    fuelType?: StringFieldUpdateOperationsInput | string
-    transmissionType?: StringFieldUpdateOperationsInput | string
-    carListings?: CarListingUpdateManyWithoutTrimNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    motorSize?: IntFieldUpdateOperationsInput | number;
+    fuelType?: StringFieldUpdateOperationsInput | string;
+    transmissionType?: StringFieldUpdateOperationsInput | string;
+    carListings?: CarListingUpdateManyWithoutTrimNestedInput;
+  };
 
   export type TrimUncheckedUpdateWithoutVersionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    motorSize?: IntFieldUpdateOperationsInput | number
-    fuelType?: StringFieldUpdateOperationsInput | string
-    transmissionType?: StringFieldUpdateOperationsInput | string
-    carListings?: CarListingUncheckedUpdateManyWithoutTrimNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    motorSize?: IntFieldUpdateOperationsInput | number;
+    fuelType?: StringFieldUpdateOperationsInput | string;
+    transmissionType?: StringFieldUpdateOperationsInput | string;
+    carListings?: CarListingUncheckedUpdateManyWithoutTrimNestedInput;
+  };
 
   export type TrimUncheckedUpdateManyWithoutVersionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    motorSize?: IntFieldUpdateOperationsInput | number
-    fuelType?: StringFieldUpdateOperationsInput | string
-    transmissionType?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    name?: StringFieldUpdateOperationsInput | string;
+    motorSize?: IntFieldUpdateOperationsInput | number;
+    fuelType?: StringFieldUpdateOperationsInput | string;
+    transmissionType?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type CarListingCreateManyTrimInput = {
-    id?: string
-    sellerId: string
-    sourceId: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-  }
+    id?: string;
+    sellerId: string;
+    sourceId: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+  };
 
   export type CarListingUpdateWithoutTrimInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seller?: SellerUpdateOneRequiredWithoutCarListingsNestedInput
-    source?: SourceUpdateOneRequiredWithoutCarListingsNestedInput
-    images?: ImageUpdateManyWithoutCarListingNestedInput
-    priceHistory?: PriceHistoryUpdateManyWithoutCarListingNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    seller?: SellerUpdateOneRequiredWithoutCarListingsNestedInput;
+    source?: SourceUpdateOneRequiredWithoutCarListingsNestedInput;
+    images?: ImageUpdateManyWithoutCarListingNestedInput;
+    priceHistory?: PriceHistoryUpdateManyWithoutCarListingNestedInput;
+  };
 
   export type CarListingUncheckedUpdateWithoutTrimInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sellerId?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    images?: ImageUncheckedUpdateManyWithoutCarListingNestedInput
-    priceHistory?: PriceHistoryUncheckedUpdateManyWithoutCarListingNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    sellerId?: StringFieldUpdateOperationsInput | string;
+    sourceId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    images?: ImageUncheckedUpdateManyWithoutCarListingNestedInput;
+    priceHistory?: PriceHistoryUncheckedUpdateManyWithoutCarListingNestedInput;
+  };
 
   export type CarListingUncheckedUpdateManyWithoutTrimInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sellerId?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    sellerId?: StringFieldUpdateOperationsInput | string;
+    sourceId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type CarListingCreateManySourceInput = {
-    id?: string
-    sellerId: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    trimId: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-  }
+    id?: string;
+    sellerId: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    trimId: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+  };
 
   export type CarListingUpdateWithoutSourceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    seller?: SellerUpdateOneRequiredWithoutCarListingsNestedInput
-    trim?: TrimUpdateOneRequiredWithoutCarListingsNestedInput
-    images?: ImageUpdateManyWithoutCarListingNestedInput
-    priceHistory?: PriceHistoryUpdateManyWithoutCarListingNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    seller?: SellerUpdateOneRequiredWithoutCarListingsNestedInput;
+    trim?: TrimUpdateOneRequiredWithoutCarListingsNestedInput;
+    images?: ImageUpdateManyWithoutCarListingNestedInput;
+    priceHistory?: PriceHistoryUpdateManyWithoutCarListingNestedInput;
+  };
 
   export type CarListingUncheckedUpdateWithoutSourceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sellerId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    trimId?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    images?: ImageUncheckedUpdateManyWithoutCarListingNestedInput
-    priceHistory?: PriceHistoryUncheckedUpdateManyWithoutCarListingNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    sellerId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    trimId?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    images?: ImageUncheckedUpdateManyWithoutCarListingNestedInput;
+    priceHistory?: PriceHistoryUncheckedUpdateManyWithoutCarListingNestedInput;
+  };
 
   export type CarListingUncheckedUpdateManyWithoutSourceInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sellerId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    trimId?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    sellerId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    trimId?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type CarListingCreateManySellerInput = {
-    id?: string
-    sourceId: string
-    url: string
-    title: string
-    description: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    trimId: string
-    year: number
-    mileage: number
-    exteriorColor: string
-    interiorColor: string
-    isNew: boolean
-    location: string
-    publishedAt: Date | string
-    scrapedAt: Date | string
-  }
+    id?: string;
+    sourceId: string;
+    url: string;
+    title: string;
+    description: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    trimId: string;
+    year: number;
+    mileage: number;
+    exteriorColor: string;
+    interiorColor: string;
+    isNew: boolean;
+    location: string;
+    publishedAt: Date | string;
+    scrapedAt: Date | string;
+  };
 
   export type CarListingUpdateWithoutSellerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    source?: SourceUpdateOneRequiredWithoutCarListingsNestedInput
-    trim?: TrimUpdateOneRequiredWithoutCarListingsNestedInput
-    images?: ImageUpdateManyWithoutCarListingNestedInput
-    priceHistory?: PriceHistoryUpdateManyWithoutCarListingNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    source?: SourceUpdateOneRequiredWithoutCarListingsNestedInput;
+    trim?: TrimUpdateOneRequiredWithoutCarListingsNestedInput;
+    images?: ImageUpdateManyWithoutCarListingNestedInput;
+    priceHistory?: PriceHistoryUpdateManyWithoutCarListingNestedInput;
+  };
 
   export type CarListingUncheckedUpdateWithoutSellerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    trimId?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    images?: ImageUncheckedUpdateManyWithoutCarListingNestedInput
-    priceHistory?: PriceHistoryUncheckedUpdateManyWithoutCarListingNestedInput
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    sourceId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    trimId?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    images?: ImageUncheckedUpdateManyWithoutCarListingNestedInput;
+    priceHistory?: PriceHistoryUncheckedUpdateManyWithoutCarListingNestedInput;
+  };
 
   export type CarListingUncheckedUpdateManyWithoutSellerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    sourceId?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    trimId?: StringFieldUpdateOperationsInput | string
-    year?: IntFieldUpdateOperationsInput | number
-    mileage?: IntFieldUpdateOperationsInput | number
-    exteriorColor?: StringFieldUpdateOperationsInput | string
-    interiorColor?: StringFieldUpdateOperationsInput | string
-    isNew?: BoolFieldUpdateOperationsInput | boolean
-    location?: StringFieldUpdateOperationsInput | string
-    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    sourceId?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+    title?: StringFieldUpdateOperationsInput | string;
+    description?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    trimId?: StringFieldUpdateOperationsInput | string;
+    year?: IntFieldUpdateOperationsInput | number;
+    mileage?: IntFieldUpdateOperationsInput | number;
+    exteriorColor?: StringFieldUpdateOperationsInput | string;
+    interiorColor?: StringFieldUpdateOperationsInput | string;
+    isNew?: BoolFieldUpdateOperationsInput | boolean;
+    location?: StringFieldUpdateOperationsInput | string;
+    publishedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+    scrapedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type ImageCreateManyCarListingInput = {
-    id?: string
-    url: string
-  }
+    id?: string;
+    url: string;
+  };
 
   export type PriceHistoryCreateManyCarListingInput = {
-    id?: string
-    price: Decimal | DecimalJsLike | number | string
-    priceCurrency: string
-    recordedAt: Date | string
-  }
+    id?: string;
+    price: Decimal | DecimalJsLike | number | string;
+    priceCurrency: string;
+    recordedAt: Date | string;
+  };
 
   export type ImageUpdateWithoutCarListingInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type ImageUncheckedUpdateWithoutCarListingInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type ImageUncheckedUpdateManyWithoutCarListingInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    url?: StringFieldUpdateOperationsInput | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    url?: StringFieldUpdateOperationsInput | string;
+  };
 
   export type PriceHistoryUpdateWithoutCarListingInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type PriceHistoryUncheckedUpdateWithoutCarListingInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
+    id?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   export type PriceHistoryUncheckedUpdateManyWithoutCarListingInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    priceCurrency?: StringFieldUpdateOperationsInput | string
-    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-
+    id?: StringFieldUpdateOperationsInput | string;
+    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string;
+    priceCurrency?: StringFieldUpdateOperationsInput | string;
+    recordedAt?: DateTimeFieldUpdateOperationsInput | Date | string;
+  };
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
    */
 
   export type BatchPayload = {
-    count: number
-  }
+    count: number;
+  };
 
   /**
    * DMMF
    */
-  export const dmmf: runtime.BaseDMMF
+  export const dmmf: runtime.BaseDMMF;
 }

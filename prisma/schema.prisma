@@ -12,6 +12,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_DATABASE_URL")
 }
 
 model Brand {
@@ -25,13 +26,13 @@ model Model {
   name        String
   bodyType    String
   brandId     String
-  brand       Brand       @relation(fields: [brandId], references: [id])   
+  brand       Brand       @relation(fields: [brandId], references: [id])
   versions    Version[]
 }
 
 model Version {
   id              String      @id @default(uuid())
-  versionName     String      
+  versionName     String
   year            Int
   modelId         String
   model           Model       @relation(fields: [modelId], references: [id])
@@ -41,17 +42,17 @@ model Version {
 model Trim {
   id              String        @id @default(uuid())
   name            String
-  motorSize       Int           
-  fuelType        String        
-  transmissionType String       
-  versionId       String        
+  motorSize       Int
+  fuelType        String
+  transmissionType String
+  versionId       String
   version         Version       @relation(fields: [versionId], references: [id])
   carListings     CarListing[]
 }
 
 model Source {
   id          String        @id @default(uuid())
-  baseUrl     String        
+  baseUrl     String
   name        String
   carListings CarListing[]
 }
@@ -75,17 +76,17 @@ model CarListing {
   title         String
   description   String
   price         Decimal
-  priceCurrency String      
+  priceCurrency String
   trimId        String
   trim          Trim        @relation(fields: [trimId], references: [id])
   year          Int
   mileage       Int
-  exteriorColor String      
-  interiorColor String      
-  isNew         Boolean     
+  exteriorColor String
+  interiorColor String
+  isNew         Boolean
   location      String
-  publishedAt   DateTime    
-  scrapedAt     DateTime    
+  publishedAt   DateTime
+  scrapedAt     DateTime
   images        Image[]
   priceHistory  PriceHistory[]
 }
@@ -100,8 +101,8 @@ model Image {
 model PriceHistory {
   id            String    @id @default(uuid())
   price         Decimal
-  priceCurrency String    
-  recordedAt    DateTime  
+  priceCurrency String
+  recordedAt    DateTime
   listingId     String
   carListing    CarListing @relation(fields: [listingId], references: [id])
 }
