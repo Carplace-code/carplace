@@ -9,6 +9,7 @@ export default defineConfig({
       "@/app": "app",
       "@/components": "components",
       "@/hooks": "hooks",
+      "@/lib": "lib",
       "@/utils": "utils",
     },
   },
