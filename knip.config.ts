@@ -4,8 +4,20 @@
  */
 const config = {
   // ─── WHAT TO SCAN ─────────────────────────────────────────────────────────────
-  entry: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
-  project: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}"],
+  entry: [
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+    "utils/**/*.{ts,tsx}",
+    "lib/**/*.{ts,tsx}",
+    "hooks/**/*.{ts,tsx}",
+  ],
+  project: [
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+    "utils/**/*.{ts,tsx}",
+    "lib/**/*.{ts,tsx}",
+    "hooks/**/*.{ts,tsx}",
+  ],
 
   // ─── IGNORE SPECIFIC FILES ─────────────────────────────────────────────────────
   // don’t report issues in your own config
