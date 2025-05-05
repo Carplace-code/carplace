@@ -25,7 +25,7 @@ const config = {
 
   // ─── IGNORE DEPENDENCIES YOU KNOW YOU NEED ────────────────────────────────────
   // Knip will not report these as “unused”
-  ignoreDependencies: ["@clerk/nextjs", "@prisma/client", "@prisma/extension-accelerate"],
+  ignoreDependencies: ["@clerk/nextjs", "postcss"],
 
   // ─── ONLY REPORT UNUSED FILES & EXPORTS ────────────────────────────────────────
   // these flags are CLI‐only, so you’ll still pass them on the command line:

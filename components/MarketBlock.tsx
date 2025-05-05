@@ -9,7 +9,7 @@ export default function MarketBlock({ title, items }: MarketBlockProps) {
       <h4 className="mb-2 font-semibold">{title}</h4>
       <ul className="space-y-1 text-sm text-gray-700">
         {items.map((item) => (
-          <li>{item}</li>
+          <li key={item}>{item}</li>
         ))}
       </ul>
     </div>

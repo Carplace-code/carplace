@@ -37,7 +37,7 @@ export default function FeaturedCars() {
       <h2 className="mb-6 text-2xl font-semibold">Featured Cars</h2>
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {cars.map((car) => (
-          <CarCard {...car} />
+          <CarCard key={JSON.stringify(car)} {...car} />
         ))}
       </div>
     </section>
