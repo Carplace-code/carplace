@@ -114,7 +114,19 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+
+/* Overwriten clerk styles */
+.cl-modalContent {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.cl-cardBox {
+  min-width: 35rem;
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import { Car, Heart, LineChart, Menu, Search } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -32,15 +33,21 @@ export default function Navbar() {
             Home
           </Link>
           <Link href="/browse">Browse</Link>
-          <Link href="/wishlist" className="flex items-center gap-1">
-            <Heart className="h-4 w-4" />
-            Wishlist
-          </Link>
           <Link href="/trends" className="flex items-center gap-1">
             <LineChart className="h-4 w-4" />
             Trends
           </Link>
-          <Button>Sign In</Button>
+          <SignedOut>
+            <SignInButton mode="modal" />
+            <SignUpButton mode="modal" />
+          </SignedOut>
+          <SignedIn>
+            <Link href="/wishlist" className="flex items-center gap-1">
+              <Heart className="h-4 w-4" />
+              Wishlist
+            </Link>
+            <UserButton />
+          </SignedIn>
         </div>
 
         {/* Mobile Menu Button */}
