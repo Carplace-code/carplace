@@ -21,7 +21,7 @@ export default defineConfig({
     globals: true,
     setupFiles: [],
     coverage: {
-      exclude: ["node_modules", "__tests__"],
+      exclude: ["node_modules", "**/__tests__/**", "**/*.css"],
       include: ["app", "components", "hooks", "utils"],
       reporter: ["text", "json", "json-summary", "html"],
       reportOnFailure: true,

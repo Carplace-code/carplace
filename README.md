@@ -1,9 +1,7 @@
 # CarPlace
-
 Un proyecto de ejemplo construido con Next.js, TypeScript y Clerk para autenticación, incluyendo un pipeline de CI/CD con GitHub Actions y despliegue en Vercel.
 
 ## Installation
-
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/tu-usuario/carplace.git
@@ -22,18 +20,15 @@ Un proyecto de ejemplo construido con Next.js, TypeScript y Clerk para autentica
 Para los builds de producción, estos pueden ser vistos desde Vercel.
 
 ## Examples
-
 - **Health-check API**: Visita [`/api/health`](http://localhost:3000/api/health) para verificar que el backend responde con `{ status: "ok" }`.
 - **Páginas protegidas**: Cualquier página que use Clerk requiere autenticación; revisa `app/dashboard/page.tsx` como ejemplo.
 
 ## Troubleshooting
-
 - **Error de importación `@/...`**: Asegúrate de tener el alias configurado en `tsconfig.json` y en `vite.config.ts` (o `vitest.config.ts`).
 - **Vitest sin tests**: Crea un archivo `tests/example.test.ts` con un test simple (por ejemplo, `1 + 1 = 2`) para asegurarte de que funciona.
 - **Husky o lint-staged no bloquea commits**: Revisa tu `.husky/pre-commit` y la configuración en `package.json`; usa `eslint --cache --fix` con `--max-warnings 0`.
 
 ## Changelog
-
 El historial de cambios se encuentra en la lista de [releases de GitHub](https://github.com/Carplace-code/carplace/releases).
 
 ## Additional Resources
@@ -41,7 +36,6 @@ El historial de cambios se encuentra en la lista de [releases de GitHub](https:/
 - [Vercel](https://vercel.com)
 
 ## License Information
-
 Este proyecto está licenciado bajo la licencia MIT.
 ```
 MIT License
