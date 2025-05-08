@@ -47,3 +47,6 @@ prisma/generated/*
 
 # clerk configuration (can include secrets)
 /.clerk/
+
+# lock.json
+package-lock.json
