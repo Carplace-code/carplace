@@ -49,4 +49,3 @@ prisma/app/generated/*
 /.clerk/
 
 # lock.json
-package-lock.json
