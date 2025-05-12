@@ -42,10 +42,6 @@ Un proyecto de ejemplo construido con Next.js, TypeScript y Clerk para autentica
 
 Para los builds de producción, estos pueden ser vistos desde Vercel.
 
-## Examples
-- **Health-check API**: Visita [`/api/health`](http://localhost:3000/api/health) para verificar que el backend responde con `{ status: "ok" }`.
-- **Páginas protegidas**: Cualquier página que use Clerk requiere autenticación; revisa `app/dashboard/page.tsx` como ejemplo.
-
 ## Troubleshooting
 - **Error de importación `@/...`**: Asegúrate de tener el alias configurado en `tsconfig.json` y en `vite.config.ts` (o `vitest.config.ts`).
 - **Vitest sin tests**: Crea un archivo `tests/example.test.ts` con un test simple (por ejemplo, `1 + 1 = 2`) para asegurarte de que funciona.
