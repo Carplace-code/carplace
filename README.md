@@ -83,6 +83,7 @@ El pipeline de CI/CD incluye:
 - **Lintig**: Verifica errores de estilo con ESLint.
 - **Análisis de seguridad**: Escanea el código en busca de vulnerabilidades con CodeQL.
 - **Knip**: Detecta código no utilizado en el proyecto.
+- **Despliegue**: Despliega automáticamente en Vercel al hacer push a la rama de release.
 
 ## Changelog
 El historial de cambios se encuentra en la lista de [releases de GitHub](https://github.com/Carplace-code/carplace/releases).
