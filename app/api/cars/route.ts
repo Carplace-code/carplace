@@ -15,22 +15,26 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    const { brand } = data;
-    const { model } = data;
-    const { year } = data;
-    const { km } = data;
-    const { version } = data;
-    const { transmission } = data;
-    const priceActual = data.price_actual;
-    const { location } = data;
-
-    const platform = "kavak";
-    const platformUrl = "https://www.kavak.com/cl/usados";
-    const carUrl = "null"; // va a venir del scraper
-
     if (!data) {
-      return NextResponse.json({ error: "" }, { status: 400 });
+      return NextResponse.json({ error: "Invalid data" }, { status: 400 });
     }
+    const {
+      brand,
+      model,
+      year,
+      km,
+      version,
+      transmission,
+      price_actual: priceActual,
+      // price_original: priceOriginal,
+      location,
+      fuel_type: fuelType,
+      post_url: carUrl,
+      img_url: imgUrl,
+      data_source: dataSource, // plataforma de orígen
+      published_at: publishedAt,
+      scraped_at: scrapedAt,
+    } = data;
 
     // 1. Crear seller vacío (no tenemos la info del vendedor)
     const carSeller = await prisma.seller.create({
@@ -43,14 +47,16 @@ export async function POST(request: Request) {
     });
 
     // 2. Buscar o crear Source
-    let source = await prisma.source.findFirst({
-      where: { name: platform },
+    const source = await prisma.source.findFirst({
+      where: { name: dataSource },
     });
 
+    // name: baseUrl
+    // fb_mkt: https://www.facebook.com/marketplace/
+    // kavak: https://www.kavak.com/cl
+    // yapo: https://public-api.yapo.cl/
     if (!source) {
-      source = await prisma.source.create({
-        data: { baseUrl: platformUrl, name: platform },
-      });
+      return NextResponse.json({ error: "Invalid source url" }, { status: 400 });
     }
 
     // 3. Buscar o crear Brand
@@ -64,24 +70,48 @@ export async function POST(request: Request) {
       });
     }
 
-    // 4. Crear Model
-    const carModel = await prisma.model.create({
-      data: {
-        name: model,
-        bodyType: "null", // no esta todavia en la data
+    // 4. Buscar o crear Model
+    let carModel = await prisma.model.findFirst({
+      where: {
+        name: brand,
         brandId: carBrand.id,
       },
     });
 
-    // 5. Crear Version
-    const carVersion = await prisma.version.create({
-      data: {
-        versionName: version,
-        year,
+    if (!carModel) {
+      carModel = await prisma.model.create({
+        data: {
+          name: model,
+          bodyType: "null", // no esta todavia en la data
+          brandId: carBrand.id,
+        },
+      });
+    }
+
+    // 5. Buscar o crear Version
+    let carVersion = await prisma.version.findFirst({
+      where: {
         modelId: carModel.id,
       },
     });
-
+    if (!carVersion && version) {
+      carVersion = await prisma.version.create({
+        data: {
+          versionName: version, // si no viene la version
+          year,
+          modelId: carModel.id,
+        },
+      });
+    } else if (!carVersion && !version) {
+      carVersion = await prisma.version.create({
+        // caso contrario creamos una versión vacía
+        data: {
+          versionName: "null",
+          year: -1,
+          modelId: carModel.id,
+        },
+      });
+    }
     // 6. Crear Trim
     const nameArray: string[] = [brand, model, year];
     const trim = await prisma.trim.create({
@@ -89,10 +119,12 @@ export async function POST(request: Request) {
         versionId: carVersion.id,
         name: nameArray.join(" "),
         motorSize: -1, // no esta todavia en la data
-        fuelType: "null", // no esta todavia en la data
+        fuelType,
         transmissionType: transmission,
       },
     });
+
+    // 7. Crear publiacición
     const carListing = await prisma.carListing.create({
       data: {
         sellerId: carSeller.id,
@@ -107,14 +139,21 @@ export async function POST(request: Request) {
         mileage: km,
         exteriorColor: "null", // no esta todavia en la data
         interiorColor: "null", // no esta todavia en la data
-        isNew: false,
+        isNew: false, // no esta todavia en la data
         location,
-        publishedAt: new Date(), // no esta todavia en la data
-        scrapedAt: new Date(), // no esta todavia en la data
+        publishedAt,
+        scrapedAt,
+      },
+    });
+    // 8. Crear imágen
+    await prisma.image.create({
+      data: {
+        listingId: carListing.id,
+        url: imgUrl,
       },
     });
     return NextResponse.json(carListing);
   } catch (error) {
-    return NextResponse.json({ error: "" }, { status: 500 });
+    return NextResponse.json({ error }, { status: 500 });
   }
 }
