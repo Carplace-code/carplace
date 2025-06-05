@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     const carListings = await prisma.carListing.findMany();
-    return NextResponse.json(carListings, { status: 201 });
+    return NextResponse.json({ listings: carListings }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "" }, { status: 500 });
   }
@@ -25,15 +25,15 @@ export async function POST(request: Request) {
       km,
       version,
       transmission,
-      price_actual: priceActual,
-      // price_original: priceOriginal,
+      priceActual,
+      // priceOriginal: priceOriginal,
       location,
-      fuel_type: fuelType,
-      post_url: carUrl,
-      img_url: imgUrl,
-      data_source: dataSource, // plataforma de orígen
-      published_at: publishedAt,
-      scraped_at: scrapedAt,
+      fuelType,
+      postUrl,
+      imgUrl,
+      dataSource, // plataforma de orígen ('fb_mkt', 'kavak' o 'yapo')
+      publishedAt,
+      scrapedAt,
     } = data;
 
     // 1. Crear seller vacío (no tenemos la info del vendedor)
@@ -131,7 +131,7 @@ export async function POST(request: Request) {
       data: {
         sellerId: carSeller.id,
         sourceId: source.id,
-        url: carUrl,
+        url: postUrl,
         title: nameArray.join(" "),
         description: "null", // no esta todavia en la data
         price: priceActual,
@@ -154,7 +154,7 @@ export async function POST(request: Request) {
         url: imgUrl,
       },
     });
-    return NextResponse.json(carListing);
+    return NextResponse.json({ newListing: carListing }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
