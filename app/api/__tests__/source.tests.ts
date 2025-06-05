@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { describe, expect, it, vi } from "vitest";
 
-import { GET } from "@/app/api/sources/route";
+import { GET } from "../sources/route";
 
 const sources = [
   {
