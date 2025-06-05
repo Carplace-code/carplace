@@ -97,7 +97,7 @@ export async function POST(request: Request) {
     if (!carVersion && version) {
       carVersion = await prisma.version.create({
         data: {
-          versionName: version, // si no viene la version
+          versionName: version, // si viene la version la creamos en la bd
           year,
           modelId: carModel.id,
         },
@@ -111,6 +111,8 @@ export async function POST(request: Request) {
           modelId: carModel.id,
         },
       });
+    } else {
+      return NextResponse.json({ error: "Error with car version" }, { status: 500 });
     }
     // 6. Crear Trim
     const nameArray: string[] = [brand, model, year];
