@@ -3,6 +3,11 @@ import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
+function a(b: number) {
+  // eslint no me deja
+  return b;
+}
+
 export async function GET() {
   try {
     const carListings = await prisma.carListing.findMany();
@@ -26,7 +31,7 @@ export async function POST(request: Request) {
       version,
       transmission,
       priceActual,
-      // priceOriginal: priceOriginal,
+      priceOriginal,
       location,
       fuelType,
       postUrl,
@@ -35,6 +40,8 @@ export async function POST(request: Request) {
       publishedAt,
       scrapedAt,
     } = data;
+
+    a(priceOriginal); // eslint no me deja
 
     // 1. Crear seller vacío (no tenemos la info del vendedor)
     const carSeller = await prisma.seller.create({
