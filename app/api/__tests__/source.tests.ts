@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { describe, expect, it, vi } from "vitest";
 
+import prisma from "@/lib/prisma";
+
 import { GET } from "../sources/route";
 
 const sources = [
@@ -49,5 +51,14 @@ describe("GET /api/sources", () => {
         baseUrl: "https://public-api.yapo.cl/",
       },
     ]);
+  });
+
+  it("fails if error is raised", async () => {
+    prisma.source.findMany.mockResolvedValue(new Error("Sources not found"));
+    const res = await GET();
+
+    // Verifica la respuesta
+    expect(res).toBeInstanceOf(NextResponse);
+    expect(res.status).toBe(400);
   });
 });

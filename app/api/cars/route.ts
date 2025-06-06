@@ -42,6 +42,18 @@ export async function POST(request: Request) {
 
     a(priceOriginal); // eslint no me deja
 
+    if (priceActual < 0 || priceOriginal < 0) {
+      return NextResponse.json({ error: "Negative price" }, { status: 400 });
+    }
+
+    if (km < 0) {
+      return NextResponse.json({ error: "Negative mileage" }, { status: 400 });
+    }
+
+    if (year < 1886) {
+      return NextResponse.json({ error: "The car was invented in 1886" }, { status: 400 });
+    }
+
     // 1. Crear seller vacío (no tenemos la info del vendedor)
     const carSeller = await prisma.seller.create({
       data: {
@@ -79,7 +91,7 @@ export async function POST(request: Request) {
     // 4. Buscar o crear Model
     let carModel = await prisma.model.findFirst({
       where: {
-        name: brand,
+        name: model,
         brandId: carBrand.id,
       },
     });

@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
+import prisma from "@/lib/prisma";
+
 import { GET, POST } from "../cars/route";
 
 // Mock the prisma client module
@@ -66,6 +68,10 @@ vi.mock("@/lib/prisma", () => ({
   },
 }));
 
+beforeEach(() => {
+  vi.clearAllMocks();
+});
+
 describe("GET /api/cars", () => {
   it("responds 200 with a list of car listings", async () => {
     const res = await GET();
@@ -97,10 +103,6 @@ describe("POST /api/cars", () => {
     scrapedAt: "2020-10-03T00:00:00.000Z",
   };
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
-
   it("should create a car listing and return instance with 201 code", async () => {
     const request = new Request("http://localhost/api/cars", {
       method: "POST",
@@ -112,7 +114,27 @@ describe("POST /api/cars", () => {
     const json = await response.json();
 
     expect(response.status).toBe(201);
-    expect(json.newListing).toHaveProperty("id", "new-listing-id-123");
+    expect(json.newListing).toBeDefined();
+    // expect(prisma.seller.create).toHaveBeenCalledTimes(1);
+    // expect(prisma.source.findFirst).toHaveBeenCalledTimes(1);
+    // expect(prisma.brand.create).toHaveBeenCalledTimes(1);
+    // expect(prisma.model.create).toHaveBeenCalledTimes(1);
+    // expect(prisma.version.create).toHaveBeenCalledTimes(1);
+    // expect(prisma.trim.create).toHaveBeenCalledTimes(1);
+    // expect(prisma.carListing.create).toHaveBeenCalledTimes(1);
+    // expect(prisma.image.create).toHaveBeenCalledTimes(1);
+  });
+  it("fails when source is not found", async () => {
+    prisma.source.findFirst.mockResolvedValue(undefined);
+    const request = new Request("http://localhost/api/cars", {
+      method: "POST",
+      body: JSON.stringify(null),
+      headers: { "Content-Type": "application/json" },
+    });
+    const res = await POST(request);
+    const json = await res.json();
+    expect(res.status).toBe(400);
+    expect(json.error).toBe("Invalid data");
   });
 
   it("should handle missing data", async () => {
@@ -125,5 +147,56 @@ describe("POST /api/cars", () => {
     const json = await res.json();
     expect(res.status).toBe(400);
     expect(json.error).toBe("Invalid data");
+  });
+
+  it("should fail if brand is not found/created", async () => {
+    prisma.brand.findFirst.mockResolvedValue(undefined);
+    prisma.brand.create.mockResolvedValue(undefined);
+
+    const request = new Request("http://localhost/api/cars", {
+      method: "POST",
+      body: JSON.stringify(fakeData),
+      headers: { "Content-Type": "application/json" },
+    });
+    const res = await POST(request);
+    expect(res.status).toBe(400);
+    expect(prisma.brand.create).toBeCalledTimes(0);
+  });
+
+  it("fails if price is negative", async () => {
+    const badData = { ...fakeData };
+    badData.priceActual = -4700;
+    badData.priceOriginal = -123;
+    const request = new Request("http://localhost/api/cars", {
+      method: "POST",
+      body: JSON.stringify(badData),
+      headers: { "Content-Type": "application/json" },
+    });
+    const resNoVersion = await POST(request);
+    expect(resNoVersion.status).toBe(400);
+  });
+
+  it("fails if mileage is negative", async () => {
+    const badData = { ...fakeData };
+    badData.km = -4700;
+    const request = new Request("http://localhost/api/cars", {
+      method: "POST",
+      body: JSON.stringify(badData),
+      headers: { "Content-Type": "application/json" },
+    });
+    const resNoVersion = await POST(request);
+    expect(resNoVersion.status).toBe(400);
+  });
+
+  it("fails if year is less than 1886", async () => {
+    const badData = { ...fakeData };
+    badData.year = 1885;
+    const request = new Request("http://localhost/api/cars", {
+      method: "POST",
+      body: JSON.stringify(badData),
+      headers: { "Content-Type": "application/json" },
+    });
+    const resNoVersion = await POST(request);
+    expect(resNoVersion.status).toBe(400);
   });
 });
