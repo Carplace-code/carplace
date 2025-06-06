@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
-const prisma = new PrismaClient();
+import prisma from "@../../lib/prisma";
 
 function a(b: number) {
   // eslint no me deja

@@ -3,28 +3,55 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import { GET, POST } from "../cars/route";
 
+// Mock the prisma client module
 vi.mock("@/lib/prisma", () => ({
-  prisma: {
+  default: {
+    // Use 'default' because of the 'export default prisma' in lib/prisma.ts
     $extends: vi.fn().mockReturnThis(),
-    seller: { create: vi.fn() },
-    source: { findFirst: vi.fn(), create: vi.fn() },
-    brand: { findUnique: vi.fn(), create: vi.fn() },
-    model: { create: vi.fn() },
-    version: { create: vi.fn() },
-    trim: { create: vi.fn() },
+    // Mock every prisma call made in the POST route
+    seller: {
+      create: vi.fn().mockResolvedValue({ id: "seller-id-123" }),
+    },
+    source: {
+      // The API expects findFirst to return an object with an ID
+      findFirst: vi.fn().mockResolvedValue({ id: "source-id-123", name: "kavak" }),
+    },
+    brand: {
+      // Mock findFirst to return null, so the test covers the 'create' case
+      findFirst: vi.fn().mockResolvedValue(null),
+      create: vi.fn().mockResolvedValue({ id: "brand-id-123", name: "Toyota" }),
+    },
+    model: {
+      // Mock findFirst to return null, so the test covers the 'create' case
+      findFirst: vi.fn().mockResolvedValue(null),
+      create: vi.fn().mockResolvedValue({ id: "model-id-123", name: "Corolla" }),
+    },
+    version: {
+      // Mock findFirst to return null, so the test covers the 'create' case
+      findFirst: vi.fn().mockResolvedValue(null),
+      create: vi.fn().mockResolvedValue({ id: "version-id-123", versionName: "XLE" }),
+    },
+    trim: {
+      create: vi.fn().mockResolvedValue({ id: "trim-id-123" }),
+    },
+    image: {
+      // The API creates an image at the end, it must be mocked
+      create: vi.fn().mockResolvedValue({ id: "image-id-123" }),
+    },
     carListing: {
-      create: vi.fn().mockResolvedValue({ id: 123 }),
-      findMany: vi.fn().mockReturnValue([
+      create: vi.fn().mockResolvedValue({ id: "new-listing-id-123" }), // Mock for POST
+      findMany: vi.fn().mockResolvedValue([
+        // Mock for GET
         {
           id: "f3b952d5-0fb0-4d49-a2a7-56341c2c685c",
           sellerId: "a317ea55-e20c-484c-af5c-4b46d8830895",
-          sourceId: "895b269f-20db-4fcc-8c05-397f37811d02",
+          sourceId: "source-id-123",
           url: "https://public-api.yapo.cl/autos-usados/kia-carens-ex-1-7-dsl-7p-6mt-dab-abs-ac-1446-2014/29750094",
           title: "Kia CARENS 2014",
           description: "null",
           price: "8990000",
           priceCurrency: "CLP",
-          trimId: "144b3672-2df8-433f-96ef-70e1386cf3a7",
+          trimId: "trim-id-123",
           year: 2014,
           mileage: 143000,
           exteriorColor: "null",
@@ -85,6 +112,6 @@ describe("POST /api/cars", () => {
     const json = await response.json();
 
     expect(response.status).toBe(201);
-    expect(json.newListing).toHaveProperty("id");
+    expect(json.newListing).toHaveProperty("id", "new-listing-id-123");
   });
 });
