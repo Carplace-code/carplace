@@ -19,14 +19,14 @@ const sources = [
 ];
 
 vi.mock("@/lib/prisma", () => ({
-  prisma: {
+  default: {
     $extends: vi.fn().mockReturnThis(),
     source: { findMany: vi.fn().mockResolvedValue(sources) },
   },
 }));
 
-describe("GET /api/cars", () => {
-  it("responds 200 with a list of car listings", async () => {
+describe("GET /api/sources", () => {
+  it("responds 200 with a list of all sources", async () => {
     // Simula la solicitud GET
     const res = await GET();
 
