@@ -2,11 +2,6 @@ import { NextResponse } from "next/server";
 
 import prisma from "@../../lib/prisma";
 
-function a(b: number) {
-  // eslint no me deja
-  return b;
-}
-
 export async function GET() {
   try {
     const carListings = await prisma.carListing.findMany();
@@ -40,8 +35,6 @@ export async function POST(request: Request) {
       scrapedAt,
     } = data;
 
-    a(priceOriginal); // eslint no me deja
-
     if (priceActual < 0 || priceOriginal < 0) {
       return NextResponse.json({ error: "Negative price" }, { status: 400 });
     }
@@ -53,6 +46,19 @@ export async function POST(request: Request) {
     if (year < 1886) {
       return NextResponse.json({ error: "The car was invented in 1886" }, { status: 400 });
     }
+
+    // TO DO: revisar si las urls son validas
+    // if (!postUrl) {
+    //   return NextResponse.json({ error: "Data should include a valid post url" }, { status: 400 });
+    // } else if (postUrl) {
+    //   // checkear url valida
+    //   // checkear si es de la plataaforma correcta
+
+    // }
+
+    // if (imgUrl) {
+    //   // checkear url válida
+    // }
 
     // 1. Crear seller vacío (no tenemos la info del vendedor)
     const carSeller = await prisma.seller.create({
@@ -112,7 +118,9 @@ export async function POST(request: Request) {
         modelId: carModel.id,
       },
     });
-    if (!carVersion && version) {
+    if (carVersion) {
+      //  Si existe a version, nos saltamos esta verificación
+    } else if (!carVersion && version) {
       carVersion = await prisma.version.create({
         data: {
           versionName: version, // si viene la version la creamos en la bd
