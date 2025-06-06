@@ -71,7 +71,7 @@ export async function POST(request: Request) {
     });
 
     // 2. Buscar o crear Source
-    const source = await prisma.source.findFirst({
+    let source = await prisma.source.findFirst({
       where: { name: dataSource },
     });
 
@@ -79,8 +79,30 @@ export async function POST(request: Request) {
     // fb_mkt: https://www.facebook.com/marketplace/
     // kavak: https://www.kavak.com/cl
     // yapo: https://public-api.yapo.cl/
+    // hardcodeado
+    const sources = [
+      ["yapo", "https://public-api.yapo.cl/"],
+      ["fb_mkt", "https://www.facebook.com/marketplace/"],
+      ["kavak", "https://www.kavak.com/cl"],
+    ];
     if (!source) {
-      return NextResponse.json({ error: "Invalid source" }, { status: 400 });
+      // Buscar en la lista hardcodeada
+      const matchedSource = sources.find(([name]) => name === dataSource);
+
+      if (matchedSource) {
+        const [name, baseUrl] = matchedSource;
+
+        // Crear nueva instancia en la base de datos
+        source = await prisma.source.create({
+          data: {
+            name,
+            baseUrl,
+          },
+        });
+      } else {
+        // Si no está en la base ni en la lista, retornar error
+        return NextResponse.json({ error: "Invalid source" }, { status: 400 });
+      }
     }
 
     // 3. Buscar o crear Brand
