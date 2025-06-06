@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     // kavak: https://www.kavak.com/cl
     // yapo: https://public-api.yapo.cl/
     if (!source) {
-      return NextResponse.json({ error: "Invalid source url" }, { status: 400 });
+      return NextResponse.json({ error: "Invalid source" }, { status: 400 });
     }
 
     // 3. Buscar o crear Brand

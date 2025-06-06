@@ -35,6 +35,19 @@ describe("GET /api/sources", () => {
     expect(res.status).toBe(200);
 
     const json = await res.json();
-    expect(json).toEqual(sources);
+    expect(json).toEqual([
+      {
+        name: "fb_mkt",
+        baseUrl: "https://www.facebook.com/marketplace/",
+      },
+      {
+        name: "kavak",
+        baseUrl: "https://www.kavak.com/cl",
+      },
+      {
+        name: "yapo",
+        baseUrl: "https://public-api.yapo.cl/",
+      },
+    ]);
   });
 });

@@ -114,4 +114,16 @@ describe("POST /api/cars", () => {
     expect(response.status).toBe(201);
     expect(json.newListing).toHaveProperty("id", "new-listing-id-123");
   });
+
+  it("should handle missing data", async () => {
+    const request = new Request("http://localhost/api/cars", {
+      method: "POST",
+      body: JSON.stringify(null),
+      headers: { "Content-Type": "application/json" },
+    });
+    const res = await POST(request);
+    const json = await res.json();
+    expect(res.status).toBe(400);
+    expect(json.error).toBe("Invalid data");
+  });
 });
