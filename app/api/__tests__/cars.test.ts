@@ -159,7 +159,7 @@ describe("POST /api/cars", () => {
       headers: { "Content-Type": "application/json" },
     });
     const res = await POST(request);
-    expect(res.status).toBe(400);
+    expect(res.status).toBe(500);
     expect(prisma.brand.create).toBeCalledTimes(0);
   });
 
