@@ -16,34 +16,61 @@ datasource db {
 
 model Brand {
   id      String    @id @default(uuid())
-  name    String
+  name    String    @unique
   models  Model[]
 }
 
+enum BodyType {
+  sedan
+  suv
+  hatchback
+  coupe
+  convertible
+  wagon
+  van
+  truck
+  other
+}
 model Model {
   id          String      @id @default(uuid())
   name        String
-  bodyType    String
+  bodyType    BodyType?
   brandId     String
   brand       Brand       @relation(fields: [brandId], references: [id])
   versions    Version[]
+
+  @@unique([name, brandId])
 }
 
 model Version {
   id              String      @id @default(uuid())
-  versionName     String
   year            Int
   modelId         String
   model           Model       @relation(fields: [modelId], references: [id])
   trims           Trim[]
+
+  @@unique([modelId, year])
+}
+
+enum FuelType {
+  gas
+  diesel
+  electricity
+  hybrid
+  other
+}
+enum TransmissionType {
+  automatic
+  manual
+  other
 }
 
 model Trim {
   id              String        @id @default(uuid())
   name            String
   motorSize       Int
-  fuelType        String
-  transmissionType String
+  fuelType        FuelType
+  transmissionType TransmissionType
   versionId       String
   version         Version       @relation(fields: [versionId], references: [id])
   carListings     CarListing[]

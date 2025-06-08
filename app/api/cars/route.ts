@@ -1,10 +1,13 @@
+import { FuelType, TransmissionType } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import prisma from "@../../lib/prisma";
 
 export async function GET() {
   try {
-    const carListings = await prisma.carListing.findMany();
+    const carListings = await prisma.carListing.findMany({
+      include: { images: true },
+    });
     return NextResponse.json({ listings: carListings }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "" }, { status: 500 });
@@ -13,10 +16,13 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json();
-    if (!data) {
-      return NextResponse.json({ error: "Invalid data" }, { status: 400 });
+    let data;
+    try {
+      data = await request.json();
+    } catch (e) {
+      return NextResponse.json({ error: "Invalid or missing JSON body" }, { status: 400 });
     }
+
     const {
       brand,
       model,
@@ -30,180 +36,170 @@ export async function POST(request: Request) {
       fuelType,
       postUrl,
       imgUrl,
-      dataSource, // plataforma de orígen ('fb_mkt', 'kavak' o 'yapo')
+      dataSource,
       publishedAt,
       scrapedAt,
     } = data;
 
+    // Validaciones básicas
+    if (!brand || !model || !year || !priceActual || !location || !postUrl || !dataSource) {
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+    if (
+      typeof priceActual !== "number" ||
+      typeof priceOriginal !== "number" ||
+      typeof km !== "number" ||
+      typeof year !== "number"
+    ) {
+      return NextResponse.json({ error: "Invalid type for numeric fields" }, { status: 400 });
+    }
     if (priceActual < 0 || priceOriginal < 0) {
       return NextResponse.json({ error: "Negative price" }, { status: 400 });
     }
-
     if (km < 0) {
       return NextResponse.json({ error: "Negative mileage" }, { status: 400 });
     }
-
     if (year < 1886) {
       return NextResponse.json({ error: "The car was invented in 1886" }, { status: 400 });
     }
 
-    // TO DO: revisar si las urls son validas
-    // if (!postUrl) {
-    //   return NextResponse.json({ error: "Data should include a valid post url" }, { status: 400 });
-    // } else if (postUrl) {
-    //   // checkear url valida
-    //   // checkear si es de la plataaforma correcta
+    // Validar enums y tipos
+    const allowedFuelTypes = ["gas", "diesel", "electricity", "hybrid", "other"];
+    const allowedTransmissions = ["automatic", "manual", "other"];
+    if (typeof fuelType !== "string") {
+      return NextResponse.json({ error: "Invalid fuelType: must be a string" }, { status: 400 });
+    }
+    if (typeof transmission !== "string") {
+      return NextResponse.json({ error: "Invalid transmission: must be a string" }, { status: 400 });
+    }
+    const normalizedFuelType = fuelType.toLowerCase();
+    const normalizedTransmission = transmission.toLowerCase();
+    if (!allowedFuelTypes.includes(normalizedFuelType)) {
+      return NextResponse.json({ error: `Invalid fuelType. Allowed: ${allowedFuelTypes.join(", ")}` }, { status: 400 });
+    }
+    if (!allowedTransmissions.includes(normalizedTransmission)) {
+      return NextResponse.json(
+        { error: `Invalid transmission. Allowed: ${allowedTransmissions.join(", ")}` },
+        { status: 400 },
+      );
+    }
 
-    // }
-
-    // if (imgUrl) {
-    //   // checkear url válida
-    // }
-
-    // 1. Crear seller vacío (no tenemos la info del vendedor)
+    // 1. Crear seller placeholder
     const carSeller = await prisma.seller.create({
       data: {
         name: "placeholder",
-        email: "placeholder@email.com",
+        email: `placeholder+${Date.now()}@email.com`,
         phone: "000000",
         type: "null",
       },
     });
 
     // 2. Buscar o crear Source
-    let source = await prisma.source.findFirst({
-      where: { name: dataSource },
-    });
-
-    // name: baseUrl
-    // fb_mkt: https://www.facebook.com/marketplace/
-    // kavak: https://www.kavak.com/cl
-    // yapo: https://public-api.yapo.cl/
-    // hardcodeado
     const sources = [
       ["yapo", "https://public-api.yapo.cl/"],
       ["fb_mkt", "https://www.facebook.com/marketplace/"],
       ["kavak", "https://www.kavak.com/cl"],
     ];
+    let source = await prisma.source.findFirst({ where: { name: dataSource } });
+
     if (!source) {
-      // Buscar en la lista hardcodeada
-      const matchedSource = sources.find(([name]) => name === dataSource);
-
-      if (matchedSource) {
-        const [name, baseUrl] = matchedSource;
-
-        // Crear nueva instancia en la base de datos
-        source = await prisma.source.create({
-          data: {
-            name,
-            baseUrl,
-          },
-        });
-      } else {
-        // Si no está en la base ni en la lista, retornar error
+      const found = sources.find(([name]) => name === dataSource);
+      if (!found) {
         return NextResponse.json({ error: "Invalid source" }, { status: 400 });
       }
+      const [name, baseUrl] = found;
+      source = await prisma.source.create({ data: { name, baseUrl } });
     }
 
     // 3. Buscar o crear Brand
-    let carBrand = await prisma.brand.findFirst({
-      where: { name: brand },
-    });
-
+    let carBrand = await prisma.brand.findFirst({ where: { name: brand } });
     if (!carBrand) {
-      carBrand = await prisma.brand.create({
-        data: { name: brand },
-      });
+      carBrand = await prisma.brand.create({ data: { name: brand } });
     }
 
     // 4. Buscar o crear Model
     let carModel = await prisma.model.findFirst({
-      where: {
-        name: model,
-        brandId: carBrand.id,
-      },
+      where: { name: model, brandId: carBrand.id },
     });
-
     if (!carModel) {
       carModel = await prisma.model.create({
         data: {
           name: model,
-          bodyType: "null", // no esta todavia en la data
+          bodyType: "other",
           brandId: carBrand.id,
         },
       });
     }
 
-    // 5. Buscar o crear Version
+    // 5. Buscar o crear Version (por modelo y año)
     let carVersion = await prisma.version.findFirst({
-      where: {
-        modelId: carModel.id,
-      },
+      where: { modelId: carModel.id, year },
     });
-    if (carVersion) {
-      //  Si existe a version, nos saltamos esta verificación
-    } else if (!carVersion && version) {
+
+    if (!carVersion) {
       carVersion = await prisma.version.create({
         data: {
-          versionName: version, // si viene la version la creamos en la bd
+          modelId: carModel.id,
           year,
-          modelId: carModel.id,
         },
       });
-    } else if (!carVersion && !version) {
-      carVersion = await prisma.version.create({
-        // caso contrario creamos una versión vacía
-        data: {
-          versionName: "null",
-          year: -1,
-          modelId: carModel.id,
-        },
-      });
-    } else {
-      return NextResponse.json({ error: "Error with car version" }, { status: 500 });
     }
-    // 6. Crear Trim
-    const nameArray: string[] = [brand, model, year];
-    const trim = await prisma.trim.create({
-      data: {
+
+    // 6. Buscar o crear Trim (name puede ser version o algo generado)
+    const trimName = version ?? `${brand}-${model}-${year}`;
+    let trim = await prisma.trim.findFirst({
+      where: {
+        name: trimName,
         versionId: carVersion.id,
-        name: nameArray.join(" "),
-        motorSize: -1, // no esta todavia en la data
-        fuelType,
-        transmissionType: transmission,
       },
     });
 
-    // 7. Crear publiacición
+    if (!trim) {
+      trim = await prisma.trim.create({
+        data: {
+          name: trimName,
+          motorSize: -1,
+          fuelType: normalizedFuelType as FuelType,
+          transmissionType: normalizedTransmission as TransmissionType,
+          versionId: carVersion.id,
+        },
+      });
+    }
+
+    // 7. Crear CarListing
     const carListing = await prisma.carListing.create({
       data: {
         sellerId: carSeller.id,
         sourceId: source.id,
         url: postUrl,
-        title: nameArray.join(" "),
-        description: "null", // no esta todavia en la data
+        title: `${brand} ${model} ${version || ""}`.trim(),
+        description: "null",
         price: priceActual,
         priceCurrency: "CLP",
         trimId: trim.id,
         year,
         mileage: km,
-        exteriorColor: "null", // no esta todavia en la data
-        interiorColor: "null", // no esta todavia en la data
-        isNew: false, // no esta todavia en la data
+        exteriorColor: "null",
+        interiorColor: "null",
+        isNew: false,
         location,
-        publishedAt,
-        scrapedAt,
+        publishedAt: publishedAt ? new Date(publishedAt) : new Date(),
+        scrapedAt: scrapedAt ? new Date(scrapedAt) : new Date(),
       },
     });
-    // 8. Crear imágen
-    await prisma.image.create({
-      data: {
-        listingId: carListing.id,
-        url: imgUrl,
-      },
-    });
+
+    // 8. Crear Imagen si viene
+    if (imgUrl) {
+      await prisma.image.create({
+        data: {
+          listingId: carListing.id,
+          url: imgUrl,
+        },
+      });
+    }
+
     return NextResponse.json({ newListing: carListing }, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ error }, { status: 500 });
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
