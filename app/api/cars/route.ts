@@ -1,17 +1,86 @@
-import { FuelType, TransmissionType } from "@prisma/client";
+import { FuelType, Prisma, TransmissionType } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 import prisma from "@../../lib/prisma";
 
-export async function GET() {
-  try {
-    const carListings = await prisma.carListing.findMany({
-      include: { images: true },
-    });
-    return NextResponse.json({ listings: carListings }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ error: "" }, { status: 500 });
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
+
+  const page = parseInt(searchParams.get("page") || "1", 10);
+  const take = parseInt(searchParams.get("take") || "8", 10);
+  const skip = (page - 1) * take;
+
+  const brandId = searchParams.get("brandId");
+  const modelId = searchParams.get("modelId");
+  const minPrice = searchParams.get("minPrice");
+  const maxPrice = searchParams.get("maxPrice");
+  const transmission = searchParams.get("transmission");
+  const fuel = searchParams.get("fuel");
+
+  const where: Prisma.CarListingWhereInput = {};
+
+  if (minPrice || maxPrice) {
+    where.price = {};
+    if (minPrice) where.price.gte = parseFloat(minPrice);
+    if (maxPrice) where.price.lte = parseFloat(maxPrice);
   }
+
+  if (modelId) {
+    where.trim = {
+      version: {
+        modelId,
+      },
+    };
+  } else if (brandId) {
+    where.trim = {
+      version: {
+        model: {
+          brandId,
+        },
+      },
+    };
+  }
+
+  if (transmission) {
+    if (!where.trim) where.trim = {};
+    (where.trim as Prisma.TrimWhereInput).transmissionType = transmission as
+      | Prisma.EnumTransmissionTypeFilter
+      | undefined;
+  }
+
+  if (fuel) {
+    if (!where.trim) where.trim = {};
+    (where.trim as Prisma.TrimWhereInput).fuelType = fuel as Prisma.EnumFuelTypeFilter | undefined;
+  }
+
+  const [listings, total] = await Promise.all([
+    prisma.carListing.findMany({
+      where,
+      skip,
+      take,
+      include: {
+        seller: true,
+        images: true,
+        trim: {
+          include: {
+            version: {
+              include: {
+                model: {
+                  include: {
+                    brand: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      orderBy: { publishedAt: "desc" },
+    }),
+    prisma.carListing.count({ where }),
+  ]);
+
+  return NextResponse.json({ listings, total });
 }
 
 export async function POST(request: Request) {
@@ -82,6 +151,29 @@ export async function POST(request: Request) {
         { error: `Invalid transmission. Allowed: ${allowedTransmissions.join(", ")}` },
         { status: 400 },
       );
+    }
+
+    // Buscar si ya existe un CarListing con el mismo URL
+    const existingListing = await prisma.carListing.findFirst({ where: { url: postUrl } });
+    if (existingListing) {
+      // Actualizar solo el precio y fecha scrapedAt
+      const updated = await prisma.carListing.update({
+        where: { id: existingListing.id },
+        data: {
+          price: priceActual,
+          scrapedAt: scrapedAt ? new Date(scrapedAt) : new Date(),
+        },
+      });
+      // Opcional: guardar historial de precios
+      await prisma.priceHistory.create({
+        data: {
+          price: priceActual,
+          priceCurrency: "CLP",
+          recordedAt: new Date(),
+          listingId: existingListing.id,
+        },
+      });
+      return NextResponse.json({ updatedListing: updated }, { status: 200 });
     }
 
     // 1. Crear seller placeholder
@@ -187,6 +279,17 @@ export async function POST(request: Request) {
         scrapedAt: scrapedAt ? new Date(scrapedAt) : new Date(),
       },
     });
+
+    if (typeof priceOriginal === "number" && priceOriginal > 0) {
+      await prisma.priceHistory.create({
+        data: {
+          price: priceOriginal,
+          priceCurrency: "CLP",
+          recordedAt: new Date(),
+          listingId: carListing.id,
+        },
+      });
+    }
 
     // 8. Crear Imagen si viene
     if (imgUrl) {
