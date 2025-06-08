@@ -63,13 +63,17 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "The car was invented in 1886" }, { status: 400 });
     }
 
-    // Validar enums
+    // Validar enums y tipos
     const allowedFuelTypes = ["gas", "diesel", "electricity", "hybrid", "other"];
     const allowedTransmissions = ["automatic", "manual", "other"];
-    const normalizedFuelType = fuelType?.toLowerCase && typeof fuelType === "string" ? fuelType.toLowerCase() : "other";
-    const normalizedTransmission =
-      transmission?.toLowerCase && typeof transmission === "string" ? transmission.toLowerCase() : "other";
-
+    if (typeof fuelType !== "string") {
+      return NextResponse.json({ error: "Invalid fuelType: must be a string" }, { status: 400 });
+    }
+    if (typeof transmission !== "string") {
+      return NextResponse.json({ error: "Invalid transmission: must be a string" }, { status: 400 });
+    }
+    const normalizedFuelType = fuelType.toLowerCase();
+    const normalizedTransmission = transmission.toLowerCase();
     if (!allowedFuelTypes.includes(normalizedFuelType)) {
       return NextResponse.json({ error: `Invalid fuelType. Allowed: ${allowedFuelTypes.join(", ")}` }, { status: 400 });
     }
