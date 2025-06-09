@@ -3,10 +3,34 @@ import { NextResponse } from "next/server";
 
 import prisma from "@../../lib/prisma";
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const limit = searchParams.get("limit");
+    const limitNumber = limit ? parseInt(limit, 10) : undefined;
+
     const carListings = await prisma.carListing.findMany({
-      include: { images: true },
+      include: {
+        images: true,
+        source: true,
+        trim: {
+          include: {
+            version: {
+              include: {
+                model: {
+                  include: {
+                    brand: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+      orderBy: {
+        publishedAt: "desc",
+      },
+      ...(limitNumber && { take: limitNumber }),
     });
     return NextResponse.json({ listings: carListings }, { status: 200 });
   } catch (error) {
