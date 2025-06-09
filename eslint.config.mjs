@@ -25,7 +25,7 @@ export default [
 
   // Main configuration block
   {
-    ignores: ["**/*.js", "**/__snapshots__/*", "prisma/app/generated/**"],
+    ignores: ["**/*.js", "**/__snapshots__/*", "prisma/app/generated/**", "components/ui/**"],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
