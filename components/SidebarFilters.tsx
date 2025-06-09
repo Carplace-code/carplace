@@ -1,89 +1,78 @@
-"use client";
+"use client"
 
-import { ArrowDown, ArrowUp, Car, DollarSign, Settings } from "lucide-react";
-import { useEffect, useState } from "react";
-import { useDebouncedCallback } from "use-debounce";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Separator } from "@/components/ui/separator"
+import { Slider } from "@/components/ui/slider"
+import { Car, DollarSign, MapPin, Settings } from "lucide-react"
+import { useEffect, useState } from "react"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { Slider } from "@/components/ui/slider";
-
-// Types
 interface Brand {
-  id: string;
-  name: string;
-  models: { id: string; name: string }[];
-}
-
-interface Filters {
-  brandId: string;
-  modelId: string;
-  minPrice: string;
-  maxPrice: string;
+  id: string
+  name: string
+  models: { id: string; name: string }[]
 }
 
 interface SidebarFiltersProps {
-  brands: Brand[];
-  filters: Filters;
-  setFilters: (filters: Filters | ((prev: Filters) => Filters)) => void;
+  brands: Brand[]
+  filters: any
+  setFilters: (filters: any) => void
 }
 
-// Utils
-const formatPrice = (price: number) =>
-  new Intl.NumberFormat("es-CL", {
+// Función para formatear precio en CLP
+const formatPrice = (price: number) => {
+  return new Intl.NumberFormat("es-CL", {
     style: "currency",
     currency: "CLP",
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
-  }).format(price);
+  }).format(price)
+}
 
 export default function SidebarFilters({ brands, filters, setFilters }: SidebarFiltersProps) {
-  const selectedBrand = brands.find((b) => b.id === filters.brandId);
+  const selectedBrand = brands.find((b) => b.id === filters.brandId)
 
-  const MIN_PRICE = 1000000;
-  const MAX_PRICE = 50000000;
-  const STEP = 500000;
+  // Configuración del rango de precios
+  const MIN_PRICE = 1000000 // 1 millón CLP
+  const MAX_PRICE = 50000000 // 50 millones CLP
+  const STEP = 500000 // 500 mil CLP
 
-  const [minPrice, setMinPrice] = useState(filters.minPrice ? Number(filters.minPrice) : MIN_PRICE);
-  const [maxPrice, setMaxPrice] = useState(filters.maxPrice ? Number(filters.maxPrice) : MAX_PRICE);
+  // Estado local para los sliders
+  const [minPrice, setMinPrice] = useState(filters.minPrice ? Number(filters.minPrice) : MIN_PRICE)
+  const [maxPrice, setMaxPrice] = useState(filters.maxPrice ? Number(filters.maxPrice) : MAX_PRICE)
 
+  // Actualizar el estado local cuando cambian los filtros externos
   useEffect(() => {
     setMinPrice(filters.minPrice ? Number(filters.minPrice) : MIN_PRICE);
     setMaxPrice(filters.maxPrice ? Number(filters.maxPrice) : MAX_PRICE);
   }, [filters.minPrice, filters.maxPrice]);
 
-  // Debounced setters
-  const debouncedSetMinPrice = useDebouncedCallback((value: number) => {
-    setFilters((prev) => ({
-      ...prev,
-      minPrice: value.toString(),
-    }));
-  }, 300);
-
-  const debouncedSetMaxPrice = useDebouncedCallback((value: number) => {
-    setFilters((prev) => ({
-      ...prev,
-      maxPrice: value.toString(),
-    }));
-  }, 300);
-
+  // Manejadores para los sliders
   const handleMinPriceChange = (values: number[]) => {
-    const newMinPrice = values[0];
+    const newMinPrice = values[0]
+    // Asegurarse de que el precio mínimo no supere el máximo
     if (newMinPrice <= maxPrice) {
-      setMinPrice(newMinPrice);
-      debouncedSetMinPrice(newMinPrice);
+      setMinPrice(newMinPrice)
+      setFilters({
+        ...filters,
+        minPrice: newMinPrice.toString(),
+      })
     }
-  };
+  }
 
   const handleMaxPriceChange = (values: number[]) => {
-    const newMaxPrice = values[0];
+    const newMaxPrice = values[0]
+    // Asegurarse de que el precio máximo no sea menor que el mínimo
     if (newMaxPrice >= minPrice) {
-      setMaxPrice(newMaxPrice);
-      debouncedSetMaxPrice(newMaxPrice);
+      setMaxPrice(newMaxPrice)
+      setFilters({
+        ...filters,
+        maxPrice: newMaxPrice.toString(),
+      })
     }
-  };
+  }
 
   return (
     <Card className="w-full">
@@ -102,7 +91,13 @@ export default function SidebarFilters({ brands, filters, setFilters }: SidebarF
           </Label>
           <Select
             value={filters.brandId}
-            onValueChange={(value) => setFilters({ ...filters, brandId: value, modelId: "" })}
+            onValueChange={(value) =>
+              setFilters({
+                ...filters,
+                brandId: value === "all" ? "" : value,
+                modelId: "", // limpiar modelo cuando se cambia de marca
+              })
+            }
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Seleccionar marca" />
@@ -125,11 +120,15 @@ export default function SidebarFilters({ brands, filters, setFilters }: SidebarF
           <Label className="text-sm font-medium">Modelo</Label>
           <Select
             value={filters.modelId}
-            onValueChange={(value) => setFilters({ ...filters, modelId: value })}
+            onValueChange={(value) =>
+              setFilters({ ...filters, modelId: value === "all" ? "" : value })
+            }
             disabled={!filters.brandId}
           >
             <SelectTrigger className="w-full" disabled={!filters.brandId}>
-              <SelectValue placeholder={!filters.brandId ? "Primero selecciona una marca" : "Seleccionar modelo"} />
+              <SelectValue
+                placeholder={!filters.brandId ? "Primero selecciona una marca" : "Seleccionar modelo"}
+              />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="all">Todos los modelos</SelectItem>
@@ -141,60 +140,79 @@ export default function SidebarFilters({ brands, filters, setFilters }: SidebarF
             </SelectContent>
           </Select>
           {!filters.brandId && (
-            <p className="text-muted-foreground mt-1 text-xs">Selecciona una marca para ver los modelos disponibles</p>
+            <p className="text-xs text-muted-foreground mt-1">Selecciona una marca para ver los modelos disponibles</p>
           )}
         </div>
 
         <Separator />
 
-        {/* Precio */}
-        <div className="space-y-5">
+        {/* Ubicación */}
+        <div className="space-y-2">
+          <Label className="flex items-center gap-2 text-sm font-medium">
+            <MapPin className="h-4 w-4" />
+            Ubicación
+          </Label>
+          <Input
+            type="text"
+            placeholder="Ej: Santiago, Valparaíso..."
+            value={filters.location || ""}
+            onChange={(e) => setFilters({ ...filters, location: e.target.value })}
+            className="w-full"
+          />
+        </div>
+
+        <Separator />
+
+        {/* Precio con dos Sliders unidos */}
+        <div className="space-y-4">
           <Label className="flex items-center gap-2 text-sm font-medium">
             <DollarSign className="h-4 w-4" />
             Rango de Precio
           </Label>
 
-          {/* Mínimo */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <Label className="flex items-center gap-1 text-xs">
-                <ArrowUp className="h-3 w-3" />
-                Precio mínimo
-              </Label>
-              <span className="text-primary text-sm font-medium">{formatPrice(minPrice)}</span>
+          {/* Valores actuales */}
+          <div className="flex justify-between items-center bg-muted/30 p-2 rounded-md">
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground">Mínimo</p>
+              <p className="text-sm font-semibold text-primary">{formatPrice(minPrice)}</p>
             </div>
-            <Slider
-              value={[minPrice]}
-              onValueChange={handleMinPriceChange}
-              min={MIN_PRICE}
-              max={MAX_PRICE}
-              step={STEP}
-              className="w-full"
-            />
-            <div className="text-muted-foreground flex justify-between text-xs">
-              <span>{formatPrice(MIN_PRICE)}</span>
-              <span>{formatPrice(MAX_PRICE)}</span>
+            <div className="text-xs text-muted-foreground">-</div>
+            <div className="text-center">
+              <p className="text-xs text-muted-foreground">Máximo</p>
+              <p className="text-sm font-semibold text-primary">{formatPrice(maxPrice)}</p>
             </div>
           </div>
 
-          {/* Máximo */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <Label className="flex items-center gap-1 text-xs">
-                <ArrowDown className="h-3 w-3" />
-                Precio máximo
-              </Label>
-              <span className="text-primary text-sm font-medium">{formatPrice(maxPrice)}</span>
+          {/* Sliders unidos */}
+          <div className="space-y-2">
+            {/* Slider mínimo */}
+            <div className="relative">
+              <Label className="text-xs text-muted-foreground mb-1 block">Precio mínimo</Label>
+              <Slider
+                value={[minPrice]}
+                onValueChange={handleMinPriceChange}
+                min={MIN_PRICE}
+                max={MAX_PRICE}
+                step={STEP}
+                className="w-full"
+              />
             </div>
-            <Slider
-              value={[maxPrice]}
-              onValueChange={handleMaxPriceChange}
-              min={MIN_PRICE}
-              max={MAX_PRICE}
-              step={STEP}
-              className="w-full"
-            />
-            <div className="text-muted-foreground flex justify-between text-xs">
+
+            {/* Slider máximo */}
+            <div className="relative">
+              <Label className="text-xs text-muted-foreground mb-1 block">Precio máximo</Label>
+              <Slider
+                value={[maxPrice]}
+                onValueChange={handleMaxPriceChange}
+                min={MIN_PRICE}
+                max={MAX_PRICE}
+                step={STEP}
+                className="w-full"
+              />
+            </div>
+
+            {/* Etiquetas de rango compartidas */}
+            <div className="flex justify-between text-xs text-muted-foreground pt-1">
               <span>{formatPrice(MIN_PRICE)}</span>
               <span>{formatPrice(MAX_PRICE)}</span>
             </div>
@@ -202,5 +220,5 @@ export default function SidebarFilters({ brands, filters, setFilters }: SidebarF
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }

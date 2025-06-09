@@ -42,12 +42,12 @@ export default function ActiveFilters({ filters, setFilters, brands }: ActiveFil
 
   const clearFilters = () => {
     setFilters({
-      brandId: "",
-      modelId: "",
-      minPrice: "",
-      maxPrice: "",
-      transmission: "",
-      fuel: "",
+      brandId: '',
+      modelId: '',
+      minPrice: '',
+      maxPrice: '',
+      transmission: '',
+      fuel: '',
     });
   };
 
