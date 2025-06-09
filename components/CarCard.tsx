@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 
 interface CarCardProps {
+  id: string;
   title: string;
   price: string;
   platform: string;
@@ -9,7 +11,7 @@ interface CarCardProps {
   imageUrl?: string;
 }
 
-export default function CarCard({ title, price, platform, km, fuel, imageUrl }: CarCardProps) {
+export default function CarCard({ id, title, price, platform, km, fuel, imageUrl }: CarCardProps) {
   return (
     <div className="rounded-lg border bg-white p-4 shadow-sm">
       <div className="mb-4 h-32 overflow-hidden rounded-md bg-gray-200">
@@ -26,9 +28,12 @@ export default function CarCard({ title, price, platform, km, fuel, imageUrl }: 
       <p className="text-sm text-gray-500">
         {km} • {fuel}
       </p>
-      <button className="mt-4 w-full rounded-md bg-blue-600 py-2 text-sm text-white hover:bg-blue-700" type="button">
+      <Link
+        href={`/cars/${id}`}
+        className="mt-4 block w-full rounded-md bg-blue-600 py-2 text-center text-sm text-white hover:bg-blue-700"
+      >
         View Details
-      </button>
+      </Link>
     </div>
   );
 }
