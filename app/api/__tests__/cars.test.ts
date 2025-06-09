@@ -27,10 +27,35 @@ vi.mock("@/lib/prisma", () => ({
     },
     trim: {
       findFirst: vi.fn().mockResolvedValue(null),
-      create: vi.fn().mockResolvedValue({ id: "trim-id-123", name: "XLE" }),
+      create: vi.fn().mockResolvedValue({
+        id: "trim-id-123",
+        name: "XLE",
+        motorSize: 1.8,
+        fuelType: "gas",
+        transmissionType: "automatic",
+        versionId: "version-id-123",
+      }),
     },
     carListing: {
-      create: vi.fn().mockResolvedValue({ id: "listing-id-123" }),
+      create: vi.fn().mockResolvedValue({
+        id: "listing-id-123",
+        sellerId: "seller-id-123",
+        sourceId: "source-id-123",
+        url: "https://example.com/",
+        title: "Toyota Corolla XLE",
+        description: "null",
+        price: 15000,
+        priceCurrency: "CLP",
+        trimId: "trim-id-123",
+        year: 2020,
+        mileage: 10000,
+        exteriorColor: "null",
+        interiorColor: "null",
+        isNew: false,
+        location: "Buenos Aires",
+        publishedAt: new Date(),
+        scrapedAt: new Date(),
+      }),
       findMany: vi.fn().mockResolvedValue([
         {
           id: "listing-id-123",
@@ -53,9 +78,19 @@ vi.mock("@/lib/prisma", () => ({
           images: [],
         },
       ]),
+      count: vi.fn().mockResolvedValue(1),
+      findFirst: vi.fn().mockResolvedValue(null), // for uniqueness check
+      update: vi.fn().mockResolvedValue({
+        id: "listing-id-123",
+        price: 15000,
+        scrapedAt: new Date(),
+      }),
     },
     image: {
       create: vi.fn().mockResolvedValue({ id: "img-id-123", url: "https://example.com/" }),
+    },
+    priceHistory: {
+      create: vi.fn().mockResolvedValue({ id: "history-id-123" }),
     },
   },
 }));
@@ -66,7 +101,8 @@ beforeEach(() => {
 
 describe("GET /api/cars", () => {
   it("responds 200 with a list of car listings", async () => {
-    const res = await GET();
+    const req = new Request("http://localhost/api/cars", { method: "GET" });
+    const res = await GET(req);
     expect(res.status).toBe(200);
     const json = await res.json();
     expect(Array.isArray(json.listings)).toBe(true);
@@ -76,11 +112,12 @@ describe("GET /api/cars", () => {
   it("returns 500 if prisma.carListing.findMany throws", async () => {
     vi.mocked(prisma.carListing.findMany).mockRejectedValueOnce(new Error("Database error"));
 
-    const res = await GET();
+    const req = new Request("http://localhost/api/cars", { method: "GET" });
+    const res = await GET(req);
     const json = await res.json();
 
     expect(res.status).toBe(500);
-    expect(json.error).toBe("");
+    expect(json.error).toBe("Internal server error");
   });
 });
 

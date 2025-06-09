@@ -4,83 +4,87 @@ import { NextResponse } from "next/server";
 import prisma from "@../../lib/prisma";
 
 export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url);
+  try {
+    const { searchParams } = new URL(req.url);
 
-  const page = parseInt(searchParams.get("page") || "1", 10);
-  const take = parseInt(searchParams.get("take") || "8", 10);
-  const skip = (page - 1) * take;
+    const page = parseInt(searchParams.get("page") || "1", 10);
+    const take = parseInt(searchParams.get("take") || "8", 10);
+    const skip = (page - 1) * take;
 
-  const brandId = searchParams.get("brandId");
-  const modelId = searchParams.get("modelId");
-  const minPrice = searchParams.get("minPrice");
-  const maxPrice = searchParams.get("maxPrice");
-  const transmission = searchParams.get("transmission");
-  const fuel = searchParams.get("fuel");
+    const brandId = searchParams.get("brandId");
+    const modelId = searchParams.get("modelId");
+    const minPrice = searchParams.get("minPrice");
+    const maxPrice = searchParams.get("maxPrice");
+    const transmission = searchParams.get("transmission");
+    const fuel = searchParams.get("fuel");
 
-  const where: Prisma.CarListingWhereInput = {};
+    const where: Prisma.CarListingWhereInput = {};
 
-  if (minPrice || maxPrice) {
-    where.price = {};
-    if (minPrice) where.price.gte = parseFloat(minPrice);
-    if (maxPrice) where.price.lte = parseFloat(maxPrice);
-  }
+    if (minPrice || maxPrice) {
+      where.price = {};
+      if (minPrice) where.price.gte = parseFloat(minPrice);
+      if (maxPrice) where.price.lte = parseFloat(maxPrice);
+    }
 
-  if (modelId) {
-    where.trim = {
-      version: {
-        modelId,
-      },
-    };
-  } else if (brandId) {
-    where.trim = {
-      version: {
-        model: {
-          brandId,
+    if (modelId) {
+      where.trim = {
+        version: {
+          modelId,
         },
-      },
-    };
-  }
+      };
+    } else if (brandId) {
+      where.trim = {
+        version: {
+          model: {
+            brandId,
+          },
+        },
+      };
+    }
 
-  if (transmission) {
-    if (!where.trim) where.trim = {};
-    (where.trim as Prisma.TrimWhereInput).transmissionType = transmission as
-      | Prisma.EnumTransmissionTypeFilter
-      | undefined;
-  }
+    if (transmission) {
+      if (!where.trim) where.trim = {};
+      (where.trim as Prisma.TrimWhereInput).transmissionType = transmission as
+        | Prisma.EnumTransmissionTypeFilter
+        | undefined;
+    }
 
-  if (fuel) {
-    if (!where.trim) where.trim = {};
-    (where.trim as Prisma.TrimWhereInput).fuelType = fuel as Prisma.EnumFuelTypeFilter | undefined;
-  }
+    if (fuel) {
+      if (!where.trim) where.trim = {};
+      (where.trim as Prisma.TrimWhereInput).fuelType = fuel as Prisma.EnumFuelTypeFilter | undefined;
+    }
 
-  const [listings, total] = await Promise.all([
-    prisma.carListing.findMany({
-      where,
-      skip,
-      take,
-      include: {
-        seller: true,
-        images: true,
-        trim: {
-          include: {
-            version: {
-              include: {
-                model: {
-                  include: {
-                    brand: true,
+    const [listings, total] = await Promise.all([
+      prisma.carListing.findMany({
+        where,
+        skip,
+        take,
+        include: {
+          seller: true,
+          images: true,
+          trim: {
+            include: {
+              version: {
+                include: {
+                  model: {
+                    include: {
+                      brand: true,
+                    },
                   },
                 },
               },
             },
           },
         },
-      },
-      orderBy: { publishedAt: "desc" },
-    }),
-    prisma.carListing.count({ where }),
-  ]);
+        orderBy: { publishedAt: "desc" },
+      }),
+      prisma.carListing.count({ where }),
+    ]);
 
-  return NextResponse.json({ listings, total });
+    return NextResponse.json({ listings, total });
+  } catch (error) {
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+  }
 }
 
 export async function POST(request: Request) {
@@ -258,6 +262,13 @@ export async function POST(request: Request) {
       });
     }
 
+    const parsedPublishedAt = publishedAt ? new Date(publishedAt) : new Date();
+    const parsedScrapedAt = scrapedAt ? new Date(scrapedAt) : new Date();
+
+    if (Number.isNaN(parsedPublishedAt.getTime()) || Number.isNaN(parsedScrapedAt.getTime())) {
+      return NextResponse.json({ error: "Invalid date format for publishedAt or scrapedAt" }, { status: 400 });
+    }
+
     // 7. Crear CarListing
     const carListing = await prisma.carListing.create({
       data: {
@@ -275,8 +286,8 @@ export async function POST(request: Request) {
         interiorColor: "null",
         isNew: false,
         location,
-        publishedAt: publishedAt ? new Date(publishedAt) : new Date(),
-        scrapedAt: scrapedAt ? new Date(scrapedAt) : new Date(),
+        publishedAt: parsedPublishedAt,
+        scrapedAt: parsedScrapedAt,
       },
     });
 
