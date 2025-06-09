@@ -3,16 +3,66 @@ import { NextResponse } from "next/server";
 
 import prisma from "@../../lib/prisma";
 
-export async function GET(request: Request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const limit = searchParams.get("limit");
-    const limitNumber = limit ? parseInt(limit, 10) : undefined;
+export async function GET(req: Request) {
+  const { searchParams } = new URL(req.url);
 
-    const carListings = await prisma.carListing.findMany({
+  const page = parseInt(searchParams.get('page') || '1');
+  const take = parseInt(searchParams.get('take') || '8');
+  const skip = (page - 1) * take;
+
+  const brandId = searchParams.get('brandId');
+  const modelId = searchParams.get('modelId');
+  const minPrice = searchParams.get('minPrice');
+  const maxPrice = searchParams.get('maxPrice');
+  const transmission = searchParams.get('transmission');
+  const fuel = searchParams.get('fuel');
+
+  const where: any = {};
+
+  if (minPrice || maxPrice) {
+    where.price = {};
+    if (minPrice) where.price.gte = parseFloat(minPrice);
+    if (maxPrice) where.price.lte = parseFloat(maxPrice);
+  }
+
+  if (modelId) {
+    where.trim = {
+      version: {
+        modelId: modelId,
+      },
+    };
+  } else if (brandId) {
+    where.trim = {
+      version: {
+        model: {
+          brandId: brandId,
+        },
+      },
+    };
+  }
+
+  if (transmission) {
+    where.trim = {
+      ...where.trim,
+      transmissionType: transmission,
+    };
+  }
+
+  if (fuel) {
+    where.trim = {
+      ...where.trim,
+      fuelType: fuel,
+    };
+  }
+
+  const [listings, total] = await Promise.all([
+    prisma.carListing.findMany({
+      where,
+      skip,
+      take,
       include: {
+        seller: true,
         images: true,
-        source: true,
         trim: {
           include: {
             version: {
@@ -27,15 +77,12 @@ export async function GET(request: Request) {
           },
         },
       },
-      orderBy: {
-        publishedAt: "desc",
-      },
-      ...(limitNumber && { take: limitNumber }),
-    });
-    return NextResponse.json({ listings: carListings }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ error: "" }, { status: 500 });
-  }
+      orderBy: { publishedAt: 'desc' },
+    }),
+    prisma.carListing.count({ where }),
+  ]);
+
+  return NextResponse.json({ listings, total });
 }
 
 export async function POST(request: Request) {

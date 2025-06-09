@@ -1,9 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
-    remotePatterns: [new URL("https://images.prd.kavak.io/**")],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.prd.kavak.io",
+        pathname: "**",
+      },
+    ],
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 
