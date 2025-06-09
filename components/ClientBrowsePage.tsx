@@ -23,7 +23,6 @@ export default function ClientBrowsePage({ brands }: Props) {
     modelId: "",
     minPrice: "",
     maxPrice: "",
-    location: "",
     transmission: "",
     fuel: "",
   });
