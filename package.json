@@ -13,7 +13,8 @@
     "test": "vitest",
     "test:coverage": "vitest --coverage.enabled true",
     "prepare": "husky",
-    "knip": "knip"
+    "knip": "knip",
+    "seed": "ts-node prisma/seed.ts"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -33,8 +34,11 @@
     "@clerk/localizations": "^3.14.4",
     "@clerk/nextjs": "^6.18.5",
     "@prisma/client": "^6.7.0",
-    "@prisma/extension-accelerate": "^1.3.0",
-    "@radix-ui/react-slot": "^1.2.0",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-select": "^2.2.5",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slider": "^1.3.5",
+    "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.511.0",
@@ -42,7 +46,8 @@
     "postcss": "^8.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "tailwind-merge": "^3.2.0"
+    "tailwind-merge": "^3.2.0",
+    "use-debounce": "^10.0.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
