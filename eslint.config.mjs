@@ -7,9 +7,13 @@ import prettierPlugin from "eslint-plugin-prettier";
 import reactPlugin from "eslint-plugin-react";
 import reactHooks from "eslint-plugin-react-hooks";
 import vitestPlugin from "eslint-plugin-vitest";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 // Create a compatibility layer to convert "extends" entries into flat-config
-const compat = new FlatCompat({ baseDirectory: import.meta.url });
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const compat = new FlatCompat({ baseDirectory: __dirname });
+
 
 export default [
   // Extend recommended configs
