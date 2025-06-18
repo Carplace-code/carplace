@@ -5,10 +5,12 @@ import PriceHistory from "@/components/PriceHistory";
 import SellerNotes from "@/components/SellerNotes";
 import SimilarVehicles from "@/components/SimilarVehicles";
 
-export default function CarDetailsPage() {
+export default async function CarDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+
   return (
     <div className="space-y-10 px-4 py-6 lg:px-10">
-      <CarHeader />
+      <CarHeader carId={id} />
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <CarSpecs />
         <SellerNotes />
