@@ -48,6 +48,7 @@ model Version {
   modelId         String
   model           Model       @relation(fields: [modelId], references: [id])
   trims           Trim[]
+  wishlistItems  WishlistItem[]
 
   @@unique([modelId, year])
 }
@@ -131,4 +132,25 @@ model PriceHistory {
   recordedAt    DateTime
   listingId     String
   carListing    CarListing @relation(fields: [listingId], references: [id])
+}
+
+model Wishlist {
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  clerkUserId String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  items       WishlistItem[]
+}
+
+model WishlistItem {
+  id           String     @id @default(uuid())
+  wishlistId   String
+  wishlist     Wishlist   @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
+  versionId    String
+  version      Version @relation(fields: [versionId], references: [id], onDelete: Cascade)
+  addedAt      DateTime   @default(now())
+
+  @@unique([wishlistId, versionId])
 }

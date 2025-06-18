@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 
-import CarCard from "@/components/CarCard";
+import CarVersionCard from "@/components/VersionCard";
 
 const mockCarProps = {
   id: "test-car-id",
@@ -14,13 +14,13 @@ const mockCarProps = {
 
 describe("CarCard", () => {
   test("renders CarCard with image", () => {
-    const { container } = render(<CarCard {...mockCarProps} imageUrl="https://example.com/car-image.jpg" />);
+    const { container } = render(<CarVersionCard {...mockCarProps} imageUrl="https://example.com/car-image.jpg" />);
 
     expect(container).toMatchSnapshot();
   });
 
   test("renders CarCard without image (shows fallback)", () => {
-    const { container, getByText } = render(<CarCard {...mockCarProps} />);
+    const { container, getByText } = render(<CarVersionCard {...mockCarProps} />);
 
     // Check that the "No Image" fallback is rendered
     expect(getByText("No Image")).toBeTruthy();
@@ -28,7 +28,7 @@ describe("CarCard", () => {
   });
 
   test("renders CarCard with all required props", () => {
-    const { getByText } = render(<CarCard {...mockCarProps} />);
+    const { getByText } = render(<CarVersionCard {...mockCarProps} />);
 
     expect(getByText("Toyota Corolla 2024")).toBeTruthy();
     expect(getByText("$18,990 • Chileautos")).toBeTruthy();
@@ -37,7 +37,7 @@ describe("CarCard", () => {
   });
 
   test("generates correct link href", () => {
-    const { container } = render(<CarCard {...mockCarProps} />);
+    const { container } = render(<CarVersionCard {...mockCarProps} />);
 
     const link = container.querySelector('a[href="/cars/test-car-id"]');
     expect(link).toBeTruthy();

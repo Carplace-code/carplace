@@ -1,40 +1,26 @@
-import { FuelType, TransmissionType } from "@prisma/client";
-import { NextResponse } from "next/server";
+import { FuelType, Prisma, TransmissionType } from "@prisma/client";
+import { NextRequest, NextResponse } from "next/server";
 
-import prisma from "@../../lib/prisma";
+import prisma from "@/lib/prisma";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
-    const limit = searchParams.get("limit");
-    const limitNumber = limit ? parseInt(limit, 10) : undefined;
+    const { searchParams } = request.nextUrl;
 
-    const carListings = await prisma.carListing.findMany({
-      include: {
-        images: true,
-        source: true,
-        trim: {
-          include: {
-            version: {
-              include: {
-                model: {
-                  include: {
-                    brand: true,
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-      orderBy: {
-        publishedAt: "desc",
-      },
-      ...(limitNumber && { take: limitNumber }),
+    const includeParam = searchParams.get("include");
+    const pageSizeParam = searchParams.get("pageSize");
+    const orderByParam = searchParams.get("orderBy");
+
+    const listings = await prisma.carListing.findMany({
+      include: includeParam ? (JSON.parse(includeParam) as Prisma.CarListingInclude) : undefined,
+      take: pageSizeParam ? parseInt(pageSizeParam, 10) : 100,
+      orderBy: orderByParam ? (JSON.parse(orderByParam) as Prisma.CarListingOrderByWithRelationInput) : undefined,
     });
-    return NextResponse.json({ listings: carListings }, { status: 200 });
-  } catch (error) {
-    return NextResponse.json({ error: "" }, { status: 500 });
+
+    return NextResponse.json(listings, { status: 200 });
+  } catch (err) {
+    console.error("GET /api/listings failed:", err);
+    return NextResponse.json({ error: "Failed to fetch listings" }, { status: 500 });
   }
 }
 

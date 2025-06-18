@@ -1,34 +1,155 @@
-import ActiveFilters from "@/components/ActiveFilters";
-import CarGrid from "@/components/CarGrid";
-import Footer from "@/components/Footer";
+"use client";
+
+import type { Prisma as P } from "@prisma/client";
+import { useMemo, useState } from "react";
+
+import ActiveFilters, { ActiveFilter } from "@/components/ActiveFilters";
 import Pagination from "@/components/Pagination";
 import SidebarFilters from "@/components/SidebarFilters";
+import VersionsGrid from "@/components/VersionsGrid";
+import { useGetVersions } from "@/hooks/useVersions";
+import { cn } from "@/utils/cn";
 
 export default function BrowsePage() {
+  // --- FILTER STATE ---
+  const [filters, setFilters] = useState<{
+    brand?: string[];
+    model?: string[];
+    year?: number[];
+  }>({});
+
+  // --- PAGINATION ---
+  const [page, setPage] = useState(1);
+  const pageSize = 8;
+
+  // Brand -> models map
+  const brandModelsMap: Record<string, string[]> = {
+    Toyota: ["Corolla", "Camry"],
+    Ford: ["Focus", "Mustang"],
+    Honda: ["Civic", "Accord"],
+  };
+
+  const modelOptions = useMemo(() => {
+    if (!filters.brand?.length) return [];
+    return Array.from(new Set(filters.brand.flatMap((b) => brandModelsMap[b] || [])));
+  }, [filters.brand, brandModelsMap]);
+
+  // Prisma filtering logic
+  const where = useMemo<P.VersionWhereInput>(
+    () => ({
+      // Always include trims with at least one car listing
+      trims: {
+        some: {
+          carListings: {
+            some: {},
+          },
+        },
+      },
+      // Filter by year, brand, model
+      ...(filters.year && { year: { in: filters.year } }),
+      ...(filters.brand && {
+        model: {
+          is: {
+            brand: {
+              is: {
+                name: { in: filters.brand },
+              },
+            },
+          },
+        },
+      }),
+      ...(filters.model && {
+        model: {
+          is: {
+            name: { in: filters.model },
+          },
+        },
+      }),
+    }),
+    [filters],
+  );
+
+  const {
+    data: result,
+    isLoading,
+    isError,
+    error,
+  } = useGetVersions({
+    where,
+    page,
+    pageSize,
+    include: {
+      model: {
+        include: {
+          brand: true,
+        },
+      },
+      trims: {
+        where: {
+          carListings: {
+            some: {},
+          },
+        },
+        include: {
+          carListings: {
+            take: 1,
+            include: {
+              images: true,
+            },
+          },
+        },
+      },
+    },
+  });
+  const versions = useMemo(() => result?.data ?? [], [result]);
+  const meta = useMemo(() => result?.meta, [result]);
+
+  // Active filters
+  const activeFilters: ActiveFilter[] = [];
+  if (filters.brand?.length) {
+    activeFilters.push({
+      label: `Brand: ${filters.brand.join(", ")}`,
+      onRemove: () => setFilters((f) => ({ ...f, brand: undefined })),
+    });
+  }
+  if (filters.model?.length) {
+    activeFilters.push({
+      label: `Model: ${filters.model.join(", ")}`,
+      onRemove: () => setFilters((f) => ({ ...f, model: undefined })),
+    });
+  }
+  if (filters.year?.length) {
+    activeFilters.push({
+      label: `Year: ${filters.year.join(", ")}`,
+      onRemove: () => setFilters((f) => ({ ...f, year: undefined })),
+    });
+  }
+
   return (
-    <div className="flex min-h-screen flex-col">
-      <div className="flex-grow px-4 py-6 lg:px-10">
-        <ActiveFilters />
-        <div className="mt-6 flex gap-6">
-          <aside className="hidden w-64 lg:block">
-            <SidebarFilters />
-          </aside>
-          <main className="flex-1">
-            <div className="mb-4 flex items-center justify-between">
-              <span className="text-sm text-gray-600">Sort by:</span>
-              <select className="rounded-md border p-2 text-sm">
-                <option>Relevance</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
-                <option>Newest</option>
-              </select>
-            </div>
-            <CarGrid />
-            <Pagination />
-          </main>
+    <div className="flex w-full flex-grow flex-col px-6 py-4 lg:px-12">
+      <ActiveFilters filters={activeFilters} onClear={() => setFilters({})} />
+      <div className="mt-6 flex flex-grow gap-8">
+        <aside className="hidden w-64 flex-shrink-0 rounded-lg p-4 shadow-sm lg:block">
+          <SidebarFilters
+            filters={filters}
+            onChange={(field, value) => setFilters((f) => ({ ...f, [field]: value }))}
+            brandOptions={Object.keys(brandModelsMap)}
+            modelOptions={modelOptions}
+            yearOptions={[2023, 2022, 2021, 2020, 2019]}
+          />
+        </aside>
+        <div
+          className={cn(
+            "flex max-h-full flex-1 flex-grow flex-col justify-between",
+            "overflow-x-hidden rounded-lg p-4 shadow-sm",
+          )}
+        >
+          {isLoading && <div>Cargando...</div>}
+          {isError && <div>Error al cargar las versiones.{JSON.stringify(error)}</div>}
+          {!isLoading && !isError && meta && <VersionsGrid versions={versions} />}
+          <Pagination page={meta?.page || 1} pageCount={meta?.pageCount || 1} onPageChange={setPage} />
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

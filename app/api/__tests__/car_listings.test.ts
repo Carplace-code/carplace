@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import prisma from "@/lib/prisma";
 
-import { GET, POST } from "../cars/route";
+import { GET, POST } from "../car_listings/route";
 
 vi.mock("@/lib/prisma", () => ({
   default: {

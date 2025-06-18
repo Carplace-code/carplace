@@ -1,7 +1,7 @@
 import { render, waitFor } from "@testing-library/react";
-import { expect, test, describe, vi, beforeEach } from "vitest";
+import { beforeEach, describe, expect, test, vi } from "vitest";
 
-import FeaturedCars from "@/components/FeaturedCars";
+import FeaturedListings from "@/components/FeaturedListings";
 
 // Mock fetch
 const mockFetch = vi.fn();
@@ -16,7 +16,7 @@ describe("FeaturedCars", () => {
     // Mock fetch to never resolve, keeping component in loading state
     mockFetch.mockImplementation(() => new Promise(() => {}));
 
-    const { getByText, container } = render(<FeaturedCars />);
+    const { getByText, container } = render(<FeaturedListings />);
 
     expect(getByText("Featured Cars")).toBeTruthy();
     // Check for skeleton loading elements
@@ -69,7 +69,7 @@ describe("FeaturedCars", () => {
       json: () => Promise.resolve(mockCarsData),
     });
 
-    const { getByText, getByTestId } = render(<FeaturedCars />);
+    const { getByText, getByTestId } = render(<FeaturedListings />);
 
     await waitFor(() => {
       expect(getByTestId("featured-cars")).toBeTruthy();
@@ -83,7 +83,7 @@ describe("FeaturedCars", () => {
   test("handles fetch error gracefully", async () => {
     mockFetch.mockRejectedValueOnce(new Error("Network error"));
 
-    const { getByText } = render(<FeaturedCars />);
+    const { getByText } = render(<FeaturedListings />);
 
     await waitFor(() => {
       expect(getByText("Unable to load featured cars. Please try again later.")).toBeTruthy();
@@ -98,7 +98,7 @@ describe("FeaturedCars", () => {
       status: 500,
     });
 
-    const { getByText } = render(<FeaturedCars />);
+    const { getByText } = render(<FeaturedListings />);
 
     await waitFor(() => {
       expect(getByText("Unable to load featured cars. Please try again later.")).toBeTruthy();
