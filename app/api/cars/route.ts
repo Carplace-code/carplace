@@ -3,6 +3,14 @@ import { NextResponse } from "next/server";
 
 import prisma from "@../../lib/prisma";
 
+function isValidUrl(url: string) {
+  try {
+    return new URL(url);
+  } catch {
+    return false;
+  }
+}
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -85,6 +93,9 @@ export async function POST(request: Request) {
     }
     if (year < 1886) {
       return NextResponse.json({ error: "The car was invented in 1886" }, { status: 400 });
+    }
+    if (typeof postUrl !== "string" || !isValidUrl(postUrl)) {
+      return NextResponse.json({ error: "Post url not valid" }, { status: 400 });
     }
 
     // Validar enums y tipos
@@ -190,7 +201,22 @@ export async function POST(request: Request) {
       });
     }
 
-    // 7. Crear CarListing
+    // 7. si existe algún listing duplicado con el mismo url -> borrar y dejar el que se va a crear ahora
+    await prisma.image.deleteMany({
+      where: {
+        carListing: {
+          url: postUrl,
+        },
+      },
+    });
+
+    await prisma.carListing.deleteMany({
+      where: {
+        url: postUrl,
+      },
+    });
+
+    // 8. Crear CarListing
     const carListing = await prisma.carListing.create({
       data: {
         sellerId: carSeller.id,
@@ -212,7 +238,7 @@ export async function POST(request: Request) {
       },
     });
 
-    // 8. Crear Imagen si viene
+    // 9. Crear Imagen si viene
     if (imgUrl) {
       await prisma.image.create({
         data: {
