@@ -44,7 +44,6 @@ beforeEach(() => {
 
 describe("GET /api/cron/del_old_listings", () => {
   it("succesfully removes 1 month+ old listings", async () => {
-    // const request = new Request("http://localhost:3000/api/cars");
     const res = await GET();
     expect(res.status).toBe(200);
   });

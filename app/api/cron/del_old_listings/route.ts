@@ -9,7 +9,6 @@ https://vercel.com/docs/cron-jobs/quickstart
 */
 
 export async function GET() {
-  // if (request.url) {}
   try {
     // Obtenemos fecha de hace un mes atrás
     const oneMonthAgo = new Date();
