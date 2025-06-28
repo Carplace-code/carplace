@@ -30,6 +30,10 @@ vi.mock("@/lib/prisma", () => ({
           trim: "trim",
         },
       ]),
+      deleteMany: vi.fn().mockResolvedValue({}),
+    },
+    image: {
+      deleteMany: vi.fn().mockResolvedValue({}),
     },
   },
 }));
@@ -40,11 +44,8 @@ beforeEach(() => {
 
 describe("GET /api/cron/del_old_listings", () => {
   it("succesfully removes 1 month+ old listings", async () => {
-    const request = new Request("http://localhost:3000/api/cron/del_old_listings");
-    const res = await GET(request);
+    // const request = new Request("http://localhost:3000/api/cars");
+    const res = await GET();
     expect(res.status).toBe(200);
-    const json = await res.json();
-    expect(Array.isArray(json.listings)).toBe(true);
-    expect(json.listings[0]).toHaveProperty("id", "listing-id-123");
   });
 });

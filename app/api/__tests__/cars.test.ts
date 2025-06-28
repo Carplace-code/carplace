@@ -82,9 +82,11 @@ vi.mock("@/lib/prisma", () => ({
           },
         },
       ]),
+      deleteMany: vi.fn().mockResolvedValue({}),
     },
     image: {
       create: vi.fn().mockResolvedValue({ id: "img-id-123", url: "https://example.com/" }),
+      deleteMany: vi.fn().mockResolvedValue({}),
     },
   },
 }));
