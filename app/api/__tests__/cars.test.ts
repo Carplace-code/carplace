@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import prisma from "@/lib/prisma";
 
+import { DELETE } from "../cars/del_duplicates/route";
 import { GET, POST } from "../cars/route";
 
 vi.mock("@/lib/prisma", () => ({
@@ -30,6 +31,7 @@ vi.mock("@/lib/prisma", () => ({
       create: vi.fn().mockResolvedValue({ id: "trim-id-123", name: "XLE" }),
     },
     carListing: {
+      groupBy: vi.fn(),
       create: vi.fn().mockResolvedValue({ id: "listing-id-123" }),
       findMany: vi.fn().mockResolvedValue([
         {
@@ -474,5 +476,63 @@ describe("POST /api/cars", () => {
 
     expect(callData.publishedAt).toBeInstanceOf(Date);
     expect(callData.scrapedAt).toBeInstanceOf(Date);
+  });
+});
+
+describe("DELETE /api/cars/del_duplicates", () => {
+  it("successfully deletes posts with duplicate url", async () => {
+    // Simular la salida del groupBy
+    (prisma.carListing.groupBy as ReturnType<typeof vi.fn>).mockResolvedValue([
+      { url: "a.com", _max: { id: "4" } },
+      { url: "b.com", _max: { id: "8" } },
+    ]);
+
+    // Simular duplicados encontrados
+    (prisma.carListing.findMany as ReturnType<typeof vi.fn>).mockResolvedValue([
+      { id: "1" },
+      { id: "2" },
+      { id: "3" },
+      { id: "5" },
+      { id: "6" },
+      { id: "7" },
+    ]);
+
+    // Simular eliminación
+    vi.mocked(prisma.image.deleteMany).mockResolvedValue({ count: 6 });
+    vi.mocked(prisma.carListing.deleteMany).mockResolvedValue({ count: 6 });
+
+    const res = await DELETE();
+    const json = await res.json();
+
+    expect(prisma.carListing.groupBy).toHaveBeenCalled();
+    expect(prisma.carListing.findMany).toHaveBeenCalledWith({
+      where: {
+        id: {
+          notIn: ["4", "8"],
+        },
+      },
+      select: {
+        id: true,
+      },
+    });
+
+    expect(prisma.image.deleteMany).toHaveBeenCalledWith({
+      where: {
+        listingId: {
+          in: ["1", "2", "3", "5", "6", "7"],
+        },
+      },
+    });
+
+    expect(prisma.carListing.deleteMany).toHaveBeenCalledWith({
+      where: {
+        id: {
+          in: ["1", "2", "3", "5", "6", "7"],
+        },
+      },
+    });
+
+    expect(res.status).toBe(200);
+    expect(json.deletedDuplicates.count).toBe(6);
   });
 });

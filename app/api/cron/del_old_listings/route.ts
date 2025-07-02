@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
-import prisma from "@../../lib/prisma";
+import prisma from "@/lib/prisma";
 
 /*
-Ruta para eliminar poublicaciones antiguas.
+Ruta para eliminar publicaciones antiguas.
 Es un get porque eso especificaba la docu de los crons en vercel:
 https://vercel.com/docs/cron-jobs/quickstart
 */
