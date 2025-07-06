@@ -26,7 +26,9 @@ export async function DELETE(request: NextRequest, { params }: { params: { id: s
     },
   });
 
-  if (!deletedWishlists) return NextResponse.json({ error: "Wishlist not found" }, { status: 404 });
+  if (deletedWishlists.count === 0) {
+    return NextResponse.json({ error: "Wishlist not found" }, { status: 404 });
+  }
 
   return NextResponse.json({}, { status: 200 });
 }

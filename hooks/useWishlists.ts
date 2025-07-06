@@ -41,9 +41,7 @@ export function useCreateWishlist() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["wishlists"] });
     },
-    onError: (err: Error) => {
-      console.error("Create failed", err);
-    },
+    onError: () => {},
   });
 }
 export function useUpdateWishlist() {
@@ -55,9 +53,7 @@ export function useUpdateWishlist() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["wishlists"] });
     },
-    onError: (err: Error) => {
-      console.error("Update failed", err);
-    },
+    onError: () => {},
   });
 }
 
@@ -69,9 +65,7 @@ export function useDeleteWishlist() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["wishlists"] });
     },
-    onError: (err: Error) => {
-      console.error("Delete failed", err);
-    },
+    onError: () => {},
   });
 }
 
@@ -79,16 +73,12 @@ export function useAddToWishlist() {
   const qc = useQueryClient();
 
   return useMutation<Wishlist, Error, { wishlistId: string; versionId: string }>({
-    mutationFn: ({ wishlistId, versionId }) => {
-      console.log("Adding to wishlist", { wishlistId, versionId });
-      return axios.post(`/wishlists/${wishlistId}/versions`, { versionId }).then((res) => res.data);
-    },
+    mutationFn: ({ wishlistId, versionId }) =>
+      axios.post(`/wishlists/${wishlistId}/versions`, { versionId }).then((res) => res.data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["wishlists"] });
     },
-    onError: (err: Error) => {
-      console.error("Add to wishlist failed", err);
-    },
+    onError: () => {},
   });
 }
 
@@ -100,8 +90,6 @@ export function useRemoveFromWishlist() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["wishlists"] });
     },
-    onError: (err: Error) => {
-      console.error("Remove from wishlist failed", err);
-    },
+    onError: () => {},
   });
 }

@@ -1,20 +1,18 @@
-// app/api/wishlists/[wishlistId]/versions/route.ts
 import { auth } from "@clerk/nextjs/server";
 import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function POST(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+export async function POST(request: NextRequest, { params }: { params: { id: string } }) {
   const { userId } = await auth();
   if (!userId) throw new Error("userId should not be null, if null it could mean middleware is not set up correctly");
-  const { versionId } = await request.json();
 
-  console.log(`Creating wishlist item for versionId: ${userId}`);
+  const { versionId } = await request.json();
 
   await prisma.wishlistItem.create({
     data: {
-      wishlistId: (await params).id,
+      wishlistId: params.id,
       versionId,
     },
   });

@@ -104,8 +104,8 @@ describe("GET /api/car_listings", () => {
     const res = await GET(request);
     expect(res.status).toBe(200);
     const json = await res.json();
-    expect(Array.isArray(json.listings)).toBe(true);
-    expect(json.listings[0]).toHaveProperty("id", "listing-id-123");
+    expect(Array.isArray(json)).toBe(true);
+    expect(json[0]).toHaveProperty("id", "listing-id-123");
   });
 
   it("returns 500 if prisma.carListing.findMany throws", async () => {

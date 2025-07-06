@@ -37,7 +37,6 @@ export async function GET(request: NextRequest) {
       },
     });
   } catch (err) {
-    console.error("GET /api/versions failed:", err);
     return NextResponse.json({ error: "Failed to fetch versions" }, { status: 500 });
   }
 }
