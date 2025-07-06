@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import { GET } from "../cron/del_old_listings/route";
+import { GET } from "../cron/delete_old_listings/route";
 
 vi.mock("@/lib/prisma", () => ({
   default: {

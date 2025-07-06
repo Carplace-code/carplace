@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 import prisma from "@/lib/prisma";
 
-import { DELETE } from "../cars/del_duplicates/route";
+import { DELETE } from "../cars/delete_duplicates/route";
 import { GET, POST } from "../cars/route";
 
 vi.mock("@/lib/prisma", () => ({
