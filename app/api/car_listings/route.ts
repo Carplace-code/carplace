@@ -3,33 +3,75 @@ import { NextRequest, NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
 
-export async function GET(request: NextRequest) {
+// ===== GET handler =====
+export async function GET(request: NextRequest | Request) {
   try {
-    const { searchParams } = request.nextUrl;
+    const url = "nextUrl" in request ? request.nextUrl : new URL((request as Request).url);
 
-    const includeParam = searchParams.get("include");
-    const pageSizeParam = searchParams.get("pageSize");
-    const orderByParam = searchParams.get("orderBy");
+    const includeParam = url.searchParams.get("include");
+    const pageSizeParam = url.searchParams.get("pageSize");
+    const orderByParam = url.searchParams.get("orderBy");
+
+    let include: Prisma.CarListingInclude | undefined;
+
+    if (includeParam === "full") {
+      include = {
+        trim: {
+          include: {
+            version: {
+              include: {
+                model: {
+                  include: {
+                    brand: true,
+                  },
+                },
+              },
+            },
+          },
+        },
+        priceHistory: true,
+        images: true,
+        seller: true,
+        source: true,
+      };
+    } else if (includeParam) {
+      try {
+        include = JSON.parse(includeParam) as Prisma.CarListingInclude;
+      } catch {
+        return NextResponse.json({ error: "Invalid include JSON" }, { status: 400 });
+      }
+    }
+
+    let orderBy: Prisma.CarListingOrderByWithRelationInput | undefined;
+    if (orderByParam) {
+      try {
+        orderBy = JSON.parse(orderByParam) as Prisma.CarListingOrderByWithRelationInput;
+      } catch {
+        return NextResponse.json({ error: "Invalid orderBy JSON" }, { status: 400 });
+      }
+    } else {
+      orderBy = { scrapedAt: "desc" };
+    }
 
     const listings = await prisma.carListing.findMany({
-      include: includeParam ? (JSON.parse(includeParam) as Prisma.CarListingInclude) : undefined,
+      include,
       take: pageSizeParam ? parseInt(pageSizeParam, 10) : 100,
-      orderBy: orderByParam ? (JSON.parse(orderByParam) as Prisma.CarListingOrderByWithRelationInput) : undefined,
+      orderBy,
     });
 
-    return NextResponse.json(listings, { status: 200 });
+    return NextResponse.json({ listings }, { status: 200 });
   } catch (err) {
-    console.error("GET /api/listings failed:", err);
     return NextResponse.json({ error: "Failed to fetch listings" }, { status: 500 });
   }
 }
 
+// ===== POST handler =====
 export async function POST(request: Request) {
   try {
     let data;
     try {
       data = await request.json();
-    } catch (e) {
+    } catch {
       return NextResponse.json({ error: "Invalid or missing JSON body" }, { status: 400 });
     }
 
@@ -55,6 +97,7 @@ export async function POST(request: Request) {
     if (!brand || !model || !year || !priceActual || !location || !postUrl || !dataSource) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
+
     if (
       typeof priceActual !== "number" ||
       typeof priceOriginal !== "number" ||
@@ -63,30 +106,38 @@ export async function POST(request: Request) {
     ) {
       return NextResponse.json({ error: "Invalid type for numeric fields" }, { status: 400 });
     }
+
     if (priceActual < 0 || priceOriginal < 0) {
       return NextResponse.json({ error: "Negative price" }, { status: 400 });
     }
+
     if (km < 0) {
       return NextResponse.json({ error: "Negative mileage" }, { status: 400 });
     }
+
     if (year < 1886) {
       return NextResponse.json({ error: "The car was invented in 1886" }, { status: 400 });
     }
 
-    // Validar enums y tipos
+    // Validar enums
     const allowedFuelTypes = ["gas", "diesel", "electricity", "hybrid", "other"];
     const allowedTransmissions = ["automatic", "manual", "other"];
+
     if (typeof fuelType !== "string") {
       return NextResponse.json({ error: "Invalid fuelType: must be a string" }, { status: 400 });
     }
+
     if (typeof transmission !== "string") {
       return NextResponse.json({ error: "Invalid transmission: must be a string" }, { status: 400 });
     }
+
     const normalizedFuelType = fuelType.toLowerCase();
     const normalizedTransmission = transmission.toLowerCase();
+
     if (!allowedFuelTypes.includes(normalizedFuelType)) {
       return NextResponse.json({ error: `Invalid fuelType. Allowed: ${allowedFuelTypes.join(", ")}` }, { status: 400 });
     }
+
     if (!allowedTransmissions.includes(normalizedTransmission)) {
       return NextResponse.json(
         { error: `Invalid transmission. Allowed: ${allowedTransmissions.join(", ")}` },
@@ -141,11 +192,10 @@ export async function POST(request: Request) {
       });
     }
 
-    // 5. Buscar o crear Version (por modelo y año)
+    // 5. Buscar o crear Version
     let carVersion = await prisma.version.findFirst({
       where: { modelId: carModel.id, year },
     });
-
     if (!carVersion) {
       carVersion = await prisma.version.create({
         data: {
@@ -155,13 +205,10 @@ export async function POST(request: Request) {
       });
     }
 
-    // 6. Buscar o crear Trim (name puede ser version o algo generado)
+    // 6. Buscar o crear Trim
     const trimName = version ?? `${brand}-${model}-${year}`;
     let trim = await prisma.trim.findFirst({
-      where: {
-        name: trimName,
-        versionId: carVersion.id,
-      },
+      where: { name: trimName, versionId: carVersion.id },
     });
 
     if (!trim) {
@@ -176,7 +223,68 @@ export async function POST(request: Request) {
       });
     }
 
-    // 7. Crear CarListing
+    // 7. Verificar si ya existe el listing
+    const existingListing = await prisma.carListing.findFirst({
+      where: { url: postUrl },
+      include: { trim: true },
+    });
+
+    if (existingListing) {
+      const updates: Prisma.CarListingUpdateInput = {
+        scrapedAt: scrapedAt ? new Date(scrapedAt) : new Date(),
+      };
+
+      let hasChanges = false;
+
+      if (Number(existingListing.price) !== priceActual) {
+        updates.price = priceActual;
+        hasChanges = true;
+
+        await prisma.priceHistory.create({
+          data: {
+            listingId: existingListing.id,
+            price: priceActual,
+            priceCurrency: existingListing.priceCurrency,
+            recordedAt: new Date(),
+          },
+        });
+      }
+
+      if (km > existingListing.mileage) {
+        updates.mileage = km;
+        hasChanges = true;
+      }
+
+      if (location !== existingListing.location) {
+        updates.location = location;
+        hasChanges = true;
+      }
+
+      const newPublishedAt = publishedAt ? new Date(publishedAt) : null;
+      if (newPublishedAt && existingListing.publishedAt.getTime() !== newPublishedAt.getTime()) {
+        updates.publishedAt = newPublishedAt;
+        hasChanges = true;
+      }
+
+      if (hasChanges) {
+        const updated = await prisma.carListing.update({
+          where: { id: existingListing.id },
+          data: updates,
+        });
+
+        return NextResponse.json({ updatedListing: updated }, { status: 200 });
+      }
+
+      // Solo actualizar scrapedAt si nada más cambió
+      await prisma.carListing.update({
+        where: { id: existingListing.id },
+        data: { scrapedAt: updates.scrapedAt },
+      });
+
+      return NextResponse.json({ message: "Listing unchanged" }, { status: 200 });
+    }
+
+    // 8. Crear nuevo listing
     const carListing = await prisma.carListing.create({
       data: {
         sellerId: carSeller.id,
@@ -198,7 +306,6 @@ export async function POST(request: Request) {
       },
     });
 
-    // 8. Crear Imagen si viene
     if (imgUrl) {
       await prisma.image.create({
         data: {
