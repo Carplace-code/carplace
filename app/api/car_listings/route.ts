@@ -59,7 +59,7 @@ export async function GET(request: NextRequest | Request) {
       orderBy,
     });
 
-    return NextResponse.json({ listings }, { status: 200 });
+    return NextResponse.json(listings, { status: 200 });
   } catch (err) {
     return NextResponse.json({ error: "Failed to fetch listings" }, { status: 500 });
   }
