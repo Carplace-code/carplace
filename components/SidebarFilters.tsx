@@ -10,27 +10,35 @@ interface SidebarFiltersProps {
   yearOptions: number[];
 }
 
-interface MultiSelectFilterProps {
+interface SingleSelectFilterProps {
   label: string;
   options: Array<string | number>;
-  selected?: Array<string | number>;
-  onChange: (values: Array<string | number> | undefined) => void;
+  selected?: string | number;
+  onChange: (value: string | number | undefined) => void;
 }
 
-function MultiSelectFilter({ label, options, selected, onChange }: MultiSelectFilterProps) {
+function SingleSelectFilter({ label, options, selected, onChange }: SingleSelectFilterProps) {
   return (
-    <div>
-      <h4 className="mb-2 font-semibold">{label}</h4>
+    <div className="space-y-1">
+      <h4 className="mb-1 text-xs font-semibold tracking-wide text-gray-600 uppercase">{label}</h4>
       <select
-        multiple
-        size={4}
-        className="w-full rounded border p-2 text-sm"
-        value={selected?.map(String) ?? []}
+        // eslint-disable-next-line max-len
+        className="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+        value={selected === undefined ? "" : selected}
         onChange={(e) => {
-          const vals = Array.from(e.target.selectedOptions).map((o) => o.value);
-          onChange(vals.length > 0 ? vals : undefined);
+          const val = e.target.value;
+          let parsed: string | number | undefined;
+          if (val === "") {
+            parsed = undefined;
+          } else if (typeof options[0] === "number") {
+            parsed = Number(val);
+          } else {
+            parsed = val;
+          }
+          onChange(parsed);
         }}
       >
+        <option value="">-</option>
         {options.map((opt) => (
           <option key={opt} value={opt}>
             {opt}
@@ -49,24 +57,26 @@ export default function SidebarFilters({
   yearOptions,
 }: SidebarFiltersProps) {
   return (
-    <div className="space-y-6 text-sm">
-      <MultiSelectFilter
-        label="Brand"
+    <div className="space-y-6 rounded-lg border bg-white p-6 text-sm shadow-sm">
+      <SingleSelectFilter
+        label="Marca"
         options={brandOptions}
-        selected={filters.brand}
-        onChange={(vals) => onChange("brand", vals as string[] | undefined)}
+        selected={filters.brand?.[0]}
+        onChange={(val) => (typeof val === "string" && val ? onChange("brand", [val]) : onChange("brand", undefined))}
       />
-      <MultiSelectFilter
-        label="Model"
+      <SingleSelectFilter
+        label="Modelo"
         options={modelOptions}
-        selected={filters.model}
-        onChange={(vals) => onChange("model", vals as string[] | undefined)}
+        selected={filters.model?.[0]}
+        onChange={(val) => (typeof val === "string" && val ? onChange("model", [val]) : onChange("model", undefined))}
       />
-      <MultiSelectFilter
-        label="Year"
+      <SingleSelectFilter
+        label="Año"
         options={yearOptions}
-        selected={filters.year}
-        onChange={(vals) => onChange("year", vals as number[] | undefined)}
+        selected={filters.year?.[0]}
+        onChange={(val) =>
+          typeof val === "number" && !Number.isNaN(val) ? onChange("year", [val]) : onChange("year", undefined)
+        }
       />
     </div>
   );
