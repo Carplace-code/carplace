@@ -7,6 +7,7 @@ import ActiveFilters, { ActiveFilter } from "@/components/ActiveFilters";
 import Pagination from "@/components/Pagination";
 import SidebarFilters from "@/components/SidebarFilters";
 import VersionsGrid from "@/components/VersionsGrid";
+import { useBrandModels } from "@/hooks/useBrandModels";
 import { useGetVersions } from "@/hooks/useVersions";
 import { cn } from "@/utils/cn";
 
@@ -23,11 +24,13 @@ export default function BrowsePage() {
   const pageSize = 8;
 
   // Brand -> models map
-  const brandModelsMap: Record<string, string[]> = {
-    Toyota: ["Corolla", "Camry"],
-    Ford: ["Focus", "Mustang"],
-    Honda: ["Civic", "Accord"],
-  };
+  // const brandModelsMap: Record<string, string[]> = {
+  //   Toyota: ["Corolla", "Camry"],
+  //   Ford: ["Focus", "Mustang"],
+  //   Honda: ["Civic", "Accord"],
+  // };
+
+  const { data: brandModelsMap = {} } = useBrandModels();
 
   const modelOptions = useMemo(() => {
     if (!filters.brand?.length) return [];
@@ -135,7 +138,7 @@ export default function BrowsePage() {
             onChange={(field, value) => setFilters((f) => ({ ...f, [field]: value }))}
             brandOptions={Object.keys(brandModelsMap)}
             modelOptions={modelOptions}
-            yearOptions={[2023, 2022, 2021, 2020, 2019]}
+            yearOptions={[...Array(35).keys()].map((i) => i + 1990)}
           />
         </aside>
         <div
