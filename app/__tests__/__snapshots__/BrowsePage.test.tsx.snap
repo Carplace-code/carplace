@@ -1,0 +1,358 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`BrowsePage > Snapshots > renders error state snapshot 1`] = `
+<div
+  class="flex w-full flex-grow flex-col px-6 py-4 lg:px-12"
+>
+  <div
+    data-testid="active-filters"
+  >
+    ActiveFilters - 
+    0
+     filters
+  </div>
+  <div
+    class="mt-6 flex flex-grow gap-8"
+  >
+    <aside
+      class="hidden w-64 flex-shrink-0 rounded-lg p-4 shadow-sm lg:block"
+    >
+      <div
+        data-testid="sidebar-filters"
+      >
+        SidebarFilters - 
+        0
+         brands, 
+        0
+         models, 
+        35
+         years
+      </div>
+    </aside>
+    <div
+      class="flex max-h-full flex-1 flex-grow flex-col justify-between overflow-x-hidden rounded-lg p-4 shadow-sm"
+    >
+      <div>
+        Error al cargar las versiones.
+        {"message":"Network error"}
+      </div>
+      <div
+        data-testid="pagination"
+      >
+        Pagination - Page 
+        1
+         of 
+        1
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BrowsePage > Snapshots > renders loading state snapshot 1`] = `
+<div
+  class="flex w-full flex-grow flex-col px-6 py-4 lg:px-12"
+>
+  <div
+    data-testid="active-filters"
+  >
+    ActiveFilters - 
+    0
+     filters
+  </div>
+  <div
+    class="mt-6 flex flex-grow gap-8"
+  >
+    <aside
+      class="hidden w-64 flex-shrink-0 rounded-lg p-4 shadow-sm lg:block"
+    >
+      <div
+        data-testid="sidebar-filters"
+      >
+        SidebarFilters - 
+        0
+         brands, 
+        0
+         models, 
+        35
+         years
+      </div>
+    </aside>
+    <div
+      class="flex max-h-full flex-1 flex-grow flex-col justify-between overflow-x-hidden rounded-lg p-4 shadow-sm"
+    >
+      <div>
+        Cargando...
+      </div>
+      <div
+        data-testid="pagination"
+      >
+        Pagination - Page 
+        1
+         of 
+        1
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BrowsePage > Snapshots > renders success state with data snapshot 1`] = `
+<div
+  class="flex w-full flex-grow flex-col px-6 py-4 lg:px-12"
+>
+  <div
+    data-testid="active-filters"
+  >
+    ActiveFilters - 
+    0
+     filters
+  </div>
+  <div
+    class="mt-6 flex flex-grow gap-8"
+  >
+    <aside
+      class="hidden w-64 flex-shrink-0 rounded-lg p-4 shadow-sm lg:block"
+    >
+      <div
+        data-testid="sidebar-filters"
+      >
+        SidebarFilters - 
+        3
+         brands, 
+        0
+         models, 
+        35
+         years
+      </div>
+    </aside>
+    <div
+      class="flex max-h-full flex-1 flex-grow flex-col justify-between overflow-x-hidden rounded-lg p-4 shadow-sm"
+    >
+      <div
+        data-testid="versions-grid"
+      >
+        VersionsGrid - 
+        2
+         versions
+      </div>
+      <div
+        data-testid="pagination"
+      >
+        Pagination - Page 
+        1
+         of 
+        5
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BrowsePage > Snapshots > renders success state with empty data snapshot 1`] = `
+<div
+  class="flex w-full flex-grow flex-col px-6 py-4 lg:px-12"
+>
+  <div
+    data-testid="active-filters"
+  >
+    ActiveFilters - 
+    0
+     filters
+  </div>
+  <div
+    class="mt-6 flex flex-grow gap-8"
+  >
+    <aside
+      class="hidden w-64 flex-shrink-0 rounded-lg p-4 shadow-sm lg:block"
+    >
+      <div
+        data-testid="sidebar-filters"
+      >
+        SidebarFilters - 
+        3
+         brands, 
+        0
+         models, 
+        35
+         years
+      </div>
+    </aside>
+    <div
+      class="flex max-h-full flex-1 flex-grow flex-col justify-between overflow-x-hidden rounded-lg p-4 shadow-sm"
+    >
+      <div
+        data-testid="versions-grid"
+      >
+        VersionsGrid - 
+        0
+         versions
+      </div>
+      <div
+        data-testid="pagination"
+      >
+        Pagination - Page 
+        1
+         of 
+        1
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BrowsePage > Snapshots > renders with filters applied snapshot 1`] = `
+<div
+  class="flex w-full flex-grow flex-col px-6 py-4 lg:px-12"
+>
+  <div
+    data-testid="active-filters"
+  >
+    ActiveFilters - 
+    0
+     filters
+  </div>
+  <div
+    class="mt-6 flex flex-grow gap-8"
+  >
+    <aside
+      class="hidden w-64 flex-shrink-0 rounded-lg p-4 shadow-sm lg:block"
+    >
+      <div
+        data-testid="sidebar-filters"
+      >
+        SidebarFilters - 
+        1
+         brands, 
+        0
+         models, 
+        35
+         years
+      </div>
+    </aside>
+    <div
+      class="flex max-h-full flex-1 flex-grow flex-col justify-between overflow-x-hidden rounded-lg p-4 shadow-sm"
+    >
+      <div
+        data-testid="versions-grid"
+      >
+        VersionsGrid - 
+        1
+         versions
+      </div>
+      <div
+        data-testid="pagination"
+      >
+        Pagination - Page 
+        1
+         of 
+        1
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BrowsePage > Snapshots > renders with multiple pages snapshot 1`] = `
+<div
+  class="flex w-full flex-grow flex-col px-6 py-4 lg:px-12"
+>
+  <div
+    data-testid="active-filters"
+  >
+    ActiveFilters - 
+    0
+     filters
+  </div>
+  <div
+    class="mt-6 flex flex-grow gap-8"
+  >
+    <aside
+      class="hidden w-64 flex-shrink-0 rounded-lg p-4 shadow-sm lg:block"
+    >
+      <div
+        data-testid="sidebar-filters"
+      >
+        SidebarFilters - 
+        2
+         brands, 
+        0
+         models, 
+        35
+         years
+      </div>
+    </aside>
+    <div
+      class="flex max-h-full flex-1 flex-grow flex-col justify-between overflow-x-hidden rounded-lg p-4 shadow-sm"
+    >
+      <div
+        data-testid="versions-grid"
+      >
+        VersionsGrid - 
+        1
+         versions
+      </div>
+      <div
+        data-testid="pagination"
+      >
+        Pagination - Page 
+        2
+         of 
+        10
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BrowsePage > Snapshots > renders without brand models data snapshot 1`] = `
+<div
+  class="flex w-full flex-grow flex-col px-6 py-4 lg:px-12"
+>
+  <div
+    data-testid="active-filters"
+  >
+    ActiveFilters - 
+    0
+     filters
+  </div>
+  <div
+    class="mt-6 flex flex-grow gap-8"
+  >
+    <aside
+      class="hidden w-64 flex-shrink-0 rounded-lg p-4 shadow-sm lg:block"
+    >
+      <div
+        data-testid="sidebar-filters"
+      >
+        SidebarFilters - 
+        0
+         brands, 
+        0
+         models, 
+        35
+         years
+      </div>
+    </aside>
+    <div
+      class="flex max-h-full flex-1 flex-grow flex-col justify-between overflow-x-hidden rounded-lg p-4 shadow-sm"
+    >
+      <div
+        data-testid="versions-grid"
+      >
+        VersionsGrid - 
+        0
+         versions
+      </div>
+      <div
+        data-testid="pagination"
+      >
+        Pagination - Page 
+        1
+         of 
+        1
+      </div>
+    </div>
+  </div>
+</div>
+`;
