@@ -76,6 +76,11 @@ export default function SearchBar() {
 
   const handleVersionSelect = (version: VersionWithModelBrand) => {
     // Redirect to version page details
+    const brand = version.model?.brand?.name ?? "";
+    const model = version.model?.name ?? "";
+    const year = version.year.toString();
+    const fullLabel = `${brand} ${model} ${year}`;
+    setSearchQuery(fullLabel)
     setShowResults(false);
     router.push(`/versions/${version.id}`);
   }
