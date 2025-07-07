@@ -8,7 +8,7 @@ exports[`AddToWishlistModal > renders correctly and matches snapshot 1`] = `
   >
     <svg
       aria-hidden="true"
-      class="lucide lucide-heart h-4 w-4"
+      class="lucide lucide-heart h-4 w-4 fill-current text-red-500"
       fill="none"
       height="24"
       stroke="currentColor"
