@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Footer > renders correctly and matches snapshot 1`] = `
+<div>
+  <footer
+    class="flex-col items-center justify-between bg-blue-950 px-6 py-4 text-white md:flex"
+  >
+    <h1
+      class="text-lg font-bold"
+    >
+      CarPlace
+    </h1>
+    <p
+      class="mb-2 text-sm"
+    >
+      Tu plataforma de confianza para comparar autos usados en Chile.
+    </p>
+    <h4
+      class="text-xs font-semibold"
+    >
+      © 2025 CarPlace. Todos los Derechos Reservados.
+    </h4>
+  </footer>
+</div>
+`;

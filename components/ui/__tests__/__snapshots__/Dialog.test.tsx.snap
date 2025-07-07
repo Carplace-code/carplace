@@ -1,0 +1,20 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Dialog > matches snapshot 1`] = `
+<div>
+  <button
+    aria-controls="radix-«r0»"
+    aria-expanded="false"
+    aria-haspopup="dialog"
+    data-slot="dialog-trigger"
+    data-state="closed"
+    type="button"
+  >
+    <button
+      type="button"
+    >
+      Open Dialog
+    </button>
+  </button>
+</div>
+`;

@@ -1,0 +1,46 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ActiveFilters > renders correctly with filters 1`] = `
+<div>
+  <div
+    class="mb-4 flex flex-wrap items-center gap-3 text-sm"
+  >
+    <button
+      class="flex items-center rounded-full bg-blue-100 px-3 py-1 text-blue-700"
+      type="button"
+    >
+      Brand: Toyota
+      <span
+        class="ml-1 font-bold"
+      >
+        ×
+      </span>
+    </button>
+    <button
+      class="flex items-center rounded-full bg-blue-100 px-3 py-1 text-blue-700"
+      type="button"
+    >
+      Year: 2020
+      <span
+        class="ml-1 font-bold"
+      >
+        ×
+      </span>
+    </button>
+    <button
+      class="ml-2 text-sm text-red-500 underline"
+      type="button"
+    >
+      Clear All
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ActiveFilters > renders nothing when no filters are present 1`] = `
+<div>
+  <div
+    class="mb-4 flex flex-wrap items-center gap-3 text-sm"
+  />
+</div>
+`;

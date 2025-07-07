@@ -3,13 +3,26 @@
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import { Car, Heart, LineChart, Menu, Search } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
+// simple helper to join classes
+const cn = (...args: (string | undefined | false)[]) => args.filter(Boolean).join(" ");
+
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+
+  const navItems = [
+    { href: "/", label: "Inicio", icon: null },
+    { href: "/browse", label: "Buscar", icon: null },
+    { href: "/trends", label: "Tendencias", icon: <LineChart className="h-4 w-4" /> },
+  ];
+
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
 
   return (
     <nav className="w-full border-b bg-white shadow-sm">
@@ -29,22 +42,37 @@ export default function Navbar() {
 
         {/* Desktop Nav Links */}
         <div className="hidden items-center gap-6 text-sm font-medium md:flex">
-          <Link href="/" className="text-blue-600">
-            Home
-          </Link>
-          <Link href="/browse">Browse</Link>
-          <Link href="/trends" className="flex items-center gap-1">
-            <LineChart className="h-4 w-4" />
-            Trends
-          </Link>
+          {navItems.map(({ href, label, icon }) => (
+            <Link
+              key={href}
+              href={href}
+              className={cn(
+                "flex items-center gap-1",
+                isActive(href) ? "border-b-2 border-blue-600 pb-1 text-blue-600" : "text-gray-700 hover:text-blue-500",
+              )}
+            >
+              {icon}
+              {label}
+            </Link>
+          ))}
+
           <SignedOut>
-            <SignInButton mode="modal" />
-            <SignUpButton mode="modal" />
+            <SignInButton mode="modal">Iniciar sesión</SignInButton>
+            <SignUpButton mode="modal">Crear cuenta</SignUpButton>
           </SignedOut>
+
           <SignedIn>
-            <Link href="/wishlist" className="flex items-center gap-1">
+            <Link
+              href="/wishlists"
+              className={cn(
+                "flex items-center gap-1",
+                isActive("/wishlists")
+                  ? "border-b-2 border-blue-600 pb-1 text-blue-600"
+                  : "text-gray-700 hover:text-blue-500",
+              )}
+            >
               <Heart className="h-4 w-4" />
-              Wishlist
+              Listas de deseos
             </Link>
             <UserButton />
           </SignedIn>
@@ -60,20 +88,25 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="space-y-3 border-t bg-white px-4 py-3 md:hidden">
           <Input type="text" placeholder="Search..." className="w-full" />
+
           <div className="flex flex-col gap-2 text-sm font-medium">
-            <Link href="/" className="text-blue-600">
-              Home
-            </Link>
-            <Link href="/browse">Browse</Link>
-            <Link href="/wishlist" className="flex items-center gap-1">
-              <Heart className="h-4 w-4" />
-              Wishlist
-            </Link>
-            <Link href="/trends" className="flex items-center gap-1">
-              <LineChart className="h-4 w-4" />
-              Trends
-            </Link>
-            <Button className="w-full">Sign In</Button>
+            {navItems.map(({ href, label, icon }) => (
+              <Link
+                key={href}
+                href={href}
+                className={cn(
+                  "flex items-center gap-1 py-1",
+                  isActive(href) ? "text-blue-600" : "text-gray-700 hover:text-blue-500",
+                )}
+              >
+                {icon}
+                {label}
+              </Link>
+            ))}
+
+            <SignedOut>
+              <Button className="w-full">Iniciar Sesión</Button>
+            </SignedOut>
           </div>
         </div>
       )}
