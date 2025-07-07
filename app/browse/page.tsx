@@ -102,6 +102,7 @@ export default function BrowsePage() {
           },
         },
       },
+      wishlistItems: true,
     },
   });
   const versions = useMemo(() => result?.data ?? [], [result]);
