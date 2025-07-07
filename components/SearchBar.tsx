@@ -93,13 +93,20 @@ export default function SearchBar() {
       inputRef.current?.blur();
     }
   }
-  const handleClickOutside = (event: MouseEvent) => {
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setShowResults(false);
       }
     }
 
-  document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
 
   return (
     <div className="container flex h-16 items-center px-4">
