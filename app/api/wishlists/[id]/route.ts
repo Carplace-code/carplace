@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
 import prisma from "@/lib/prisma";
 
-export async function GET(request: NextRequest, context: { params: { id: string } }) {
+export async function GET(request: NextRequest, context: any) {
   const { userId } = await auth();
   if (!userId) throw new Error("userId should not be null");
 
@@ -15,7 +16,7 @@ export async function GET(request: NextRequest, context: { params: { id: string 
   return NextResponse.json(wishlist);
 }
 
-export async function DELETE(request: NextRequest, context: { params: { id: string } }) {
+export async function DELETE(request: NextRequest, context: any) {
   const { userId } = await auth();
   if (!userId) throw new Error("userId should not be null");
 
@@ -33,7 +34,7 @@ export async function DELETE(request: NextRequest, context: { params: { id: stri
   return NextResponse.json({}, { status: 200 });
 }
 
-export async function PATCH(request: NextRequest, context: { params: { id: string } }) {
+export async function PATCH(request: NextRequest, context: any) {
   const { userId } = await auth();
   if (!userId) throw new Error("userId should not be null");
 
