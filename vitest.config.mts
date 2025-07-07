@@ -21,7 +21,7 @@ export default defineConfig({
     globals: true,
     setupFiles: ["./vitest.setup.ts"],
     coverage: {
-      exclude: ["node_modules", "**/__tests__/**", "**/*.css"],
+      exclude: ["node_modules", "**/__tests__/**", "**/*.css", "**/components/ui/**"],
       include: ["app", "components", "hooks", "utils"],
       reporter: ["text", "json", "json-summary", "html"],
       reportOnFailure: true,

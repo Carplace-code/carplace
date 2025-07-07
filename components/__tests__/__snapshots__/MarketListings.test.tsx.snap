@@ -1,0 +1,130 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MarketListings > renders correctly and matches snapshot 1`] = `
+<div>
+  <div
+    class="rounded-md border bg-white p-6"
+  >
+    <h2
+      class="mb-4 text-lg font-semibold"
+    >
+      Available On
+    </h2>
+    <div
+      class="grid grid-cols-1 gap-4 text-sm md:grid-cols-3"
+    >
+      <div
+        class="space-y-2 rounded border p-4"
+      >
+        <p
+          class="font-medium"
+        >
+          Yapo
+        </p>
+        <p
+          class="font-bold text-blue-600"
+        >
+          $35,990,000
+        </p>
+        <p
+          class="text-gray-600"
+        >
+          Seller: 
+          Juan Pérez
+        </p>
+        <p
+          class="text-gray-600"
+        >
+          Location: 
+          Santiago
+        </p>
+        <p
+          class="text-xs text-gray-500"
+        >
+          3 hours ago
+        </p>
+        <button
+          class="mt-2 w-full rounded-md border py-1 text-sm hover:bg-gray-100"
+          type="button"
+        >
+          View Original
+        </button>
+      </div>
+      <div
+        class="space-y-2 rounded border p-4"
+      >
+        <p
+          class="font-medium"
+        >
+          Facebook
+        </p>
+        <p
+          class="font-bold text-blue-600"
+        >
+          $36,700,000
+        </p>
+        <p
+          class="text-gray-600"
+        >
+          Seller: 
+          María González
+        </p>
+        <p
+          class="text-gray-600"
+        >
+          Location: 
+          Temuco
+        </p>
+        <p
+          class="text-xs text-gray-500"
+        >
+          6 hours ago
+        </p>
+        <button
+          class="mt-2 w-full rounded-md border py-1 text-sm hover:bg-gray-100"
+          type="button"
+        >
+          View Original
+        </button>
+      </div>
+      <div
+        class="space-y-2 rounded border p-4"
+      >
+        <p
+          class="font-medium"
+        >
+          Chileautos
+        </p>
+        <p
+          class="font-bold text-blue-600"
+        >
+          $39,000,000
+        </p>
+        <p
+          class="text-gray-600"
+        >
+          Seller: 
+          Auto Import SPA
+        </p>
+        <p
+          class="text-gray-600"
+        >
+          Location: 
+          Santiago
+        </p>
+        <p
+          class="text-xs text-gray-500"
+        >
+          5 hours ago
+        </p>
+        <button
+          class="mt-2 w-full rounded-md border py-1 text-sm hover:bg-gray-100"
+          type="button"
+        >
+          View Original
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
