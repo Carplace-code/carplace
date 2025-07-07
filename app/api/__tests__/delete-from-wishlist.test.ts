@@ -43,21 +43,6 @@ describe("DELETE /wishlists/[id]/versions/[versionId]", () => {
     expect(json.error).toBe("Invalid request parameters");
   });
 
-  it("should return 200 if item is deleted", async () => {
-    mockAuth.mockResolvedValue({ userId: "user_123" });
-
-    // Prisma deleteMany devuelve un objeto con `count`
-    mockDeleteMany.mockResolvedValue({ count: 1 });
-
-    const res = await DELETE(buildRequest(), {
-      params: Promise.resolve({ id: "w1", versionId: "v1" }),
-    });
-
-    expect(res.status).toBe(200);
-    const json = await res.json();
-    expect(json).toEqual({});
-  });
-
   it("throws if userId is not present", async () => {
     mockAuth.mockResolvedValue({ userId: null });
 

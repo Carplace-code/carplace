@@ -8,7 +8,7 @@ import { useBrandModels } from "@/hooks/useBrandModels";
 import { useGetVersions } from "@/hooks/useVersions";
 
 import BrowsePage from "../browse/page";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Mock the hooks - use factory functions instead of variables
 vi.mock("@/hooks/useBrandModels", () => ({
   useBrandModels: vi.fn(),
