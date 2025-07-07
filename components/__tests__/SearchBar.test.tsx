@@ -116,4 +116,42 @@ describe("<SearchBar />", () => {
     const { container } = renderWithQueryClient(<SearchBar />);
     expect(container).toMatchSnapshot();
   });
+
+  it("clears search on Escape key press", async () => {
+    renderWithQueryClient(<SearchBar />);
+    const input = screen.getByPlaceholderText("Buscar por marca, modelo o año...");
+    fireEvent.change(input, { target: { value: "Civic" } });
+
+    fireEvent.keyDown(input, { key: "Escape", code: "Escape" });
+
+    await waitFor(() => {
+      expect(input).toHaveValue("");
+      expect(screen.queryByText(/Civic/)).toBeNull();
+    });
+  });
+
+  it("shows results on input focus if searchQuery has value", async () => {
+    renderWithQueryClient(<SearchBar />);
+    const input = screen.getByPlaceholderText("Buscar por marca, modelo o año...");
+    fireEvent.change(input, { target: { value: "Honda" } });
+
+    fireEvent.focus(input);
+
+    await waitFor(() => {
+      expect(screen.getByText("Honda Civic 2020")).toBeInTheDocument();
+    });
+  });
+
+  it("handles missing data gracefully", () => {
+    vi.spyOn(useVersions, "useGetVersions").mockReturnValue({
+      data: undefined,
+      isLoading: false,
+      isError: false,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any);
+
+    renderWithQueryClient(<SearchBar />);
+    const input = screen.getByPlaceholderText("Buscar por marca, modelo o año...");
+    expect(input).toBeInTheDocument();
+  });
 });

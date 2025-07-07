@@ -76,7 +76,6 @@ export default function SearchBar() {
 
   const handleVersionSelect = (version: VersionWithModelBrand) => {
     // Redirect to version page details
-    window.location.href = `/versions/${version.id}`;
     setShowResults(false);
     router.push(`/versions/${version.id}`);
   }
