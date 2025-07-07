@@ -1,0 +1,98 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Navbar > renders correctly and matches snapshot 1`] = `
+<div>
+  <nav
+    class="w-full border-b bg-white shadow-sm"
+  >
+    <div
+      class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3"
+    >
+      <div
+        class="flex items-center gap-6"
+      >
+        <a
+          class="flex items-center gap-2 text-xl font-bold"
+          href="/"
+        >
+          <div>
+            CarIcon
+          </div>
+          <span>
+            CarPlace
+          </span>
+        </a>
+        <div
+          class="relative hidden items-center md:flex"
+        >
+          <input
+            class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:opacity-50 md:text-sm aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive w-80 pr-10"
+            data-slot="input"
+            placeholder="Search cars, brands, or models..."
+            type="text"
+          />
+          <div>
+            SearchIcon
+          </div>
+        </div>
+      </div>
+      <div
+        class="hidden items-center gap-6 text-sm font-medium md:flex"
+      >
+        <a
+          class="flex items-center gap-1 border-b-2 border-blue-600 pb-1 text-blue-600"
+          href="/"
+        >
+          Inicio
+        </a>
+        <a
+          class="flex items-center gap-1 text-gray-700 hover:text-blue-500"
+          href="/browse"
+        >
+          Buscar
+        </a>
+        <a
+          class="flex items-center gap-1 text-gray-700 hover:text-blue-500"
+          href="/trends"
+        >
+          <div>
+            LineChartIcon
+          </div>
+          Tendencias
+        </a>
+        <button
+          type="button"
+        >
+          Iniciar sesión
+        </button>
+        <button
+          type="button"
+        >
+          Crear cuenta
+        </button>
+        <a
+          class="flex items-center gap-1 text-gray-700 hover:text-blue-500"
+          href="/wishlists"
+        >
+          <div>
+            HeartIcon
+          </div>
+          Listas de deseos
+        </a>
+        <div>
+          User
+        </div>
+      </div>
+      <div
+        class="md:hidden"
+      >
+        <div
+          class="h-6 w-6 cursor-pointer"
+        >
+          MenuIcon
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>
+`;

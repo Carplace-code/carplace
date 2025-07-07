@@ -25,7 +25,7 @@ const config = {
 
   // ─── IGNORE DEPENDENCIES YOU KNOW YOU NEED ────────────────────────────────────
   // Knip will not report these as “unused”
-  ignoreDependencies: ["@clerk/nextjs", "postcss"],
+  ignoreDependencies: ["@clerk/nextjs", "postcss", "@tanstack/react-query-devtools"],
 
   // ─── ONLY REPORT UNUSED FILES & EXPORTS ────────────────────────────────────────
   // these flags are CLI‐only, so you’ll still pass them on the command line:

@@ -1,0 +1,94 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`SidebarFilters > renders correctly and matches snapshot 1`] = `
+<div>
+  <div
+    class="space-y-6 rounded-lg border bg-white p-6 text-sm shadow-sm"
+  >
+    <div
+      class="space-y-1"
+    >
+      <h4
+        class="mb-1 text-xs font-semibold tracking-wide text-gray-600 uppercase"
+      >
+        Marca
+      </h4>
+      <select
+        class="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+      >
+        <option
+          value=""
+        >
+          -
+        </option>
+        <option
+          value="Toyota"
+        >
+          Toyota
+        </option>
+        <option
+          value="Hyundai"
+        >
+          Hyundai
+        </option>
+      </select>
+    </div>
+    <div
+      class="space-y-1"
+    >
+      <h4
+        class="mb-1 text-xs font-semibold tracking-wide text-gray-600 uppercase"
+      >
+        Modelo
+      </h4>
+      <select
+        class="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+      >
+        <option
+          value=""
+        >
+          -
+        </option>
+        <option
+          value="Corolla"
+        >
+          Corolla
+        </option>
+        <option
+          value="Elantra"
+        >
+          Elantra
+        </option>
+      </select>
+    </div>
+    <div
+      class="space-y-1"
+    >
+      <h4
+        class="mb-1 text-xs font-semibold tracking-wide text-gray-600 uppercase"
+      >
+        Año
+      </h4>
+      <select
+        class="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+      >
+        <option
+          value=""
+        >
+          -
+        </option>
+        <option
+          value="2020"
+        >
+          2020
+        </option>
+        <option
+          value="2021"
+        >
+          2021
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+`;
