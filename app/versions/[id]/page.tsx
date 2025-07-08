@@ -12,6 +12,20 @@ import PriceHistoryChart from "@/components/PriceHistoryChart";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
 
+const friendlyValue = (value: any, fallback = "No especificado") => {
+  if (
+    value === null ||
+    value === undefined ||
+    value === "null" ||
+    value === "Null" ||
+    value === "placeholder" ||
+    value === ""
+  ) {
+    return fallback;
+  }
+  return value;
+};
+
 export default function CarDetailsPage() {
   const { id: versionId } = useParams();
   const [listings, setListings] = useState<any[]>([]);
@@ -35,14 +49,10 @@ export default function CarDetailsPage() {
           return;
         }
 
-        // Obtener el más barato
         const cheapest = allListings.reduce((min: any, curr: any) =>
           Number(curr.price) < Number(min.price) ? curr : min
         );
 
-
-
-        // Agregamos brand/model/year al listing para facilitar acceso en componentes
         const normalizedCheapest = { ...cheapest, brand, model, year };
         const normalizedListings = allListings.map((l: any) => ({
           ...l,
@@ -50,7 +60,6 @@ export default function CarDetailsPage() {
           model,
           year,
         }));
-
 
         setListings(normalizedListings);
         setSelectedListing(normalizedCheapest);
@@ -67,15 +76,11 @@ export default function CarDetailsPage() {
     fetchListings();
   }, [versionId]);
 
-  console.log("Listings:", listings);
-  console.log("Selected Listing:", selectedListing);
-
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
         <div className="container mx-auto max-w-7xl px-4 py-8">
           <div className="space-y-8">
-            {/* Header Skeleton */}
             <div className="relative overflow-hidden rounded-2xl bg-white shadow-xl">
               <Skeleton className="h-96 w-full" />
               <div className="absolute bottom-6 left-6 space-y-2">
@@ -87,7 +92,6 @@ export default function CarDetailsPage() {
                 <Skeleton className="h-10 w-10 rounded-full" />
               </div>
             </div>
-            {/* Content Skeleton */}
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
               <div className="space-y-6 lg:col-span-2">
                 <Skeleton className="h-64 w-full rounded-xl" />
@@ -139,10 +143,8 @@ export default function CarDetailsPage() {
         <div className="space-y-8">
           <CarHeader listing={selectedListing} />
 
-          {/* Secciones adicionales */}
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div className="space-y-6 lg:col-span-2">
-              {/* Detalles del Vehículo */}
               <div className="rounded-2xl bg-white p-6 shadow-lg">
                 <h2 className="mb-6 text-2xl font-bold text-slate-900">Detalles del Vehículo</h2>
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -157,28 +159,30 @@ export default function CarDetailsPage() {
                     </div>
                     <div className="flex items-center justify-between border-b border-slate-100 py-2">
                       <span className="font-medium text-slate-600">Color Exterior</span>
-                      <span className="text-slate-900">{selectedListing.exteriorColor || "No especificado"}</span>
+                      <span className="text-slate-900">{friendlyValue(selectedListing.exteriorColor)}</span>
                     </div>
                     <div className="flex items-center justify-between border-b border-slate-100 py-2">
                       <span className="font-medium text-slate-600">Color Interior</span>
-                      <span className="text-slate-900">{selectedListing.interiorColor || "No especificado"}</span>
+                      <span className="text-slate-900">{friendlyValue(selectedListing.interiorColor)}</span>
                     </div>
                   </div>
                   <div className="space-y-4">
                     <div className="flex items-center justify-between border-b border-slate-100 py-2">
                       <span className="font-medium text-slate-600">Combustible</span>
-                      <span className="text-slate-900 capitalize">{selectedListing.trim?.fuelType || "N/A"}</span>
+                      <span className="text-slate-900 capitalize">{friendlyValue(selectedListing.trim?.fuelType, "N/A")}</span>
                     </div>
                     <div className="flex items-center justify-between border-b border-slate-100 py-2">
                       <span className="font-medium text-slate-600">Transmisión</span>
-                      <span className="text-slate-900 capitalize">
-                        {selectedListing.trim?.transmissionType || "N/A"}
-                      </span>
+                      <span className="text-slate-900 capitalize">{friendlyValue(selectedListing.trim?.transmissionType, "N/A")}</span>
                     </div>
                     <div className="flex items-center justify-between border-b border-slate-100 py-2">
                       <span className="font-medium text-slate-600">Motor</span>
                       <span className="text-slate-900">
-                        {selectedListing.trim?.motorSize ? `${selectedListing.trim.motorSize}L` : "N/A"}
+                        {(() => {
+                          const motor = selectedListing.trim?.motorSize;
+                          const numeric = parseFloat(String(motor).replace(/[^\d.-]/g, ""));
+                          return numeric > 0 ? `${numeric}L` : "No especificado";
+                        })()}
                       </span>
                     </div>
                     <div className="flex items-center justify-between border-b border-slate-100 py-2">
@@ -189,40 +193,39 @@ export default function CarDetailsPage() {
                 </div>
               </div>
 
-              {/* Descripción */}
               <div className="rounded-2xl bg-white p-6 shadow-lg">
                 <h3 className="mb-4 text-xl font-bold text-slate-900">Descripción</h3>
                 <p className="leading-relaxed text-slate-700">
-                  {selectedListing.description ||
-                    "Este vehículo se encuentra en excelente estado y ha sido mantenido regularmente. Ideal para familias que buscan comodidad, seguridad y eficiencia en el consumo de combustible."}
+                  {friendlyValue(
+                    selectedListing.description,
+                    "Este vehículo se encuentra en excelente estado y ha sido mantenido regularmente. Ideal para familias que buscan comodidad, seguridad y eficiencia en el consumo de combustible."
+                  )}
                 </p>
               </div>
 
-              {/* Historial de Precios - ACTUALIZADO */}
               <PriceHistoryChart currentPrice={Number(selectedListing.price)} listings={listings} />
             </div>
 
             <div className="space-y-6">
-              {/* Información del Vendedor */}
               <div className="rounded-2xl bg-white p-6 shadow-lg">
                 <h3 className="mb-4 text-lg font-semibold text-slate-900">Información del Vendedor</h3>
                 <div className="space-y-4">
                   <div>
                     <span className="mb-1 block font-medium text-slate-600">Nombre</span>
-                    <span className="text-slate-900">{selectedListing.seller?.name || "N/A"}</span>
+                    <span className="text-slate-900">{friendlyValue(selectedListing.seller?.name, "Nombre no disponible")}</span>
                   </div>
                   <div>
                     <span className="mb-1 block font-medium text-slate-600">Ubicación</span>
-                    <span className="text-slate-900">{selectedListing.location}</span>
+                    <span className="text-slate-900">{friendlyValue(selectedListing.location, "Ubicación no disponible")}</span>
                   </div>
                   <div>
                     <span className="mb-1 block font-medium text-slate-600">Tipo</span>
-                    <span className="text-slate-900 capitalize">{selectedListing.seller?.type || "Particular"}</span>
+                    <span className="text-slate-900 capitalize">{friendlyValue(selectedListing.seller?.type, "Particular")}</span>
                   </div>
                   <div>
                     <span className="mb-1 block font-medium text-slate-600">Publicado</span>
                     <span className="text-slate-900">
-                      {new Date(selectedListing.publishedAt).toLocaleDateString("es-CL")}
+                      {selectedListing.publishedAt ? new Date(selectedListing.publishedAt).toLocaleDateString("es-CL") : "Fecha no disponible"}
                     </span>
                   </div>
                 </div>
