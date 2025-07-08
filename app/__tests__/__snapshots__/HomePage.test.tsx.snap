@@ -27,19 +27,19 @@ exports[`HomePage > renders correctly and matches snapshot 1`] = `
           class="rounded-md border bg-white px-4 py-2 shadow-sm transition-shadow hover:shadow-md"
           type="button"
         >
-          Price Range
+          Rango de Precio
         </button>
         <button
           class="rounded-md border bg-white px-4 py-2 shadow-sm transition-shadow hover:shadow-md"
           type="button"
         >
-          Brand
+          Marca
         </button>
         <button
           class="rounded-md border bg-white px-4 py-2 shadow-sm transition-shadow hover:shadow-md"
           type="button"
         >
-          Vehicle Type
+          Tipo de Vehículo
         </button>
       </div>
     </section>
