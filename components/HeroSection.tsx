@@ -1,75 +1,35 @@
 "use client";
 
-import { X } from "lucide-react";
+import { Filter, Search } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useBrandModels } from "@/hooks/useBrandModels";
-
-interface FilterModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  children: React.ReactNode;
-}
-
-function FilterModal({ isOpen, onClose, title, children }: FilterModalProps) {
-  if (!isOpen) return null;
-
-  return (
-    <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black">
-      <div className="mx-4 w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
-        <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-lg font-semibold">{title}</h3>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700" type="button">
-            <X className="h-5 w-5" />
-          </button>
-        </div>
-        {children}
-      </div>
-    </div>
-  );
-}
+import { useCarStats } from "@/hooks/useCarStats";
 
 export default function HeroSection() {
   const router = useRouter();
   const { data: brandModelsMap = {} } = useBrandModels();
+  const { stats, isLoading: statsLoading } = useCarStats();
 
   // Estados para los modals
-  const [activeModal, setActiveModal] = useState<string | null>(null);
+  const [priceModalOpen, setPriceModalOpen] = useState(false);
+  const [brandModalOpen, setBrandModalOpen] = useState(false);
 
   // Estados para los filtros seleccionados
   const [selectedBrand, setSelectedBrand] = useState<string>("");
-  const [selectedVehicleType, setSelectedVehicleType] = useState<string>("");
   const [priceMin, setPriceMin] = useState<string>("");
   const [priceMax, setPriceMax] = useState<string>("");
 
-  // Opciones de tipos de vehículo
-  const vehicleTypes = [
-    { value: "sedan", label: "Sedán" },
-    { value: "suv", label: "SUV" },
-    { value: "hatchback", label: "Hatchback" },
-    { value: "coupe", label: "Coupé" },
-    { value: "convertible", label: "Convertible" },
-    { value: "wagon", label: "Station Wagon" },
-    { value: "van", label: "Van" },
-    { value: "truck", label: "Camioneta" },
-    { value: "other", label: "Otro" },
-  ];
-
   // Helper function para evitar ternary anidado
   const getPriceDisplayText = (min: string, max: string) => {
-    if (min && max) return `${min} - ${max}`;
-    if (min) return `Desde ${min}`;
-    return `Hasta ${max}`;
-  };
-
-  const openModal = (modalName: string) => {
-    setActiveModal(modalName);
-  };
-
-  const closeModal = () => {
-    setActiveModal(null);
+    if (min && max) return `$${min} - $${max}`;
+    if (min) return `Desde $${min}`;
+    return `Hasta $${max}`;
   };
 
   const applyFilters = () => {
@@ -78,9 +38,6 @@ export default function HeroSection() {
     // Agregar filtros si están seleccionados
     if (selectedBrand) {
       searchParams.set("brand", selectedBrand);
-    }
-    if (selectedVehicleType) {
-      searchParams.set("bodyType", selectedVehicleType);
     }
     if (priceMin) {
       searchParams.set("minPrice", priceMin);
@@ -94,199 +51,212 @@ export default function HeroSection() {
     router.push(url);
   };
 
-  const hasFilters = selectedBrand || selectedVehicleType || priceMin || priceMax;
+  const clearAllFilters = () => {
+    setSelectedBrand("");
+    setPriceMin("");
+    setPriceMax("");
+  };
+
+  const hasFilters = selectedBrand || priceMin || priceMax;
+
+  // Función para formatear números con separadores de miles
+  const formatNumber = (num: number) => new Intl.NumberFormat("es-CL").format(num);
 
   return (
-    <section className="bg-blue-50 px-6 py-16 text-center">
-      <h1 className="mb-4 text-3xl font-bold md:text-5xl">
-        Find the best used car deals in Chile —<br />
-        all in one place!
-      </h1>
-      <p className="mb-6 text-gray-600">Compare prices across Chileautos, Yapo, and Facebook Marketplace instantly</p>
-
-      {/* Filtros */}
-      <div className="mb-6 flex flex-wrap justify-center gap-4">
-        <button
-          onClick={() => openModal("price")}
-          className="rounded-md border bg-white px-4 py-2 shadow-sm transition-shadow hover:shadow-md"
-          type="button"
-        >
-          Rango de Precio
-          {(priceMin || priceMax) && (
-            <span className="ml-2 font-medium text-blue-600">{getPriceDisplayText(priceMin, priceMax)}</span>
-          )}
-        </button>
-
-        <button
-          onClick={() => openModal("brand")}
-          className="rounded-md border bg-white px-4 py-2 shadow-sm transition-shadow hover:shadow-md"
-          type="button"
-        >
-          Marca
-          {selectedBrand && <span className="ml-2 font-medium text-blue-600">{selectedBrand}</span>}
-        </button>
-
-        <button
-          onClick={() => openModal("vehicle")}
-          className="rounded-md border bg-white px-4 py-2 shadow-sm transition-shadow hover:shadow-md"
-          type="button"
-        >
-          Tipo de Vehículo
-          {selectedVehicleType && (
-            <span className="ml-2 font-medium text-blue-600">
-              {vehicleTypes.find((v) => v.value === selectedVehicleType)?.label}
-            </span>
-          )}
-        </button>
+    <section className="relative bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 px-6 py-20">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-blue-200 opacity-20" />
+        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-purple-200 opacity-20" />
       </div>
 
-      {/* Botón de búsqueda */}
-      {hasFilters && (
-        <button
-          onClick={applyFilters}
-          className="rounded-md bg-blue-600 px-6 py-3 font-medium text-white transition-colors hover:bg-blue-700"
-          type="button"
-        >
-          Buscar Autos
-        </button>
-      )}
+      <div className="relative mx-auto max-w-4xl text-center">
+        <h1 className="mb-6 text-4xl leading-tight font-bold text-gray-900 md:text-6xl">
+          Encuentra las mejores ofertas de autos usados en Chile —<br />
+          <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            ¡todo en un solo lugar!
+          </span>
+        </h1>
 
-      {/* Modal de Precio */}
-      <FilterModal isOpen={activeModal === "price"} onClose={closeModal} title="Rango de Precio">
-        <div className="space-y-4">
-          <div>
-            <label htmlFor="price-min" className="mb-1 block text-sm font-medium text-gray-700">
-              Precio Mínimo (CLP)
-            </label>
-            <input
-              id="price-min"
-              type="number"
-              value={priceMin}
-              onChange={(e) => setPriceMin(e.target.value)}
-              placeholder="Ej: 5000000"
-              className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500"
-            />
+        <p className="mb-10 text-lg text-gray-600 md:text-xl">
+          Compara precios de Chileautos, Yapo y Facebook Marketplace al instante
+        </p>
+
+        {/* Search Section */}
+        <div className="mx-auto max-w-2xl">
+          <div className="mb-8 rounded-2xl bg-white p-6 shadow-lg">
+            <div className="mb-6 flex items-center gap-3">
+              <Filter className="h-5 w-5 text-gray-500" />
+              <span className="font-medium text-gray-700">Filtros de búsqueda</span>
+            </div>
+
+            {/* Filtros */}
+            <div className="mb-6 flex flex-wrap justify-center gap-3">
+              {/* Modal de Precio */}
+              <Dialog open={priceModalOpen} onOpenChange={setPriceModalOpen}>
+                <DialogTrigger asChild>
+                  <button
+                    className="group relative overflow-hidden rounded-xl border-2 border-gray-200 bg-white px-6 py-3 shadow-sm transition-all hover:border-blue-300 hover:shadow-md"
+                    type="button"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium text-gray-700">Rango de Precio</span>
+                      {(priceMin || priceMax) && (
+                        <span className="rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700">
+                          {getPriceDisplayText(priceMin, priceMax)}
+                        </span>
+                      )}
+                    </div>
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Rango de Precio</DialogTitle>
+                  </DialogHeader>
+                  <div className="space-y-6">
+                    <div>
+                      <Label htmlFor="price-min">Precio Mínimo (CLP)</Label>
+                      <Input
+                        id="price-min"
+                        type="number"
+                        value={priceMin}
+                        onChange={(e) => setPriceMin(e.target.value)}
+                        placeholder="Ej: 5.000.000"
+                        className="mt-2"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="price-max">Precio Máximo (CLP)</Label>
+                      <Input
+                        id="price-max"
+                        type="number"
+                        value={priceMax}
+                        onChange={(e) => setPriceMax(e.target.value)}
+                        placeholder="Ej: 20.000.000"
+                        className="mt-2"
+                      />
+                    </div>
+                    <div className="flex gap-3 pt-4">
+                      <Button
+                        variant="outline"
+                        onClick={() => {
+                          setPriceMin("");
+                          setPriceMax("");
+                        }}
+                        className="flex-1"
+                      >
+                        Limpiar
+                      </Button>
+                      <Button onClick={() => setPriceModalOpen(false)} className="flex-1">
+                        Aplicar
+                      </Button>
+                    </div>
+                  </div>
+                </DialogContent>
+              </Dialog>
+
+              {/* Modal de Marca */}
+              <Dialog open={brandModalOpen} onOpenChange={setBrandModalOpen}>
+                <DialogTrigger asChild>
+                  <button
+                    className="group relative overflow-hidden rounded-xl border-2 border-gray-200 bg-white px-6 py-3 shadow-sm transition-all hover:border-blue-300 hover:shadow-md"
+                    type="button"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium text-gray-700">Marca</span>
+                      {selectedBrand && (
+                        <span className="rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700">
+                          {selectedBrand}
+                        </span>
+                      )}
+                    </div>
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-md">
+                  <DialogHeader>
+                    <DialogTitle>Seleccionar Marca</DialogTitle>
+                  </DialogHeader>
+                  <div className="max-h-80 space-y-2 overflow-y-auto">
+                    <Button
+                      variant={!selectedBrand ? "default" : "ghost"}
+                      onClick={() => setSelectedBrand("")}
+                      className="w-full justify-start"
+                    >
+                      Todas las marcas
+                    </Button>
+                    {Object.keys(brandModelsMap).map((brand) => (
+                      <Button
+                        key={brand}
+                        variant={selectedBrand === brand ? "default" : "ghost"}
+                        onClick={() => setSelectedBrand(brand)}
+                        className="w-full justify-start"
+                      >
+                        {brand}
+                      </Button>
+                    ))}
+                  </div>
+                  <div className="flex gap-3 pt-6">
+                    <Button variant="outline" onClick={() => setSelectedBrand("")} className="flex-1">
+                      Limpiar
+                    </Button>
+                    <Button onClick={() => setBrandModalOpen(false)} className="flex-1">
+                      Aplicar
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </div>
+
+            {/* Botones de acción */}
+            <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
+              {hasFilters && (
+                <>
+                  <Button
+                    onClick={applyFilters}
+                    className="flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-3 font-semibold text-white shadow-lg transition-all hover:from-blue-700 hover:to-blue-800 hover:shadow-xl"
+                  >
+                    <Search className="h-5 w-5" />
+                    Buscar Autos
+                  </Button>
+                  <Button variant="outline" onClick={clearAllFilters} className="bg-transparent px-6 py-3">
+                    Limpiar Filtros
+                  </Button>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Stats - Ahora dinámicas */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+            <div className="rounded-xl bg-white/70 p-4 backdrop-blur-sm">
+              <div className="text-2xl font-bold text-blue-600">
+                {statsLoading ? (
+                  <div className="h-8 w-16 animate-pulse rounded bg-blue-200" />
+                ) : (
+                  formatNumber(stats.totalListings)
+                )}
+              </div>
+              <div className="text-sm text-gray-600">Autos Disponibles</div>
+            </div>
+            <div className="rounded-xl bg-white/70 p-4 backdrop-blur-sm">
+              <div className="text-2xl font-bold text-green-600">
+                {statsLoading ? <div className="h-8 w-8 animate-pulse rounded bg-green-200" /> : stats.totalBrands}
+              </div>
+              <div className="text-sm text-gray-600">Marcas Disponibles</div>
+            </div>
+            <div className="rounded-xl bg-white/70 p-4 backdrop-blur-sm">
+              <div className="text-2xl font-bold text-purple-600">
+                {statsLoading ? (
+                  <div className="h-8 w-12 animate-pulse rounded bg-purple-200" />
+                ) : (
+                  `+${formatNumber(stats.recentListings)}`
+                )}
+              </div>
+              <div className="text-sm text-gray-600">Nuevos Hoy</div>
+            </div>
           </div>
         </div>
-        <div>
-          <label htmlFor="price-max" className="mb-1 block text-sm font-medium text-gray-700">
-            Precio Máximo (CLP)
-          </label>
-          <input
-            id="price-max"
-            type="number"
-            value={priceMax}
-            onChange={(e) => setPriceMax(e.target.value)}
-            placeholder="Ej: 20000000"
-            className="w-full rounded-md border border-gray-300 px-3 py-2 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 focus:outline-none"
-          />
-        </div>
-        <div className="flex gap-3 pt-4">
-          <button
-            onClick={() => {
-              setPriceMin("");
-              setPriceMax("");
-            }}
-            className="flex-1 rounded-md border border-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-50"
-            type="button"
-          >
-            Limpiar
-          </button>
-          <button
-            onClick={closeModal}
-            className="flex-1 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-            type="button"
-          >
-            Aplicar
-          </button>
-        </div>
-      </FilterModal>
-
-      {/* Modal de Marca */}
-      <FilterModal isOpen={activeModal === "brand"} onClose={closeModal} title="Seleccionar Marca">
-        <div className="max-h-60 space-y-2 overflow-y-auto">
-          <button
-            onClick={() => setSelectedBrand("")}
-            className={`w-full rounded-md px-3 py-2 text-left hover:bg-gray-100 ${
-              !selectedBrand ? "bg-blue-100 text-blue-800" : ""
-            }`}
-            type="button"
-          >
-            Todas las marcas
-          </button>
-          {Object.keys(brandModelsMap).map((brand) => (
-            <button
-              key={brand}
-              onClick={() => setSelectedBrand(brand)}
-              className={`w-full rounded-md px-3 py-2 text-left hover:bg-gray-100 ${
-                selectedBrand === brand ? "bg-blue-100 text-blue-800" : ""
-              }`}
-              type="button"
-            >
-              {brand}
-            </button>
-          ))}
-        </div>
-        <div className="flex gap-3 pt-4">
-          <button
-            onClick={() => setSelectedBrand("")}
-            className="flex-1 rounded-md border border-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-50"
-            type="button"
-          >
-            Limpiar
-          </button>
-          <button
-            onClick={closeModal}
-            className="flex-1 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-            type="button"
-          >
-            Aplicar
-          </button>
-        </div>
-      </FilterModal>
-
-      {/* Modal de Tipo de Vehículo */}
-      <FilterModal isOpen={activeModal === "vehicle"} onClose={closeModal} title="Tipo de Vehículo">
-        <div className="space-y-2">
-          <button
-            onClick={() => setSelectedVehicleType("")}
-            className={`w-full rounded-md px-3 py-2 text-left hover:bg-gray-100 ${
-              !selectedVehicleType ? "bg-blue-100 text-blue-800" : ""
-            }`}
-            type="button"
-          >
-            Todos los tipos
-          </button>
-          {vehicleTypes.map((type) => (
-            <button
-              key={type.value}
-              onClick={() => setSelectedVehicleType(type.value)}
-              className={`w-full rounded-md px-3 py-2 text-left hover:bg-gray-100 ${
-                selectedVehicleType === type.value ? "bg-blue-100 text-blue-800" : ""
-              }`}
-              type="button"
-            >
-              {type.label}
-            </button>
-          ))}
-        </div>
-        <div className="flex gap-3 pt-4">
-          <button
-            onClick={() => setSelectedVehicleType("")}
-            className="flex-1 rounded-md border border-gray-300 px-4 py-2 text-gray-700 hover:bg-gray-50"
-            type="button"
-          >
-            Limpiar
-          </button>
-          <button
-            onClick={closeModal}
-            className="flex-1 rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-            type="button"
-          >
-            Aplicar
-          </button>
-        </div>
-      </FilterModal>
+      </div>
     </section>
   );
 }
