@@ -57,7 +57,8 @@ export default function PriceHistoryChart({ currentPrice, listings }: PriceHisto
 
     if (availableListings.length === 0) return currentPrice;
 
-    const currentPrices = [];
+    const currentPrices: number[] = [];
+
 
     availableListings.forEach((listing) => {
       // Obtener el precio más reciente del listing
@@ -129,7 +130,8 @@ export default function PriceHistoryChart({ currentPrice, listings }: PriceHisto
       });
 
       if (availableListings.length > 0) {
-        const prices = [];
+        const prices: { listingId: string; title: string; price: number }[] = [];
+
 
         availableListings.forEach((listing) => {
           // Obtener el precio más reciente del listing hasta esta fecha
@@ -194,7 +196,8 @@ export default function PriceHistoryChart({ currentPrice, listings }: PriceHisto
         return !soldDate || soldDate > endDate;
       });
 
-      const todayPrices = [];
+      const todayPrices: { listingId: string; title: string; price: number }[] = [];
+
       availableListings.forEach((listing) => {
         const validPriceHistory = listing.priceHistory?.filter((ph: any) => new Date(ph.recordedAt) <= endDate) || [];
 
@@ -410,7 +413,7 @@ export default function PriceHistoryChart({ currentPrice, listings }: PriceHisto
               strokeDasharray="8 4"
               label={{
                 value: `Precio Actual: $${(currentPrice / 1000000).toFixed(1)}M`,
-                position: "topRight",
+                position: "insideTopRight",
                 fill: "#3b82f6",
                 fontSize: 12,
                 fontWeight: "bold",

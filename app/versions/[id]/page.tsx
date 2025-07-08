@@ -36,11 +36,21 @@ export default function CarDetailsPage() {
         }
 
         // Obtener el más barato
-        const cheapest = allListings.reduce((min, curr) => (Number(curr.price) < Number(min.price) ? curr : min));
+        const cheapest = allListings.reduce((min: any, curr: any) =>
+          Number(curr.price) < Number(min.price) ? curr : min
+        );
+
+
 
         // Agregamos brand/model/year al listing para facilitar acceso en componentes
         const normalizedCheapest = { ...cheapest, brand, model, year };
-        const normalizedListings = allListings.map((l) => ({ ...l, brand, model, year }));
+        const normalizedListings = allListings.map((l: any) => ({
+          ...l,
+          brand,
+          model,
+          year,
+        }));
+
 
         setListings(normalizedListings);
         setSelectedListing(normalizedCheapest);
