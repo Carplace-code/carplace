@@ -2,7 +2,7 @@
 
 import type { BodyType, Prisma as P } from "@prisma/client";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 
 import ActiveFilters, { ActiveFilter } from "@/components/ActiveFilters";
 import Pagination from "@/components/Pagination";
@@ -12,7 +12,8 @@ import { useBrandModels } from "@/hooks/useBrandModels";
 import { useGetVersions } from "@/hooks/useVersions";
 import { cn } from "@/utils/cn";
 
-export default function BrowsePage() {
+// Componente separado que usa useSearchParams
+function BrowsePageContent() {
   const searchParams = useSearchParams();
 
   // --- FILTER STATE ---
@@ -203,13 +204,13 @@ export default function BrowsePage() {
   }
   if (filters.minPrice) {
     activeFilters.push({
-      label: `Min Price: $${filters.minPrice.toLocaleString()}`,
+      label: `Min Price: ${filters.minPrice.toLocaleString()}`,
       onRemove: () => setFilters((f) => ({ ...f, minPrice: undefined })),
     });
   }
   if (filters.maxPrice) {
     activeFilters.push({
-      label: `Max Price: $${filters.maxPrice.toLocaleString()}`,
+      label: `Max Price: ${filters.maxPrice.toLocaleString()}`,
       onRemove: () => setFilters((f) => ({ ...f, maxPrice: undefined })),
     });
   }
@@ -240,5 +241,14 @@ export default function BrowsePage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// Componente principal con Suspense
+export default function BrowsePage() {
+  return (
+    <Suspense fallback={<div className="flex min-h-screen items-center justify-center">Cargando...</div>}>
+      <BrowsePageContent />
+    </Suspense>
   );
 }
