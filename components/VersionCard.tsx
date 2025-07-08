@@ -41,7 +41,7 @@ export default function VersionCard({ version: { id, model, trims, year } }: Pro
   const { isSignedIn } = useAuth();
   const firstCarListingImageUrl = trims[0]?.carListings[0]?.images[0]?.url;
   const fuelTypes = [...new Set(trims.map((t) => formatFuelType(t.fuelType)))];
-  const minPrice = Math.min(...trims.flatMap((t) => t.carListings.map((cl) => cl.price.toNumber())));
+  const minPrice = Math.min(...trims.flatMap((t) => t.carListings.map((cl) => Number(cl.price))));
   const hasPrice = minPrice !== Number.POSITIVE_INFINITY;
 
   return (
