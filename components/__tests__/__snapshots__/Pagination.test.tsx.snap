@@ -3,146 +3,141 @@
 exports[`Pagination > renders correctly and matches snapshot 1`] = `
 <div>
   <div
-    class="mt-4 flex flex-col items-center gap-2 sm:justify-between"
+    class="flex flex-col items-center gap-4"
   >
-    <div
-      class="flex items-center gap-2"
+    <nav
+      aria-label="pagination"
+      class="mx-auto flex w-full justify-center"
+      data-slot="pagination"
+      role="navigation"
     >
-      <button
-        class="flex h-8 w-8 items-center justify-center rounded-md border hover:bg-gray-50disabled:cursor-not-allowed disabled:opacity-50"
-        title="Primera página"
-        type="button"
+      <ul
+        class="flex flex-row items-center gap-1"
+        data-slot="pagination-content"
       >
-        <svg
-          aria-hidden="true"
-          class="lucide lucide-chevrons-left h-4 w-4"
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
+        <li
+          data-slot="pagination-item"
         >
-          <path
-            d="m11 17-5-5 5-5"
-          />
-          <path
-            d="m18 17-5-5 5-5"
-          />
-        </svg>
-      </button>
-      <button
-        class="flex h-8 w-8 items-center justify-center rounded-md border hover:bg-gray-50disabled:cursor-not-allowed disabled:opacity-50"
-        title="Página anterior"
-        type="button"
-      >
-        <svg
-          aria-hidden="true"
-          class="lucide lucide-chevron-left h-4 w-4"
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
+          <a
+            aria-label="Go to previous page"
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:text-accent-foreground dark:hover:bg-accent/50 h-9 py-2 has-[>svg]:px-3 gap-1 px-2.5 sm:pl-2.5 hover:bg-accent cursor-pointer"
+            data-slot="pagination-link"
+          >
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-chevron-left"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m15 18-6-6 6-6"
+              />
+            </svg>
+            <span
+              class="hidden sm:block"
+            >
+              Previous
+            </span>
+          </a>
+        </li>
+        <li
+          data-slot="pagination-item"
         >
-          <path
-            d="m15 18-6-6 6-6"
-          />
-        </svg>
-      </button>
-      <div
-        class="flex items-center gap-1"
-      >
-        <button
-          class="flex h-8 w-8 items-center justify-center rounded-md border text-sm hover:bg-gray-50"
-          type="button"
+          <a
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 size-9 cursor-pointer"
+            data-active="false"
+            data-slot="pagination-link"
+          >
+            1
+          </a>
+        </li>
+        <li
+          data-slot="pagination-item"
         >
-          1
-        </button>
-        <button
-          class="flex h-8 w-8 items-center justify-center rounded-md border text-sm bg-blue-600 text-white"
-          type="button"
+          <a
+            aria-current="page"
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 size-9 cursor-pointer"
+            data-active="true"
+            data-slot="pagination-link"
+          >
+            2
+          </a>
+        </li>
+        <li
+          data-slot="pagination-item"
         >
-          2
-        </button>
-        <button
-          class="flex h-8 w-8 items-center justify-center rounded-md border text-sm hover:bg-gray-50"
-          type="button"
+          <a
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 size-9 cursor-pointer"
+            data-active="false"
+            data-slot="pagination-link"
+          >
+            3
+          </a>
+        </li>
+        <li
+          data-slot="pagination-item"
         >
-          3
-        </button>
-        <button
-          class="flex h-8 w-8 items-center justify-center rounded-md border text-sm hover:bg-gray-50"
-          type="button"
+          <a
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 size-9 cursor-pointer"
+            data-active="false"
+            data-slot="pagination-link"
+          >
+            4
+          </a>
+        </li>
+        <li
+          data-slot="pagination-item"
         >
-          4
-        </button>
-        <button
-          class="flex h-8 w-8 items-center justify-center rounded-md border text-sm hover:bg-gray-50"
-          type="button"
+          <a
+            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 size-9 cursor-pointer"
+            data-slot="pagination-link"
+          >
+            5
+          </a>
+        </li>
+        <li
+          data-slot="pagination-item"
         >
-          5
-        </button>
-      </div>
-      <button
-        class="flex h-8 w-8 items-center justify-center rounded-md border hover:bg-gray-50disabled:cursor-not-allowed disabled:opacity-50"
-        title="Página siguiente"
-        type="button"
-      >
-        <svg
-          aria-hidden="true"
-          class="lucide lucide-chevron-right h-4 w-4"
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="m9 18 6-6-6-6"
-          />
-        </svg>
-      </button>
-      <button
-        class="flex h-8 w-8 items-center justify-center rounded-md border hover:bg-gray-50disabled:cursor-not-allowed disabled:opacity-50"
-        title="Última página"
-        type="button"
-      >
-        <svg
-          aria-hidden="true"
-          class="lucide lucide-chevrons-right h-4 w-4"
-          fill="none"
-          height="24"
-          stroke="currentColor"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          viewBox="0 0 24 24"
-          width="24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="m6 17 5-5-5-5"
-          />
-          <path
-            d="m13 17 5-5-5-5"
-          />
-        </svg>
-      </button>
-    </div>
+          <a
+            aria-label="Go to next page"
+            class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:text-accent-foreground dark:hover:bg-accent/50 h-9 py-2 has-[>svg]:px-3 gap-1 px-2.5 sm:pr-2.5 hover:bg-accent cursor-pointer"
+            data-slot="pagination-link"
+          >
+            <span
+              class="hidden sm:block"
+            >
+              Next
+            </span>
+            <svg
+              aria-hidden="true"
+              class="lucide lucide-chevron-right"
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="m9 18 6-6-6-6"
+              />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </nav>
     <div
-      class="text-sm text-gray-600"
+      class="text-muted-foreground text-sm"
     >
       Página 
       2
