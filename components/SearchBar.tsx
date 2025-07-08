@@ -45,6 +45,7 @@ export default function SearchBar() {
         },
       },
     },
+    pageSize: 5000, // Fetch a larger set to allow for better search results
   });
 
   const versions = data?.data ?? [];
