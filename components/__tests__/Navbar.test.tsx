@@ -1,5 +1,6 @@
-import { render } from "@testing-library/react";
 import { describe, it, vi } from "vitest";
+
+import { renderWithQueryClient } from "@/utils/test-utils";
 
 import Navbar from "../Navbar";
 
@@ -16,6 +17,14 @@ vi.mock("@clerk/nextjs", () => ({
 // Mock Next.js navigation
 vi.mock("next/navigation", () => ({
   usePathname: () => "/",
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    prefetch: vi.fn(),
+    back: vi.fn(),
+    forward: vi.fn(),
+    refresh: vi.fn(),
+  }),
 }));
 
 // Mock lucide-react icons
@@ -30,7 +39,7 @@ vi.mock("lucide-react", () => ({
 
 describe("Navbar", () => {
   it("renders correctly and matches snapshot", () => {
-    const { container } = render(<Navbar />);
+    const { container } = renderWithQueryClient(<Navbar />);
     expect(container).toMatchSnapshot();
   });
 });
