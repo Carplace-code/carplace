@@ -29,7 +29,7 @@ Para los builds de producción, estos pueden ser vistos desde Vercel.
 - **Husky o lint-staged no bloquea commits**: Revisa tu `.husky/pre-commit` y la configuración en `package.json`; usa `eslint --cache --fix` con `--max-warnings 0`.
 
 ## Changelog
-El historial de cambios se encuentra en la lista de [releases de GitHub](https://github.com/Carplace-code/carplace/releases).
+El historial de cambios se encuentra en la lista de [releases de GitHub](https://github.com/Carplace-code/carplace/releases) (v2.0.0).
 
 ## Additional Resources
 - [Clerk](https://clerk.com)
