@@ -1,70 +1,55 @@
 /* eslint-disable */
+"use client"
 
-"use client";
+import type { BodyType, Prisma as P } from "@prisma/client"
+import { useSearchParams } from "next/navigation"
+import { Suspense, useEffect, useMemo, useState } from "react"
 
-import type { BodyType, Prisma as P } from "@prisma/client";
-import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useMemo, useState } from "react";
+import ActiveFilters, { type ActiveFilter } from "@/components/ActiveFilters"
+import PaginationComponent from "@/components/Pagination"
+import SidebarFilters from "@/components/SidebarFilters"
+import VersionsGrid from "@/components/VersionsGrid"
+import VersionsGridSkeleton from "@/components/VersionsGridSkeleton"
+import { useAvailableFilters } from "@/hooks/useAvailableFilters"
+import { useBrandModels } from "@/hooks/useBrandModels"
+import { useGetVersions } from "@/hooks/useVersions"
+import { cn } from "@/utils/cn"
 
-import ActiveFilters, { ActiveFilter } from "@/components/ActiveFilters";
-import Pagination from "@/components/Pagination";
-import SidebarFilters from "@/components/SidebarFilters";
-import VersionsGrid from "@/components/VersionsGrid";
-import { useAvailableFilters } from "@/hooks/useAvailableFilters";
-import { useBrandModels } from "@/hooks/useBrandModels";
-import { useGetVersions } from "@/hooks/useVersions";
-import { cn } from "@/utils/cn";
-
-// Componente separado que usa useSearchParams
 function BrowsePageContent() {
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()
 
-  // --- FILTER STATE ---
   const [filters, setFilters] = useState<{
-    brand?: string[];
-    model?: string[];
-    year?: number[];
-    bodyType?: BodyType[];
-    minPrice?: number;
-    maxPrice?: number;
-  }>({});
+    brand?: string[]
+    model?: string[]
+    year?: number[]
+    bodyType?: BodyType[]
+    minPrice?: number
+    maxPrice?: number
+  }>({})
 
-  // --- PAGINATION ---
-  const [page, setPage] = useState(1);
-  const pageSize = 8;
+  const [page, setPage] = useState(1)
+  const pageSize = 8 // solo para mostrar en frontend
 
-  // Brand -> models map
-  const { data: brandModelsMap = {} } = useBrandModels();
+  const { data: brandModelsMap = {} } = useBrandModels()
 
-  // Leer filtros de la URL al cargar la página
   useEffect(() => {
-    if (!searchParams) return; // Protección para tests
+    if (!searchParams) return
 
-    const urlFilters: typeof filters = {};
+    const urlFilters: typeof filters = {}
 
-    // Leer parámetros de la URL
-    const brand = searchParams.get("brand");
-    const bodyType = searchParams.get("bodyType");
-    const minPrice = searchParams.get("minPrice");
-    const maxPrice = searchParams.get("maxPrice");
+    const brand = searchParams.get("brand")
+    const bodyType = searchParams.get("bodyType")
+    const minPrice = searchParams.get("minPrice")
+    const maxPrice = searchParams.get("maxPrice")
 
-    if (brand) {
-      urlFilters.brand = [brand];
-    }
-    if (bodyType) {
-      urlFilters.bodyType = [bodyType as BodyType];
-    }
-    if (minPrice) {
-      urlFilters.minPrice = parseInt(minPrice, 10);
-    }
-    if (maxPrice) {
-      urlFilters.maxPrice = parseInt(maxPrice, 10);
-    }
+    if (brand) urlFilters.brand = [brand]
+    if (bodyType) urlFilters.bodyType = [bodyType as BodyType]
+    if (minPrice) urlFilters.minPrice = Number.parseInt(minPrice, 10)
+    if (maxPrice) urlFilters.maxPrice = Number.parseInt(maxPrice, 10)
 
-    setFilters(urlFilters);
-  }, [searchParams]);
+    setFilters(urlFilters)
+  }, [searchParams])
 
-  // Opciones de tipos de vehículo para mostrar etiquetas en español
   const vehicleTypeLabels: Record<BodyType, string> = {
     sedan: "Sedán",
     suv: "SUV",
@@ -75,63 +60,63 @@ function BrowsePageContent() {
     van: "Van",
     truck: "Camioneta",
     other: "Otro",
-  };
+  }
 
   const modelOptions = useMemo(() => {
-    if (!filters.brand?.length) return [];
-    return Array.from(new Set(filters.brand.flatMap((b) => brandModelsMap[b] || [])));
-  }, [filters.brand, brandModelsMap]);
+    if (!filters.brand?.length) return []
+    return Array.from(new Set(filters.brand.flatMap((b) => brandModelsMap[b] || [])))
+  }, [filters.brand, brandModelsMap])
 
-  // Prisma filtering logic
+  const priceFilter =
+    filters.minPrice !== undefined || filters.maxPrice !== undefined
+      ? {
+          price: {
+            ...(filters.minPrice !== undefined ? { gte: filters.minPrice } : {}),
+            ...(filters.maxPrice !== undefined ? { lte: filters.maxPrice } : {}),
+          },
+        }
+      : {}
+
   const where = useMemo<P.VersionWhereInput>(() => {
     const baseWhere: P.VersionWhereInput = {
-      // Always include trims with at least one car listing
       trims: {
         some: {
           carListings: {
-            some: {
-              // Filtro de precio
-              ...(filters.minPrice && { price: { gte: filters.minPrice } }),
-              ...(filters.maxPrice && { price: { lte: filters.maxPrice } }),
-            },
+            some: priceFilter,
           },
         },
       },
-      // Filter by year
       ...(filters.year && { year: { in: filters.year } }),
-    };
+    }
 
-    // Construir filtros de model de manera condicional para evitar conflictos de tipos
     if (filters.brand || filters.model || filters.bodyType) {
-      const modelConditions: P.ModelWhereInput = {};
+      const modelConditions: P.ModelWhereInput = {}
 
-      // Filtro por brand
       if (filters.brand) {
         modelConditions.brand = {
           is: {
             name: { in: filters.brand },
           },
-        };
+        }
       }
 
-      // Filtro por model name
       if (filters.model) {
-        modelConditions.name = { in: filters.model };
+        modelConditions.name = { in: filters.model }
       }
 
-      // Filtro por bodyType - casting a BodyType enum
       if (filters.bodyType) {
-        modelConditions.bodyType = { in: filters.bodyType as BodyType[] };
+        modelConditions.bodyType = { in: filters.bodyType as BodyType[] }
       }
 
       baseWhere.model = {
         is: modelConditions,
-      };
+      }
     }
 
-    return baseWhere;
-  }, [filters]);
+    return baseWhere
+  }, [filters, priceFilter])
 
+  // ✅ Solicitamos todos los resultados desde el backend
   const {
     data: result,
     isLoading,
@@ -139,94 +124,107 @@ function BrowsePageContent() {
     error,
   } = useGetVersions({
     where,
-    page,
-    pageSize,
+    page: 1,
+    pageSize: 5000,
     include: {
-      model: {
-        include: {
-          brand: true,
-        },
-      },
+      model: { include: { brand: true } },
       trims: {
         where: {
           carListings: {
-            some: {
-              // Filtro de precio también en los trims
-              ...(filters.minPrice && { price: { gte: filters.minPrice } }),
-              ...(filters.maxPrice && { price: { lte: filters.maxPrice } }),
-            },
+            some: priceFilter,
           },
         },
         include: {
           carListings: {
             take: 1,
-            where: {
-              // Filtro de precio en carListings
-              ...(filters.minPrice && { price: { gte: filters.minPrice } }),
-              ...(filters.maxPrice && { price: { lte: filters.maxPrice } }),
-            },
-            include: {
-              images: true,
-            },
+            where: priceFilter,
+            include: { images: true },
           },
         },
       },
       wishlistItems: true,
     },
-  });
+  })
 
-  const versions = useMemo(() => result?.data ?? [], [result]);
-  const meta = useMemo(() => result?.meta, [result]);
+  const allVersions = useMemo(() => result?.data ?? [], [result])
 
-  const { data: availableFiltersData, isLoading: filtersLoading } = useAvailableFilters(where);
+  // ✅ Calculamos paginación en el frontend
+  const paginatedVersions = useMemo(
+    () => allVersions.slice((page - 1) * pageSize, page * pageSize),
+    [allVersions, page, pageSize],
+  )
 
-  const availableBrands = availableFiltersData?.brands ?? [];
-  const availableModels = availableFiltersData?.models ?? [];
-  const availableYears = availableFiltersData?.years ?? [];
+  const meta = useMemo(() => {
+    const total = allVersions.length
+    return {
+      page,
+      pageCount: Math.ceil(total / pageSize),
+      total,
+      pageSize,
+    }
+  }, [allVersions.length, page, pageSize])
 
-  // Active filters
-  const activeFilters: ActiveFilter[] = [];
+  const { data: availableFiltersData, isLoading: filtersLoading } = useAvailableFilters(where)
+
+  const availableBrands = availableFiltersData?.brands ?? []
+  const availableModels = availableFiltersData?.models ?? []
+  const availableYears = availableFiltersData?.years ?? []
+
+  const activeFilters: ActiveFilter[] = []
+
   if (filters.brand?.length) {
     activeFilters.push({
-      label: `Brand: ${filters.brand.join(", ")}`,
+      label: `Marca: ${filters.brand.join(", ")}`,
+      type: "brand",
       onRemove: () => setFilters((f) => ({ ...f, brand: undefined })),
-    });
+    })
   }
+
   if (filters.model?.length) {
     activeFilters.push({
-      label: `Model: ${filters.model.join(", ")}`,
+      label: `Modelo: ${filters.model.join(", ")}`,
+      type: "model",
       onRemove: () => setFilters((f) => ({ ...f, model: undefined })),
-    });
+    })
   }
+
   if (filters.year?.length) {
     activeFilters.push({
-      label: `Year: ${filters.year.join(", ")}`,
+      label: `Año: ${filters.year.join(", ")}`,
+      type: "year",
       onRemove: () => setFilters((f) => ({ ...f, year: undefined })),
-    });
+    })
   }
+
   if (filters.bodyType?.length) {
-    const labels = filters.bodyType.map((type) => vehicleTypeLabels[type as BodyType] || type);
+    const labels = filters.bodyType.map((type) => vehicleTypeLabels[type as BodyType] || type)
     activeFilters.push({
-      label: `Vehicle Type: ${labels.join(", ")}`,
+      label: `Tipo: ${labels.join(", ")}`,
+      type: "bodyType",
       onRemove: () => setFilters((f) => ({ ...f, bodyType: undefined })),
-    });
+    })
   }
+
   if (filters.minPrice) {
     activeFilters.push({
-      label: `Min Price: ${filters.minPrice.toLocaleString()}`,
+      label: `Precio mín: $${filters.minPrice.toLocaleString()}`,
+      type: "price",
       onRemove: () => setFilters((f) => ({ ...f, minPrice: undefined })),
-    });
+    })
   }
+
   if (filters.maxPrice) {
     activeFilters.push({
-      label: `Max Price: ${filters.maxPrice.toLocaleString()}`,
+      label: `Precio máx: $${filters.maxPrice.toLocaleString()}`,
+      type: "price",
       onRemove: () => setFilters((f) => ({ ...f, maxPrice: undefined })),
-    });
+    })
   }
 
   return (
     <div className="flex w-full flex-grow flex-col px-6 py-4 lg:px-12">
       <ActiveFilters filters={activeFilters} onClear={() => setFilters({})} />
+
       <div className="mt-6 flex flex-grow gap-8">
         <aside className="hidden w-64 flex-shrink-0 rounded-lg p-4 shadow-sm lg:block">
           <SidebarFilters
@@ -237,27 +235,42 @@ function BrowsePageContent() {
             yearOptions={availableYears}
           />
         </aside>
-        <div
-          className={cn(
-            "flex max-h-full flex-1 flex-grow flex-col justify-between",
-            "overflow-x-hidden rounded-lg p-4 shadow-sm",
+
+        <div className={cn("flex max-h-full flex-1 flex-grow flex-col justify-between", "overflow-x-hidden rounded-lg p-4 shadow-sm")}>
+          {isLoading ? (
+            <VersionsGridSkeleton count={pageSize} />
+          ) : isError ? (
+            <div className="flex items-center justify-center py-12">
+              <div className="text-center">
+                <p className="text-lg font-medium text-red-600">Error al cargar las versiones</p>
+                <p className="mt-2 text-sm text-gray-500">{error?.message || "Ha ocurrido un error inesperado"}</p>
+              </div>
+            </div>
+          ) : (
+            <VersionsGrid versions={paginatedVersions} />
           )}
-        >
-          {isLoading && <div>Cargando...</div>}
-          {isError && <div>Error al cargar las versiones.{JSON.stringify(error)}</div>}
-          {!isLoading && !isError && meta && <VersionsGrid versions={versions} />}
-          <Pagination page={meta?.page || 1} pageCount={meta?.pageCount || 1} onPageChange={setPage} />
+
+          {meta && (
+            <div className="mt-6">
+              <PaginationComponent
+                page={meta.page}
+                pageCount={meta.pageCount}
+                onPageChange={setPage}
+                disabled={isLoading}
+              />
+            </div>
+          )}
+
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-// Componente principal con Suspense
 export default function BrowsePage() {
   return (
     <Suspense fallback={<div className="flex min-h-screen items-center justify-center">Cargando...</div>}>
       <BrowsePageContent />
     </Suspense>
-  );
+  )
 }
