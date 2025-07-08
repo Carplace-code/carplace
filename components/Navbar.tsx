@@ -1,11 +1,12 @@
 "use client";
 
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
-import { Car, Heart, LineChart, Menu, Search } from "lucide-react";
+import { Car, Heart, LineChart, Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+import SearchBar from "@/components/SearchBar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -35,8 +36,9 @@ export default function Navbar() {
           </Link>
 
           <div className="relative hidden items-center md:flex">
-            <Input type="text" placeholder="Search cars, brands, or models..." className="w-80 pr-10" />
-            <Search className="absolute top-2.5 right-3 h-4 w-4 text-gray-500" />
+            {/* <Input type="text" placeholder="Search cars, brands, or models..." className="w-80 pr-10" />
+            <Search className="absolute top-2.5 right-3 h-4 w-4 text-gray-500" /> */}
+            <SearchBar />
           </div>
         </div>
 

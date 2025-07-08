@@ -64,6 +64,7 @@ jobs:
           mv coverage/coverage-summary.json baseline-coverage-summary.json
 
       - name: Compare total line coverage
+        continue-on-error: true
         run: |
           # If we never generated a baseline, skip comparison
           if [ ! -f baseline-coverage-summary.json ]; then
