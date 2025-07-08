@@ -1,7 +1,8 @@
 "use client";
 
 import type { Prisma as P } from "@prisma/client";
-import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 
 import ActiveFilters, { ActiveFilter } from "@/components/ActiveFilters";
 import Pagination from "@/components/Pagination";
@@ -12,11 +13,16 @@ import { useGetVersions } from "@/hooks/useVersions";
 import { cn } from "@/utils/cn";
 
 export default function BrowsePage() {
+  const searchParams = useSearchParams();
+
   // --- FILTER STATE ---
   const [filters, setFilters] = useState<{
     brand?: string[];
     model?: string[];
     year?: number[];
+    bodyType?: string[];
+    minPrice?: number;
+    maxPrice?: number;
   }>({});
 
   // --- PAGINATION ---
@@ -24,13 +30,46 @@ export default function BrowsePage() {
   const pageSize = 8;
 
   // Brand -> models map
-  // const brandModelsMap: Record<string, string[]> = {
-  //   Toyota: ["Corolla", "Camry"],
-  //   Ford: ["Focus", "Mustang"],
-  //   Honda: ["Civic", "Accord"],
-  // };
-
   const { data: brandModelsMap = {} } = useBrandModels();
+
+  // Leer filtros de la URL al cargar la página
+  useEffect(() => {
+    const urlFilters: typeof filters = {};
+
+    // Leer parámetros de la URL
+    const brand = searchParams.get("brand");
+    const bodyType = searchParams.get("bodyType");
+    const minPrice = searchParams.get("minPrice");
+    const maxPrice = searchParams.get("maxPrice");
+
+    if (brand) {
+      urlFilters.brand = [brand];
+    }
+    if (bodyType) {
+      urlFilters.bodyType = [bodyType];
+    }
+    if (minPrice) {
+      urlFilters.minPrice = parseInt(minPrice, 10);
+    }
+    if (maxPrice) {
+      urlFilters.maxPrice = parseInt(maxPrice, 10);
+    }
+
+    setFilters(urlFilters);
+  }, [searchParams]);
+
+  // Opciones de tipos de vehículo para mostrar etiquetas en español
+  const vehicleTypeLabels: Record<string, string> = {
+    sedan: "Sedán",
+    suv: "SUV",
+    hatchback: "Hatchback",
+    coupe: "Coupé",
+    convertible: "Convertible",
+    wagon: "Station Wagon",
+    van: "Van",
+    truck: "Camioneta",
+    other: "Otro",
+  };
 
   const modelOptions = useMemo(() => {
     if (!filters.brand?.length) return [];
@@ -44,11 +83,15 @@ export default function BrowsePage() {
       trims: {
         some: {
           carListings: {
-            some: {},
+            some: {
+              // Filtro de precio
+              ...(filters.minPrice && { price: { gte: filters.minPrice } }),
+              ...(filters.maxPrice && { price: { lte: filters.maxPrice } }),
+            },
           },
         },
       },
-      // Filter by year, brand, model
+      // Filter by year, brand, model, bodyType
       ...(filters.year && { year: { in: filters.year } }),
       ...(filters.brand && {
         model: {
@@ -58,6 +101,8 @@ export default function BrowsePage() {
                 name: { in: filters.brand },
               },
             },
+            // Filtro por tipo de vehículo (bodyType)
+            ...(filters.bodyType && { bodyType: { in: filters.bodyType } }),
           },
         },
       }),
@@ -90,12 +135,21 @@ export default function BrowsePage() {
       trims: {
         where: {
           carListings: {
-            some: {},
+            some: {
+              // Filtro de precio también en los trims
+              ...(filters.minPrice && { price: { gte: filters.minPrice } }),
+              ...(filters.maxPrice && { price: { lte: filters.maxPrice } }),
+            },
           },
         },
         include: {
           carListings: {
             take: 1,
+            where: {
+              // Filtro de precio en carListings
+              ...(filters.minPrice && { price: { gte: filters.minPrice } }),
+              ...(filters.maxPrice && { price: { lte: filters.maxPrice } }),
+            },
             include: {
               images: true,
             },
@@ -105,6 +159,7 @@ export default function BrowsePage() {
       wishlistItems: true,
     },
   });
+
   const versions = useMemo(() => result?.data ?? [], [result]);
   const meta = useMemo(() => result?.meta, [result]);
 
@@ -126,6 +181,25 @@ export default function BrowsePage() {
     activeFilters.push({
       label: `Year: ${filters.year.join(", ")}`,
       onRemove: () => setFilters((f) => ({ ...f, year: undefined })),
+    });
+  }
+  if (filters.bodyType?.length) {
+    const labels = filters.bodyType.map((type) => vehicleTypeLabels[type] || type);
+    activeFilters.push({
+      label: `Vehicle Type: ${labels.join(", ")}`,
+      onRemove: () => setFilters((f) => ({ ...f, bodyType: undefined })),
+    });
+  }
+  if (filters.minPrice) {
+    activeFilters.push({
+      label: `Min Price: $${filters.minPrice.toLocaleString()}`,
+      onRemove: () => setFilters((f) => ({ ...f, minPrice: undefined })),
+    });
+  }
+  if (filters.maxPrice) {
+    activeFilters.push({
+      label: `Max Price: $${filters.maxPrice.toLocaleString()}`,
+      onRemove: () => setFilters((f) => ({ ...f, maxPrice: undefined })),
     });
   }
 

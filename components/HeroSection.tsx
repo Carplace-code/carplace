@@ -111,7 +111,7 @@ export default function HeroSection() {
           className="rounded-md border bg-white px-4 py-2 shadow-sm transition-shadow hover:shadow-md"
           type="button"
         >
-          Price Range
+          Rango de Precio
           {(priceMin || priceMax) && (
             <span className="ml-2 font-medium text-blue-600">{getPriceDisplayText(priceMin, priceMax)}</span>
           )}
@@ -122,7 +122,7 @@ export default function HeroSection() {
           className="rounded-md border bg-white px-4 py-2 shadow-sm transition-shadow hover:shadow-md"
           type="button"
         >
-          Brand
+          Marca
           {selectedBrand && <span className="ml-2 font-medium text-blue-600">{selectedBrand}</span>}
         </button>
 
@@ -131,7 +131,7 @@ export default function HeroSection() {
           className="rounded-md border bg-white px-4 py-2 shadow-sm transition-shadow hover:shadow-md"
           type="button"
         >
-          Vehicle Type
+          Tipo de Vehículo
           {selectedVehicleType && (
             <span className="ml-2 font-medium text-blue-600">
               {vehicleTypes.find((v) => v.value === selectedVehicleType)?.label}
