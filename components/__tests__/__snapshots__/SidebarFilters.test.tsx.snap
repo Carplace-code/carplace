@@ -3,178 +3,212 @@
 exports[`SidebarFilters > renders correctly and matches snapshot 1`] = `
 <div>
   <div
-    class="space-y-6 rounded-lg border bg-white p-6 text-sm shadow-sm"
+    class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm w-full"
+    data-slot="card"
   >
     <div
-      class="space-y-1"
+      class="space-y-6 p-6"
+      data-slot="card-content"
     >
-      <h4
-        class="mb-1 text-xs font-semibold tracking-wide text-gray-600 uppercase"
-      >
-        Marca
-      </h4>
-      <select
-        class="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
-      >
-        <option
-          value=""
-        >
-          -
-        </option>
-        <option
-          value="Toyota"
-        >
-          Toyota
-        </option>
-        <option
-          value="Hyundai"
-        >
-          Hyundai
-        </option>
-      </select>
-    </div>
-    <div
-      class="space-y-1"
-    >
-      <h4
-        class="mb-1 text-xs font-semibold tracking-wide text-gray-600 uppercase"
-      >
-        Modelo
-      </h4>
-      <select
-        class="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
-      >
-        <option
-          value=""
-        >
-          -
-        </option>
-        <option
-          value="Corolla"
-        >
-          Corolla
-        </option>
-        <option
-          value="Elantra"
-        >
-          Elantra
-        </option>
-      </select>
-    </div>
-    <div
-      class="space-y-1"
-    >
-      <h4
-        class="mb-1 text-xs font-semibold tracking-wide text-gray-600 uppercase"
-      >
-        Año
-      </h4>
-      <select
-        class="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
-      >
-        <option
-          value=""
-        >
-          -
-        </option>
-        <option
-          value="2020"
-        >
-          2020
-        </option>
-        <option
-          value="2021"
-        >
-          2021
-        </option>
-      </select>
-    </div>
-    <div
-      class="space-y-1"
-    >
-      <h4
-        class="mb-1 text-xs font-semibold tracking-wide text-gray-600 uppercase"
-      >
-        Tipo de Vehículo
-      </h4>
-      <select
-        class="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
-      >
-        <option
-          value=""
-        >
-          -
-        </option>
-        <option
-          value="sedan"
-        >
-          Sedán
-        </option>
-        <option
-          value="suv"
-        >
-          SUV
-        </option>
-        <option
-          value="hatchback"
-        >
-          Hatchback
-        </option>
-        <option
-          value="coupe"
-        >
-          Coupé
-        </option>
-        <option
-          value="convertible"
-        >
-          Convertible
-        </option>
-        <option
-          value="wagon"
-        >
-          Station Wagon
-        </option>
-        <option
-          value="van"
-        >
-          Van
-        </option>
-        <option
-          value="truck"
-        >
-          Camioneta
-        </option>
-        <option
-          value="other"
-        >
-          Otro
-        </option>
-      </select>
-    </div>
-    <div
-      class="space-y-2"
-    >
-      <h4
-        class="mb-1 text-xs font-semibold tracking-wide text-gray-600 uppercase"
-      >
-        Rango de Precio (CLP)
-      </h4>
       <div
-        class="space-y-2"
+        class="border-b pb-4"
       >
-        <input
-          class="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
-          placeholder="Precio mínimo"
-          type="number"
-          value=""
-        />
-        <input
-          class="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
-          placeholder="Precio máximo"
-          type="number"
-          value=""
-        />
+        <h3
+          class="text-lg font-semibold text-gray-900"
+        >
+          Filtros
+        </h3>
+        <p
+          class="mt-1 text-sm text-gray-500"
+        >
+          Refina tu búsqueda
+        </p>
+      </div>
+      <div
+        class="space-y-3"
+      >
+        <label
+          class="flex items-center gap-2 select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 text-sm font-medium text-gray-700"
+          data-slot="label"
+        >
+          Marca
+        </label>
+        <button
+          aria-autocomplete="none"
+          aria-controls="radix-«r0»"
+          aria-expanded="false"
+          class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex items-center justify-between gap-2 rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 w-full"
+          data-size="default"
+          data-slot="select-trigger"
+          data-state="closed"
+          dir="ltr"
+          role="combobox"
+          type="button"
+        >
+          <span
+            data-slot="select-value"
+            style="pointer-events: none;"
+          >
+            Toyota
+          </span>
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-chevron-down size-4 opacity-50"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="space-y-3"
+      >
+        <label
+          class="flex items-center gap-2 select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 text-sm font-medium text-gray-700"
+          data-slot="label"
+        >
+          Modelo
+        </label>
+        <button
+          aria-autocomplete="none"
+          aria-controls="radix-«r1»"
+          aria-expanded="false"
+          class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex items-center justify-between gap-2 rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 w-full"
+          data-size="default"
+          data-slot="select-trigger"
+          data-state="closed"
+          dir="ltr"
+          role="combobox"
+          type="button"
+        >
+          <span
+            data-slot="select-value"
+            style="pointer-events: none;"
+          >
+            Corolla
+          </span>
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-chevron-down size-4 opacity-50"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="space-y-3"
+      >
+        <label
+          class="flex items-center gap-2 select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 text-sm font-medium text-gray-700"
+          data-slot="label"
+        >
+          Año
+        </label>
+        <button
+          aria-autocomplete="none"
+          aria-controls="radix-«r2»"
+          aria-expanded="false"
+          class="border-input data-[placeholder]:text-muted-foreground [&_svg:not([class*='text-'])]:text-muted-foreground focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 dark:hover:bg-input/50 flex items-center justify-between gap-2 rounded-md border bg-transparent px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 data-[size=default]:h-9 data-[size=sm]:h-8 *:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 w-full"
+          data-size="default"
+          data-slot="select-trigger"
+          data-state="closed"
+          dir="ltr"
+          role="combobox"
+          type="button"
+        >
+          <span
+            data-slot="select-value"
+            style="pointer-events: none;"
+          >
+            2020
+          </span>
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-chevron-down size-4 opacity-50"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        class="space-y-3"
+      >
+        <label
+          class="flex items-center gap-2 select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 text-sm font-medium text-gray-700"
+          data-slot="label"
+        >
+          Rango de Precio (CLP)
+        </label>
+        <div
+          class="space-y-3"
+        >
+          <div>
+            <label
+              class="items-center gap-2 font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 mb-1 block text-xs text-gray-500"
+              data-slot="label"
+              for="min-price"
+            >
+              Precio mínimo
+            </label>
+            <input
+              class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:opacity-50 md:text-sm aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive w-full"
+              data-slot="input"
+              id="min-price"
+              placeholder="0"
+              type="number"
+              value=""
+            />
+          </div>
+          <div>
+            <label
+              class="items-center gap-2 font-medium select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 mb-1 block text-xs text-gray-500"
+              data-slot="label"
+              for="max-price"
+            >
+              Precio máximo
+            </label>
+            <input
+              class="file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:opacity-50 md:text-sm aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive w-full"
+              data-slot="input"
+              id="max-price"
+              placeholder="Sin límite"
+              type="number"
+              value=""
+            />
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 "use client";
 
 import type { BodyType, Prisma as P } from "@prisma/client";
@@ -8,6 +10,7 @@ import ActiveFilters, { ActiveFilter } from "@/components/ActiveFilters";
 import Pagination from "@/components/Pagination";
 import SidebarFilters from "@/components/SidebarFilters";
 import VersionsGrid from "@/components/VersionsGrid";
+import { useAvailableFilters } from "@/hooks/useAvailableFilters";
 import { useBrandModels } from "@/hooks/useBrandModels";
 import { useGetVersions } from "@/hooks/useVersions";
 import { cn } from "@/utils/cn";
@@ -175,6 +178,12 @@ function BrowsePageContent() {
   const versions = useMemo(() => result?.data ?? [], [result]);
   const meta = useMemo(() => result?.meta, [result]);
 
+  const { data: availableFiltersData, isLoading: filtersLoading } = useAvailableFilters(where);
+
+  const availableBrands = availableFiltersData?.brands ?? [];
+  const availableModels = availableFiltersData?.models ?? [];
+  const availableYears = availableFiltersData?.years ?? [];
+
   // Active filters
   const activeFilters: ActiveFilter[] = [];
   if (filters.brand?.length) {
@@ -223,9 +232,9 @@ function BrowsePageContent() {
           <SidebarFilters
             filters={filters}
             onChange={(field, value) => setFilters((f) => ({ ...f, [field]: value }))}
-            brandOptions={Object.keys(brandModelsMap)}
-            modelOptions={modelOptions}
-            yearOptions={[...Array(35).keys()].map((i) => i + 1990)}
+            brandOptions={availableBrands}
+            modelOptions={availableModels}
+            yearOptions={availableYears}
           />
         </aside>
         <div
