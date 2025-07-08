@@ -89,6 +89,94 @@ exports[`SidebarFilters > renders correctly and matches snapshot 1`] = `
         </option>
       </select>
     </div>
+    <div
+      class="space-y-1"
+    >
+      <h4
+        class="mb-1 text-xs font-semibold tracking-wide text-gray-600 uppercase"
+      >
+        Tipo de Vehículo
+      </h4>
+      <select
+        class="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+      >
+        <option
+          value=""
+        >
+          -
+        </option>
+        <option
+          value="sedan"
+        >
+          Sedán
+        </option>
+        <option
+          value="suv"
+        >
+          SUV
+        </option>
+        <option
+          value="hatchback"
+        >
+          Hatchback
+        </option>
+        <option
+          value="coupe"
+        >
+          Coupé
+        </option>
+        <option
+          value="convertible"
+        >
+          Convertible
+        </option>
+        <option
+          value="wagon"
+        >
+          Station Wagon
+        </option>
+        <option
+          value="van"
+        >
+          Van
+        </option>
+        <option
+          value="truck"
+        >
+          Camioneta
+        </option>
+        <option
+          value="other"
+        >
+          Otro
+        </option>
+      </select>
+    </div>
+    <div
+      class="space-y-2"
+    >
+      <h4
+        class="mb-1 text-xs font-semibold tracking-wide text-gray-600 uppercase"
+      >
+        Rango de Precio (CLP)
+      </h4>
+      <div
+        class="space-y-2"
+      >
+        <input
+          class="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+          placeholder="Precio mínimo"
+          type="number"
+          value=""
+        />
+        <input
+          class="w-full rounded-md border border-gray-200 bg-gray-50 p-2 text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-100 focus:outline-none"
+          placeholder="Precio máximo"
+          type="number"
+          value=""
+        />
+      </div>
+    </div>
   </div>
 </div>
 `;
