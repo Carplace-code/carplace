@@ -1,7 +1,7 @@
 "use client";
 
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
-import { Car, Heart, LineChart, Menu } from "lucide-react";
+import { Car, Heart, Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -20,7 +20,6 @@ export default function Navbar() {
   const navItems = [
     { href: "/", label: "Inicio", icon: null },
     { href: "/browse", label: "Buscar", icon: null },
-    { href: "/trends", label: "Tendencias", icon: <LineChart className="h-4 w-4" /> },
   ];
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname.startsWith(href));
