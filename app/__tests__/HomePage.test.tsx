@@ -36,3 +36,30 @@ describe("HomePage", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 });
+
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    back: vi.fn(),
+    forward: vi.fn(),
+    refresh: vi.fn(),
+    prefetch: vi.fn(),
+  }),
+  useSearchParams: () => ({
+    get: vi.fn(() => null),
+    has: vi.fn(() => false),
+    toString: vi.fn(() => ""),
+  }),
+}));
+
+vi.mock("@/hooks/useBrandModels", () => ({
+  useBrandModels: () => ({
+    data: {
+      Toyota: ["Corolla", "Yaris"],
+      Honda: ["Civic", "Fit"],
+    },
+    isLoading: false,
+    isError: false,
+  }),
+}));

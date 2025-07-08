@@ -21,28 +21,22 @@ exports[`HomePage > renders correctly and matches snapshot 1`] = `
         Compare prices across Chileautos, Yapo, and Facebook Marketplace instantly
       </p>
       <div
-        class="flex flex-wrap justify-center gap-4"
+        class="mb-6 flex flex-wrap justify-center gap-4"
       >
         <button
-          class="rounded-md border bg-white px-4 py-2 shadow-sm"
+          class="rounded-md border bg-white px-4 py-2 shadow-sm transition-shadow hover:shadow-md"
           type="button"
         >
           Price Range
         </button>
         <button
-          class="rounded-md border bg-white px-4 py-2 shadow-sm"
-          type="button"
-        >
-          Location
-        </button>
-        <button
-          class="rounded-md border bg-white px-4 py-2 shadow-sm"
+          class="rounded-md border bg-white px-4 py-2 shadow-sm transition-shadow hover:shadow-md"
           type="button"
         >
           Brand
         </button>
         <button
-          class="rounded-md border bg-white px-4 py-2 shadow-sm"
+          class="rounded-md border bg-white px-4 py-2 shadow-sm transition-shadow hover:shadow-md"
           type="button"
         >
           Vehicle Type
