@@ -64,15 +64,6 @@ exports[`Navbar > renders correctly and matches snapshot 1`] = `
         >
           Buscar
         </a>
-        <a
-          class="flex items-center gap-1 text-gray-700 hover:text-blue-500"
-          href="/trends"
-        >
-          <div>
-            LineChartIcon
-          </div>
-          Tendencias
-        </a>
         <button
           type="button"
         >
