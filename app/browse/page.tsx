@@ -1,6 +1,6 @@
 "use client";
 
-import type { Prisma as P } from "@prisma/client";
+import type { BodyType, Prisma as P } from "@prisma/client";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
@@ -20,7 +20,7 @@ export default function BrowsePage() {
     brand?: string[];
     model?: string[];
     year?: number[];
-    bodyType?: string[];
+    bodyType?: BodyType[];
     minPrice?: number;
     maxPrice?: number;
   }>({});
@@ -48,7 +48,7 @@ export default function BrowsePage() {
       urlFilters.brand = [brand];
     }
     if (bodyType) {
-      urlFilters.bodyType = [bodyType];
+      urlFilters.bodyType = [bodyType as BodyType];
     }
     if (minPrice) {
       urlFilters.minPrice = parseInt(minPrice, 10);
@@ -61,7 +61,7 @@ export default function BrowsePage() {
   }, [searchParams]);
 
   // Opciones de tipos de vehículo para mostrar etiquetas en español
-  const vehicleTypeLabels: Record<string, string> = {
+  const vehicleTypeLabels: Record<BodyType, string> = {
     sedan: "Sedán",
     suv: "SUV",
     hatchback: "Hatchback",
@@ -79,8 +79,8 @@ export default function BrowsePage() {
   }, [filters.brand, brandModelsMap]);
 
   // Prisma filtering logic
-  const where = useMemo<P.VersionWhereInput>(
-    () => ({
+  const where = useMemo<P.VersionWhereInput>(() => {
+    const baseWhere: P.VersionWhereInput = {
       // Always include trims with at least one car listing
       trims: {
         some: {
@@ -93,31 +93,40 @@ export default function BrowsePage() {
           },
         },
       },
-      // Filter by year, brand, model, bodyType
+      // Filter by year
       ...(filters.year && { year: { in: filters.year } }),
-      ...(filters.brand && {
-        model: {
+    };
+
+    // Construir filtros de model de manera condicional para evitar conflictos de tipos
+    if (filters.brand || filters.model || filters.bodyType) {
+      const modelConditions: P.ModelWhereInput = {};
+
+      // Filtro por brand
+      if (filters.brand) {
+        modelConditions.brand = {
           is: {
-            brand: {
-              is: {
-                name: { in: filters.brand },
-              },
-            },
-            // Filtro por tipo de vehículo (bodyType)
-            ...(filters.bodyType && { bodyType: { in: filters.bodyType } }),
+            name: { in: filters.brand },
           },
-        },
-      }),
-      ...(filters.model && {
-        model: {
-          is: {
-            name: { in: filters.model },
-          },
-        },
-      }),
-    }),
-    [filters],
-  );
+        };
+      }
+
+      // Filtro por model name
+      if (filters.model) {
+        modelConditions.name = { in: filters.model };
+      }
+
+      // Filtro por bodyType - casting a BodyType enum
+      if (filters.bodyType) {
+        modelConditions.bodyType = { in: filters.bodyType as BodyType[] };
+      }
+
+      baseWhere.model = {
+        is: modelConditions,
+      };
+    }
+
+    return baseWhere;
+  }, [filters]);
 
   const {
     data: result,
@@ -186,7 +195,7 @@ export default function BrowsePage() {
     });
   }
   if (filters.bodyType?.length) {
-    const labels = filters.bodyType.map((type) => vehicleTypeLabels[type] || type);
+    const labels = filters.bodyType.map((type) => vehicleTypeLabels[type as BodyType] || type);
     activeFilters.push({
       label: `Vehicle Type: ${labels.join(", ")}`,
       onRemove: () => setFilters((f) => ({ ...f, bodyType: undefined })),
