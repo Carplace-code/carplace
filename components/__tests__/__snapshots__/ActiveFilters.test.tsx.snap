@@ -3,44 +3,159 @@
 exports[`ActiveFilters > renders correctly with filters 1`] = `
 <div>
   <div
-    class="mb-4 flex flex-wrap items-center gap-3 text-sm"
+    class="space-y-3"
   >
-    <button
-      class="flex items-center rounded-full bg-blue-100 px-3 py-1 text-blue-700"
-      type="button"
+    <div
+      class="flex items-center justify-between"
     >
-      Brand: Toyota
-      <span
-        class="ml-1 font-bold"
+      <div
+        class="flex items-center gap-2"
       >
-        ×
-      </span>
-    </button>
-    <button
-      class="flex items-center rounded-full bg-blue-100 px-3 py-1 text-blue-700"
-      type="button"
-    >
-      Year: 2020
-      <span
-        class="ml-1 font-bold"
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-funnel text-muted-foreground h-4 w-4"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 20a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341L21.74 4.67A1 1 0 0 0 21 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14z"
+          />
+        </svg>
+        <span
+          class="text-muted-foreground text-sm font-medium"
+        >
+          Filtros activos (
+          2
+          )
+        </span>
+      </div>
+      <button
+        class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent dark:hover:bg-accent/50 rounded-md gap-1.5 has-[>svg]:px-2.5 text-muted-foreground hover:text-destructive h-8 px-2"
+        data-slot="button"
       >
-        ×
-      </span>
-    </button>
-    <button
-      class="ml-2 text-sm text-red-500 underline"
-      type="button"
+        <svg
+          aria-hidden="true"
+          class="lucide lucide-trash2 lucide-trash-2 mr-1 h-3 w-3"
+          fill="none"
+          height="24"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 6h18"
+          />
+          <path
+            d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"
+          />
+          <path
+            d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"
+          />
+          <line
+            x1="10"
+            x2="10"
+            y1="11"
+            y2="17"
+          />
+          <line
+            x1="14"
+            x2="14"
+            y1="11"
+            y2="17"
+          />
+        </svg>
+        Limpiar todo
+      </button>
+    </div>
+    <div
+      class="flex flex-wrap gap-2"
     >
-      Clear All
-    </button>
+      <span
+        class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive overflow-hidden text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground group relative pr-6 transition-all duration-200 hover:pr-8"
+        data-slot="badge"
+      >
+        <span
+          class="text-xs"
+        >
+          Brand: Toyota
+        </span>
+        <button
+          aria-label="Remover filtro Brand: Toyota"
+          class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 rounded-md gap-1.5 has-[>svg]:px-2.5 group-hover:bg-background/20 absolute top-0 right-0 h-full w-6 p-0 opacity-60 hover:opacity-100"
+          data-slot="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x h-3 w-3"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </span>
+      <span
+        class="inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive overflow-hidden text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground group relative pr-6 transition-all duration-200 hover:pr-8"
+        data-slot="badge"
+      >
+        <span
+          class="text-xs"
+        >
+          Year: 2020
+        </span>
+        <button
+          aria-label="Remover filtro Year: 2020"
+          class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 rounded-md gap-1.5 has-[>svg]:px-2.5 group-hover:bg-background/20 absolute top-0 right-0 h-full w-6 p-0 opacity-60 hover:opacity-100"
+          data-slot="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="lucide lucide-x h-3 w-3"
+            fill="none"
+            height="24"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 6 6 18"
+            />
+            <path
+              d="m6 6 12 12"
+            />
+          </svg>
+        </button>
+      </span>
+    </div>
   </div>
 </div>
 `;
 
-exports[`ActiveFilters > renders nothing when no filters are present 1`] = `
-<div>
-  <div
-    class="mb-4 flex flex-wrap items-center gap-3 text-sm"
-  />
-</div>
-`;
+exports[`ActiveFilters > renders nothing when no filters are present 1`] = `<div />`;
