@@ -5,6 +5,38 @@ import { vi } from "vitest";
 
 import HomePage from "@/app/page";
 
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+    replace: vi.fn(),
+    back: vi.fn(),
+    forward: vi.fn(),
+    refresh: vi.fn(),
+    prefetch: vi.fn(),
+  }),
+  useSearchParams: () => ({
+    get: vi.fn(() => null),
+    has: vi.fn(() => false),
+    toString: vi.fn(() => ""),
+    entries: vi.fn(() => []),
+    forEach: vi.fn(),
+    getAll: vi.fn(() => []),
+    keys: vi.fn(() => []),
+    values: vi.fn(() => []),
+  }),
+}));
+
+vi.mock("@/hooks/useBrandModels", () => ({
+  useBrandModels: () => ({
+    data: {
+      Toyota: ["Corolla", "Yaris"],
+      Honda: ["Civic", "Fit"],
+    },
+    isLoading: false,
+    isError: false,
+  }),
+}));
+
 vi.mock("@/hooks/useCarListings", () => ({
   useGetCarListings: () => ({
     data: [
@@ -25,7 +57,13 @@ vi.mock("@/hooks/useCarListings", () => ({
 
 describe("HomePage", () => {
   it("renders correctly and matches snapshot", () => {
-    const queryClient = new QueryClient();
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false,
+        },
+      },
+    });
 
     const { asFragment } = render(
       <QueryClientProvider client={queryClient}>
@@ -36,30 +74,3 @@ describe("HomePage", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 });
-
-vi.mock("next/navigation", () => ({
-  useRouter: () => ({
-    push: vi.fn(),
-    replace: vi.fn(),
-    back: vi.fn(),
-    forward: vi.fn(),
-    refresh: vi.fn(),
-    prefetch: vi.fn(),
-  }),
-  useSearchParams: () => ({
-    get: vi.fn(() => null),
-    has: vi.fn(() => false),
-    toString: vi.fn(() => ""),
-  }),
-}));
-
-vi.mock("@/hooks/useBrandModels", () => ({
-  useBrandModels: () => ({
-    data: {
-      Toyota: ["Corolla", "Yaris"],
-      Honda: ["Civic", "Fit"],
-    },
-    isLoading: false,
-    isError: false,
-  }),
-}));

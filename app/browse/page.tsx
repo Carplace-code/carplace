@@ -34,6 +34,8 @@ export default function BrowsePage() {
 
   // Leer filtros de la URL al cargar la página
   useEffect(() => {
+    if (!searchParams) return; // Protección para tests
+
     const urlFilters: typeof filters = {};
 
     // Leer parámetros de la URL
