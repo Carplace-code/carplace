@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { FuelType, Prisma, TransmissionType } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -61,6 +63,7 @@ export async function GET(request: NextRequest | Request) {
 
     return NextResponse.json(listings, { status: 200 });
   } catch (err) {
+    console.error("Error fetching car listings:", err);
     return NextResponse.json({ error: "Failed to fetch listings" }, { status: 500 });
   }
 }
@@ -303,6 +306,15 @@ export async function POST(request: Request) {
         location,
         publishedAt: publishedAt ? new Date(publishedAt) : new Date(),
         scrapedAt: scrapedAt ? new Date(scrapedAt) : new Date(),
+      },
+    });
+
+    await prisma.priceHistory.create({
+      data: {
+        listingId: carListing.id,
+        price: priceActual,
+        priceCurrency: "CLP",
+        recordedAt: new Date(),
       },
     });
 

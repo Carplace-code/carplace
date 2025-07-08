@@ -116,6 +116,7 @@ model CarListing {
   scrapedAt     DateTime
   images        Image[]
   priceHistory  PriceHistory[]
+  soldAt       DateTime?
 }
 
 model Image {
